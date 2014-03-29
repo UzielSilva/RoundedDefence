@@ -1,6 +1,6 @@
 using System;
 
-namespace RoundedDefence
+namespace RoundedDefence.Components
 {
 	public class MyClass
 	{

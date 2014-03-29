@@ -1,7 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoundedDefence", "RoundedDefence\RoundedDefence.csproj", "{C03463F1-1A77-429B-BC73-B6B5FA250718}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoundedDefence.View", "RoundedDefence.View\RoundedDefence.View.csproj", "{D26685D9-E764-4DEA-BBB0-CDFC426B4B43}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoundedDefence.Components", "RoundedDefence\RoundedDefence.Components.csproj", "{C03463F1-1A77-429B-BC73-B6B5FA250718}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,8 +15,12 @@ Global
 		{C03463F1-1A77-429B-BC73-B6B5FA250718}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C03463F1-1A77-429B-BC73-B6B5FA250718}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C03463F1-1A77-429B-BC73-B6B5FA250718}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D26685D9-E764-4DEA-BBB0-CDFC426B4B43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D26685D9-E764-4DEA-BBB0-CDFC426B4B43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D26685D9-E764-4DEA-BBB0-CDFC426B4B43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D26685D9-E764-4DEA-BBB0-CDFC426B4B43}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(MonoDevelopProperties) = preSolution
-		StartupItem = RoundedDefence\RoundedDefence.csproj
+		StartupItem = RoundedDefence.View\RoundedDefence.View.csproj
 	EndGlobalSection
 EndGlobal
