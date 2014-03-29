@@ -63,4 +63,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <ProjectReference Include="..\RoundedDefence.Components\RoundedDefence.Components.csproj">
+      <Project>{C03463F1-1A77-429B-BC73-B6B5FA250718}</Project>
+      <Name>RoundedDefence.Components</Name>
+    </ProjectReference>
+  </ItemGroup>
 </Project>
