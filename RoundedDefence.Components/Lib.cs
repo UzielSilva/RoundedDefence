@@ -1,9 +1,11 @@
 using System;
+using System.Drawing;
 
 namespace RoundedDefence
 {
 	public class Lib
 	{
+		public static int tileHeight = 10;
 		public Lib ()
 		{
 		}
@@ -15,6 +17,9 @@ namespace RoundedDefence
 				frac++;
 			}
 			return (byte)Math.Pow(2.0, frac);
+		}
+		public static Point toTiles(Point p){
+			return new Point(p.X/tileHeight,p.Y*getNcircles(p.X/tileHeight)/360);
 		}
 	}
 }

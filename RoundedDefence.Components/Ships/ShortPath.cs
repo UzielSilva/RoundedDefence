@@ -4,10 +4,10 @@ namespace RoundedDefence
 {
 	public class ShortPath
 	{
-		private byte inicioLvl=0;
-		private byte inicioP=0;
-		private byte finalLvl=0;
-		private byte finalP=0;
+		private byte inicioLvl;
+		private byte inicioP;
+		private byte finalLvl;
+		private byte finalP;
 		private int[,] valueMap= new int[25,64];
 		List<Camino> wall= new List<Camino>();
 
@@ -34,7 +34,7 @@ namespace RoundedDefence
 			}
 
 		}
-		public void find(){
+		public Path getPath(){
 			newer (inicioLvl, inicioP, 0, 1);
 			int minDiference = 1;
 			for (int time=0; wall.Count!=0; time +=minDiference) {
@@ -44,7 +44,7 @@ namespace RoundedDefence
 					if (minTime > ca.t) {
 						minTime = ca.t;
 					}
-					if (ca.lvl == 1) {
+					if (ca.lvl == finalLvl && ca.p== finalP) {
 						goto next;
 					}
 					if (time >= ca.t) {
@@ -68,8 +68,9 @@ namespace RoundedDefence
 				}
 				minDiference = minTime - time;
 				}
+			return null;
 			next: 
-			;
+			return new Path(finalLvl,finalP,valueMap);
 			}
 		}
 	}

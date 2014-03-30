@@ -30,13 +30,24 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MyClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ShortPath.cs" />
-    <Compile Include="Camino.cs" />
     <Compile Include="Lib.cs" />
+    <Compile Include="Ships\Camino.cs" />
+    <Compile Include="Ships\Ship.cs" />
+    <Compile Include="Ships\ShortPath.cs" />
+    <Compile Include="Ships\Bonus.cs" />
+    <Compile Include="Ships\Path.cs" />
+    <Compile Include="Ships\Types\Pesquero.cs" />
+    <Compile Include="World.cs" />
+    <Compile Include="Ships\Types\Pirata.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="Ships\" />
+    <Folder Include="Ships\Types\" />
+  </ItemGroup>
 </Project>
