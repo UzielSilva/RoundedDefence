@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace RoundedDefence.Fishes
+namespace RoundedDefence.Components.Fishes
 {
     class Shark : Fish
     {
@@ -18,11 +18,10 @@ namespace RoundedDefence.Fishes
         }
         public override Boolean IsInArea(Point p)
         {
-            Int32 width = Width[level];
+            Int32 width = Width[Level];
             if (this.Position.X >= p.X && this.Position.X + width < p.X)
                 return true;
             return false;
         }
-        internal override void Upgrade() {}
     }
 }

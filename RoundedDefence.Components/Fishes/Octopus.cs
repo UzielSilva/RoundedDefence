@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace RoundedDefence.Fishes
+namespace RoundedDefence.Components.Fishes
 {
     class Octopus : Fish
     {
@@ -22,11 +22,10 @@ namespace RoundedDefence.Fishes
             double y = p.X*Math.Sin(p.Y);
             double px = this.Position.X*Math.Cos(this.Position.Y);
             double py = this.Position.X*Math.Sin(this.Position.Y);
-            Int32 radius = Radius[level];
+            Int32 radius = Radius[Level];
             if (Math.Pow(x - px, 2) + Math.Pow(y - py, 2) <= Math.Pow(radius,2))
                 return true;
             return false;
         }
-        internal override void Upgrade() {}
     }
 }
