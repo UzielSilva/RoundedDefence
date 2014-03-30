@@ -7,8 +7,8 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{C03463F1-1A77-429B-BC73-B6B5FA250718}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>RoundedDefence</RootNamespace>
-    <AssemblyName>RoundedDefence</AssemblyName>
+    <RootNamespace>RoundedDefence.Components</RootNamespace>
+    <AssemblyName>RoundedDefence.Components</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
