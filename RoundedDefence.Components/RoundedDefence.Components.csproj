@@ -34,7 +34,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Fishes\Fish.cs" />
-    <Compile Include="Fishes\Mermaid.cs" />
     <Compile Include="Fishes\Octopus.cs" />
     <Compile Include="Fishes\Shark.cs" />
     <Compile Include="MyClass.cs" />
@@ -50,5 +49,8 @@
     <Compile Include="Ships\Types\Pirata.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Ships\" />
+    <Folder Include="Ships\Types\" />
+  </ItemGroup>
 </Project>
