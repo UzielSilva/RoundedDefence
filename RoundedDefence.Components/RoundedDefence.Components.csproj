@@ -34,7 +34,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Fishes\Actives\ActiveFish.cs" />
-    <Compile Include="Fishes\Fish.cs" />
+    <Compile Include="Fishes\Actives\Kraken.cs" />
+    <Compile Include="Fishes\Actives\Whale.cs" />
+    <Compile Include="Fishes\IFish.cs" />
     <Compile Include="Fishes\Passives\Crab.cs" />
     <Compile Include="Fishes\Passives\PassiveFish.cs" />
     <Compile Include="Fishes\Passives\Jellyfish.cs" />
