@@ -9,14 +9,14 @@ namespace RoundedDefence.Components.Fishes
         private Double[] timeToAction;
         private Int32[] damage;
         private Int32 level;
-        public Int32 Level { get { return level; } };
+		//public Int32 Level { get { return level; } };
 
         private static Int32 maxLevel = 4;
         
         public Point Position { get; set; }
-        public Int32 RequiredFood { get { return requiredFood[Level]; } }
-        public Double TimeToAction { get { return timeToAction[Level]; } }
-        public Int32 Damage { get { return damage[Level]; } }
+		//    public Int32 RequiredFood { get { return requiredFood[Level]; } }
+		//public Double TimeToAction { get { return timeToAction[Level]; } }
+		//public Int32 Damage { get { return damage[Level]; } }
         public Fish(Int32[] requiredFood, Double[] timeToAction, Int32[] damage)
         {
             if (requiredFood.Length != 4
@@ -31,7 +31,7 @@ namespace RoundedDefence.Components.Fishes
         public abstract Boolean IsInArea(Point p);
         public void Upgrade()
         {
-            if (level != maxLevel)
+			if (level != maxLevel){
                 level++;
             }
         }

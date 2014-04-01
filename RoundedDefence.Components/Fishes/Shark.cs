@@ -18,9 +18,9 @@ namespace RoundedDefence.Components.Fishes
         }
         public override Boolean IsInArea(Point p)
         {
-            Int32 width = Width[Level];
-            if (this.Position.X >= p.X && this.Position.X + width < p.X)
-                return true;
+			// Int32 width = Width[Level];
+			//   if (this.Position.X >= p.X && this.Position.X + width < p.X)
+			//       return true;
             return false;
         }
     }

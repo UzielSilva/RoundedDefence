@@ -18,13 +18,13 @@ namespace RoundedDefence.Components.Fishes
         }
         public override Boolean IsInArea(Point p)
         {
-            double x = p.X*Math.Cos(p.Y);
-            double y = p.X*Math.Sin(p.Y);
-            double px = this.Position.X*Math.Cos(this.Position.Y);
-            double py = this.Position.X*Math.Sin(this.Position.Y);
-            Int32 radius = Radius[Level];
-            if (Math.Pow(x - px, 2) + Math.Pow(y - py, 2) <= Math.Pow(radius,2))
-                return true;
+			//        double x = p.X*Math.Cos(p.Y);
+			//double y = p.X*Math.Sin(p.Y);
+			//double px = this.Position.X*Math.Cos(this.Position.Y);
+			//double py = this.Position.X*Math.Sin(this.Position.Y);
+			// Int32 radius = Radius[Level];
+			// if (Math.Pow(x - px, 2) + Math.Pow(y - py, 2) <= Math.Pow(radius,2))
+			//        return true;
             return false;
         }
     }

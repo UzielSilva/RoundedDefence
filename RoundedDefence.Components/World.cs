@@ -5,8 +5,8 @@ namespace RoundedDefence
 {
 	public class World
 	{
-		int comida,cajas;
-		private static int[,] bloques;
+		//int comida,cajas;
+		//private static int[,] bloques;
 		//List<Fish> fishes= new List<Fish>();
 		public World ()
 		{

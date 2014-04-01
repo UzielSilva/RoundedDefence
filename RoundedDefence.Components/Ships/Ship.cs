@@ -25,10 +25,10 @@ namespace RoundedDefence
 			return 0;
 		}
 		public int getBonus(){
-			return 0;
+			return -1;
 		}
 		public int getShield(){
-			return 0;
+			return -1;
 		}
 		public int getTotalLife(){
 			return 0;
@@ -47,8 +47,26 @@ namespace RoundedDefence
 		}
 
 		public void move(){
+			int spd = getSpeed() - bonus.speed;
+			spd /= bonus.boost+1;
+			if (radio != path.camino [0].lvl * Lib.tileHeight) {
+				if (radio > path.camino [0].lvl * Lib.tileHeight) {
+					radio -= spd;
+				} else {
+					radio += spd;
+				}
+			}
+
 		}
-		public void kill(){
+		public void hit(int dmg){
+			dmg -= bonus.shield;
+			dmg /= bonus.defence+1;
+			if (dmg > 0)
+				life -= dmg;
+			if (life < 0)
+				kill ();
+		}
+		private void kill(){
 		}
 		public Point getPosition(){
 			return new Point((int)radio,(int)angle);

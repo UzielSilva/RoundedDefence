@@ -24,19 +24,15 @@ namespace RoundedDefence
 			return 3;
 		}
 		public new int getBonus(){
-			return 0;
+			return -1;
 		}
 		public new int getShield(){
-			return 0;
+			return -1;
 		}
 		public new int getTotalLife(){
 			return 20;
 		}
 
-		public new void move(){
-		}
-		public new void kill(){
-		}
 	}
 }
 

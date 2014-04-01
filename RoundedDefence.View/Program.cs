@@ -8,7 +8,7 @@ class LayoutSample : Window
 
 	public LayoutSample() : base("Simple drawing")
 	{
-		SetDefaultSize(230, 150);
+		SetDefaultSize(750, 600);
 		SetPosition(WindowPosition.Center);
 		DeleteEvent += delegate { Application.Quit(); };;
 
@@ -24,16 +24,11 @@ class LayoutSample : Window
 	{
 		DrawingArea area = (DrawingArea) sender;
 		Cairo.Context cr =  Gdk.CairoHelper.Create(area.GdkWindow);
+		//Cairo.Surface image= Cairo.ImageSurface("Resources/mar3.png");
+		int width = Allocation.Width;
+		int height= Allocation.Height;
 
-		cr.LineWidth = 9;
-		cr.SetSourceRGB(0.7, 0.2, 0.0);
-
-		int width, height;
-		width = Allocation.Width;
-		height = Allocation.Height;
-
-		cr.Translate(width/2, height/2);
-		cr.Arc(0, 0, (width < height ? width : height) / 2 - 10, 0, 2*Math.PI);
+		cr.Rectangle (new Rectangle (0,0,width,height));
 		cr.StrokePreserve();
 
 		cr.SetSourceRGB(0.3, 0.4, 0.6);
