@@ -33,10 +33,16 @@
     <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Fishes\Actives\ActiveFish.cs" />
     <Compile Include="Fishes\Fish.cs" />
-    <Compile Include="Fishes\Octopus.cs" />
-    <Compile Include="Fishes\Shark.cs" />
-    <Compile Include="Fishes\Mermaid.cs" />
+    <Compile Include="Fishes\Passives\Crab.cs" />
+    <Compile Include="Fishes\Passives\PassiveFish.cs" />
+    <Compile Include="Fishes\Passives\Jellyfish.cs" />
+    <Compile Include="Fishes\Passives\Octopus.cs" />
+    <Compile Include="Fishes\Passives\Reef.cs" />
+    <Compile Include="Fishes\Passives\Sailfish.cs" />
+    <Compile Include="Fishes\Passives\Shark.cs" />
+    <Compile Include="Fishes\Passives\Mermaid.cs" />
     <Compile Include="MyClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Lib.cs" />
@@ -50,8 +56,5 @@
     <Compile Include="Ships\Types\Pirata.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
-  <ItemGroup>
-    <Folder Include="Ships\" />
-    <Folder Include="Ships\Types\" />
-  </ItemGroup>
+  <ItemGroup />
 </Project>

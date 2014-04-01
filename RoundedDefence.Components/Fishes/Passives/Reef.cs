@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Drawing;
 
-namespace RoundedDefence.Components.Fishes
+namespace RoundedDefence.Components.Fishes.Passives
 {
-    class Reef : Fish
+    class Reef : PassiveFish
     {
         public static Int32[] width = { 1, 2, 3, 4 };
         public static Int32[] length = { 5, 6, 7, 8 };
