@@ -44,6 +44,9 @@
     <Compile Include="Ships\Types\Pesquero.cs" />
     <Compile Include="World.cs" />
     <Compile Include="Ships\Types\Pirata.cs" />
+    <Compile Include="Ships\Types\Vikingo.cs" />
+    <Compile Include="Ships\Types\Veleros.cs" />
+    <Compile Include="Ships\Types\Mercante.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

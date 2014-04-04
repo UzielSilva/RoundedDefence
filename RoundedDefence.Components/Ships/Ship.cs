@@ -13,42 +13,26 @@ namespace RoundedDefence
 		public Ship (){
 		}
 		public string getname(){
-			return "";
+			return "NO VALID";
 		}
 		public string getDescription(){
-			return "";
+			return "NO VALID";
 		}
-		public byte getType(){
-			return 0;
-		}
-		public byte getSpeed(){
-			return 0;
-		}
-		public int getBonus(){
-			return -1;
-		}
-		public int getShield(){
-			return -1;
-		}
-		public int getTotalLife(){
-			return 0;
-		}
-		public int getLife(){
-			return life;
-		}
-		public Bitmap getImage(){
-			return image;
-		}
-		public void addBonus(Bonus b){
-			bonus = b;
-		}
-		public void setPath(Path p){
-			path = p;
-		}
+		public byte getType(){return 0;}
+		public byte getSpeed(){return 0;}
+		public double getBoost(){return 1;}
+		public int getBonus(){return 0;}
+		public int getShield(){return 0;}
+		public double getDefence(){return 1;}
+		public int getTotalLife(){return 0;}
+		public int getLife(){return life;}
+		public Bitmap getImage(){return image;}
+		public void addBonus(Bonus b){bonus = b;}
+		public void setPath(Path p){path = p;}
 
 		public void move(){
-			int spd = getSpeed() - bonus.speed;
-			spd /= bonus.boost+1;
+			double spd = getSpeed()+bonus.speed;
+			spd /= getBoost()+bonus.boost;
 			if (radio != path.camino [0].lvl * Lib.tileHeight) {
 				if (radio > path.camino [0].lvl * Lib.tileHeight) {
 					radio -= spd;
@@ -58,11 +42,11 @@ namespace RoundedDefence
 			}
 
 		}
-		public void hit(int dmg){
-			dmg -= bonus.shield;
-			dmg /= bonus.defence+1;
+		public void hit(double dmg){
+			dmg-= getShield()+bonus.shield;
+			dmg /= getDefence()+bonus.defence;
 			if (dmg > 0)
-				life -= dmg;
+				life -= (int)dmg;
 			if (life < 0)
 				kill ();
 		}

@@ -17,21 +17,9 @@ namespace RoundedDefence
 		public  new string getDescription(){
 			return "Uno de los barcos mas comunes.";
 		}
-		public  new byte getType(){
-			return 1;
-		}
-		public  new byte getSpeed(){
-			return 3;
-		}
-		public new int getBonus(){
-			return -1;
-		}
-		public new int getShield(){
-			return -1;
-		}
-		public new int getTotalLife(){
-			return 20;
-		}
+		public new byte getType(){return 1;}
+		public new byte getSpeed(){return 3;}
+		public new int getTotalLife(){return 20;}
 
 	}
 }
