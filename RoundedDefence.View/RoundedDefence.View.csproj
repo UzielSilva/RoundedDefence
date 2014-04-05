@@ -51,6 +51,7 @@
     </Reference>
     <Reference Include="Mono.Posix" />
     <Reference Include="Mono.Cairo" />
+    <Reference Include="System.Drawing" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="gtk-gui\gui.stetic">
@@ -70,5 +71,15 @@
       <Project>{C03463F1-1A77-429B-BC73-B6B5FA250718}</Project>
       <Name>RoundedDefence.Components</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\island.png" />
+    <None Include="Resources\ship.png" />
+    <None Include="Resources\cloud.png" />
+    <None Include="Resources\wave.png" />
+    <None Include="Resources\mar3.png" />
   </ItemGroup>
 </Project>
