@@ -56,7 +56,30 @@
     <Compile Include="Ships\Types\Pesquero.cs" />
     <Compile Include="World.cs" />
     <Compile Include="Ships\Types\Pirata.cs" />
+    <Compile Include="Ships\Bosses\Astute.cs" />
+    <Compile Include="Ships\Bosses\BlackPearl.cs" />
+    <Compile Include="Ships\Bosses\Dragon.cs" />
+    <Compile Include="Ships\Bosses\DreamSymphony.cs" />
+    <Compile Include="Ships\Bosses\KnockNevis.cs" />
+    <Compile Include="Ships\Bosses\MajesticMaersk.cs" />
+    <Compile Include="Ships\Bosses\Titanic.cs" />
+    <Compile Include="Ships\Types\Guerra.cs" />
+    <Compile Include="Ships\Types\Mercante.cs" />
+    <Compile Include="Ships\Types\Pasajero.cs" />
+    <Compile Include="Ships\Types\Petrolero.cs" />
+    <Compile Include="Ships\Types\RompeHielo.cs" />
+    <Compile Include="Ships\Types\Submarino.cs" />
+    <Compile Include="Ships\Types\Velero.cs" />
+    <Compile Include="Ships\Types\Vikingo.cs" />
+    <Compile Include="Ships\Types\Zepelin.cs" />
+    <Compile Include="Levels\Level.cs" />
+    <Compile Include="Levels\Wave.cs" />
+    <Compile Include="Levels\Normal\Lvl1.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Ships\" />
+    <Folder Include="Levels\" />
+  </ItemGroup>
 </Project>
