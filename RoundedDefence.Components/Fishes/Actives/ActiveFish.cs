@@ -3,7 +3,7 @@ using System.Drawing;
 
 namespace RoundedDefence.Components.Fishes.Actives
 {
-    class ActiveFish : IFish
+    abstract class ActiveFish : IFish
     {
         private Int32 requiredFood;
         private Double timeToAction;
@@ -19,5 +19,6 @@ namespace RoundedDefence.Components.Fishes.Actives
             this.timeToAction = timeToAction;
             this.damage = damage;
         }
+        public abstract Boolean IsInArea(Point p);
     }
 }
