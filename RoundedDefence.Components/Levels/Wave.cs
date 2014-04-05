@@ -10,7 +10,7 @@ namespace RoundedDefence.Components
 		private long delay;
 		private Boolean empty;
 		public Wave (long del,int gue,int mer,int pas,int pes,int pet,int pir,int rom,int sub, int vel,int vik, int zep){
-			delay = delay;
+			delay = del;
 			amount [0] = gue;
 			amount [1] = mer;
 			amount [2] = pas;

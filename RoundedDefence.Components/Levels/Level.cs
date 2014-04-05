@@ -7,19 +7,30 @@ namespace RoundedDefence.Components
 	{
 
 		public List<Wave> waves= new List<Wave>();
-		public List<Wave> activeWaves= new List<Wave>();
-		public List<Ship> activeShip= new List<Ship>();
-		public long time=0;
-		public Boolean clear=false;
+		private List<Wave> activeWaves= new List<Wave>();
+		private List<Ship> activeShip= new List<Ship>();
+		private byte[,] valueMap= new byte[25,64];
+		private int score = 0;
+		private int scoreMultiplier=0;
+		private long time=0;
+		private Boolean clear=false;
+
 		public Level (){
 		}
-
-		public void Move(){
+		public void fastFoward(){
+			time = 0;
+			getWaves (15);
+		}
+		private void getWaves(int sc){
 			if (time-- == 0 && waves.Count!=0) {
 				Wave wav = waves [0];
+				scoreMultiplier = sc;
+				time = wav.getTime ();
 				activeWaves.Add (wav);
 				waves.Remove (wav);
 			}
+		}
+		private void getShips(){
 			foreach (Wave wav in activeWaves) {
 				if (wav.isEmpty())
 					activeWaves.Remove (wav);
@@ -29,19 +40,35 @@ namespace RoundedDefence.Components
 						activeShip.Add (ship);
 				}
 			}
+		}
+		private void moveShips(){
 			foreach (Ship ship in activeShip) {
-				if (ship.getLife () <= 0)
+				if (ship.getLife () <= 0){	
+					score += (int)(ship.getScore()*(scoreMultiplier/100 +1));
 					activeShip.Remove (ship);
-				else {
+				}else {
+					ship.addBonus (valueMap [ship.getTilesPosition().X, ship.getTilesPosition().Y]);
 					ship.move();
+
 				}
 			}
+		}
+		public void move(){
+			getWaves (0);
+			getShips ();
+			moveShips ();
 			if (waves.Count == 0 && activeWaves.Count == 0 && activeShip.Count == 0)
 				clear = true;
 		}
 		public Boolean isClear(){
 			return clear;
 		}
+
+		
+
+		public	int getOneStar(){return 0;}
+		public int getTwoStar(){return 0;}
+		public int getThreeStar(){return 0;}
 
 		public Boolean hasGuerra(){return false;}
 		public Boolean hasMercante(){return false;}
@@ -77,4 +104,9 @@ torres:
 	tiburones, ataque pasivo por el mapa 
 	kraken, ataque de emergencia 
 	ballenas, se tragan enemigos
+	sirenas,
+	erizos de mar
+	estrellas.
+	torbellino. especie de teletransportador;
+	
 */

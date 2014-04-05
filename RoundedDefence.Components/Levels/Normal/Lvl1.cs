@@ -16,6 +16,10 @@ namespace RoundedDefence.Components
 			waves.Add (new Wave (22,0, 0, 0, 30, 0, 0, 0, 0, 0, 0, 0));
 		}
 		public new Boolean hasPesquero(){return true;}
+
+		public new int getOneStar(){return 100;}
+		public new int getTwoStar(){return 300;}
+		public new int getThreeStar(){return 500;}
 	}
 }
 
