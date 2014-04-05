@@ -19,6 +19,7 @@ namespace RoundedDefence
 			return "NO VALID";
 		}
 		public byte getType(){return 0;}
+		public byte getDelay(){return 0;}
 		public byte getSpeed(){return 0;}
 		public double getBoost(){return 1;}
 		public int getBonus(){return 0;}
@@ -58,4 +59,28 @@ namespace RoundedDefence
 
 	}
 }
+/*
+enemigos: 
+	vikingos,
+	pesqueros,
+	de guerra, 
+	piratas, 
+	veleros, 
+	mercantes, 
+	submarinos, 
+	rompehielos, 
+	petroleros, 
+	pasajeros, 
+	zepelin
 
+bosses:
+	titanic(pasajero), 
+	black pearl(pirata),
+	dragon(vikingo), 
+	fantasma,
+	Dream Symphony(velero),
+	Majestic Maersk(mercante),
+	Knock Nevis(petrolero),
+	The Astute (submarino)
+
+*/

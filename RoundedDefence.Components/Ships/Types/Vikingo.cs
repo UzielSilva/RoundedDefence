@@ -16,7 +16,7 @@ namespace RoundedDefence.Components
 		public  new string getDescription(){
 			return "Solo los mas resistentes sobreviven.";
 		}
-		public new byte getType(){return 3;}
+		public new byte getType(){return 4;}
 		public new byte getSpeed(){return 3;}
 		public new double getBoost(){return .9;}
 		public new double getDefence(){return 1.5;}

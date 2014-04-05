@@ -16,7 +16,7 @@ namespace RoundedDefence.Components
 		public new string getDescription(){
 			return "Sobreviven hasta en las hambrunas";
 		}
-		public new byte getType(){return 5;}
+		public new byte getType(){return 0;}
 		public new byte getSpeed(){return 4;}
 		public new int getTotalLife(){return 100;}
 	}
