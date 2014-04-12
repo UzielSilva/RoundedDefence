@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Drawing;
-
 namespace RoundedDefence.Components
 {
 	public class Petrolero:Ship

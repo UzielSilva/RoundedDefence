@@ -1,5 +1,4 @@
 using System;
-using System.Drawing;
 
 namespace RoundedDefence
 {
@@ -7,7 +6,7 @@ namespace RoundedDefence
 	{
 		public int shipAngle,life;
 		public double radio, angle;
-		public Bitmap image;
+		//public Bitmap image;
 		public Bonus bonus;
 		public Path path;
 		public Ship (){
@@ -28,7 +27,7 @@ namespace RoundedDefence
 		public double getDefence(){return 1;}
 		public int getTotalLife(){return 0;}
 		public int getLife(){return life;}
-		public Bitmap getImage(){return image;}
+		//public Bitmap getImage(){return image;}
 		public void setPath(Path p){path = p;}
 
 
