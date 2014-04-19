@@ -76,14 +76,14 @@ public class LevelSelect : MonoBehaviour {
 			sound.transform.position=new Vector3(width/2f - .5f,height/2f -.05f,10f);
 			starStar.transform.position=new Vector3(-width/2f+.2f,height/2f-.17f,10f);
 			starText.transform.position=new Vector3(-width/2f +.4f,height/2f-.04f,10f);
-			back.transform.position=new Vector3(-width/2f +1f,-height/2f+.6f,10f);
-			hudbar.transform.position=new Vector3(0,-height/2f +.4f,10f);
+			back.transform.position=new Vector3(-width/2f +1f,-height/2f+.5f,10f);
+			hudbar.transform.position=new Vector3(0,-height/2f +.2f,10f);
 
-			msg.transform.position=new Vector3(txt*-.08f,-height/2f+1f,10f);
+			msg.transform.position=new Vector3(txt*-.06f,-height/2f+.9f,10f);
 
-			score.transform.Translate(new Vector3((txt2*-.057f)+.2f,-height/2f+.6f,0f));
-          	starScore.transform.Translate(new Vector3((txt2*-.057f),-height/2f+.45f,0f));
-            play.transform.Translate(new Vector3(width/2f -1f,-height/2f+.6f,0f));
+			score.transform.Translate(new Vector3((txt2*-.06f)+.2f,-height/2f+.5f,0f));
+          	starScore.transform.Translate(new Vector3((txt2*-.06f),-height/2f+.35f,0f));
+            play.transform.Translate(new Vector3(width/2f -1f,-height/2f+.5f,0f));
 			
 			musica.transform.Translate(cam.transform.position);
 			hudbar.transform.Translate(cam.transform.position);

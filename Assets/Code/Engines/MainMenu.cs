@@ -48,9 +48,6 @@ public class MainMenu : MonoBehaviour {
 		sound = GameObject.Find ("sound");
 		
 		cam=Camera.main;
-		height = 2f * cam.orthographicSize;
-		width = height * cam.aspect;
-		div = height /40;
 		Update ();
 		fading = -.04f;
 		fader = 1f;
@@ -59,7 +56,7 @@ public class MainMenu : MonoBehaviour {
 		if (fading == 0) {
 			height = 2f * cam.orthographicSize;
 			width = height * cam.aspect;
-			div = height / 40;
+			div = height / 16;
 			switch (menu) {
 			case 0:
 				mainMenu ();
@@ -72,14 +69,14 @@ public class MainMenu : MonoBehaviour {
 				break;
 			}
 
-			portadaTL.transform.position = new Vector3 (-width / 5f, height / 5f, 0);
-			portadaBL.transform.position = new Vector3 (-width / 5f, -height / 5f, 0);
-			portadaTR.transform.position = new Vector3 (width / 5, height / 5f, 0);
-			portadaBR.transform.position = new Vector3 (width / 5, -height / 5f, 0);
+			portadaTL.transform.position = new Vector3 (-width / 2f, height / 2f, 0);
+			portadaBL.transform.position = new Vector3 (-width / 2f, -height / 2f, 0);
+			portadaTR.transform.position = new Vector3 (width / 2f, height / 2f, 0);
+			portadaBR.transform.position = new Vector3 (width / 2f, -height / 2f, 0);
 
 			
-			musica.transform.position=new Vector3(width/5f -.08f ,height/5f,10f);
-			sound.transform.position=new Vector3(width/5f - .6f,height/5f -.05f,10f);
+			musica.transform.position=new Vector3(width/2f -.08f ,height/2f,10f);
+			sound.transform.position=new Vector3(width/2f - .6f,height/2f -.05f,10f);
 			musica.transform.Translate(cam.transform.position);
 			sound.transform.Translate(cam.transform.position);
 		} else {

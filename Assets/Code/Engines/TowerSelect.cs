@@ -101,44 +101,44 @@ public class TowerSelect : MonoBehaviour {
 			height = 2f * cam.orthographicSize;
 			width = height * cam.aspect;
 			backgroundbox();
-			back.transform.position=new Vector3(-width/6f +.8f,-height/6f+.5f,0f);
-			play.transform.position=new Vector3(width/6f -.8f ,-height/6f +.5f,0f);
-			star.transform.position=new Vector3(-width/6f + .1f,height/6f -.25f,0f);
-			point.transform.position=new Vector3(width/6f -.1f ,height/6f -.30f,0f);
-			starText.transform.position=new Vector3(-width/6f + .35f,height/6f -.15f,0f);
-			pointText.transform.position=new Vector3(width/6f -.4f-(pointtxt*.114f),height/6f -.15f,0f);
-			title.transform.position=new Vector3(-(titletxt*.11f),height/6f -.1f,0f);
-			subtitle.transform.position=new Vector3(-(subtitletxt*.057f),height/6f -.45f,0f);
+			back.transform.position=new Vector3(-width/2.2f +.8f,-height/2.2f+.5f,0f);
+			play.transform.position=new Vector3(width/2.2f -.8f ,-height/2.2f +.5f,0f);
+			star.transform.position=new Vector3(-width/2.2f + .1f,height/2.2f -.25f,0f);
+			point.transform.position=new Vector3(width/2.2f -.1f ,height/2.2f -.30f,0f);
+			starText.transform.position=new Vector3(-width/2.2f + .35f,height/2.2f -.15f,0f);
+			pointText.transform.position=new Vector3(width/2.2f -.4f-(pointtxt*.114f),height/2.2f -.15f,0f);
+			title.transform.position=new Vector3(-(titletxt*.11f),height/2.2f -.1f,0f);
+			subtitle.transform.position=new Vector3(-(subtitletxt*.057f),height/2.2f -.45f,0f);
 
 			
-			basic.transform.position=new Vector3(-width/6f +.1f,height/60f *3f +.15f ,0f);
-			advanced.transform.position=new Vector3(-width/6f +.1f,height/60f*0f +.15f,0f);
-			improved.transform.position=new Vector3(-width/6f +.1f,height/60f*-3f +.15f,0f);
+			basic.transform.position=new Vector3(-width/2.2f +.1f,height/20f *3f +.15f ,0f);
+			advanced.transform.position=new Vector3(-width/2.2f +.1f,0.15f,0f);
+			improved.transform.position=new Vector3(-width/2.2f +.1f,height/20f*-3f +.15f,0f);
 			
 			for (int i=0; i<6; i++)
 			for (int e=0; e<3; e++) {
-				tower[i,e].transform.position = new Vector3(i*width/23f - (width/13),e*height/19f-(height/20),0);
+				tower[i,e].transform.position = new Vector3(i*width/7.6f - (width/3.8f),e*height/6.4f-(height/6),0);
 			}
 		} else {
 			faderr ();
 		}
 	}
 	void backgroundbox(){
-		bleft.transform.position = new Vector3 (-width/6f -.2f,0, 0);
-		bright.transform.position = new Vector3 (width/6f +.2f,0, 0);
-		bbottom.transform.position = new Vector3 (0,-height/6f, 0);
-		bupper.transform.position = new Vector3 (0,height/6f, 0);
+		bleft.transform.position = new Vector3 (-width/2.2f -.2f,0, 0);
+		bright.transform.position = new Vector3 (width/2.2f +.2f,0, 0);
+		bbottom.transform.position = new Vector3 (0,-height/2.2f, 0);
+		bupper.transform.position = new Vector3 (0,height/2.2f, 0);
 		bcenter.transform.position = new Vector3 (0,0, 0);
-		bll.transform.position = new Vector3 (-width/6f,-height/6f, 0);
-		blr.transform.position = new Vector3 (width/6f,-height/6f, 0);
-		bul.transform.position = new Vector3 (-width/6f,height/6f, 0);
-		bur.transform.position = new Vector3 (width/6f,height/6f, 0);
+		bll.transform.position = new Vector3 (-width/2.2f,-height/2.2f, 0);
+		blr.transform.position = new Vector3 (width/2.2f,-height/2.2f, 0);
+		bul.transform.position = new Vector3 (-width/2.2f,height/2.2f, 0);
+		bur.transform.position = new Vector3 (width/2.2f,height/2.2f, 0);
 		
-		bcenter.transform.localScale= new Vector3 (width*1.7f,height*1.5f, 0);
-		bbottom.transform.localScale= new Vector3 (width*1.7f,-1f, 0);
-		bupper.transform.localScale= new Vector3 (width*1.7f,1f, 0);
-		bleft.transform.localScale= new Vector3 (height*1.6f,1f, 0);
-		bright.transform.localScale= new Vector3 (height*1.6f ,-1f, 0);
+		bcenter.transform.localScale= new Vector3 (width*4.55f,height*4f, 0);
+		bbottom.transform.localScale= new Vector3 (width*4.55f,-1f, 0);
+		bupper.transform.localScale= new Vector3 (width*4.55f,1f, 0);
+		bleft.transform.localScale= new Vector3 (height*4.1f,1f, 0);
+		bright.transform.localScale= new Vector3 (height*4.1f ,-1f, 0);
 	}
 	void faderr(){
 		fader += fading ;

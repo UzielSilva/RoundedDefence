@@ -35,7 +35,8 @@ public class Star : MonoBehaviour {
 			float height = 2f * cam.orthographicSize;
 			float width = height * cam.aspect;
 			transform.position=
-				new Vector3(Random.Range(-width/5f, width/5f),Random.Range(-height/5f, height/5f),0f);
+				new Vector3(Random.Range(-width/2f, width/2f),Random.Range(-height/2f, height/2f),10f);
+			transform.Translate(cam.transform.position);
 		}
 		Color c = renderer.material.color;
 		c.a =alpha + Random.Range(-.1f, .1f);
