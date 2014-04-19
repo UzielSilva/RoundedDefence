@@ -81,8 +81,8 @@ public class LevelSelect : MonoBehaviour {
 
 			msg.transform.position=new Vector3(txt*-.08f,-height/2f+1f,10f);
 
-			score.transform.Translate(new Vector3((txt2*-.08f)+.2f,-height/2f+.6f,0f));
-          	starScore.transform.Translate(new Vector3((txt2*-.08f),-height/2f+.45f,0f));
+			score.transform.Translate(new Vector3((txt2*-.057f)+.2f,-height/2f+.6f,0f));
+          	starScore.transform.Translate(new Vector3((txt2*-.057f),-height/2f+.45f,0f));
             play.transform.Translate(new Vector3(width/2f -1f,-height/2f+.6f,0f));
 			
 			musica.transform.Translate(cam.transform.position);
