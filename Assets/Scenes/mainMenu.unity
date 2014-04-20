@@ -585,7 +585,7 @@ GameObject:
   - 61: {fileID: 911312341}
   - 114: {fileID: 911312344}
   m_Layer: 9
-  m_Name: options
+  m_Name: btnoptions
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -633,7 +633,7 @@ Transform:
   m_GameObject: {fileID: 911312340}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -.364478171, z: 0}
-  m_LocalScale: {x: .600000024, y: .600000024, z: .800000012}
+  m_LocalScale: {x: .400000006, y: .400000006, z: .800000012}
   m_Children: []
   m_Father: {fileID: 0}
 --- !u!114 &911312344
@@ -662,7 +662,7 @@ GameObject:
   - 61: {fileID: 1156576180}
   - 114: {fileID: 1156576183}
   m_Layer: 9
-  m_Name: credits
+  m_Name: btncredits
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -710,7 +710,7 @@ Transform:
   m_GameObject: {fileID: 1156576179}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -1.1199888, z: 0}
-  m_LocalScale: {x: .600000024, y: .600000024, z: .800000012}
+  m_LocalScale: {x: .400000006, y: .400000006, z: .800000012}
   m_Children: []
   m_Father: {fileID: 0}
 --- !u!114 &1156576183
@@ -739,7 +739,7 @@ GameObject:
   - 114: {fileID: 1299768900}
   - 61: {fileID: 1299768899}
   m_Layer: 11
-  m_Name: musica
+  m_Name: btnmusica
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -816,7 +816,7 @@ GameObject:
   - 61: {fileID: 1499409196}
   - 114: {fileID: 1499409199}
   m_Layer: 9
-  m_Name: campaign
+  m_Name: btncampaign
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -864,7 +864,7 @@ Transform:
   m_GameObject: {fileID: 1499409195}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: .321100891, z: 0}
-  m_LocalScale: {x: .600000024, y: .600000024, z: .600000024}
+  m_LocalScale: {x: .400000006, y: .400000006, z: .600000024}
   m_Children: []
   m_Father: {fileID: 0}
 --- !u!114 &1499409199
@@ -893,7 +893,7 @@ GameObject:
   - 61: {fileID: 1890542797}
   - 114: {fileID: 1890542796}
   m_Layer: 9
-  m_Name: back
+  m_Name: btnback
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -955,7 +955,7 @@ Transform:
   m_GameObject: {fileID: 1890542795}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -1.81855845, z: 0}
-  m_LocalScale: {x: .600000024, y: .600000024, z: 1}
+  m_LocalScale: {x: .400000006, y: .400000006, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
 --- !u!1 &1916114460
@@ -970,7 +970,7 @@ GameObject:
   - 61: {fileID: 1916114462}
   - 114: {fileID: 1916114461}
   m_Layer: 9
-  m_Name: resetall
+  m_Name: btnresetall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1032,57 +1032,7 @@ Transform:
   m_GameObject: {fileID: 1916114460}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: -2.5, z: 0}
-  m_LocalScale: {x: .600000024, y: .600000024, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
---- !u!1 &1960303649
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1960303651}
-  - 212: {fileID: 1960303650}
-  m_Layer: 12
-  m_Name: fade
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!212 &1960303650
-SpriteRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1960303649}
-  m_Enabled: 1
-  m_CastShadows: 0
-  m_ReceiveShadows: 0
-  m_LightmapIndex: 255
-  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
-  m_Materials:
-  - {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 0
-  m_LightProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_SortingLayer: 5
-  m_SortingOrder: 2
-  m_SortingLayerID: 1738934777
-  m_Sprite: {fileID: 21300000, guid: c5e5dceb8121944648614492be9ebf93, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
---- !u!4 &1960303651
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1960303649}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: .400000006, y: .400000006, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
 --- !u!1 &2049693932
@@ -1097,7 +1047,7 @@ GameObject:
   - 114: {fileID: 2049693934}
   - 61: {fileID: 2049693933}
   m_Layer: 11
-  m_Name: sound
+  m_Name: btnsound
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

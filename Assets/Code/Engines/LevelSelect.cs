@@ -6,101 +6,101 @@ using RoundedDefence.Components;
 public class LevelSelect : MonoBehaviour {
 	public static int lvlSelected=0;
 	public static Level level;
-	
-	GameObject fade;
-	GameObject musica;
-	GameObject sound;
+	//text
+	GameObject txtmsg;
+	GameObject txtscore;
+	GameObject txtstar;
+	//butons
+	GameObject btnmusica;
+	GameObject btnsound;
+	GameObject btnback;
+	GameObject btnplay;
+	//ohters
+	GameObject objstarStar;
+	GameObject objstarScore;
+	GameObject objhudbar;
 
-	GameObject msg;
-	GameObject score;
-	GameObject starText;
-	GameObject starStar;
-	GameObject starScore;
-	
-	GameObject back;
-	GameObject play;
-	GameObject hudbar;
-	
-	Camera cam ;
-	float height;
-	float width ;
-	float fader=0;
-	float fading=0;
-	int txt=0;
-	int txt2=0;
+	int action=0;
 	// Use this for initialization
 	void Start () {
 		Lib.mute ();
-		fade = GameObject.Find ("fade");
-		musica = GameObject.Find ("musica");
-		sound = GameObject.Find ("sound");
-
-		play = GameObject.Find ("play");
-		back = GameObject.Find ("back");
-		hudbar = GameObject.Find ("hudbar");
-		
-		starText = GameObject.Find ("starsText");
-		msg = GameObject.Find ("msg");
-		score = GameObject.Find ("score");
-		starStar = GameObject.Find ("starStars");
-		starScore = GameObject.Find ("starScore");
-		score.renderer.sortingLayerName="Shots";
-		msg.renderer.sortingLayerName="Shots";
-		starText.renderer.sortingLayerName="Shots";    
-		TextMesh t = (TextMesh)starText.GetComponent(typeof(TextMesh));
-		t.text = PlayerPrefs.GetInt("TotalStars",0)+"";
+		//text
+		txtstar =Lib.newText("txtstars");
+		txtmsg = Lib.newText("txtmsg");
+		txtscore = Lib.newText("txtscore");
+		//buttons
+		btnmusica = GameObject.Find ("btnmusica");
+		btnsound = GameObject.Find ("btnsound");
+		btnplay = GameObject.Find ("btnplay");
+		btnback = GameObject.Find ("btnback");
+		//others
+		objhudbar = GameObject.Find ("hudbar");
+		objstarStar = GameObject.Find ("starStars");
+		objstarScore = GameObject.Find ("starScore");
+		Lib.newFade();
+		Lib.setString (txtstar, PlayerPrefs.GetInt ("TotalStars", 0) + "");
 		lvlSelected = 0;
-		cam=Camera.main;
-		height = 2f * cam.orthographicSize;
-		width = height * cam.aspect;
-		Update ();
-		fading = -.04f;
-		fader = 1f;
+		Lib.unfades ();
+	}
+	void buttonsActions(){
+		if (btnback.transform.position.z == 1) {
+			action=0;
+			Lib.fades();
+		}
+		if (btnplay.transform.position.z == 1) {
+			action=1;
+			Lib.fades();
+		}
+		}
+	void buttonsFade(){
+		if(Lib.isFadeReady()){
+			if(action==0)
+				Application.LoadLevel ("mainMenu");
+			if(action==1)
+				Application.LoadLevel ("towerSelect");
+		}
 	}
 	void Update(){
-		if (fading == 0) {
+			buttonsActions ();
+			buttonsFade ();
 			Vector3 move=new Vector3(0,0,0);
-			play.transform.position=move;
-			score.transform.position=move;
-			starScore.transform.position=move;
-			drawDescription ();
-			height = 2f * cam.orthographicSize;
-			width = height * cam.aspect;
-			if (back.transform.position.z == 1) {
-				fader=0f;
-				fading=.04f;
-			}
-			if(fader+.04f>1)
-				Application.LoadLevel ("mainMenu");
-			musica.transform.position=new Vector3(width/2f ,height/2f,10f);
-			sound.transform.position=new Vector3(width/2f - .5f,height/2f -.05f,10f);
-			starStar.transform.position=new Vector3(-width/2f+.2f,height/2f-.17f,10f);
-			starText.transform.position=new Vector3(-width/2f +.4f,height/2f-.04f,10f);
-			back.transform.position=new Vector3(-width/2f +1f,-height/2f+.5f,10f);
-			hudbar.transform.position=new Vector3(0,-height/2f +.2f,10f);
-
-			msg.transform.position=new Vector3(txt*-.06f,-height/2f+.9f,10f);
-
-			score.transform.Translate(new Vector3((txt2*-.06f)+.2f,-height/2f+.5f,0f));
-          	starScore.transform.Translate(new Vector3((txt2*-.06f),-height/2f+.35f,0f));
-            play.transform.Translate(new Vector3(width/2f -1f,-height/2f+.5f,0f));
+			btnplay.transform.position=move;
+			txtscore.transform.position=move;
+			objstarScore.transform.position=move;
 			
-			musica.transform.Translate(cam.transform.position);
-			hudbar.transform.Translate(cam.transform.position);
-			sound.transform.Translate(cam.transform.position);
-			starStar.transform.Translate(cam.transform.position);
-			starText.transform.Translate(cam.transform.position);
-			back.transform.Translate(cam.transform.position);
-			msg.transform.Translate(cam.transform.position);
-			play.transform.Translate(cam.transform.position);
-			score.transform.Translate(cam.transform.position);
-			starScore.transform.Translate(cam.transform.position);
-		} else {
-			faderr ();
+			drawDescription ();
+			//txt
+			txtstar.transform.position=new Vector3(-Lib.width()/2f +.4f,Lib.height()/2f-.04f,10f);
+			txtmsg.transform.position=new Vector3(Lib.getStringLength(txtmsg)*-.06f,-Lib.height()/2f+.7f,10f);
+			txtscore.transform.Translate(new Vector3((Lib.getStringLength(txtscore)*-.06f)+.2f,-Lib.height()/2f+.35f,0f));
+			//btn
+			btnmusica.transform.position=new Vector3(Lib.width()/2f ,Lib.height()/2f,10f);
+			btnsound.transform.position=new Vector3(Lib.width()/2f - .5f,Lib.height()/2f -.05f,10f);
+			btnplay.transform.Translate(new Vector3(Lib.width()/2f -.7f,-Lib.height()/2f+.35f,0f));
+			btnback.transform.position=new Vector3(-Lib.width()/2f +.7f,-Lib.height()/2f+.35f,10f);
+			//obj
+			objstarStar.transform.position=new Vector3(-Lib.width()/2f+.2f,Lib.height()/2f-.17f,10f);
+			objhudbar.transform.position=new Vector3(0,-Lib.height()/2f ,10f);
+			objstarScore.transform.Translate(new Vector3((Lib.getStringLength(txtscore)*-.06f),-Lib.height()/2f+.20f,0f));
+
+			//txt
+			Lib.followCamera(txtstar);
+			Lib.followCamera(txtscore);
+			Lib.followCamera(txtmsg);
+			//btn
+			Lib.followCamera(btnmusica);
+			Lib.followCamera(btnsound);
+			Lib.followCamera(btnback);
+			Lib.followCamera(btnplay);
+			//obj
+			Lib.followCamera(objstarScore);
+			Lib.followCamera(objstarStar);
+			Lib.followCamera(objhudbar);
+		if (!Lib.isFading()) {
+			Lib.faderr ();
 		}
 	}
 	void drawDescription(){
-		TextMesh t = (TextMesh)msg.GetComponent(typeof(TextMesh));
 		if (lvlSelected != 0 && level!=null) {
 			bool enabledd=PlayerPrefs.GetInt("LvlUnlocked",1)>=level.getLvlNumb();
 			if(enabledd){
@@ -108,51 +108,33 @@ public class LevelSelect : MonoBehaviour {
 				if(enabledd){
 					drawStats ();
 				}else{
-					t.text ="YOU NEED "+level.getMinStars()+" STARS TO PLAY";
+					Lib.setString(txtmsg,"YOU NEED "+level.getMinStars()+" STARS TO PLAY");
 					}
 			}else{
-				t.text ="PASS LEVEL "+(lvlSelected-1)+" TO PLAY";
+				Lib.setString(txtmsg,"PASS LEVEL "+(lvlSelected-1)+" TO PLAY");
 			}
 		} else {
-			t.text ="SELECT A LEVEL";
+			Lib.setString(txtmsg,"SELECT A LEVEL");
 		}
-		txt=t.text.Length;
 	}
 	void drawStats(){
-		TextMesh t = (TextMesh)msg.GetComponent(typeof(TextMesh));
-		TextMesh t2 = (TextMesh)score.GetComponent(typeof(TextMesh));
-		SpriteRenderer sprRenderer = (SpriteRenderer)starScore.renderer;
-		t.text = "SCORE : " + level.getScore ();
+		Lib.setString(txtmsg, "SCORE : " + level.getScore ());
 		if(level.getScore()<level.getOneStar()){
-			sprRenderer.sprite=Resources.Load<Sprite>("Sprites/Misc/star1") ;
-			t2.text = "at "+level.getOneStar();
+			Lib.setSprite(objstarScore,"Sprites/Misc/star1");
+			Lib.setString(txtscore,"at "+level.getOneStar());
 		}else if(level.getScore()<level.getTwoStar()){
-			sprRenderer.sprite=Resources.Load<Sprite>("Sprites/Misc/star2") ;
-			t2.text = "at "+level.getTwoStar();
+			Lib.setSprite(objstarScore,"Sprites/Misc/star2");
+			Lib.setString(txtscore,"at "+level.getTwoStar());
 		}else if(level.getScore()<level.getThreeStar()){
-			sprRenderer.sprite=Resources.Load<Sprite>("Sprites/Misc/star3");
-			t2.text = "at "+level.getThreeStar();
+			Lib.setSprite(objstarScore,"Sprites/Misc/star3");
+			Lib.setString(txtscore,"at "+level.getThreeStar());
 		}else{
 		}
-		txt=t.text.Length;
-		txt2=t2.text.Length;
 		Vector3 move=new Vector3(0,0,10);
-		play.transform.position=move;
-		score.transform.position=move;
-		starScore.transform.position=move;
+		txtscore.transform.position=move;
+		btnplay.transform.position=move;
+		objstarScore.transform.position=move;
 	}
 
-	void faderr(){
-		fader += fading ;
-		if (fader > 0f && fader < 1f) {
-			Color c = fade.renderer.material.color;
-			c.a = fader;
-			fade.renderer.material.color = c;
-			cam.audio.volume=1f-fader;
-		} else {
-			fading=0f;
-			
-		}
-	}
 
 }

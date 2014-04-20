@@ -4,7 +4,10 @@ using RoundedDefence.Components;
 using System.Collections;
 namespace RoundedDefence{
 	public class Lib : MonoBehaviour{
-	public static int tileHeight = 10;
+		public static int tileHeight = 10;
+		static GameObject fade;
+		static float fader=0;
+		static float fading=0;
 		public static bool music=PlayerPrefs.GetInt("Music",1)==1;
 		public static bool sound = PlayerPrefs.GetInt("Sound",1)==1;
 		public static AudioClip clickClip = Resources.Load("Music/Sounds/Clicks/click25") as AudioClip;
@@ -49,7 +52,72 @@ namespace RoundedDefence{
 			default:	return null;
 			}
 		}
-
+		public static Vector3 mouseCord(){
+			Vector3 pos = Input.mousePosition ;
+			pos.z = 10; // select distance = 10 units from the camera
+			return Camera.main.ScreenToWorldPoint (pos);
+		}
+		public static void newFade(){
+			fade = new GameObject("fade");
+			fade.AddComponent<SpriteRenderer>();
+			setSprite (fade,"Sprites/Background/fade");
+			fade.renderer.sortingLayerName="Others";
+			fade.renderer.sortingOrder = 200;
+		}
+		public static bool isFading(){
+			return fading == 0;
+		}
+		public static bool isFadeReady(){
+			return fader+.04f>1 && fading==0;
+		}
+		public static void unfades(){
+			fading = -.04f;
+			fader = 1f;
+		}
+		public static void fades(){
+			fader=0f;
+			fading=.04f;
+		}
+		public static void faderr(){
+			fader += fading ;
+			if (fader > 0f && fader < 1f) {
+				if(fade!=null){
+				Color c = fade.renderer.material.color;
+				c.a = fader;
+				fade.renderer.material.color = c;
+				}
+				Camera.main.audio.volume=1f-fader;
+			} else {
+				fading=0f;
+				
+			}
+		}
+		public static float height(){
+			return 2f * Camera.main.orthographicSize ;
+		}
+		public static float width(){
+			return 2f * Camera.main.orthographicSize * Camera.main.aspect;
+		}
+		public static void followCamera(GameObject obj){
+			obj.transform.Translate(Camera.main.transform.position);
+		}
+		public static void setSprite(GameObject obj,string str){
+			SpriteRenderer sprRenderer = (SpriteRenderer)obj.renderer;
+			sprRenderer.sprite=Resources.Load<Sprite>(str) ;
+		}
+		public static int getStringLength(GameObject obj){
+			TextMesh t = (TextMesh)obj.GetComponent(typeof(TextMesh));
+			return t.text.Length;
+		}
+		public static void setString(GameObject obj,string str){
+			TextMesh t = (TextMesh)obj.GetComponent(typeof(TextMesh));
+			t.text=str;
+		}
+		public static GameObject newText(string str){
+			GameObject obj= GameObject.Find (str);
+			obj.renderer.sortingLayerName="Shots";
+			return obj;
+		}
 	}
 }
 
