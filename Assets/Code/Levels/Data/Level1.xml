@@ -1,0 +1,13 @@
+<level id="N.1.1" class="normal" name="OlaKAse" required-stars="0" background-image="" background-music="" >
+	<properties>
+		<score id="1" value="1000"/>
+		<score id="2" value="2000"/>
+		<score id="3" value="3000"/>
+		<towers>	
+			<tower id="octopus"/>
+		</towers>
+	</properties>
+	<wave>
+		<ship id="pirate" time="0" angle="0"/>
+	</wave>
+</level>

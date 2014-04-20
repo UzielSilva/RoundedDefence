@@ -2,8 +2,11 @@ using System;
 using UnityEngine;
 using RoundedDefence.Components.Levels;
 using System.Collections;
+using System.Xml.Linq;
+
 namespace RoundedDefence{
 	public class Lib : MonoBehaviour{
+		public static XElement currentLevel;
 		public static int tileHeight = 10;
 		static GameObject fade;
 		static float fader=0;
@@ -42,9 +45,6 @@ namespace RoundedDefence{
 					music = !music;
 					PlayerPrefs.SetInt("Music",music?1:0);
 			}
-		}
-		public static Level getLvl(int lvl){
-			return null;
 		}
 		public static Vector3 mouseCord(){
 			Vector3 pos = Input.mousePosition ;
