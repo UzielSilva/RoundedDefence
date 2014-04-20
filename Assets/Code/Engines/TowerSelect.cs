@@ -75,7 +75,7 @@ public class TowerSelect : MonoBehaviour {
 			tower[i,e].renderer.sortingLayerName = "Others";
 			tower[i,e].renderer.sortingOrder = 5;
 			tower[i,e].transform.position = new Vector3(i*Lib.width()/18f,e*Lib.height()/18f,0);
-			tower[i,e].transform.localScale = new Vector3(.5f,.5f,1f);
+			tower[i,e].transform.localScale = new Vector3(.4f,.4f,.4f);
 			tower[i,e].transform.rotation = transform.rotation;
 		}
 		Lib.newFade ();
@@ -100,8 +100,8 @@ public class TowerSelect : MonoBehaviour {
 		//txt
 		txtstar.transform.position=new Vector3(-Lib.width()/2.2f + .35f,Lib.height()/2.2f -.15f,0f);
 		txtpoint.transform.position=new Vector3(Lib.width()/2.2f -.4f-(pointtxt*.114f),Lib.height()/2.2f -.15f,0f);
-		txttitle.transform.position=new Vector3(-(titletxt*.11f),Lib.height()/2.2f -.1f,0f);
-		txtsubtitle.transform.position=new Vector3(-(subtitletxt*.057f),Lib.height()/2.2f -.45f,0f);
+		txttitle.transform.position=new Vector3(-(titletxt*.088f),Lib.height()/2.2f -.1f,0f);
+		txtsubtitle.transform.position=new Vector3(-(subtitletxt*.04f),Lib.height()/2.2f -.45f,0f);
 		txtbasic.transform.position=new Vector3(-Lib.width()/2.2f +.1f,Lib.height()/20f *3f +.15f ,0f);
 		txtadvanced.transform.position=new Vector3(-Lib.width()/2.2f +.1f,0.1f,0f);
 		txtimproved.transform.position=new Vector3(-Lib.width()/2.2f +.1f,Lib.height()/20f*-3f +.15f,0f);

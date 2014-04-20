@@ -71,8 +71,8 @@ public class LevelSelect : MonoBehaviour {
 			drawDescription ();
 			//txt
 			txtstar.transform.position=new Vector3(-Lib.width()/2f +.4f,Lib.height()/2f-.04f,10f);
-			txtmsg.transform.position=new Vector3(Lib.getStringLength(txtmsg)*-.06f,-Lib.height()/2f+.7f,10f);
-			txtscore.transform.Translate(new Vector3((Lib.getStringLength(txtscore)*-.06f)+.2f,-Lib.height()/2f+.35f,0f));
+			txtmsg.transform.position=new Vector3(Lib.getStringLength(txtmsg)*-.048f,-Lib.height()/2f+.7f,10f);
+			txtscore.transform.Translate(new Vector3((Lib.getStringLength(txtscore)*-.048f)+.2f,-Lib.height()/2f+.35f,0f));
 			//btn
 			btnmusica.transform.position=new Vector3(Lib.width()/2f ,Lib.height()/2f,10f);
 			btnsound.transform.position=new Vector3(Lib.width()/2f - .5f,Lib.height()/2f -.05f,10f);
@@ -81,7 +81,7 @@ public class LevelSelect : MonoBehaviour {
 			//obj
 			objstarStar.transform.position=new Vector3(-Lib.width()/2f+.2f,Lib.height()/2f-.17f,10f);
 			objhudbar.transform.position=new Vector3(0,-Lib.height()/2f ,10f);
-			objstarScore.transform.Translate(new Vector3((Lib.getStringLength(txtscore)*-.06f),-Lib.height()/2f+.20f,0f));
+			objstarScore.transform.Translate(new Vector3((Lib.getStringLength(txtscore)*-.048f),-Lib.height()/2f+.20f,0f));
 
 			//txt
 			Lib.followCamera(txtstar);

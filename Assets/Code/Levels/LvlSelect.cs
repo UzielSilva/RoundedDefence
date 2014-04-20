@@ -26,9 +26,9 @@ public class LvlSelect : MonoBehaviour {
 		sprRenderer.sortingOrder = lvl;
 		gameObject.transform.position = transform.position;
 		gameObject.transform.rotation = transform.rotation;
-		Vector3 move = new Vector3 (Mathf.Cos(Mathf.PI/180*(225+(lvl*30)))*0.6f, 
-		                            Mathf.Sin(Mathf.PI/180*(225+(lvl*30)))*0.6f, 0);
-		gameObject.transform.Translate (move, Space.World); 
+		gameObject.transform.localScale = new Vector3 (.8f, .8f, .8f);
+		gameObject.transform.Translate (Mathf.Cos(Mathf.PI/180*(225+(lvl*30)))*0.6f, 
+		                                Mathf.Sin(Mathf.PI/180*(225+(lvl*30)))*0.6f, 0); 
 	}
 	// Update is called once per frame
 	void Update () {
@@ -39,6 +39,10 @@ public class LvlSelect : MonoBehaviour {
 		if (Input.GetMouseButtonDown (0)) {
 			LevelSelect.lvlSelected=lvlNumb;
 			LevelSelect.level=level;
+			GameObject shark=GameObject.Find("shark1");
+			shark.transform.position=transform.position;
+			 shark=GameObject.Find("shark2");
+			shark.transform.position=transform.position;
 			GameObject gm=GameObject.Find("_GM");
 			gm.audio.clip=Lib.clickClip;
 			if(Lib.sound)
