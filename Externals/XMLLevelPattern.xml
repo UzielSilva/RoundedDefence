@@ -1,0 +1,19 @@
+<level id="" class="" background-image="" background-music="" >
+	<properties>
+		<score id="1" value=""/>
+		<score id="2" value=""/>
+		<score id="3" value=""/>
+		<ships>	
+			<ship id=""/>
+		</ships>
+		<towers>	
+			<tower id=""/>
+		</towers>
+	</properties>
+	<wave>
+		<ships>	
+			<ship id=""/>
+		</ships>
+		<ship id="" time="" angle=""/>
+	</wave>
+</level>

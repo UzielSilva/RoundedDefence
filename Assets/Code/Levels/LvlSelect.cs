@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using RoundedDefence.Components;
+using RoundedDefence.Components.Levels;
 using RoundedDefence;
 
 public class LvlSelect : MonoBehaviour {

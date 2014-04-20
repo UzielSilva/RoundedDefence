@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RoundedDefence.Components
+namespace RoundedDefence.Components.Levels
 {
 	public abstract class Level
 	{

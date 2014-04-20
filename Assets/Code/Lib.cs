@@ -1,6 +1,6 @@
 using System;
 using UnityEngine;
-using RoundedDefence.Components;
+using RoundedDefence.Components.Levels;
 using System.Collections;
 namespace RoundedDefence{
 	public class Lib : MonoBehaviour{
@@ -44,13 +44,7 @@ namespace RoundedDefence{
 			}
 		}
 		public static Level getLvl(int lvl){
-			switch(lvl){
-			case -1:return new LvlS1();
-			case 1:return new Lvl1();
-			case 2:return new Lvl2();
-			case 3:return new Lvl3();
-			default:	return null;
-			}
+			return null;
 		}
 		public static Vector3 mouseCord(){
 			Vector3 pos = Input.mousePosition ;

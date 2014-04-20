@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace RoundedDefence.Components
+namespace RoundedDefence.Components.Levels
 {
 	public class Wave
 	{
