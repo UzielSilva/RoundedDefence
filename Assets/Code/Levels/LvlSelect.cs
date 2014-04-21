@@ -15,6 +15,7 @@ public class LvlSelect : MonoBehaviour {
 	public XElement level;
 	// Use this for initialization
 	void Start () {
+		level = Lib.currentLevel;
 		setTexture ();
 		if(enabledd)
 		setStars ();
@@ -62,9 +63,9 @@ public class LvlSelect : MonoBehaviour {
 		//TODO: Assign all star.
 		int allStar = 0;
 		int score = 0;
-		int oneStar = Int32.Parse(level.Element(XName.Get("scores")).Attribute("one-star").Value);
-		int twoStar = Int32.Parse(level.Element(XName.Get("scores")).Attribute("two-star").Value);
-		int threeStar = Int32.Parse(level.Element(XName.Get("scores")).Attribute("three-star").Value);
+		int oneStar = Int32.Parse(level.Element(XName.Get("scores")).Attribute(XName.Get("one-star")).Value);
+		int twoStar = Int32.Parse(level.Element(XName.Get("scores")).Attribute(XName.Get("two-star")).Value);
+		int threeStar = Int32.Parse(level.Element(XName.Get("scores")).Attribute(XName.Get("three-star")).Value);
 		if(score>=oneStar)
 			star (Resources.Load<Sprite>("Sprites/Misc/star1"),0);
 		else

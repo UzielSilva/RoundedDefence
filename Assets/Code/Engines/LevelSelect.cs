@@ -124,9 +124,9 @@ public class LevelSelect : MonoBehaviour {
 	void drawStats(){
 		//TODO: Assign score storage.
 		int score = 0;
-		int oneStar = Int32.Parse(level.Element(XName.Get("scores")).Attribute("one-star").Value);
-		int twoStar = Int32.Parse(level.Element(XName.Get("scores")).Attribute("two-star").Value);
-		int threeStar = Int32.Parse(level.Element(XName.Get("scores")).Attribute("three-star").Value);
+		int oneStar = Int32.Parse(level.Element(XName.Get("scores")).Attribute(XName.Get("one-star")).Value);
+		int twoStar = Int32.Parse(level.Element(XName.Get("scores")).Attribute(XName.Get("two-star")).Value);
+		int threeStar = Int32.Parse(level.Element(XName.Get("scores")).Attribute(XName.Get("three-star")).Value);
 		Lib.setString(txtmsg, "SCORE : " );
 		if(score<oneStar){
 			Lib.setSprite(objstarScore,"Sprites/Misc/star1");
