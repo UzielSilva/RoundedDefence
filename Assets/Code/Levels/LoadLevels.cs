@@ -8,29 +8,21 @@ using System.IO;
 using System.Text;
 using RoundedDefence;
 
-public class LoadLevel : MonoBehaviour {
-	public string LevelId{get;set;}
+public class LoadLevels : MonoBehaviour {
 	private string _data = "<levels>\n";
-	private XDocument data;
     private string _FileLocation;
     // Use this for initialization
 	void Start () {
         _FileLocation = Application.dataPath;
-        LoadLevels();
-		
-		//		string @namespace = "RoundedDefence.Components.Levels.Normal";
-
-		var q = from t in data.Element(XName.Get("levels")).Elements(XName.Get("level"))
-				where t.Attribute(XName.Get("id")).Value == LevelId
-				select t;
-		Lib.currentLevel = q.ToArray()[0];
+        Read();
+		Lib.setCurrentLevel("N.1.1");
 	}
 	
 	// Update is called once per frame
 	void Update () {
 	
 	}
-    void LoadLevels () {
+    void Read () {
         string[] dir = Directory.GetFiles(_FileLocation + "\\Code\\Levels\\Data\\");
         foreach(string s in dir){
 			if(s.Substring(s.Length - 4) == ".xml"){
@@ -41,6 +33,6 @@ public class LoadLevel : MonoBehaviour {
 			}
         }
 		_data += "</levels>";
-		data = XDocument.Parse(_data);
+		Lib.data = XDocument.Parse(_data);
     }
 }

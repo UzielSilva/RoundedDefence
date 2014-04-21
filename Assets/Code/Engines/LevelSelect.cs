@@ -6,7 +6,7 @@ using System.Xml.Linq;
 
 public class LevelSelect : MonoBehaviour {
 	public static int lvlSelected=0;
-	public XElement level {get;set;}
+	private XElement level = Lib.currentLevel;
 	//text
 	GameObject txtmsg;
 	GameObject txtscore;
@@ -102,6 +102,7 @@ public class LevelSelect : MonoBehaviour {
 		}
 	}
 	void drawDescription(){
+		Debug.Log(Lib.currentLevel.ToString());
 		int requiredStars = Int32.Parse(level.Attribute(XName.Get ("required-stars")).Value);
 		if (lvlSelected != 0 && level!=null) {
 			//TODO: Implement field for levelNum.

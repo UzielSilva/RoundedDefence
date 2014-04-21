@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using UnityEngine;
 using RoundedDefence.Components.Levels;
 using System.Collections;
@@ -6,6 +7,7 @@ using System.Xml.Linq;
 
 namespace RoundedDefence{
 	public class Lib : MonoBehaviour{
+		public static XDocument data;
 		public static XElement currentLevel;
 		public static int tileHeight = 10;
 		static GameObject fade;
@@ -14,6 +16,14 @@ namespace RoundedDefence{
 		public static bool music=PlayerPrefs.GetInt("Music",1)==1;
 		public static bool sound = PlayerPrefs.GetInt("Sound",1)==1;
 		public static AudioClip clickClip = Resources.Load("Music/Sounds/Clicks/click25") as AudioClip;
+
+		public static void setCurrentLevel(string LevelId){
+			var q = from t in data.Element(XName.Get("levels")).Elements(XName.Get("level"))
+				where t.Attribute(XName.Get("id")).Value == LevelId
+					select t;
+			currentLevel = q.ToArray()[0];
+		}
+
 		public static byte getNcircles(int rad) {
 			byte frac = 2;
 			while (rad > 2) {
