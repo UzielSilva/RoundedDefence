@@ -23,7 +23,12 @@ public class LoadLevels : MonoBehaviour {
 	
 	}
     void Read () {
-        string[] dir = Directory.GetFiles(_FileLocation + "\\Code\\Levels\\Data\\");
+		string[] dir;
+		try{
+			dir = Directory.GetFiles (_FileLocation + "\\Code\\Levels\\Data\\");
+		}catch(Exception e){
+			dir = Directory.GetFiles (_FileLocation + "/Code/Levels/Data/");
+		}
         foreach(string s in dir){
 			if(s.Substring(s.Length - 4) == ".xml"){
 				StreamReader r = File.OpenText(s);
