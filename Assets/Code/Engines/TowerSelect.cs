@@ -71,6 +71,9 @@ public class TowerSelect : MonoBehaviour {
 			
 			tower[i,e] = new GameObject("tower"+i+"level"+e);
 			tower[i,e].AddComponent<SpriteRenderer>();
+			tower[i,e].AddComponent("TowerSelectButton");
+			BoxCollider2D box=tower[i,e].AddComponent<BoxCollider2D>();
+			box.size=new Vector3(1f,1f,0);
 			Lib.setSprite(tower[i,e],"Sprites/others/octopus resized");
 			tower[i,e].renderer.sortingLayerName = "Others";
 			tower[i,e].renderer.sortingOrder = 5;

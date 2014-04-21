@@ -38,7 +38,7 @@ public class LvlSelect : MonoBehaviour {
 	{
 		if (Input.GetMouseButtonDown (0)) {
 			LevelSelect.lvlSelected=lvlNumb;
-			LevelSelect.level=level;
+			//LevelSelect.level=level;
 			GameObject shark=GameObject.Find("shark1");
 			shark.transform.position=transform.position;
 			 shark=GameObject.Find("shark2");
@@ -51,7 +51,7 @@ public class LvlSelect : MonoBehaviour {
 	}
 	void setTexture(){
 		SpriteRenderer sprRenderer= (SpriteRenderer)renderer;
-		enabledd=PlayerPrefs.GetInt("LvlUnlocked",1)>=lvlNumb&&PlayerPrefs.GetInt("TotalStars",0)>=level.getMinStars();
+//		enabledd=PlayerPrefs.GetInt("LvlUnlocked",1)>=lvlNumb&&PlayerPrefs.GetInt("TotalStars",0)>=level.getMinStars();
 		if (enabledd) {
 			sprRenderer.sprite = Image1;	
 		} else {
