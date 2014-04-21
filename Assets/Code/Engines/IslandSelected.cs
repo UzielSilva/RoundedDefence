@@ -3,6 +3,9 @@ using System.Collections;
 using RoundedDefence;
 
 public class IslandSelected : MonoBehaviour {
+	GameObject sun;
+	public static string centroid="";
+	 string oldcentroid="";
 	Vector3 center;
 	public float radius;
 	public float angle;
@@ -19,13 +22,18 @@ public class IslandSelected : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (Mathf.Abs( center.x + (radius * Mathf.Cos (angle)) -transform.position.x) >.01f) {
-				center=transform.position;
+		if (oldcentroid != centroid) {
+			oldcentroid=centroid;
+			sun=GameObject.Find(centroid);
 		}
-		angle += speed;
-		angle = ((2*Mathf.PI)+angle) % (Mathf.PI*2);
-		transform.position = new Vector3 (center.x +(radius* Mathf.Cos (angle) ), center.y+(radius* Mathf.Sin (angle)) , 0f);
-		transform.Rotate (Vector3.forward,speed*180/Mathf.PI);
+		if (sun != null) {
+			
+			center = sun.transform.position;
+			angle += speed;
+			angle = ((2 * Mathf.PI) + angle) % (Mathf.PI * 2);
+			transform.position = new Vector3 (center.x + (radius * Mathf.Cos (angle)), center.y + (radius * Mathf.Sin (angle)), 0f);
+			transform.Rotate (Vector3.forward, speed * 180 / Mathf.PI);
+		}
 		//Lib.followCamera (this);
 	}
 }

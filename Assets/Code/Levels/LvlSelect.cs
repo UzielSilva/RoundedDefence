@@ -9,8 +9,17 @@ public class LvlSelect : MonoBehaviour {
 	public Sprite Image1;
 	public Sprite Image2;
 	public Level level;
+	public float radius;
+	public float angle;
+	public float speed;
+	public string centroid;
+	public bool rotate;
+	GameObject sun;
+	Vector3 center;
+
 	// Use this for initialization
 	void Start () {
+		sun = GameObject.Find (centroid);
 		level=Lib.getLvl(lvlNumb);
 
 		setTexture ();
@@ -32,17 +41,19 @@ public class LvlSelect : MonoBehaviour {
 	}
 	// Update is called once per frame
 	void Update () {
-	
+		center = sun.transform.position;
+		angle += speed;
+		angle = ((2*Mathf.PI)+angle) % (Mathf.PI*2);
+		transform.position = new Vector3 (center.x +(radius* Mathf.Cos (angle) ), center.y+(radius* Mathf.Sin (angle)) , 0f);
+		if (rotate)
+		transform.Rotate (Vector3.forward,speed*180/Mathf.PI);
 	} 
 	void OnMouseOver()
 	{
 		if (Input.GetMouseButtonDown (0)) {
 			LevelSelect.lvlSelected=lvlNumb;
 			//LevelSelect.level=level;
-			GameObject shark=GameObject.Find("shark1");
-			shark.transform.position=transform.position;
-			 shark=GameObject.Find("shark2");
-			shark.transform.position=transform.position;
+			IslandSelected.centroid=gameObject.name;
 			GameObject gm=GameObject.Find("_GM");
 			gm.audio.clip=Lib.clickClip;
 			if(Lib.sound)
