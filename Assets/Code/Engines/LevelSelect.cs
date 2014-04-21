@@ -102,7 +102,6 @@ public class LevelSelect : MonoBehaviour {
 		}
 	}
 	void drawDescription(){
-		Debug.Log(Lib.currentLevel.ToString());
 		int requiredStars = Int32.Parse(level.Attribute(XName.Get ("required-stars")).Value);
 		if (lvlSelected != 0 && level!=null) {
 			//TODO: Implement field for levelNum.
