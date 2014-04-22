@@ -10,8 +10,6 @@ public class LvlSelect : MonoBehaviour {
 	private bool enabledd=false;
 	public Sprite Image1;
 	public Sprite Image2;
-<<<<<<< HEAD
-	public Level level;
 	public float radius;
 	public float angle;
 	public float speed;
@@ -19,20 +17,13 @@ public class LvlSelect : MonoBehaviour {
 	public bool rotate;
 	GameObject sun;
 	Vector3 center;
-
-	// Use this for initialization
-	void Start () {
-		sun = GameObject.Find (centroid);
-		level=Lib.getLvl(lvlNumb);
-
-=======
 	//TODO: Fix lvlNumb.
 	int lvlNumb = 0;
 	public XElement level;
 	// Use this for initialization
 	void Start () {
 		level = Lib.currentLevel;
->>>>>>> MigratingToXML
+		sun = GameObject.Find (centroid);
 		setTexture ();
 		if(enabledd)
 		setStars ();
@@ -66,10 +57,7 @@ public class LvlSelect : MonoBehaviour {
 		if (Input.GetMouseButtonDown (0)) {
 			LevelSelect.lvlSelected=lvlNumb;
 			//LevelSelect.level=level;
-<<<<<<< HEAD
 			IslandSelected.centroid=gameObject.name;
-=======
->>>>>>> MigratingToXML
 			GameObject gm=GameObject.Find("_GM");
 			gm.audio.clip=Lib.clickClip;
 			if(Lib.sound)
@@ -78,12 +66,7 @@ public class LvlSelect : MonoBehaviour {
 	}
 	void setTexture(){
 		SpriteRenderer sprRenderer= (SpriteRenderer)renderer;
-<<<<<<< HEAD
 //		enabledd=PlayerPrefs.GetInt("LvlUnlocked",1)>=lvlNumb&&PlayerPrefs.GetInt("TotalStars",0)>=level.getMinStars();
-=======
-		int minStars = Int32.Parse(Lib.currentLevel.Attribute(XName.Get("required-stars")).Value);
-		enabledd=PlayerPrefs.GetInt("LvlUnlocked",1)>=lvlNumb&&PlayerPrefs.GetInt("TotalStars",0)>=minStars;
->>>>>>> MigratingToXML
 		if (enabledd) {
 			sprRenderer.sprite = Image1;	
 		} else {
