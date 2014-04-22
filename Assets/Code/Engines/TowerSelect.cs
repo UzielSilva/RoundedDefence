@@ -1,5 +1,9 @@
 ﻿using UnityEngine;
+using System;
+using System.Linq;
+using System.Reflection;
 using System.Collections;
+using RoundedDefence.Components.Fishes;
 using RoundedDefence;
 
 public class TowerSelect : MonoBehaviour {
@@ -141,5 +145,17 @@ public class TowerSelect : MonoBehaviour {
 		bupper.transform.localScale= new Vector3 (Lib.width()*4.55f,1f, 0);
 		bleft.transform.localScale= new Vector3 (Lib.height()*4.1f,1f, 0);
 		bright.transform.localScale= new Vector3 (Lib.height()*4.1f ,-1f, 0);
+	}
+	String getImage(int id){
+		string passives = "RoundedDefence.Components.Fishes.Passives";
+		string actives = "RoundedDefence.Components.Fishes.Actives";
+		var q = from t in Assembly.GetExecutingAssembly().GetTypes()
+			where t.IsClass && !t.IsAbstract && (t.Namespace == passives || t.Namespace == actives)
+				select t;
+		foreach (Type t in q){
+			string s = t.Name;
+			IFish fish = (IFish)Activator.CreateInstance(t);
+			Debug.Log ("The value of property 'RequiredFood' of the class " + s + " is " + fish.RequiredFood);
+		}
 	}
 }
