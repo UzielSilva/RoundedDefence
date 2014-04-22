@@ -1,11 +1,12 @@
 ﻿using UnityEngine;
+using System;
 using System.Collections;
 using RoundedDefence;
-using RoundedDefence.Components.Levels;
+using System.Xml.Linq;
 
 public class LevelSelect : MonoBehaviour {
 	public static int lvlSelected=0;
-	public static Level level;
+	private XElement level = Lib.currentLevel;
 	//text
 	GameObject txtmsg;
 	GameObject txtscore;
@@ -101,14 +102,17 @@ public class LevelSelect : MonoBehaviour {
 		}
 	}
 	void drawDescription(){
+		int requiredStars = Int32.Parse(level.Attribute(XName.Get ("required-stars")).Value);
 		if (lvlSelected != 0 && level!=null) {
-			bool enabledd=PlayerPrefs.GetInt("LvlUnlocked",1)>=level.getLvlNumb();
+			//TODO: Implement field for levelNum.
+			int levelNum = 0;
+			bool enabledd=PlayerPrefs.GetInt("LvlUnlocked",1)>=levelNum;
 			if(enabledd){
-				enabledd=PlayerPrefs.GetInt("TotalStars",0)>=level.getMinStars();
+				enabledd=PlayerPrefs.GetInt("TotalStars",0)>= requiredStars;
 				if(enabledd){
 					drawStats ();
 				}else{
-					Lib.setString(txtmsg,"YOU NEED "+level.getMinStars()+" STARS TO PLAY");
+					Lib.setString(txtmsg,"YOU NEED "+requiredStars+" STARS TO PLAY");
 					}
 			}else{
 				Lib.setString(txtmsg,"PASS LEVEL "+(lvlSelected-1)+" TO PLAY");
@@ -118,16 +122,21 @@ public class LevelSelect : MonoBehaviour {
 		}
 	}
 	void drawStats(){
-		Lib.setString(txtmsg, "SCORE : " + level.getScore ());
-		if(level.getScore()<level.getOneStar()){
+		//TODO: Assign score storage.
+		int score = 0;
+		int oneStar = Int32.Parse(level.Element(XName.Get("scores")).Attribute(XName.Get("one-star")).Value);
+		int twoStar = Int32.Parse(level.Element(XName.Get("scores")).Attribute(XName.Get("two-star")).Value);
+		int threeStar = Int32.Parse(level.Element(XName.Get("scores")).Attribute(XName.Get("three-star")).Value);
+		Lib.setString(txtmsg, "SCORE : " );
+		if(score<oneStar){
 			Lib.setSprite(objstarScore,"Sprites/Misc/star1");
-			Lib.setString(txtscore,"at "+level.getOneStar());
-		}else if(level.getScore()<level.getTwoStar()){
+			Lib.setString(txtscore,"at "+oneStar);
+		}else if(score<twoStar){
 			Lib.setSprite(objstarScore,"Sprites/Misc/star2");
-			Lib.setString(txtscore,"at "+level.getTwoStar());
-		}else if(level.getScore()<level.getThreeStar()){
+			Lib.setString(txtscore,"at "+twoStar);
+		}else if(score<threeStar){
 			Lib.setSprite(objstarScore,"Sprites/Misc/star3");
-			Lib.setString(txtscore,"at "+level.getThreeStar());
+			Lib.setString(txtscore,"at "+threeStar);
 		}else{
 		}
 		Vector3 move=new Vector3(0,0,10);

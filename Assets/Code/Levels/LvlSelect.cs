@@ -1,13 +1,16 @@
 ﻿using UnityEngine;
+using System;
+using System.Xml.Linq;
 using System.Collections;
 using RoundedDefence.Components.Levels;
 using RoundedDefence;
 
 public class LvlSelect : MonoBehaviour {
-	public int lvlNumb=0;
+	public string LevelId="N.1.1";
 	private bool enabledd=false;
 	public Sprite Image1;
 	public Sprite Image2;
+<<<<<<< HEAD
 	public Level level;
 	public float radius;
 	public float angle;
@@ -22,6 +25,14 @@ public class LvlSelect : MonoBehaviour {
 		sun = GameObject.Find (centroid);
 		level=Lib.getLvl(lvlNumb);
 
+=======
+	//TODO: Fix lvlNumb.
+	int lvlNumb = 0;
+	public XElement level;
+	// Use this for initialization
+	void Start () {
+		level = Lib.currentLevel;
+>>>>>>> MigratingToXML
 		setTexture ();
 		if(enabledd)
 		setStars ();
@@ -55,7 +66,10 @@ public class LvlSelect : MonoBehaviour {
 		if (Input.GetMouseButtonDown (0)) {
 			LevelSelect.lvlSelected=lvlNumb;
 			//LevelSelect.level=level;
+<<<<<<< HEAD
 			IslandSelected.centroid=gameObject.name;
+=======
+>>>>>>> MigratingToXML
 			GameObject gm=GameObject.Find("_GM");
 			gm.audio.clip=Lib.clickClip;
 			if(Lib.sound)
@@ -64,7 +78,12 @@ public class LvlSelect : MonoBehaviour {
 	}
 	void setTexture(){
 		SpriteRenderer sprRenderer= (SpriteRenderer)renderer;
+<<<<<<< HEAD
 //		enabledd=PlayerPrefs.GetInt("LvlUnlocked",1)>=lvlNumb&&PlayerPrefs.GetInt("TotalStars",0)>=level.getMinStars();
+=======
+		int minStars = Int32.Parse(Lib.currentLevel.Attribute(XName.Get("required-stars")).Value);
+		enabledd=PlayerPrefs.GetInt("LvlUnlocked",1)>=lvlNumb&&PlayerPrefs.GetInt("TotalStars",0)>=minStars;
+>>>>>>> MigratingToXML
 		if (enabledd) {
 			sprRenderer.sprite = Image1;	
 		} else {
@@ -72,19 +91,26 @@ public class LvlSelect : MonoBehaviour {
 		}
 	}
 	void setStars(){
-		if(level.getScore()>=level.getOneStar())
+		//TODO: Assign score storage.
+		//TODO: Assign all star.
+		int allStar = 0;
+		int score = 0;
+		int oneStar = Int32.Parse(level.Element(XName.Get("scores")).Attribute(XName.Get("one-star")).Value);
+		int twoStar = Int32.Parse(level.Element(XName.Get("scores")).Attribute(XName.Get("two-star")).Value);
+		int threeStar = Int32.Parse(level.Element(XName.Get("scores")).Attribute(XName.Get("three-star")).Value);
+		if(score>=oneStar)
 			star (Resources.Load<Sprite>("Sprites/Misc/star1"),0);
 		else
 			star (Resources.Load<Sprite>("Sprites/Misc/nostar"),0);
-		if(level.getScore()>=level.getTwoStar())
+		if(score>=twoStar)
 			star (Resources.Load<Sprite>("Sprites/Misc/star2"),1);
 		else
 			star (Resources.Load<Sprite>("Sprites/Misc/nostar"),1);
-		if(level.getScore()>=level.getThreeStar())
+		if(score>=threeStar)
 			star (Resources.Load<Sprite>("Sprites/Misc/star3"),2);
 		else
 			star (Resources.Load<Sprite>("Sprites/Misc/nostar"),2);
-		if(0!=level.getAllStar())
+		if(0!=allStar)
 			star (Resources.Load<Sprite>("Sprites/Misc/star4"),3);
 		else
 			star (Resources.Load<Sprite>("Sprites/Misc/nostar"),3);

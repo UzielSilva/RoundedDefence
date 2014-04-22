@@ -1,0 +1,12 @@
+<level id="N.1.1" class="normal" name="OlaKAse" required-stars="0" background-image="" background-music="" >
+	<scores one-star="1" two-star="2" three-star="3"/>
+	<towers>	
+		<tower id=""/>
+	</towers>
+	<walls>	
+		<wall id="" radius="" angle=""/>
+	</walls>
+	<wave time="">		
+		<ship id="" time="" angle=""/>
+	</wave>
+</level>
