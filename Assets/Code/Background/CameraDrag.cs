@@ -4,6 +4,7 @@ using System.Collections;
 public class CameraDrag : MonoBehaviour {
 
 	public float dragSpeed = 2;
+	public float radius=2;
 	private Vector3 dragOrigin;
 	// Use this for initialization
 	void Start () {
@@ -21,6 +22,12 @@ public class CameraDrag : MonoBehaviour {
 		if (!Input.GetMouseButton (0))
 				return;
 		Vector3 pos = Camera.main.ScreenToViewportPoint (Input.mousePosition - dragOrigin);
+		if (Mathf.Pow(transform.position.x + (pos.x * dragSpeed * -1.0f),2)
+		    + Mathf.Pow(transform.position.y + (pos.y * dragSpeed * -1.0f),2) < radius*radius) {
+
+			transform.Translate (new Vector3 (pos.x * dragSpeed * -1.0f, pos.y * dragSpeed * -1.0f, 0)); 
+		}
+		/*
 		if (transform.position.x + (pos.x * dragSpeed * -1.0f) > width/2 -5 && 
 		    transform.position.x + (pos.x * dragSpeed * -1.0f) < -width/2 +5) {
 				Vector3 move = new Vector3 (pos.x * dragSpeed * -1.0f, 0, 0);
@@ -32,6 +39,7 @@ public class CameraDrag : MonoBehaviour {
 				Vector3 move = new Vector3 (0, pos.y * dragSpeed * -1.0f, 0);
 				transform.Translate (move, Space.World); 
 		}
+	*/
 		dragOrigin = Input.mousePosition;
 	}
 }
