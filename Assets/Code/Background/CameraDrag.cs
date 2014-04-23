@@ -11,9 +11,6 @@ public class CameraDrag : MonoBehaviour {
 	}
 	
 	void Update(){    
-		Camera cam = Camera.main;
-		float height = 2f * cam.orthographicSize;
-		float width = height * cam.aspect;
 		if (Input.GetMouseButtonDown (0)) {
 				dragOrigin = Input.mousePosition;
 				return;

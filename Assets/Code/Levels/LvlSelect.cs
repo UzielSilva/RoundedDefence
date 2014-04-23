@@ -10,8 +10,6 @@ public class LvlSelect : MonoBehaviour {
 	private bool enabledd=false;
 	public Sprite Image1;
 	public Sprite Image2;
-<<<<<<< HEAD
-	public Level level;
 	public float radius;
 	public float angle;
 	public float speed;
@@ -19,71 +17,56 @@ public class LvlSelect : MonoBehaviour {
 	public bool rotate;
 	GameObject sun;
 	Vector3 center;
-
-	// Use this for initialization
-	void Start () {
-		sun = GameObject.Find (centroid);
-		level=Lib.getLvl(lvlNumb);
-
-=======
 	//TODO: Fix lvlNumb.
 	int lvlNumb = 0;
 	public XElement level;
 	// Use this for initialization
 	void Start () {
 		level = Lib.currentLevel;
->>>>>>> MigratingToXML
+		sun = GameObject.Find (centroid);
 		setTexture ();
 		if(enabledd)
-		setStars ();
+			setStars ();
 	}
 	void star(Sprite sprite,int lvl){
 		GameObject gameObject = new GameObject("Star"+lvlNumb+"-"+lvl);
 		gameObject.AddComponent<SpriteRenderer>();
-		SpriteRenderer sprRenderer= (SpriteRenderer)gameObject.renderer; 
+		SpriteRenderer sprRenderer= (SpriteRenderer)gameObject.renderer;
 		sprRenderer.sprite=sprite;
 		sprRenderer.sortingLayerName = "Ships";
 		sprRenderer.sortingOrder = lvl;
 		gameObject.transform.position = transform.position;
 		gameObject.transform.rotation = transform.rotation;
 		gameObject.transform.localScale = new Vector3 (.8f, .8f, .8f);
-		gameObject.transform.Translate (Mathf.Cos(Mathf.PI/180*(225+(lvl*30)))*0.6f, 
-		                                Mathf.Sin(Mathf.PI/180*(225+(lvl*30)))*0.6f, 0); 
+		gameObject.transform.Translate (Mathf.Cos(Mathf.PI/180*(225+(lvl*30)))*0.6f,
+		                                Mathf.Sin(Mathf.PI/180*(225+(lvl*30)))*0.6f, 0);
 	}
 	// Update is called once per frame
 	void Update () {
 		if (sun != null) {
-				center = sun.transform.position;
-				angle += speed;
-				angle = ((2 * Mathf.PI) + angle) % (Mathf.PI * 2);
-				transform.position = new Vector3 (center.x + (radius * Mathf.Cos (angle)), center.y + (radius * Mathf.Sin (angle)), 0f);
-				if (rotate)
-						transform.Rotate (Vector3.forward, speed * 180 / Mathf.PI);
+			center = sun.transform.position;
+			angle += speed;
+			angle = ((2 * Mathf.PI) + angle) % (Mathf.PI * 2);
+			transform.position = new Vector3 (center.x + (radius * Mathf.Cos (angle)), center.y + (radius * Mathf.Sin (angle)), 0f);
+			if (rotate)
+				transform.Rotate (Vector3.forward, speed * 180 / Mathf.PI);
 		}
-	} 
+	}
 	void OnMouseOver()
 	{
 		if (Input.GetMouseButtonDown (0)) {
 			LevelSelect.lvlSelected=lvlNumb;
 			//LevelSelect.level=level;
-<<<<<<< HEAD
 			IslandSelected.centroid=gameObject.name;
-=======
->>>>>>> MigratingToXML
 			GameObject gm=GameObject.Find("_GM");
 			gm.audio.clip=Lib.clickClip;
 			if(Lib.sound)
-			gm.audio.Play ();
+				gm.audio.Play ();
 		}
 	}
 	void setTexture(){
 		SpriteRenderer sprRenderer= (SpriteRenderer)renderer;
-<<<<<<< HEAD
-//		enabledd=PlayerPrefs.GetInt("LvlUnlocked",1)>=lvlNumb&&PlayerPrefs.GetInt("TotalStars",0)>=level.getMinStars();
-=======
-		int minStars = Int32.Parse(Lib.currentLevel.Attribute(XName.Get("required-stars")).Value);
-		enabledd=PlayerPrefs.GetInt("LvlUnlocked",1)>=lvlNumb&&PlayerPrefs.GetInt("TotalStars",0)>=minStars;
->>>>>>> MigratingToXML
+		// enabledd=PlayerPrefs.GetInt("LvlUnlocked",1)>=lvlNumb&&PlayerPrefs.GetInt("TotalStars",0)>=level.getMinStars();
 		if (enabledd) {
 			sprRenderer.sprite = Image1;	
 		} else {
@@ -114,6 +97,6 @@ public class LvlSelect : MonoBehaviour {
 			star (Resources.Load<Sprite>("Sprites/Misc/star4"),3);
 		else
 			star (Resources.Load<Sprite>("Sprites/Misc/nostar"),3);
-
-		}
+		
+	}
 }

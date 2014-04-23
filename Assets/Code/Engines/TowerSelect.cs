@@ -43,7 +43,7 @@ public class TowerSelect : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		Lib.mute ();
-		
+		getImage (2);
 		//txt
 		txtstar =Lib.newText("txtstar");
 		txtpoint =Lib.newText("txtpoint");
@@ -146,7 +146,7 @@ public class TowerSelect : MonoBehaviour {
 		bleft.transform.localScale= new Vector3 (Lib.height()*4.1f,1f, 0);
 		bright.transform.localScale= new Vector3 (Lib.height()*4.1f ,-1f, 0);
 	}
-	String getImage(int id){
+	void getImage(int id){
 		string passives = "RoundedDefence.Components.Fishes.Passives";
 		string actives = "RoundedDefence.Components.Fishes.Actives";
 		var q = from t in Assembly.GetExecutingAssembly().GetTypes()
@@ -155,7 +155,7 @@ public class TowerSelect : MonoBehaviour {
 		foreach (Type t in q){
 			string s = t.Name;
 			IFish fish = (IFish)Activator.CreateInstance(t);
-			Debug.Log ("The value of property 'RequiredFood' of the class " + s + " is " + fish.RequiredFood);
+			Debug.Log ("class " + s + " id: " + fish.Id + " sprite "+ fish.Image);
 		}
 	}
 }

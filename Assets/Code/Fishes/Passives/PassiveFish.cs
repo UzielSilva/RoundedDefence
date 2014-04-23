@@ -12,13 +12,17 @@ namespace RoundedDefence.Components.Fishes.Passives
         private Int32[] health;
         public Int32 Level { get { return level; } }
         public Int32 Health { get { return health[Level-1]; } }
-
+		
+		private Int32 id;
+		private String image;
         private static Int32 maxLevel = 4;
         
         public Point Position { get; set; }
         public Int32 RequiredFood { get { return requiredFood[Level-1]; } }
         public Double TimeToAction { get { return timeToAction[Level-1]; } }
-        public Int32 Damage { get { return damage[Level-1]; } }
+		public Int32 Damage { get { return damage[Level-1]; } }
+		public Int32 Id { get { return id; } }
+		public String Image { get { return image; } }
         public PassiveFish(Int32[] requiredFood, Double[] timeToAction, Int32[] damage, Int32[] health)
         {
             if (requiredFood.Length != 4

@@ -9,7 +9,10 @@ namespace RoundedDefence.Components.Fishes.Passives
         public static Double[] timeToAction = { 1.5, 1.2, 1, 0.8 };
         public static Int32[] damage = { 3, 5, 7, 10 };
         public static Int32[] health = { 100, 150, 200, 220 };
-        public Mermaid()
+		public static string image = "Alentadores/mermaid";
+		public static Int32 id = 15;
+
+		public Mermaid()
             : base(requiredFood, timeToAction, damage, health)
         {
         }
