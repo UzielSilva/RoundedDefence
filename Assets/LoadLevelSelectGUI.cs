@@ -7,9 +7,11 @@ using RoundedDefence;
 public class LoadLevelSelectGUI : MonoBehaviour {
 	public Sprite lockedLevelNormal;
 	public Sprite unlockedLevelNormal;
+	public float radiusColliderNormal;
 	public Vector3 scaleLevelNormal;
 	public Sprite lockedLevelSpecial;
 	public Sprite unlockedLevelSpecial;
+	public float radiusColliderSpecial;
 	public Vector3 scaleLevelSpecial;
 	// Use this for initialization
 	void Start () {
@@ -24,7 +26,7 @@ public class LoadLevelSelectGUI : MonoBehaviour {
 			LvlSelect behavior = gameObject.AddComponent<LvlSelect>();
 			behavior.LevelId=id;
 			if(id.Substring(0,1) == "S"){
-				col2d.radius = 1.5f;
+				col2d.radius = radiusColliderSpecial;
 				behavior.radius = 0.5f;
 				behavior.speed = 0.01f;
 				behavior.Image1 = unlockedLevelSpecial;
@@ -32,7 +34,7 @@ public class LoadLevelSelectGUI : MonoBehaviour {
 				behavior.centroid = "LevelN"+id.Substring(1);
 				gameObject.transform.localScale = scaleLevelSpecial;
 			}else{
-				col2d.radius = 2;	
+				col2d.radius = radiusColliderNormal;	
 				behavior.radius = i;
 				behavior.speed = 0.01f/i;			
 				behavior.Image1 = unlockedLevelNormal;
