@@ -72,7 +72,7 @@ public class MainMenu : MonoBehaviour {
 			Lib.fades();
 		}
 		if(Lib.isFadeReady())
-			Application.LoadLevel ("levelSelect");
+			Application.LoadLevel ("levelSelect2");
 		if(btnoptions.transform.position.z==1)
 			menu=1;
 		if(btncredits.transform.position.z==1)

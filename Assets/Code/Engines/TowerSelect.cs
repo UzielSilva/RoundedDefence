@@ -146,7 +146,7 @@ public class TowerSelect : MonoBehaviour {
 		bleft.transform.localScale= new Vector3 (Lib.height()*4.1f,1f, 0);
 		bright.transform.localScale= new Vector3 (Lib.height()*4.1f ,-1f, 0);
 	}
-	String getImage(int id){
+	void getImage(int id){
 		string passives = "RoundedDefence.Components.Fishes.Passives";
 		string actives = "RoundedDefence.Components.Fishes.Actives";
 		var q = from t in Assembly.GetExecutingAssembly().GetTypes()

@@ -13,3 +13,5 @@ EditorBuildSettings:
     path: Assets/Scenes/towerSelect.unity
   - enabled: 1
     path: Assets/Scenes/Levels/level1.unity
+  - enabled: 1
+    path: Assets/Scenes/levelSelect2.unity
