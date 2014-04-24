@@ -1,10 +1,12 @@
 ﻿using System;
 
-namespace RoundedDefence.Components
+namespace RoundedDefence.Components.Ships
 {
 	public class Velero:Ship
 	{
-		public Velero (Point start){
+        public static string id = "sailing";
+        public Velero(Point start)
+        {
 			life = getTotalLife();
 			start = Lib.toTiles (start);
 			setPath(new ShortPath((byte)start.X,(byte)start.Y,0,0).getPath());

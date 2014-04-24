@@ -1,10 +1,11 @@
 using System;
 
-namespace RoundedDefence
+namespace RoundedDefence.Components.Ships
 {
 	public class Pirata:Ship
 	{
-		public Pirata (Point start)
+        public static string id = "pirate";
+        public Pirata(Point start)
 		{
 			life = getTotalLife();
 			start = Lib.toTiles (start);

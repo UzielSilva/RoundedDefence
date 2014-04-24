@@ -1,9 +1,10 @@
 ﻿using System;
 
-namespace RoundedDefence.Components
+namespace RoundedDefence.Components.Ships
 {
 	public class Guerra:Ship
 	{
+        public static string id = "warrior";
 		public Guerra (Point start){
 			life = getTotalLife();
 			start = Lib.toTiles (start);

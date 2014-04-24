@@ -6,7 +6,10 @@
 	<walls>	
 		<wall id="" radius="" angle=""/>
 	</walls>
-	<wave time="">		
-		<ship id="" time="" angle=""/>
-	</wave>
+	<waves>
+		<wave time="60">
+			<msg time="10">Take care, humans near!</msg>
+			<ship id="1" time="10" angle=""/>
+		</wave>
+	</waves>
 </level>

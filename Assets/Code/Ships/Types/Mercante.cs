@@ -1,10 +1,12 @@
 ﻿using System;
 
-namespace RoundedDefence.Components
+namespace RoundedDefence.Components.Ships
 {
 	public class Mercante:Ship
 	{
-		public Mercante (Point start){
+        public static string id = "merchant";
+        public Mercante(Point start)
+        {
 			life = getTotalLife();
 			start = Lib.toTiles (start);
 			setPath(new ShortPath((byte)start.X,(byte)start.Y,0,0).getPath());

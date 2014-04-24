@@ -1,10 +1,11 @@
 using System;
 
-namespace RoundedDefence
+namespace RoundedDefence.Components.Ships
 {
 	public class Pesquero :Ship
 	{
-		public Pesquero (Point start)
+        public static string id = "fishing";
+        public Pesquero(Point start)
 		{
 			life = getTotalLife();
 			start = Lib.toTiles (start);
