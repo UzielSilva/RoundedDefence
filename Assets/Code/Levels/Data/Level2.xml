@@ -1,4 +1,4 @@
-<level id="N.1.2" name="" required-stars="" background-image="" background-music="" >
+<level class="normal" world="1" levelnum="2" name="" required-stars="0" locked-sprite="isla resized" unlocked-sprite="island" background-image="" background-music="" >
 	<properties>
 		<score id="1" value="1000"/>
 		<score id="2" value="2000"/>
