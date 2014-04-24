@@ -1,15 +1,18 @@
 ﻿using UnityEngine;
 using System;
+using System.Linq;
 using System.Xml.Linq;
 using System.Collections;
 using RoundedDefence.Components.Levels;
 using RoundedDefence;
 
 public class LvlSelect : MonoBehaviour {
-	public string LevelId="N.1.1";
+    public string classlevel;
+    public Int16 world;
+    public Int16 levelnum;
 	private bool enabledd=false;
-	public Sprite Image1;
-	public Sprite Image2;
+	public String Image1;
+	public String Image2;
 	public float radius;
 	public float angle;
 	public float speed;
@@ -55,8 +58,7 @@ public class LvlSelect : MonoBehaviour {
 	void OnMouseOver()
 	{
 		if (Input.GetMouseButtonDown (0)) {
-			LevelSelect.lvlSelected=lvlNumb;
-			//LevelSelect.level=level;
+            Lib.setCurrentLevel(classlevel, world, levelnum);
 			IslandSelected.centroid=gameObject.name;
 			GameObject gm=GameObject.Find("_GM");
 			gm.audio.clip=Lib.clickClip;
@@ -66,11 +68,10 @@ public class LvlSelect : MonoBehaviour {
 	}
 	void setTexture(){
 		SpriteRenderer sprRenderer= (SpriteRenderer)renderer;
-//		enabledd=PlayerPrefs.GetInt("LvlUnlocked",1)>=lvlNumb&&PlayerPrefs.GetInt("TotalStars",0)>=level.getMinStars();
 		if (enabledd) {
-			sprRenderer.sprite = Image1;	
+            sprRenderer.sprite = Resources.Load<Sprite>(Image1);
 		} else {
-			sprRenderer.sprite = Image2;
+            sprRenderer.sprite = Resources.Load<Sprite>(Image2);
 		}
 	}
 	void setStars(){

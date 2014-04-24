@@ -1,13 +1,12 @@
-<level class="special" world="1" levelnum="2"  name="" required-stars="0" locked-sprite="isla rezised" unlocked-sprite="island" background-image="" background-music="" >
-	<properties>
-		<score id="1" value="1000"/>
-		<score id="2" value="2000"/>
-		<score id="3" value="3000"/>
-		<towers>	
-			<tower id="octopus"/>
-		</towers>
-	</properties>
-	<wave>
-		<ship id="pirate" time="0" angle="0"/>
+<level class="special" world="1" levelnum="1"  name="Moonlight Oasis" required-stars="3" locked-sprite="isla resized" unlocked-sprite="island" background-image="" background-music="" >
+	<scores one-star="10000" two-star="20000" three-star="30000"/>
+	<towers>	
+		<tower id=""/>
+	</towers>
+	<walls>	
+		<wall id="" radius="" angle=""/>
+	</walls>
+	<wave time="">		
+		<ship id="" time="" angle=""/>
 	</wave>
 </level>

@@ -5,10 +5,9 @@ using RoundedDefence;
 using System.Xml.Linq;
 
 public class LevelSelect : MonoBehaviour {
-	public static int lvlSelected=0;
-	private XElement level = Lib.currentLevel;
 	//text
-	GameObject txtmsg;
+    GameObject txtmsg;
+    GameObject txtname;
 	GameObject txtscore;
 	GameObject txtstar;
 	//butons
@@ -27,7 +26,8 @@ public class LevelSelect : MonoBehaviour {
 		Lib.mute ();
 		//text
 		txtstar =Lib.newText("txtstars");
-		txtmsg = Lib.newText("txtmsg");
+        txtmsg = Lib.newText("txtmsg");
+        txtname = Lib.newText("txtname");
 		txtscore = Lib.newText("txtscore");
 		//buttons
 		btnmusica = GameObject.Find ("btnmusica");
@@ -40,7 +40,6 @@ public class LevelSelect : MonoBehaviour {
 		objstarScore = GameObject.Find ("starScore");
 		Lib.newFade();
 		Lib.setString (txtstar, PlayerPrefs.GetInt ("TotalStars", 0) + "");
-		lvlSelected = 0;
 		Lib.unfades ();
 	}
 	void buttonsActions(){
@@ -67,13 +66,15 @@ public class LevelSelect : MonoBehaviour {
 			Vector3 move=new Vector3(0,0,0);
 			btnplay.transform.position=move;
 			txtscore.transform.position=move;
+            txtname.transform.position = move;
 			objstarScore.transform.position=move;
-			
-			drawDescription ();
+
+            drawDescription();
 			//txt
-			txtstar.transform.position=new Vector3(-Lib.width()/2f +.4f,Lib.height()/2f-.04f,10f);
-			txtmsg.transform.position=new Vector3(Lib.getStringLength(txtmsg)*-.048f,-Lib.height()/2f+.7f,10f);
-			txtscore.transform.Translate(new Vector3((Lib.getStringLength(txtscore)*-.048f)+.2f,-Lib.height()/2f+.35f,0f));
+            txtstar.transform.position = new Vector3(-Lib.width() / 2f + .4f, Lib.height() / 2f - .04f, 10f);
+            txtname.transform.Translate(new Vector3((Lib.getStringLength(txtname) * -.048f) - 1.8f, -Lib.height() / 2f + .7f, 10f));
+            txtmsg.transform.position = new Vector3(Lib.getStringLength(txtmsg) * -.048f, -Lib.height() / 2f + .7f, 10f);
+            txtscore.transform.Translate(new Vector3((Lib.getStringLength(txtscore)*-.048f)+.2f,-Lib.height()/2f+.35f,0f));
 			//btn
 			btnmusica.transform.position=new Vector3(Lib.width()/2f ,Lib.height()/2f,10f);
 			btnsound.transform.position=new Vector3(Lib.width()/2f - .5f,Lib.height()/2f -.05f,10f);
@@ -87,7 +88,8 @@ public class LevelSelect : MonoBehaviour {
 			//txt
 			Lib.followCamera(txtstar);
 			Lib.followCamera(txtscore);
-			Lib.followCamera(txtmsg);
+            Lib.followCamera(txtmsg);
+            Lib.followCamera(txtname);
 			//btn
 			Lib.followCamera(btnmusica);
 			Lib.followCamera(btnsound);
@@ -97,26 +99,42 @@ public class LevelSelect : MonoBehaviour {
 			Lib.followCamera(objstarScore);
 			Lib.followCamera(objstarStar);
 			Lib.followCamera(objhudbar);
+
 		if (!Lib.isFading()) {
 			Lib.faderr ();
 		}
 	}
 	void drawDescription(){
-		int requiredStars = Int32.Parse(level.Attribute(XName.Get ("required-stars")).Value);
-		if (lvlSelected != 0 && level!=null) {
-			//TODO: Implement field for levelNum.
-			int levelNum = 0;
-			bool enabledd=PlayerPrefs.GetInt("LvlUnlocked",1)>=levelNum;
-			if(enabledd){
-				enabledd=PlayerPrefs.GetInt("TotalStars",0)>= requiredStars;
-				if(enabledd){
-					drawStats ();
-				}else{
-					Lib.setString(txtmsg,"YOU NEED "+requiredStars+" STARS TO PLAY");
-					}
-			}else{
-				Lib.setString(txtmsg,"PASS LEVEL "+(lvlSelected-1)+" TO PLAY");
-			}
+        Lib.setString(txtname, "");
+        int requiredStars = Int32.Parse(Lib.currentLevel.Attribute(XName.Get("required-stars")).Value);
+        int levelNum = Int16.Parse(Lib.currentLevel.Attribute(XName.Get("levelnum")).Value);
+        if (IslandSelected.centroid != "")
+        {
+            int world = Int16.Parse(Lib.currentLevel.Attribute(XName.Get("world")).Value);
+            if (PlayerPrefs.GetInt("WorldUnlocked", 1) >= world)
+            {
+                bool enabledd = PlayerPrefs.GetInt("LvlUnlocked", 1) >= levelNum;
+                if (enabledd)
+                {
+                    enabledd = PlayerPrefs.GetInt("TotalStars", 0) >= requiredStars;
+                    if (enabledd)
+                    {
+                        drawStats();
+                    }
+                    else
+                    {
+                        Lib.setString(txtmsg, "YOU NEED " + requiredStars + " STARS TO PLAY");
+                    }
+                }
+                else
+                {
+                    Lib.setString(txtmsg, "PASS LEVEL " + (levelNum - 1) + " TO PLAY");
+                }
+            }
+            else
+            {
+                Lib.setString(txtmsg, "CLEAR WORLD " + (world - 1) + " TO PLAY");
+            }
 		} else {
 			Lib.setString(txtmsg,"SELECT A LEVEL");
 		}
@@ -124,10 +142,11 @@ public class LevelSelect : MonoBehaviour {
 	void drawStats(){
 		//TODO: Assign score storage.
 		int score = 0;
-		int oneStar = Int32.Parse(level.Element(XName.Get("scores")).Attribute(XName.Get("one-star")).Value);
-		int twoStar = Int32.Parse(level.Element(XName.Get("scores")).Attribute(XName.Get("two-star")).Value);
-		int threeStar = Int32.Parse(level.Element(XName.Get("scores")).Attribute(XName.Get("three-star")).Value);
-		Lib.setString(txtmsg, "SCORE : " );
+        int oneStar = Int32.Parse(Lib.currentLevel.Element(XName.Get("scores")).Attribute(XName.Get("one-star")).Value);
+        int twoStar = Int32.Parse(Lib.currentLevel.Element(XName.Get("scores")).Attribute(XName.Get("two-star")).Value);
+        int threeStar = Int32.Parse(Lib.currentLevel.Element(XName.Get("scores")).Attribute(XName.Get("three-star")).Value);
+        Lib.setString(txtname, Lib.currentLevel.Attribute(XName.Get("name")).Value);
+        Lib.setString(txtmsg, "SCORE : " );
 		if(score<oneStar){
 			Lib.setSprite(objstarScore,"Sprites/Misc/star1");
 			Lib.setString(txtscore,"at "+oneStar);
@@ -140,6 +159,7 @@ public class LevelSelect : MonoBehaviour {
 		}else{
 		}
 		Vector3 move=new Vector3(0,0,10);
+        txtname.transform.position=move;
 		txtscore.transform.position=move;
 		btnplay.transform.position=move;
 		objstarScore.transform.position=move;
