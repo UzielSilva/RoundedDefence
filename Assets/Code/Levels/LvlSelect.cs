@@ -18,39 +18,59 @@ public class LvlSelect : MonoBehaviour {
 	public float speed;
 	public string centroid;
 	public bool rotate;
+    GameObject[] stars;
 	GameObject sun;
 	Vector3 center;
 	public XElement level;
 	// Use this for initialization
 	void Start () {
-		level = Lib.currentLevel;
-		sun = GameObject.Find (centroid);
+        stars = new GameObject[4];
+        for (int i = 0; i < 4; i++)
+        {
+            stars[i] = new GameObject("Star" + classlevel + levelnum + "-" + i);
+            stars[i].AddComponent<SpriteRenderer>();
+        }
+        sun = GameObject.Find(centroid);
+        level = Lib.getLevel(classlevel, world, levelnum);
+        Int16 requiredStars = Int16.Parse(level.Attribute(XName.Get("required-stars")).Value);
+        enabledd = PlayerPrefs.GetInt("WorldUnlocked", 1) >= world
+            && PlayerPrefs.GetInt("LvlUnlocked", 1) >= levelnum
+            && PlayerPrefs.GetInt("TotalStars", 0) >= requiredStars;
 		setTexture ();
-		if(enabledd)
-			setStars ();
 	}
 	void star(Sprite sprite,int lvl){
-        GameObject gameObject = new GameObject("Star" + levelnum + "-" + lvl);
-		gameObject.AddComponent<SpriteRenderer>();
+        GameObject gameObject = stars[lvl];
 		SpriteRenderer sprRenderer= (SpriteRenderer)gameObject.renderer;
 		sprRenderer.sprite=sprite;
 		sprRenderer.sortingLayerName = "Ships";
 		sprRenderer.sortingOrder = lvl;
 		gameObject.transform.position = transform.position;
 		gameObject.transform.rotation = transform.rotation;
-		gameObject.transform.localScale = new Vector3 (.8f, .8f, .8f);
-		gameObject.transform.Translate (Mathf.Cos(Mathf.PI/180*(225+(lvl*30)))*0.6f,
-		                                Mathf.Sin(Mathf.PI/180*(225+(lvl*30)))*0.6f, 0);
+        gameObject.transform.localScale = new Vector3(transform.localScale.x*3, transform.localScale.y*3, transform.localScale.z*3);
+        gameObject.transform.Translate(Mathf.Cos(Mathf.PI / 180 * (225 + (lvl * 30))) * this.transform.localScale.magnitude*1.1f,
+                                        Mathf.Sin(Mathf.PI / 180 * (225 + (lvl * 30))) * this.transform.localScale.magnitude*1.1f, 0);
 	}
 	// Update is called once per frame
 	void Update () {
-		if (sun != null) {
+        for (int i = 0; i < 4; i++)
+        {
+            SpriteRenderer sprRenderer = (SpriteRenderer)stars[i].renderer;
+            sprRenderer.sprite = null;
+        }
+        if (sun != null) {
 			center = sun.transform.position;
 			angle += speed;
 			angle = ((2 * Mathf.PI) + angle) % (Mathf.PI * 2);
 			transform.position = new Vector3 (center.x + (radius * Mathf.Cos (angle)), center.y + (radius * Mathf.Sin (angle)), 0f);
 			if (rotate)
-				transform.Rotate (Vector3.forward, speed * 180 / Mathf.PI);
+                transform.Rotate(Vector3.forward, speed * 180 / Mathf.PI);
+            Int16 requiredStars = Int16.Parse(level.Attribute(XName.Get("required-stars")).Value);
+            enabledd = PlayerPrefs.GetInt("WorldUnlocked", 1) >= world
+                && PlayerPrefs.GetInt("LvlUnlocked", 1) >= levelnum
+                && PlayerPrefs.GetInt("TotalStars", 0) >= requiredStars;
+            if (enabledd && IslandSelected.centroid == name)
+                setStars();
+
 		}
 	}
 	void OnMouseOver()
