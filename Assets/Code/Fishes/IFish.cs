@@ -10,5 +10,6 @@ namespace RoundedDefence.Components.Fishes
         Int32 RequiredFood { get; }
 		Double TimeToAction { get; }
 		Int32 Damage { get; }
+		float Scale { get; }
     }
 }

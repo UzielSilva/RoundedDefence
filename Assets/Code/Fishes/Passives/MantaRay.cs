@@ -10,8 +10,9 @@ namespace RoundedDefence.Components.Fishes.Passives
 		public static Int32[] health = { 100, 150, 200, 220 };
 		public static string image = "Ataque/mantaray";
 		public static Int32 id = 1;
+		public static float scale = .2f;
 		public MantaRay()
-			: base(requiredFood, timeToAction, damage, health)
+			: base(requiredFood, timeToAction, damage, health,image,id,scale)
 		{
 		}
 		public override Boolean IsInArea(Point p)

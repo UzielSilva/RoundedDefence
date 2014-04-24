@@ -43,7 +43,6 @@ public class TowerSelect : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		Lib.mute ();
-		getImage (2);
 		//txt
 		txtstar =Lib.newText("txtstar");
 		txtpoint =Lib.newText("txtpoint");
@@ -72,18 +71,31 @@ public class TowerSelect : MonoBehaviour {
 		tower = new GameObject[6,3];
 		for (int i=0; i<6; i++)
 			for (int e=0; e<3; e++) {
-			
+			IFish fish=getFish ((2-e)+(i*3)+1);
 			tower[i,e] = new GameObject("tower"+i+"level"+e);
 			tower[i,e].AddComponent<SpriteRenderer>();
 			tower[i,e].AddComponent("TowerSelectButton");
 			BoxCollider2D box=tower[i,e].AddComponent<BoxCollider2D>();
 			box.size=new Vector3(1f,1f,0);
-			Lib.setSprite(tower[i,e],"Sprites/others/octopus resized");
+			Lib.setSprite(tower[i,e],"Sprites/Towers/"+fish.Image);
+			if(fish.Id!=1 && fish.Id!=4&&PlayerPrefs.GetInt("TowerBuy"+fish.Id,0)==0)
+				tower[i,e].renderer.material.color = new Color(.15f,.15f,.15f);
 			tower[i,e].renderer.sortingLayerName = "Others";
 			tower[i,e].renderer.sortingOrder = 5;
-			tower[i,e].transform.position = new Vector3(i*Lib.width()/18f,e*Lib.height()/18f,0);
-			tower[i,e].transform.localScale = new Vector3(.4f,.4f,.4f);
+			tower[i,e].transform.position = new Vector3(i*Lib.width()/7.6f - (Lib.width()/3.8f),e*Lib.height()/6.4f-(Lib.height()/6),0);
+			tower[i,e].transform.localScale = new Vector3(fish.Scale,fish.Scale,1f);
 			tower[i,e].transform.rotation = transform.rotation;
+			if(((2-e)==1&&40>PlayerPrefs.GetInt("TotalStars",0))||((2-e)==2&&80>PlayerPrefs.GetInt("TotalStars",0))){
+				GameObject rejectimg= new GameObject("regect"+i+"level"+e);
+				rejectimg.AddComponent<SpriteRenderer>();
+				Lib.setSprite(rejectimg,"Sprites/others/error");
+			rejectimg.renderer.sortingLayerName = "Others";
+			rejectimg.renderer.sortingOrder = 6;
+			rejectimg.transform.position = new Vector3(i*Lib.width()/7.6f - (Lib.width()/3.8f),e*Lib.height()/6.4f-(Lib.height()/6),0);
+				rejectimg.transform.localScale = new Vector3(.4f,.4f,1f);
+				rejectimg.transform.rotation = transform.rotation;
+
+			}
 		}
 		Lib.newFade ();
 		Lib.unfades ();
@@ -146,16 +158,17 @@ public class TowerSelect : MonoBehaviour {
 		bleft.transform.localScale= new Vector3 (Lib.height()*4.1f,1f, 0);
 		bright.transform.localScale= new Vector3 (Lib.height()*4.1f ,-1f, 0);
 	}
-	void getImage(int id){
+	IFish getFish(int id){
 		string passives = "RoundedDefence.Components.Fishes.Passives";
 		string actives = "RoundedDefence.Components.Fishes.Actives";
 		var q = from t in Assembly.GetExecutingAssembly().GetTypes()
 			where t.IsClass && !t.IsAbstract && (t.Namespace == passives || t.Namespace == actives)
 				select t;
-		foreach (Type t in q){
-			string s = t.Name;
-			IFish fish = (IFish)Activator.CreateInstance(t);
-			Debug.Log ("class " + s + " id: " + fish.Id + " sprite "+ fish.Image);
-		}
+			foreach (Type t in q) {
+				IFish fish = (IFish)Activator.CreateInstance (t);
+				if(id==fish.Id)
+				return fish;
+			}
+		return null;
 	}
 }

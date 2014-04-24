@@ -9,10 +9,11 @@ namespace RoundedDefence.Components.Fishes.Passives
         public static Double[] timeToAction = { 1.5, 1.2, 1, 0.8 };
         public static Int32[] damage = { 3, 5, 7, 10 };
 		public static Int32[] health = { 100, 150, 200, 220 };
-		public static string image = "Multiple/octopus";
+		public static string image = "Multiple/pulpo";
 		public static Int32 id = 5;
+		public static float scale = .2f;
         public Octopus()
-            : base(requiredFood, timeToAction, damage, health)
+			: base(requiredFood, timeToAction, damage, health,image,id,scale)
         {
         }
         public override Boolean IsInArea(Point p)

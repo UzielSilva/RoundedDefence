@@ -11,8 +11,9 @@ namespace RoundedDefence.Components.Fishes.Actives
 		public static Int32 damage = 1000;
 		public static string image = "Especiales/snake";
 		public static Int32 id = 18;
+		public static float scale = .2f;
 		public Snake()
-			: base(requiredFood, timeToAction, damage)
+			: base(requiredFood, timeToAction, damage,image,id,scale)
 		{
 		}
 		public override Boolean IsInArea(Point p)

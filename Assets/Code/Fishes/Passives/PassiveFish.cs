@@ -15,6 +15,7 @@ namespace RoundedDefence.Components.Fishes.Passives
 		
 		private Int32 id;
 		private String image;
+		private float scale;
         private static Int32 maxLevel = 4;
         
         public Point Position { get; set; }
@@ -23,7 +24,9 @@ namespace RoundedDefence.Components.Fishes.Passives
 		public Int32 Damage { get { return damage[Level-1]; } }
 		public Int32 Id { get { return id; } }
 		public String Image { get { return image; } }
-        public PassiveFish(Int32[] requiredFood, Double[] timeToAction, Int32[] damage, Int32[] health)
+		public float Scale { get { return scale; } }
+		public PassiveFish(Int32[] requiredFood, Double[] timeToAction, Int32[] damage, Int32[] health , 
+		                   string image,Int32 id,float scale)
         {
             if (requiredFood.Length != 4
                 || timeToAction.Length != 4
@@ -34,7 +37,10 @@ namespace RoundedDefence.Components.Fishes.Passives
             this.timeToAction = timeToAction;
             this.damage = damage;
             this.health = health;
-            this.stamina = Health;
+			this.stamina = Health;
+			this.image = image;
+			this.id = id;
+			this.scale = scale;
         }
         public abstract Boolean IsInArea(Point p);
         public void Upgrade()

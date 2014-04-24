@@ -12,8 +12,9 @@ namespace RoundedDefence.Components.Fishes.Passives
 		public static Int32[] health = { 100, 150, 200, 220 };
 		public static string image = "Barrera/iceberg";
 		public static Int32 id = 8;
+		public static float scale = .2f;
 		public Iceberg()
-			: base(requiredFood, timeToAction, damage, health)
+			: base(requiredFood, timeToAction, damage, health,image,id,scale)
 		{
 		}
 		public override Boolean IsInArea(Point p)

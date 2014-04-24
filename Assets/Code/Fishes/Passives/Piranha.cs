@@ -11,8 +11,9 @@ namespace RoundedDefence.Components.Fishes.Passives
 		public static Int32[] health = { 100, 150, 200, 220 };
 		public static string image = "Multiple/piranha";
 		public static Int32 id = 6;
+		public static float scale = .3f;
 		public Piranha()
-			: base(requiredFood, timeToAction, damage, health)
+			: base(requiredFood, timeToAction, damage, health,image,id,scale)
 		{
 		}
 		public override Boolean IsInArea(Point p)
