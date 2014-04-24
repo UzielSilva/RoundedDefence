@@ -106,11 +106,17 @@ public class TowerSelect : MonoBehaviour {
 			Lib.fades ();
 			action=0;
 		}
+
+        if (btnplay.transform.position.z == 1)
+        {
+            action = 1;
+            Lib.fades();
+        }
 		if(Lib.isFadeReady()){
 			if(action==0)
 				Application.LoadLevel ("levelSelect");
-			//if(action==1)
-			//	Application.LoadLevel ("towerSelect");
+			if(action==1)
+                Application.LoadLevel("genericLevel");
 		}
 	}
 	// Update is called once per frame
