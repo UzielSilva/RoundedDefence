@@ -1,4 +1,4 @@
-<level class="normal" world="1" levelnum="2" name="Artantic Island" required-stars="0" locked-sprite="isla resized" unlocked-sprite="island" background-image="" background-music="" >
+<level class="special" world="1" levelnum="1"  name="Moonlight Oasis" required-stars="3" locked-sprite="isla resized" unlocked-sprite="island" background-image="" background-music="" >
 	<scores one-star="10000" two-star="20000" three-star="30000"/>
 	<towers>	
 		<tower id=""/>
