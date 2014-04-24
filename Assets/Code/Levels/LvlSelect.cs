@@ -1,15 +1,18 @@
 ﻿using UnityEngine;
 using System;
+using System.Linq;
 using System.Xml.Linq;
 using System.Collections;
 using RoundedDefence.Components.Levels;
 using RoundedDefence;
 
 public class LvlSelect : MonoBehaviour {
-	public string LevelId="N.1.1";
+    public string classlevel;
+    public Int16 world;
+    public Int16 levelnum;
 	private bool enabledd=false;
-	public Sprite Image1;
-	public Sprite Image2;
+	public String Image1;
+	public String Image2;
 	public float radius;
 	public float angle;
 	public float speed;
@@ -17,8 +20,6 @@ public class LvlSelect : MonoBehaviour {
 	public bool rotate;
 	GameObject sun;
 	Vector3 center;
-	//TODO: Fix lvlNumb.
-	int lvlNumb = 0;
 	public XElement level;
 	// Use this for initialization
 	void Start () {
@@ -29,7 +30,7 @@ public class LvlSelect : MonoBehaviour {
 			setStars ();
 	}
 	void star(Sprite sprite,int lvl){
-		GameObject gameObject = new GameObject("Star"+lvlNumb+"-"+lvl);
+        GameObject gameObject = new GameObject("Star" + levelnum + "-" + lvl);
 		gameObject.AddComponent<SpriteRenderer>();
 		SpriteRenderer sprRenderer= (SpriteRenderer)gameObject.renderer;
 		sprRenderer.sprite=sprite;
@@ -55,8 +56,7 @@ public class LvlSelect : MonoBehaviour {
 	void OnMouseOver()
 	{
 		if (Input.GetMouseButtonDown (0)) {
-			LevelSelect.lvlSelected=lvlNumb;
-			//LevelSelect.level=level;
+            		Lib.setCurrentLevel(classlevel, world, levelnum);
 			IslandSelected.centroid=gameObject.name;
 			GameObject gm=GameObject.Find("_GM");
 			gm.audio.clip=Lib.clickClip;
@@ -66,18 +66,25 @@ public class LvlSelect : MonoBehaviour {
 	}
 	void setTexture(){
 		SpriteRenderer sprRenderer= (SpriteRenderer)renderer;
-		// enabledd=PlayerPrefs.GetInt("LvlUnlocked",1)>=lvlNumb&&PlayerPrefs.GetInt("TotalStars",0)>=level.getMinStars();
 		if (enabledd) {
-			sprRenderer.sprite = Image1;	
+            sprRenderer.sprite = Resources.Load<Sprite>(Image1);
 		} else {
-			sprRenderer.sprite = Image2;
+            sprRenderer.sprite = Resources.Load<Sprite>(Image2);
 		}
 	}
 	void setStars(){
-		//TODO: Assign score storage.
-		//TODO: Assign all star.
-		int allStar = 0;
-		int score = 0;
+        int allStar;
+        int score;
+        if (classlevel == "normal")
+        {
+            allStar = PlayerPrefs.GetInt(String.Format("AllStarN.{0}.{1}",world,levelnum), 0);
+            score = PlayerPrefs.GetInt(String.Format("ScoreN.{0}.{1}", world, levelnum), 0);
+        }
+        else
+        {
+            allStar = PlayerPrefs.GetInt(String.Format("AllStarS.{0}.{1}", world, levelnum), 0);
+            score = PlayerPrefs.GetInt(String.Format("ScoreS.{0}.{1}", world, levelnum), 0);
+        }
 		int oneStar = Int32.Parse(level.Element(XName.Get("scores")).Attribute(XName.Get("one-star")).Value);
 		int twoStar = Int32.Parse(level.Element(XName.Get("scores")).Attribute(XName.Get("two-star")).Value);
 		int threeStar = Int32.Parse(level.Element(XName.Get("scores")).Attribute(XName.Get("three-star")).Value);

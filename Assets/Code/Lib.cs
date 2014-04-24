@@ -17,9 +17,11 @@ namespace RoundedDefence{
 		public static bool sound = PlayerPrefs.GetInt("Sound",1)==1;
 		public static AudioClip clickClip = Resources.Load("Music/Sounds/Clicks/click25") as AudioClip;
 
-		public static void setCurrentLevel(string LevelId){
+		public static void setCurrentLevel(string classlevel, int world, int levelnum){
 			var q = from t in data.Element(XName.Get("levels")).Elements(XName.Get("level"))
-				where t.Attribute(XName.Get("id")).Value == LevelId
+				where t.Attribute(XName.Get("class")).Value == classlevel
+                    && t.Attribute(XName.Get("world")).Value == world.ToString()
+                    && t.Attribute(XName.Get("levelnum")).Value == levelnum.ToString()
 					select t;
 			currentLevel = q.ToArray()[0];
 		}
