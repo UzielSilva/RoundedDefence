@@ -89,9 +89,9 @@ public class TowerSelect : MonoBehaviour {
 				GameObject rejectimg= new GameObject("regect"+i+"level"+e);
 				rejectimg.AddComponent<SpriteRenderer>();
 				Lib.setSprite(rejectimg,"Sprites/others/error");
-			rejectimg.renderer.sortingLayerName = "Others";
-			rejectimg.renderer.sortingOrder = 6;
-			rejectimg.transform.position = new Vector3(i*Lib.width()/7.6f - (Lib.width()/3.8f),e*Lib.height()/6.4f-(Lib.height()/6),0);
+				rejectimg.renderer.sortingLayerName = "Others";
+				rejectimg.renderer.sortingOrder = 6;
+				rejectimg.transform.position = new Vector3(i*Lib.width()/7.6f - (Lib.width()/3.8f),e*Lib.height()/6.4f-(Lib.height()/6),0);
 				rejectimg.transform.localScale = new Vector3(.4f,.4f,1f);
 				rejectimg.transform.rotation = transform.rotation;
 

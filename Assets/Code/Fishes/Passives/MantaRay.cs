@@ -8,7 +8,7 @@ namespace RoundedDefence.Components.Fishes.Passives
 		public static Double[] timeToAction = { 1.5, 1.2, 1, 0.8 };
 		public static Int32[] damage = { 3, 5, 7, 10 };
 		public static Int32[] health = { 100, 150, 200, 220 };
-		public static string image = "Ataque/mantaray";
+		public static string image = "Ataque/mantarraya";
 		public static Int32 id = 1;
 		public static float scale = .2f;
 		public MantaRay()
