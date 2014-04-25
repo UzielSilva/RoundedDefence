@@ -78,8 +78,9 @@ public class TowerSelect : MonoBehaviour {
 			BoxCollider2D box=tower[i,e].AddComponent<BoxCollider2D>();
 			box.size=new Vector3(1f,1f,0);
 			Lib.setSprite(tower[i,e],"Sprites/Towers/"+fish.Image);
-			if(fish.Id!=1 && fish.Id!=4&&PlayerPrefs.GetInt("TowerBuy"+fish.Id,0)==0)
+			if(fish.Id!=1 && fish.Id!=4&&PlayerPrefs.GetInt("TowerBuy"+fish.Id,0)==0){
 				tower[i,e].renderer.material.color = new Color(.15f,.15f,.15f);
+			}
 			tower[i,e].renderer.sortingLayerName = "Others";
 			tower[i,e].renderer.sortingOrder = 5;
 			tower[i,e].transform.position = new Vector3(i*Lib.width()/7.6f - (Lib.width()/3.8f),e*Lib.height()/6.4f-(Lib.height()/6),0);

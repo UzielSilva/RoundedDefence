@@ -8,8 +8,9 @@ using RoundedDefence;
 
 public class LvlSelect : MonoBehaviour {
     public string classlevel;
-    public Int16 world;
-    public Int16 levelnum;
+	public Int16 world;
+	public Int16 levelnum;
+	public Int16 stars;
 	private bool enabledd=false;
 	public String Image1;
 	public String Image2;
@@ -66,10 +67,13 @@ public class LvlSelect : MonoBehaviour {
 	}
 	void setTexture(){
 		SpriteRenderer sprRenderer= (SpriteRenderer)renderer;
-		if (enabledd) {
+		if (PlayerPrefs.GetInt("WorldUnlocked", 1) >= world&&
+		    PlayerPrefs.GetInt("LvlUnlocked", 1) >= levelnum &&
+		    PlayerPrefs.GetInt("TotalStars", 0) >= stars ) {
             sprRenderer.sprite = Resources.Load<Sprite>(Image1);
 		} else {
-            sprRenderer.sprite = Resources.Load<Sprite>(Image2);
+			sprRenderer.sprite = Resources.Load<Sprite>(Image2);
+			renderer.material.color = new Color(.25f,.25f,.25f);
 		}
 	}
 	void setStars(){

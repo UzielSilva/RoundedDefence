@@ -27,9 +27,10 @@ public class LoadLevelSelectGUI : MonoBehaviour {
 		{
             String classlevel = level.Attribute(XName.Get("class")).Value;
             Int16 world = Int16.Parse(level.Attribute(XName.Get("world")).Value);
-            Int16 levelnum = Int16.Parse(level.Attribute(XName.Get("levelnum")).Value);
-            String unlockedSprite = level.Attribute(XName.Get("unlocked-sprite")).Value;
-            String lockedSprite = level.Attribute(XName.Get("locked-sprite")).Value;
+			Int16 levelnum = Int16.Parse(level.Attribute(XName.Get("levelnum")).Value);
+			Int16 stars = Int16.Parse(level.Attribute(XName.Get("required-stars")).Value);
+			String unlockedSprite = level.Attribute(XName.Get("unlocked-sprite")).Value;
+			String lockedSprite = level.Attribute(XName.Get("locked-sprite")).Value;
             String id;
             if (classlevel == "special")
                 id = String.Format("S.{0}.{1}", world, levelnum);
@@ -40,10 +41,9 @@ public class LoadLevelSelectGUI : MonoBehaviour {
 			CircleCollider2D col2d=gameObject.AddComponent<CircleCollider2D>();
 			LvlSelect behavior = gameObject.AddComponent<LvlSelect>();
             behavior.classlevel = classlevel;
-            behavior.world = world;
-            behavior.levelnum = levelnum;
-            behavior.Image1 = "Sprites/Islands/" + unlockedSprite;
-            behavior.Image2 = "Sprites/Islands/" + lockedSprite;
+			behavior.world = world;
+			behavior.levelnum = levelnum;
+			behavior.stars = stars;
             col2d.radius = radiusCollider;
 			if(classlevel == "special"){
 				behavior.radius = 0.5f;
@@ -57,7 +57,10 @@ public class LoadLevelSelectGUI : MonoBehaviour {
                 gameObject.transform.localScale = scaleLevelNormal;
                 i++;
 			}
+			behavior.Image1 = "Sprites/Islands/" + lockedSprite;
+			behavior.Image2 = "Sprites/Islands/" + lockedSprite;
 		}
+
         GameObject selector1 = new GameObject("Selector1");
         selector1.AddComponent<SpriteRenderer>();
         Lib.setSprite(selector1, selector);

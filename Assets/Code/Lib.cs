@@ -124,6 +124,15 @@ namespace RoundedDefence{
 			obj.renderer.sortingLayerName="Shots";
 			return obj;
 		}
+		public static void MakeGrayscale( Texture2D tex) {
+			var texColors = tex.GetPixels();
+			for (int i = 0; i < texColors.Length; i++) {
+				var grayValue = texColors[i].grayscale;
+				texColors[i] =new Color(grayValue, grayValue, grayValue, texColors[i].a);
+			}
+			tex.SetPixels(texColors);
+			tex.Apply();
+		}
 	}
 }
 
