@@ -3,6 +3,7 @@ namespace RoundedDefence.Components.Ships
 {
 	public class Petrolero:Ship
 	{
+        public static string image = "";
         public static string id = "oiler";
         public Petrolero(Point start)
         {

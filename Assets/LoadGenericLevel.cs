@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Xml.Linq;
+using System.Linq;
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using RoundedDefence;
 
 public class LoadGenericLevel : MonoBehaviour {
@@ -9,15 +11,41 @@ public class LoadGenericLevel : MonoBehaviour {
     GameObject background;
     GameObject island;
     bool doAnimation = true;
+    bool inWave = true;
     float timer = 0;
     int count = 3;
     public string countSprite;
     GameObject counter;
+    List<XElement>.Enumerator waves;
+    XElement currentWave;
+    bool hasNextWave;
+    List<XElement>.Enumerator currentShips;
+    XElement currentShip;
+    bool hasNextShip;
+    List<XElement>.Enumerator currentMessages;
+    XElement currentMessage;
+    bool hasNextMessage;
 
 	// Use this for initialization
     void Start()
     {
         Lib.mute();
+        var waveList = Lib.currentLevel.Element(XName.Get("waves")).Elements(XName.Get("wave")).ToList();
+        waves = waveList.GetEnumerator();
+        hasNextWave = waves.MoveNext();
+        currentWave = waves.Current;
+        var ships = from ship in currentWave.Elements("ship")
+                    orderby Int16.Parse(ship.Attribute("time").Value) ascending
+                    select ship;
+        currentShips = ships.ToList<XElement>().GetEnumerator();
+        hasNextShip = currentShips.MoveNext();
+        currentShip = currentShips.Current;
+        var msgs = from msg in currentWave.Elements("msg")
+                    orderby Int16.Parse(msg.Attribute("time").Value) ascending
+                    select msg;
+        currentMessages = msgs.ToList<XElement>().GetEnumerator();
+        hasNextMessage = currentMessages.MoveNext();
+        currentMessage = currentMessages.Current;
         counter = new GameObject("counter");
         counter.transform.position = new Vector3(0, 0, 0);
         counter.AddComponent<SpriteRenderer>();
@@ -38,7 +66,43 @@ public class LoadGenericLevel : MonoBehaviour {
 	void Update () {
         if (!doAnimation)
         {
-
+            if (inWave)
+            {
+                int currentTime = (int)(Time.time - timer);
+                if (currentTime > Int16.Parse(currentWave.Attribute("time").Value))
+                {
+                    inWave = false;
+                }
+                else
+                {
+                    if (hasNextMessage && Int16.Parse(currentMessage.Attribute("time").Value) == currentTime)
+                    {
+                        Debug.Log(currentMessage.Value);
+                        hasNextMessage = currentMessages.MoveNext();
+                        currentMessage = currentMessages.Current;
+                    }
+                    if (hasNextShip && Int16.Parse(currentShip.Attribute("time").Value) == currentTime)
+                    {
+                        Debug.Log(currentShip.Attribute("id").Value);
+                        hasNextShip = currentShips.MoveNext();
+                        currentShip = currentShips.Current;
+                    }
+                }
+            }
+            else
+            {
+                hasNextWave = waves.MoveNext();
+                currentWave = waves.Current;
+                if (hasNextWave)
+                {
+                    timer = Time.time;
+                    setCurrentWave();
+                }
+                else
+                {
+                    Debug.Log("Level cleared");
+                }
+            }
         }
 
         if (!Lib.isFading())
@@ -70,5 +134,20 @@ public class LoadGenericLevel : MonoBehaviour {
                 Lib.setSprite(counter, "");
             }
         }
+    }
+    void setCurrentWave()
+    {
+        var ships = from ship in currentWave.Elements("ship")
+                    orderby Int16.Parse(ship.Attribute("time").Value) ascending
+                    select ship;
+        currentShips = ships.ToList<XElement>().GetEnumerator();
+        currentShips.MoveNext();
+        currentShip = currentShips.Current;
+        var msgs = from msg in currentWave.Elements("msg")
+                   orderby Int16.Parse(msg.Attribute("time").Value) ascending
+                   select msg;
+        currentMessages = msgs.ToList<XElement>().GetEnumerator();
+        currentMessages.MoveNext();
+        currentMessage = currentMessages.Current;
     }
 }

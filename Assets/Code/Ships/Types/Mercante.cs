@@ -4,6 +4,7 @@ namespace RoundedDefence.Components.Ships
 {
 	public class Mercante:Ship
 	{
+        public static string image = "";
         public static string id = "merchant";
         public Mercante(Point start)
         {

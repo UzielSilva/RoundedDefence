@@ -4,6 +4,7 @@ namespace RoundedDefence.Components.Ships
 {
 	public class Pirata:Ship
 	{
+        public static string image = "Pirata";
         public static string id = "pirate";
         public Pirata(Point start)
 		{

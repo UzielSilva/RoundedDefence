@@ -4,6 +4,7 @@ namespace RoundedDefence.Components.Ships
 {
 	public class Submarino:Ship
 	{
+        public static string image = "Submarino";
         public static string id = "submarine";
         public Submarino(Point start)
         {

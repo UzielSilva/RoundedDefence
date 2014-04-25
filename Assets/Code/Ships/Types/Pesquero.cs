@@ -4,6 +4,7 @@ namespace RoundedDefence.Components.Ships
 {
 	public class Pesquero :Ship
 	{
+        public static string image = "";
         public static string id = "fishing";
         public Pesquero(Point start)
 		{

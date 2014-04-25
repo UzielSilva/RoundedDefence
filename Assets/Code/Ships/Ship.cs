@@ -10,7 +10,9 @@ namespace RoundedDefence.Components.Ships
 		public Bonus bonus;
 		public Path path;
         private string id;
-        public string Id {get{return id;}}
+        private string image;
+        public string Id { get { return id; } }
+        public string Image { get { return image; } }
         public Ship (){
 		}
 		public string getname(){

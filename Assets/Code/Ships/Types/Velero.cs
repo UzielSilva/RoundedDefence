@@ -4,6 +4,7 @@ namespace RoundedDefence.Components.Ships
 {
 	public class Velero:Ship
 	{
+        public static string image = "Velero";
         public static string id = "sailing";
         public Velero(Point start)
         {

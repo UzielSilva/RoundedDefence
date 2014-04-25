@@ -4,6 +4,7 @@ namespace RoundedDefence.Components.Ships
 {
 	public class RompeHielo:Ship
 	{
+        public static string image = "";
         public static string id = "icebreaker";
         public RompeHielo(Point start)
         {

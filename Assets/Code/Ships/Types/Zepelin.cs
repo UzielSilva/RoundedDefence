@@ -4,6 +4,7 @@ namespace RoundedDefence.Components.Ships
 {
 	public class Zepelin:Ship
 	{
+        public static string image = "";
         public static string id = "zeppelin";
         public Zepelin(Point start)
         {

@@ -4,6 +4,7 @@ namespace RoundedDefence.Components.Ships
 {
 	public class Vikingo:Ship
 	{
+        public static string image = "";
         public static string id = "viking";
         public Vikingo(Point start)
         {

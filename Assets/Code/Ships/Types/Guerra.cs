@@ -5,6 +5,7 @@ namespace RoundedDefence.Components.Ships
 	public class Guerra:Ship
 	{
         public static string id = "warrior";
+        public static string image = "";
 		public Guerra (Point start){
 			life = getTotalLife();
 			start = Lib.toTiles (start);
