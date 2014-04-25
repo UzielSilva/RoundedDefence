@@ -272,7 +272,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 787677062}
   - 212: {fileID: 787677061}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: fog
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -422,6 +422,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4c6e01876db48445940de49559559db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  font: {fileID: 12800000, guid: b0df7ecaa0315463cafcc1ed0ee420d0, type: 3}
   countSprite: glass_numbers
 --- !u!1 &1065819890
 GameObject:
@@ -432,7 +433,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1065819892}
   - 212: {fileID: 1065819891}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -507,9 +508,9 @@ SpriteRenderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayer: 0
+  m_SortingLayer: 2
   m_SortingOrder: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: 2607092007
   m_Sprite: {fileID: 21300000, guid: 2177d6fab201d42649a98620c740061c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &1299815986
@@ -519,7 +520,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1299815984}
   m_LocalRotation: {x: 0, y: 0, z: .858125269, w: .51344049}
-  m_LocalPosition: {x: 1.17038107, y: .847950578, z: 0}
+  m_LocalPosition: {x: 1.1846137, y: .862183213, z: 0}
   m_LocalScale: {x: .0559314974, y: .0559314974, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -557,9 +558,9 @@ SpriteRenderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayer: 0
+  m_SortingLayer: 3
   m_SortingOrder: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: 702023181
   m_Sprite: {fileID: 21300000, guid: c16d50a6733e1477ea94176716991254, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &1436743731

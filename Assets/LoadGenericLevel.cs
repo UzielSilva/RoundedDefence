@@ -14,6 +14,7 @@ public class LoadGenericLevel : MonoBehaviour {
     bool inWave = true;
     float timer = 0;
     int count = 3;
+	public Font font;
     public string countSprite;
     GameObject counter;
     List<XElement>.Enumerator waves;
@@ -61,7 +62,14 @@ public class LoadGenericLevel : MonoBehaviour {
         Lib.newFade();
         Lib.unfades();
 	}
-	
+	void addMessage(String txt){
+		GameObject obj = new GameObject (txt);
+		ShowAndHide sah=(ShowAndHide)obj.AddComponent("ShowAndHide");
+		sah.font = font;
+		sah.txt = txt;
+		sah.delay = 200;
+		sah.speed = .01f;
+		}
 	// Update is called once per frame
 	void Update () {
         if (!doAnimation)
@@ -78,6 +86,7 @@ public class LoadGenericLevel : MonoBehaviour {
                     if (hasNextMessage && Int16.Parse(currentMessage.Attribute("time").Value) == currentTime)
                     {
                         Debug.Log(currentMessage.Value);
+						addMessage(currentMessage.Value);
                         hasNextMessage = currentMessages.MoveNext();
                         currentMessage = currentMessages.Current;
                     }
