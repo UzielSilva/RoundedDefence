@@ -33,7 +33,7 @@ public class Button : MonoBehaviour {
 	void OnMouseOver()
 	{
 		on = true;
-		if (click == true && Input.GetMouseButtonUp (0)) {
+		if (click == true && Input.GetMouseButtonUp (0) &&Lib.isFading()) {
 			click=false;
 			clickSound ();
 			transform.Translate(new Vector3(0,0,1f));
