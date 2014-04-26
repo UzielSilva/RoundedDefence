@@ -424,6 +424,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   font: {fileID: 12800000, guid: b0df7ecaa0315463cafcc1ed0ee420d0, type: 3}
   countSprite: glass_numbers
+  material: {fileID: 2100000, guid: b0df7ecaa0315463cafcc1ed0ee420d0, type: 3}
 --- !u!1 &1065819890
 GameObject:
   m_ObjectHideFlags: 0

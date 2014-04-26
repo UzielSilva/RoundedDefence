@@ -12,20 +12,23 @@ public class ShowAndHide : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		transform.localScale = new Vector3 (.1f, .1f, 1f);
-		MeshRenderer m=gameObject.AddComponent<MeshRenderer>();
-		m.castShadows = true;
-		m.receiveShadows = true;
 		TextMesh t=gameObject.AddComponent<TextMesh>();
 		t.font=font;
-		t.fontSize = 40;
+		t.fontSize = 34;
+		MeshRenderer m=GetComponent<MeshRenderer>();
+		m.material = material;
 		Lib.newText (gameObject.transform.name);
 		Lib.setString (gameObject, txt);
+		transform.position = new Vector3 (txt.Length*-.08f,.2f,0);
 		fade = 0f;
+		Color c = renderer.material.color;
+		c.a = fade;
+		renderer.material.color = c;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		transform.position = new Vector3 (txt.Length*-.14f,.2f,0);
+		transform.position = new Vector3 (txt.Length*-.08f,.2f,0);
 		if((speed>0&&delay>0)||(speed<0&&delay==0))
 		fade += speed;
 		if (fade > 1f) {
@@ -38,11 +41,10 @@ public class ShowAndHide : MonoBehaviour {
 			fade=0;
 			Destroy (this.gameObject);
 				}
-		
-		if(fade!=null){
+
 			Color c = renderer.material.color;
 			c.a = fade;
 			renderer.material.color = c;
-		}
+
 	}
 }

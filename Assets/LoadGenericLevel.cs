@@ -16,6 +16,7 @@ public class LoadGenericLevel : MonoBehaviour {
     int count = 3;
 	public Font font;
     public string countSprite;
+	public Material material;
     GameObject counter;
     List<XElement>.Enumerator waves;
     XElement currentWave;
@@ -69,6 +70,7 @@ public class LoadGenericLevel : MonoBehaviour {
 		sah.txt = txt;
 		sah.delay = 200;
 		sah.speed = .01f;
+		sah.material = material;
 		}
 	// Update is called once per frame
 	void Update () {
