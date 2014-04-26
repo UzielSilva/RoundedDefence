@@ -1,15 +1,23 @@
 using System;
 
-namespace RoundedDefence
+namespace RoundedDefence.Components.Ships
 {
-	public class Ship
+	public abstract class Ship : IShip
 	{
 		public int shipAngle,life;
 		public double radio, angle;
 		//public Bitmap image;
 		public Bonus bonus;
 		public Path path;
-		public Ship (){
+        private string id;
+        private string image;
+
+        public Point Position { get; set; }
+        public string Id { get { return id; } }
+        public string Image { get { return image; } }
+        public Ship (string Id, string Image){
+            id = Id;
+            image = Image;
 		}
 		public string getname(){
 			return "NO VALID";

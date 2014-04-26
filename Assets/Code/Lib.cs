@@ -26,6 +26,16 @@ namespace RoundedDefence{
 			currentLevel = q.ToArray()[0];
 		}
 
+        public static XElement getLevel(string classlevel, int world, int levelnum)
+        {
+            var q = from t in data.Element(XName.Get("levels")).Elements(XName.Get("level"))
+                    where t.Attribute(XName.Get("class")).Value == classlevel
+                        && t.Attribute(XName.Get("world")).Value == world.ToString()
+                        && t.Attribute(XName.Get("levelnum")).Value == levelnum.ToString()
+                    select t;
+            return q.ToArray()[0];
+        }
+
 		public static byte getNcircles(int rad) {
 			byte frac = 2;
 			while (rad > 2) {
@@ -37,7 +47,8 @@ namespace RoundedDefence{
 			return (byte)Math.Pow (2.0, frac);
 		}
 		public static Point toTiles(Point p){
-				return new Point (p.X / tileHeight, p.Y * getNcircles (p.X / tileHeight) / 360);
+				//return new Point (p.X / tileHeight, p.Y * getNcircles (p.X / tileHeight) / 360);
+            return null;
 		}
 		public static void mute(){
 			if (music)

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using RoundedDefence.Components.Ships;
 
 namespace RoundedDefence.Components.Levels
 {
@@ -9,7 +10,7 @@ namespace RoundedDefence.Components.Levels
 
 		public List<Wave> waves= new List<Wave>();
 		private List<Wave> activeWaves= new List<Wave>();
-		private List<Ship> activeShip= new List<Ship>();
+		private List<IShip> activeShip= new List<IShip>();
 		private byte[,] valueMap= new byte[25,64];
 		private int score = 0;
 		private int scoreMultiplier=0;

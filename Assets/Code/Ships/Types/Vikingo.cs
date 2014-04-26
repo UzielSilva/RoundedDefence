@@ -1,13 +1,18 @@
 ﻿using System;
 
-namespace RoundedDefence.Components
+namespace RoundedDefence.Components.Ships.Types
 {
 	public class Vikingo:Ship
 	{
-		public Vikingo (Point start){
+        public static string image = "";
+        public static string id = "viking";
+        public Vikingo()
+            : base(id, image)
+        {
+            Point start = Position;
 			life = getTotalLife();
 			start = Lib.toTiles (start);
-			setPath(new ShortPath((byte)start.X,(byte)start.Y,0,0).getPath());
+			//setPath(new ShortPath((byte)start.X,(byte)start.Y,0,0).getPath());
 		}
 		public new string getname(){
 			return "Barco Vikingo";

@@ -19,8 +19,8 @@ public class LoadLevelSelectGUI : MonoBehaviour {
 	void Start () {
 		int i = 1;
         var levels = from level in Lib.data.Element(XName.Get("levels")).Elements(XName.Get("level"))
-                     orderby level.Attribute(XName.Get("levelnum")).Value ascending
-                     orderby level.Attribute(XName.Get("world")).Value ascending
+                     orderby Int16.Parse(level.Attribute(XName.Get("levelnum")).Value) ascending
+                     orderby Int16.Parse(level.Attribute(XName.Get("world")).Value) ascending
                      select level;
         
 		foreach(XElement level in levels)
