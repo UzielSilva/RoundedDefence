@@ -37,7 +37,7 @@ public class MainMenu : MonoBehaviour {
 		portadaTL = GameObject.Find ("portadaTL");
 		portadaBR = GameObject.Find ("portadaBR");
 		portadaTR = GameObject.Find ("portadaTR");
-
+		IslandSelected.centroid = "";
 		Lib.newFade ();
 		Lib.unfades ();
 	}
