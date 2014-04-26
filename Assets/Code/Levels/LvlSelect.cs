@@ -19,17 +19,17 @@ public class LvlSelect : MonoBehaviour {
 	public float speed;
 	public string centroid;
 	public bool rotate;
-    GameObject[] stars;
+    GameObject[] starsArr;
 	GameObject sun;
 	Vector3 center;
 	public XElement level;
 	// Use this for initialization
 	void Start () {
-        stars = new GameObject[4];
+        starsArr = new GameObject[4];
         for (int i = 0; i < 4; i++)
         {
-            stars[i] = new GameObject("Star" + classlevel + levelnum + "-" + i);
-            stars[i].AddComponent<SpriteRenderer>();
+            starsArr[i] = new GameObject("Star" + classlevel + levelnum + "-" + i);
+            starsArr[i].AddComponent<SpriteRenderer>();
         }
         sun = GameObject.Find(centroid);
         level = Lib.getLevel(classlevel, world, levelnum);
@@ -40,7 +40,7 @@ public class LvlSelect : MonoBehaviour {
 		setTexture ();
 	}
 	void star(Sprite sprite,int lvl){
-        GameObject gameObject = stars[lvl];
+        GameObject gameObject = starsArr[lvl];
 		SpriteRenderer sprRenderer= (SpriteRenderer)gameObject.renderer;
 		sprRenderer.sprite=sprite;
 		sprRenderer.sortingLayerName = "Ships";
@@ -55,7 +55,7 @@ public class LvlSelect : MonoBehaviour {
 	void Update () {
         for (int i = 0; i < 4; i++)
         {
-            SpriteRenderer sprRenderer = (SpriteRenderer)stars[i].renderer;
+            SpriteRenderer sprRenderer = (SpriteRenderer)starsArr[i].renderer;
             sprRenderer.sprite = null;
         }
         if (sun != null) {
