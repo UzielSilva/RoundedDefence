@@ -11,9 +11,13 @@ namespace RoundedDefence.Components.Ships
 		public Path path;
         private string id;
         private string image;
+
+        public Point Position { get; set; }
         public string Id { get { return id; } }
         public string Image { get { return image; } }
-        public Ship (){
+        public Ship (string Id, string Image){
+            id = Id;
+            image = Image;
 		}
 		public string getname(){
 			return "NO VALID";

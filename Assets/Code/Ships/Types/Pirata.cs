@@ -1,16 +1,18 @@
 using System;
 
-namespace RoundedDefence.Components.Ships
+namespace RoundedDefence.Components.Ships.Types
 {
 	public class Pirata:Ship
 	{
         public static string image = "Pirata";
         public static string id = "pirate";
-        public Pirata(Point start)
-		{
+        public Pirata()
+            : base(id, image)
+        {
+            Point start = Position;
 			life = getTotalLife();
 			start = Lib.toTiles (start);
-			setPath(new ShortPath((byte)start.X,(byte)start.Y,0,0).getPath());
+			//setPath(new ShortPath((byte)start.X,(byte)start.Y,0,0).getPath());
 		}
 		public new string getname(){
 			return "Barco Pirata";

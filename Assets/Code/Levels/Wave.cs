@@ -1,4 +1,5 @@
 ﻿using System;
+using RoundedDefence.Components.Ships.Types;
 using RoundedDefence.Components.Ships;
 
 namespace RoundedDefence.Components.Levels
@@ -42,17 +43,17 @@ namespace RoundedDefence.Components.Levels
 		}
 		public Ship select(int i){
 			switch(i){
-			case 0: return new Guerra(getApropiateStart());
-			case 1: return new Mercante(getApropiateStart());
-			case 2: return new Pasajero(getApropiateStart());
-			case 3: return new Pesquero(getApropiateStart());
-			case 4: return new Petrolero(getApropiateStart());
-			case 5: return new Pirata(getApropiateStart());
-			case 6: return new RompeHielo(getApropiateStart());
-			case 7: return new Submarino(getApropiateStart());
-			case 8: return new Velero(getApropiateStart());
-			case 9: return new Vikingo(getApropiateStart());
-			case 10: return new Zepelin(getApropiateStart());
+			case 0: return new Guerra();
+			case 1: return new Mercante();
+			case 2: return new Pasajero();
+			case 3: return new Pesquero();
+			case 4: return new Petrolero();
+			case 5: return new Pirata();
+			case 6: return new RompeHielo();
+			case 7: return new Submarino();
+			case 8: return new Velero();
+			case 9: return new Vikingo();
+			case 10: return new Zepelin();
 			default:
 				return null;
 			}

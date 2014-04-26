@@ -47,7 +47,8 @@ namespace RoundedDefence{
 			return (byte)Math.Pow (2.0, frac);
 		}
 		public static Point toTiles(Point p){
-				return new Point (p.X / tileHeight, p.Y * getNcircles (p.X / tileHeight) / 360);
+				//return new Point (p.X / tileHeight, p.Y * getNcircles (p.X / tileHeight) / 360);
+            return null;
 		}
 		public static void mute(){
 			if (music)

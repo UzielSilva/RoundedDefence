@@ -9,7 +9,7 @@
 	<waves>
 		<wave time="10">
 			<msg time="1">Take care, humans near!</msg>
-			<ship id="1" time="5" angle="14"/>
+			<ship id="pirate" time="5" angle="0"/>
 		</wave>
 	</waves>
 </level>
