@@ -89,6 +89,12 @@ public class TowerSelect : MonoBehaviour {
 			tower[i,e].transform.localScale = new Vector3(fish.Scale,fish.Scale,1f);
 			tower[i,e].transform.rotation = transform.rotation;
 			if(((2-e)==1&&40>PlayerPrefs.GetInt("TotalStars",0))||((2-e)==2&&80>PlayerPrefs.GetInt("TotalStars",0))){
+				for (int u=0; u< 5; u++) {
+					if(PlayerPrefs.GetInt("TowerSelected"+u,0)==(2-e)+(i*3)+1){
+						PlayerPrefs.SetInt("TowerSelected"+u,0);
+						u=10;
+					}
+				}
 				GameObject rejectimg= new GameObject("regect"+i+"level"+e);
 				rejectimg.AddComponent<SpriteRenderer>();
 				Lib.setSprite(rejectimg,"Sprites/others/error");

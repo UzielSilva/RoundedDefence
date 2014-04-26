@@ -43,9 +43,9 @@ public class Star : MonoBehaviour {
 			dir = Random.Range(.001f, .008f);
 			 size=Random.Range(.009f, .02f);
 			Color cc = renderer.material.color;
-			cc.r=Random.Range(.7f, 1f);
-			cc.g=Random.Range(.7f, 1f);
-			cc.b=Random.Range(.7f, 1f);
+			cc.r=Random.Range(.8f, 1f);
+			cc.g=Random.Range(.8f, 1f);
+			cc.b=Random.Range(.7f, .8f);
 			renderer.material.color = cc;
 			transform.localScale=new Vector3(size,size,1f);
 			Camera cam=Camera.main;
