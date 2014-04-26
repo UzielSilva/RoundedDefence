@@ -1,4 +1,4 @@
-<level class="normal" world="1" levelnum="1" name="Paradise Island" required-stars="0" locked-sprite="isla resized" unlocked-sprite="isla resized" background-image="bg resized" background-music="Fish-MatchTwo" >
+<level class="normal" world="1" levelnum="1" name="Paradise Island" required-stars="0" unlocked-sprite="isla resized" locked-sprite="isla resized" background-image="bg resized" background-music="Fish-MatchTwo" >
 	<scores one-star="1000" two-star="2000" three-star="3000"/>
 	<towers>	
 		<tower id=""/>
@@ -7,9 +7,20 @@
 		<wall id="" radius="" angle=""/>
 	</walls>
 	<waves>
-		<wave time="10">
+		<wave time="15">
 			<msg time="1">Take care, humans near!</msg>
-			<ship id="pirate" time="5" angle="0"/>
+			<ship id="pirate" time="2" angle="0"/>
+			<ship id="sailing" time="6" angle="30"/>
+			<ship id="submarine" time="4" angle="60"/>
+			<ship id="pirate" time="9" angle="90"/>
+			<ship id="pirate" time="5" angle="120"/>
+			<ship id="submarine" time="11" angle="150"/>
+			<ship id="sailing" time="3" angle="180"/>
+			<ship id="submarine" time="5" angle="210"/>
+			<ship id="submarine" time="12" angle="240"/>
+			<ship id="sailing" time="7" angle="270"/>
+			<ship id="pirate" time="14" angle="300"/>
+			<ship id="pirate" time="6" angle="330"/>
 		</wave>
 	</waves>
 </level>
