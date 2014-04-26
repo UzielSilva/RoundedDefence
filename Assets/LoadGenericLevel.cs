@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Reflection;
 using System.Xml.Linq;
 using System.Linq;
 using UnityEngine;
@@ -30,7 +29,6 @@ public class LoadGenericLevel : MonoBehaviour {
     List<XElement>.Enumerator currentMessages;
     XElement currentMessage;
     bool hasNextMessage;
-    Dictionary<String, IShip> Ships;
 
 	// Use this for initialization
     void Start()
@@ -57,21 +55,6 @@ public class LoadGenericLevel : MonoBehaviour {
         counter.AddComponent<SpriteRenderer>();
         background = GameObject.Find("background");
         island = GameObject.Find("island");
-
-        Ships = new Dictionary<string, IShip>();
-        string @namespace = "RoundedDefence.Components.Ships.Types";
-
-        var q = from t in Assembly.GetExecutingAssembly().GetTypes()
-                where t.IsClass && t.Namespace == @namespace
-                select t;
-
-        foreach (Type t in q)
-        {
-            IShip ship = (IShip)Activator.CreateInstance(t);
-            String id = ship.Id;
-
-            Ships.Add(id, ship);
-        }
 
         GameObject camera = GameObject.Find("Camera");
         AudioSource audioSource = camera.AddComponent<AudioSource>();
@@ -113,16 +96,15 @@ public class LoadGenericLevel : MonoBehaviour {
                     }
                     if (hasNextShip && Int16.Parse(currentShip.Attribute("time").Value) == currentTime)
                     {
-                        Int32 angle = Int16.Parse(currentShip.Attribute("angle").Value);
+                        Int16 angle = Int16.Parse(currentShip.Attribute("angle").Value);
                         String id = currentShip.Attribute("id").Value;
-                        float radius = 2f;
-                        IShip sh = Ships[id];
-                        GameObject ship = new GameObject(String.Format("Ship.{0}.{1}.{2}", id, angle, currentTime));
-                        ship.transform.position = new Vector3(radius * Mathf.Cos(angle * Mathf.PI / 180), radius * Mathf.Sin(angle * Mathf.PI / 180), 0);
+
+                        GameObject ship = new GameObject(String.Format("Ship.{0}.{1}.{2}", id, angle,currentTime));
                         ship.transform.localScale = ShipScale;
                         ship.AddComponent<SpriteRenderer>();
-                        ship.renderer.sortingLayerName = "Ships";
-                        Lib.setSprite(ship, "Sprites/Ships/" + sh.Image);
+                        ShipElement s = ship.AddComponent<ShipElement>();
+                        s.id = id;
+                        s.angle = angle;
                         hasNextShip = currentShips.MoveNext();
                         currentShip = currentShips.Current;
                     }

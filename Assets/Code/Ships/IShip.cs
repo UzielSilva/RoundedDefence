@@ -5,7 +5,7 @@ using System.Text;
 
 namespace RoundedDefence.Components.Ships
 {
-    interface IShip
+    public interface IShip
     {
         String Id { get; }
         String Image { get; }

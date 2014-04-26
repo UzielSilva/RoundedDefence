@@ -1,13 +1,16 @@
 using System;
 using System.Linq;
 using UnityEngine;
+using System.Collections.Generic;
 using RoundedDefence.Components.Levels;
+using RoundedDefence.Components.Ships;
 using System.Collections;
 using System.Xml.Linq;
 
 namespace RoundedDefence{
 	public class Lib : MonoBehaviour{
 		public static XDocument data;
+        public static Dictionary<String, IShip> Ships;
 		public static XElement currentLevel;
 		public static int tileHeight = 10;
 		static GameObject fade;
