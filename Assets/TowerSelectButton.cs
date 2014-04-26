@@ -6,12 +6,10 @@ public class TowerSelectButton : MonoBehaviour {
 
 	private bool on;
 	private bool click;
-	SpriteRenderer sprRenderer;
 	// Use this for initialization
 	void Start () {
 		on = false;
 		click = false;
-		sprRenderer = (SpriteRenderer)renderer;
 	}
 	
 	// Update is called once per frame

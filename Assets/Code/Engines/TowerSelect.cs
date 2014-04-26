@@ -15,6 +15,7 @@ public class TowerSelect : MonoBehaviour {
 	GameObject txtbasic;
 	GameObject txtimproved;
 	GameObject txtadvanced;
+	GameObject txttipotorre;
 	//btn
 	GameObject btnback;
 	GameObject btnplay;
@@ -51,6 +52,7 @@ public class TowerSelect : MonoBehaviour {
 		txtbasic =Lib.newText("txtbasic");
 		txtadvanced =Lib.newText("txtadvanced");
 		txtimproved =Lib.newText("txtimproved");
+		txttipotorre =Lib.newText("txttipotorre");
 		//btn
 		btnplay = GameObject.Find ("btnplay");
 		btnback = GameObject.Find ("btnback");
@@ -98,6 +100,16 @@ public class TowerSelect : MonoBehaviour {
 
 			}
 		}
+		for (int i=0; i< 5; i++) {
+			GameObject rejectimg= new GameObject("objselect"+i);
+			rejectimg.AddComponent<SpriteRenderer>();
+			Lib.setSprite(rejectimg,"Sprites/others/select");
+			rejectimg.renderer.sortingLayerName = "Others";
+			rejectimg.renderer.sortingOrder = 6;
+			rejectimg.transform.position = new Vector3(i*Lib.width()/7.6f - (Lib.width()/3.8f),Lib.height()*2,0);
+			rejectimg.transform.localScale = new Vector3(.4f,.4f,1f);
+			rejectimg.transform.rotation = transform.rotation;
+		}
 		Lib.newFade ();
 		Lib.unfades ();
 	}
@@ -125,12 +137,46 @@ public class TowerSelect : MonoBehaviour {
 		txtbasic.transform.position=new Vector3(-Lib.width()/2.2f +.1f,Lib.height()/20f *3f +.15f ,0f);
 		txtadvanced.transform.position=new Vector3(-Lib.width()/2.2f +.1f,0.1f,0f);
 		txtimproved.transform.position=new Vector3(-Lib.width()/2.2f +.1f,Lib.height()/20f*-3f +.15f,0f);
+		txttipotorre.transform.position=new Vector3( (Lib.getStringLength(txttipotorre)*-.04f),-Lib.height()/2.2f +.5f,0f);
+
 		//btn
 		btnback.transform.position=new Vector3(-Lib.width()/2.2f +.8f,-Lib.height()/2.2f+.5f,0f);
 		btnplay.transform.position=new Vector3(Lib.width()/2.2f -.8f ,-Lib.height()/2.2f +.5f,0f);
 		for (int i=0; i<6; i++)
 		for (int e=0; e<3; e++) {
+			if(tower[i,e].transform.position.z==1){
+				IFish fish=getFish((2-e)+(i*3)+1);
+				Lib.setString(txttipotorre,fish.Name);
+				bool remove=false;
+				for (int u=0; u< 5; u++) {
+					if(PlayerPrefs.GetInt("TowerSelected"+u,0)==(2-e)+(i*3)+1){
+						PlayerPrefs.SetInt("TowerSelected"+u,0);
+						u=10;
+						remove=true;
+					}
+				}
+				for (int u=0; remove ==false && u< 5; u++) {
+					if(PlayerPrefs.GetInt("TowerSelected"+u,0)==0 && !(fish.Id!=1 && fish.Id!=4&&PlayerPrefs.GetInt("TowerBuy"+((2-e)+(i*3)+1),0)==0)){
+						PlayerPrefs.SetInt("TowerSelected"+u,(2-e)+(i*3)+1);
+						u=10;
+					}
+					
+				}
+
+			}
 			tower[i,e].transform.position = new Vector3(i*Lib.width()/7.6f - (Lib.width()/3.8f),e*Lib.height()/6.4f-(Lib.height()/6),0);
+		}
+		for (int u=0; u< 5; u++) {
+			GameObject aceptimg= GameObject.Find("objselect"+u);
+			if(PlayerPrefs.GetInt("TowerSelected"+u,0)==0){
+				aceptimg.transform.position = new Vector3(Lib.width(),Lib.height(),0);
+			}else{
+				int i=(PlayerPrefs.GetInt("TowerSelected"+u,0)-1)/3;
+				int e=2-(PlayerPrefs.GetInt("TowerSelected"+u,0)-1)%3;
+				aceptimg.transform.position = new Vector3(i*Lib.width()/7.6f - (Lib.width()/3.8f),e*Lib.height()/6.4f-(Lib.height()/6),0);
+
+			}
+
 		}
 		//obj
 		backgroundbox();

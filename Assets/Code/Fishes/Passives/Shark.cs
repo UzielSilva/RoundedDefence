@@ -11,10 +11,11 @@ namespace RoundedDefence.Components.Fishes.Passives
         public static Int32[] health = { 100, 150, 200, 220 };
 		public static Int32[] velocity = { 1, 2, 3, 4 };
 		public static string image = "Ataque/tiburon";
+		public static string name = "Shark";
 		public static Int32 id = 2;
 		public static float scale = .2f;
         public Shark()
-			: base(requiredFood, timeToAction, damage, health,image,id,scale)
+			: base(requiredFood, timeToAction, damage, health,image,name,id,scale)
         {
         }
         public override Boolean IsInArea(Point p)

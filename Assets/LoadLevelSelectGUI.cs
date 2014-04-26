@@ -29,7 +29,6 @@ public class LoadLevelSelectGUI : MonoBehaviour {
             Int16 world = Int16.Parse(level.Attribute(XName.Get("world")).Value);
 			Int16 levelnum = Int16.Parse(level.Attribute(XName.Get("levelnum")).Value);
 			Int16 stars = Int16.Parse(level.Attribute(XName.Get("required-stars")).Value);
-			String unlockedSprite = level.Attribute(XName.Get("unlocked-sprite")).Value;
 			String lockedSprite = level.Attribute(XName.Get("locked-sprite")).Value;
             String id;
             if (classlevel == "special")

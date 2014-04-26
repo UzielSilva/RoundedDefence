@@ -9,6 +9,7 @@ namespace RoundedDefence.Components.Fishes.Actives
         private Int32 damage;
 		private Int32 id;
 		private String image;
+		private String name;
 		private float scale;
         
         public Point Position { get; set; }
@@ -17,9 +18,10 @@ namespace RoundedDefence.Components.Fishes.Actives
 		public Int32 Damage { get { return damage; } }
 		public Int32 Id { get { return id; } }
 		public String Image { get { return image; } }
+		public String Name { get { return name; } }
 		public float Scale { get { return scale; } }
         public ActiveFish(Int32 requiredFood, Double timeToAction, Int32 damage,
-		                  string image,Int32 id,float scale)
+		                  string image,string name,Int32 id,float scale)
         {
             this.requiredFood = requiredFood;
 			this.timeToAction = timeToAction;
@@ -27,6 +29,7 @@ namespace RoundedDefence.Components.Fishes.Actives
 			this.image = image;
 			this.id = id;
 			this.scale = scale;
+			this.name = name;
         }
         public abstract Boolean IsInArea(Point p);
     }

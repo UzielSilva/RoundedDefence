@@ -15,6 +15,7 @@ namespace RoundedDefence.Components.Fishes.Passives
 		
 		private Int32 id;
 		private String image;
+		private String name;
 		private float scale;
         private static Int32 maxLevel = 4;
         
@@ -24,9 +25,10 @@ namespace RoundedDefence.Components.Fishes.Passives
 		public Int32 Damage { get { return damage[Level-1]; } }
 		public Int32 Id { get { return id; } }
 		public String Image { get { return image; } }
+		public String Name { get { return name; } }
 		public float Scale { get { return scale; } }
 		public PassiveFish(Int32[] requiredFood, Double[] timeToAction, Int32[] damage, Int32[] health , 
-		                   string image,Int32 id,float scale)
+		                   string image,string name,Int32 id,float scale)
         {
             if (requiredFood.Length != 4
                 || timeToAction.Length != 4
@@ -39,6 +41,7 @@ namespace RoundedDefence.Components.Fishes.Passives
             this.health = health;
 			this.stamina = Health;
 			this.image = image;
+			this.name = name;
 			this.id = id;
 			this.scale = scale;
         }

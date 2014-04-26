@@ -5,6 +5,7 @@ namespace RoundedDefence.Components.Fishes
     interface IFish
 	{
 		Int32 Id { get; }
+		String Name { get; }
 		String Image { get; }
         Point Position { get; set; }
         Int32 RequiredFood { get; }
