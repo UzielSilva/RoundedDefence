@@ -3,6 +3,7 @@ using System;
 using System.Linq;
 using System.Reflection;
 using System.Collections;
+using System.Collections.Generic;
 using RoundedDefence.Components.Fishes;
 using RoundedDefence;
 
@@ -33,7 +34,7 @@ public class TowerSelect : MonoBehaviour {
 	
 	GameObject star;
 	GameObject point;
-
+    List<Int16> avaliableTowersList;
 
 	public Sprite sprite;
 	int pointtxt=0;
@@ -70,6 +71,11 @@ public class TowerSelect : MonoBehaviour {
 		star = GameObject.Find ("star");
 		point = GameObject.Find ("point");
 
+        var avaliableTowers = from t in Lib.currentLevel.Element("towers").Elements("tower")
+                              select Int16.Parse(t.Attribute("id").Value);
+
+        avaliableTowersList = avaliableTowers.ToList<Int16>();
+
 		tower = new GameObject[6,3];
 		for (int i=0; i<6; i++)
 			for (int e=0; e<3; e++) {
@@ -88,8 +94,9 @@ public class TowerSelect : MonoBehaviour {
 			tower[i,e].transform.position = new Vector3(i*Lib.width()/7.6f - (Lib.width()/3.8f),e*Lib.height()/6.4f-(Lib.height()/6),0);
 			tower[i,e].transform.localScale = new Vector3(fish.Scale,fish.Scale,1f);
 			tower[i,e].transform.rotation = transform.rotation;
-			if(((2-e)==1&&40>PlayerPrefs.GetInt("TotalStars",0))||((2-e)==2&&80>PlayerPrefs.GetInt("TotalStars",0))){
-				GameObject rejectimg= new GameObject("regect"+i+"level"+e);
+            if ((fish.RequiredStars > PlayerPrefs.GetInt("TotalStars", 0)) || !(avaliableTowersList.Exists(x => x == fish.Id)))
+            {
+				GameObject rejectimg= new GameObject("reject"+i+"level"+e);
 				rejectimg.AddComponent<SpriteRenderer>();
 				Lib.setSprite(rejectimg,"Sprites/others/error");
 				rejectimg.renderer.sortingLayerName = "Others";
@@ -152,7 +159,14 @@ public class TowerSelect : MonoBehaviour {
 		for (int e=0; e<3; e++) {
 			if(tower[i,e].transform.position.z==1){
 				IFish fish=getFish((2-e)+(i*3)+1);
-				Lib.setString(txttipotorre,fish.Name);
+
+                if (fish.RequiredStars > PlayerPrefs.GetInt("TotalStars", 0))
+                    Lib.setString(txttipotorre, String.Format("You need {0} stars to unlock",fish.RequiredStars));
+                else if(avaliableTowersList.Exists(x => x == fish.Id))
+                    Lib.setString(txttipotorre, fish.Name);
+                else
+                    Lib.setString(txttipotorre, "Not avaliable for this level");
+                
 				bool remove=false;
 				for (int u=0; u< 5; u++) {
 					if(PlayerPrefs.GetInt("TowerSelected"+u,0)==(2-e)+(i*3)+1){
@@ -215,7 +229,7 @@ public class TowerSelect : MonoBehaviour {
 		string passives = "RoundedDefence.Components.Fishes.Passives";
 		string actives = "RoundedDefence.Components.Fishes.Actives";
 		var q = from t in Assembly.GetExecutingAssembly().GetTypes()
-			where t.IsClass && !t.IsAbstract && (t.Namespace == passives || t.Namespace == actives)
+			where t.IsClass && (t.Namespace == passives || t.Namespace == actives)
 				select t;
 			foreach (Type t in q) {
 				IFish fish = (IFish)Activator.CreateInstance (t);

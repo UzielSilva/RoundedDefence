@@ -1,10 +1,11 @@
 ﻿using System;
 
-namespace RoundedDefence.Components.Fishes.Passives
+namespace RoundedDefence.Components.Fishes
 {
     abstract class PassiveFish : IFish
     {
         private Int32[] requiredFood;
+        private Int32 requiredStars;
         private Double[] timeToAction;
         private Int32[] damage;
         private Int32 level;
@@ -12,6 +13,7 @@ namespace RoundedDefence.Components.Fishes.Passives
         private Int32[] health;
         public Int32 Level { get { return level; } }
         public Int32 Health { get { return health[Level-1]; } }
+        public Int32 RequiredStars { get { return requiredStars; } }
 		
 		private Int32 id;
 		private String image;
@@ -27,7 +29,7 @@ namespace RoundedDefence.Components.Fishes.Passives
 		public String Image { get { return image; } }
 		public String Name { get { return name; } }
 		public float Scale { get { return scale; } }
-		public PassiveFish(Int32[] requiredFood, Double[] timeToAction, Int32[] damage, Int32[] health , 
+		public PassiveFish(Int32[] requiredFood, Int32 requiredStars, Double[] timeToAction, Int32[] damage, Int32[] health , 
 		                   string image,string name,Int32 id,float scale)
         {
             if (requiredFood.Length != 4
@@ -36,6 +38,7 @@ namespace RoundedDefence.Components.Fishes.Passives
 				throw new Exception("Bad arguments, array's length must be 4.");
 			this.level = 1;
             this.requiredFood = requiredFood;
+            this.requiredStars = requiredStars;
             this.timeToAction = timeToAction;
             this.damage = damage;
             this.health = health;
