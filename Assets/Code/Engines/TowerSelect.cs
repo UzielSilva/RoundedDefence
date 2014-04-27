@@ -86,14 +86,17 @@ public class TowerSelect : MonoBehaviour {
 			BoxCollider2D box=tower[i,e].AddComponent<BoxCollider2D>();
 			box.size=new Vector3(1f,1f,0);
 			Lib.setSprite(tower[i,e],"Sprites/Towers/"+fish.Image);
-			if(fish.Id!=1 && fish.Id!=4&&PlayerPrefs.GetInt("TowerBuy"+fish.Id,0)==0){
+
+            if(fish.Id!=1 && fish.Id!=4&&PlayerPrefs.GetInt("TowerBuy"+fish.Id,0)==0){
 				tower[i,e].renderer.material.color = new Color(.15f,.15f,.15f);
 			}
+
 			tower[i,e].renderer.sortingLayerName = "Others";
 			tower[i,e].renderer.sortingOrder = 5;
 			tower[i,e].transform.position = new Vector3(i*Lib.width()/7.6f - (Lib.width()/3.8f),e*Lib.height()/6.4f-(Lib.height()/6),0);
 			tower[i,e].transform.localScale = new Vector3(fish.Scale,fish.Scale,1f);
 			tower[i,e].transform.rotation = transform.rotation;
+
             if ((fish.RequiredStars > PlayerPrefs.GetInt("TotalStars", 0)) || !(avaliableTowersList.Exists(x => x == fish.Id)))
             {
 				GameObject rejectimg= new GameObject("reject"+i+"level"+e);
@@ -176,7 +179,7 @@ public class TowerSelect : MonoBehaviour {
 					}
 				}
 				for (int u=0; remove ==false && u< 5; u++) {
-					if(PlayerPrefs.GetInt("TowerSelected"+u,0)==0 && !(fish.Id!=1 && fish.Id!=4&&PlayerPrefs.GetInt("TowerBuy"+((2-e)+(i*3)+1),0)==0)){
+					if(!avaliableTowersList.Exists(x => x == fish.Id) && PlayerPrefs.GetInt("TowerSelected"+u,0)==0 && !(fish.Id!=1 && fish.Id!=4&&PlayerPrefs.GetInt("TowerBuy"+((2-e)+(i*3)+1),0)==0)){
 						PlayerPrefs.SetInt("TowerSelected"+u,(2-e)+(i*3)+1);
 						u=10;
 					}
