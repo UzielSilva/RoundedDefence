@@ -28,7 +28,7 @@ public class ShowAndHide : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		transform.position = new Vector3 (txt.Length*-.08f,.2f,0);
+		transform.position = new Vector3 (txt.Length*-.08f,-.2f,0);
 		if((speed>0&&delay>0)||(speed<0&&delay==0))
 		fade += speed;
 		if (fade > 1f) {

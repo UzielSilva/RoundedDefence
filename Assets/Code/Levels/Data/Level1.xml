@@ -1,4 +1,4 @@
-<level class="normal" world="1" levelnum="1" name="Paradise Island" required-stars="0" unlocked-sprite="isla resized" locked-sprite="isla resized" background-image="bg resized" background-music="Waves-8-bit" gameplay-music="Step-Three" boss-music="">
+<level class="normal" world="1" levelnum="1" name="Paradise Island" required-stars="0" unlocked-sprite="isla resized" locked-sprite="isla resized" background-image="bg resized" >
 	<scores one-star="1000" two-star="2000" three-star="3000"/>
 	<towers>	
 		<tower id=""/>
@@ -7,7 +7,17 @@
 		<wall id="" radius="" angle=""/>
 	</walls>
 	<waves>
-		<wave time="15">
+		<wave time="500" background-music="Waves-8-bit">
+			<msg time="50" delay="200" > </msg>
+			<msg time="50" delay="200" >Humans will come from north!</msg>
+			<msg time="40" delay="150" >Don't let them reach....</msg>
+			<msg time="50" delay="200" >The island!</msg>
+			<msg time="100" delay="200">Select a tower with the mouse</msg>
+			<msg time="100" delay="200">And place it on the game</msg>
+			<msg time="50" delay="100">When you are ready..</msg>
+			<msg time="50" delay="100">Select next Wave!</msg>
+		</wave>
+		<wave time="3000" background-music="Step-Three" >
 			<msg time="1">Take care, humans near!</msg>
 			<ship id="pirate" time="2" angle="0"/>
 			<ship id="sailing" time="6" angle="30"/>
