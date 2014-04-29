@@ -12,7 +12,7 @@ namespace RoundedDefence.Components.Fishes.Passives
 		public static string image = "Venenosos/erizo de mar";
 		public static string name = "Sea urchin";
 		public static Int32 id = 11;
-		public static float scale = .2f;
+		public static float scale = .3f;
 		public Erizo()
 			: base(requiredFood, timeToAction, damage, health,image,name,id,scale)
 		{

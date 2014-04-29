@@ -41,7 +41,7 @@ public class Star : MonoBehaviour {
 		if (alpha + dir < .1f) {
 				vel=0;
 			dir = Random.Range(.001f, .008f);
-			 size=Random.Range(.009f, .02f);
+			 size=Random.Range(.011f, .022f);
 			Color cc = renderer.material.color;
 			cc.r=Random.Range(.8f, 1f);
 			cc.g=Random.Range(.8f, 1f);

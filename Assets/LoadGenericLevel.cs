@@ -13,6 +13,7 @@ public class LoadGenericLevel : MonoBehaviour {
 	GameObject background;
 	GameObject island;
 	GameObject txtwave;
+	GameObject btnnextwave;
     bool doAnimation = true;
     bool inWave = true;
     float timer = 0;
@@ -36,7 +37,7 @@ public class LoadGenericLevel : MonoBehaviour {
     {
         Lib.mute();
 		txtwave =Lib.newText("txtwave");
-
+		btnnextwave = GameObject.Find ("btnnextwave");
         var waveList = Lib.currentLevel.Element(XName.Get("waves")).Elements(XName.Get("wave")).ToList();
         waves = waveList.GetEnumerator();
         hasNextWave = waves.MoveNext();
@@ -56,12 +57,16 @@ public class LoadGenericLevel : MonoBehaviour {
 		sah.font = font;
 		sah.txt = msg.Value;
 		sah.delay = Int16.Parse(currentMessage.Attribute("delay").Value);
-		sah.speed = .01f;
+		sah.speed = .04f;
 		sah.material = material;
 		}
 	// Update is called once per frame
 	int msgTime=0;
 	void Update () {
+		if (btnnextwave.transform.position.z == 1) {
+			inWave=false;
+		}
+		btnnextwave.transform.position=new Vector3(Lib.width()/6f,Lib.height()/6f,0f);
             if (inWave)
             {
 
@@ -81,7 +86,7 @@ public class LoadGenericLevel : MonoBehaviour {
                         hasNextMessage = currentMessages.MoveNext();
                         currentMessage = currentMessages.Current;
                     }
-                    if (hasNextShip && Int16.Parse(currentShip.Attribute("time").Value) == currentTime)
+                    if (hasNextShip && Int16.Parse(currentShip.Attribute("time").Value) <= currentTime)
                     {
                         Int16 angle = Int16.Parse(currentShip.Attribute("angle").Value);
                         String id = currentShip.Attribute("id").Value;
@@ -103,6 +108,8 @@ public class LoadGenericLevel : MonoBehaviour {
                 currentWave = waves.Current;
                 if (hasNextWave)
                 {
+					inWave=true;
+				msgTime=0;
                     timer = Time.time;
                     setCurrentWave();
                 }
