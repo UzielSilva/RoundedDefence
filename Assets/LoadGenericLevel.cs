@@ -9,13 +9,15 @@ using RoundedDefence.Components.Ships;
 
 public class LoadGenericLevel : MonoBehaviour {
 
-    public Vector3 ShipScale;
-    GameObject background;
-    GameObject island;
+	public Vector3 ShipScale;
+	GameObject background;
+	GameObject island;
+	GameObject txtwave;
+	GameObject btnnextwave;
     bool doAnimation = true;
     bool inWave = true;
     float timer = 0;
-    int count = 3;
+
 	public Font font;
     public string countSprite;
 	public Material material;
@@ -34,67 +36,57 @@ public class LoadGenericLevel : MonoBehaviour {
     void Start()
     {
         Lib.mute();
+		txtwave =Lib.newText("txtwave");
+		btnnextwave = GameObject.Find ("btnnextwave");
         var waveList = Lib.currentLevel.Element(XName.Get("waves")).Elements(XName.Get("wave")).ToList();
         waves = waveList.GetEnumerator();
         hasNextWave = waves.MoveNext();
         currentWave = waves.Current;
-        var ships = from ship in currentWave.Elements("ship")
-                    orderby Int16.Parse(ship.Attribute("time").Value) ascending
-                    select ship;
-        currentShips = ships.ToList<XElement>().GetEnumerator();
-        hasNextShip = currentShips.MoveNext();
-        currentShip = currentShips.Current;
-        var msgs = from msg in currentWave.Elements("msg")
-                    orderby Int16.Parse(msg.Attribute("time").Value) ascending
-                    select msg;
-        currentMessages = msgs.ToList<XElement>().GetEnumerator();
-        hasNextMessage = currentMessages.MoveNext();
-        currentMessage = currentMessages.Current;
-        counter = new GameObject("counter");
-        counter.transform.position = new Vector3(0, 0, 0);
-        counter.AddComponent<SpriteRenderer>();
-        background = GameObject.Find("background");
+		setCurrentWave();
+        //background = GameObject.Find("background");
         island = GameObject.Find("island");
 
-        GameObject camera = GameObject.Find("Camera");
-        AudioSource audioSource = camera.AddComponent<AudioSource>();
-        audioSource.clip = Resources.Load("Music/music/" + Lib.currentLevel.Attribute("background-music").Value) as AudioClip;
-        audioSource.loop = true;
-        audioSource.Play();
-        Lib.setSprite(background, "Sprites/Background/" + Lib.currentLevel.Attribute("background-image").Value);
+        //Lib.setSprite(background, "Sprites/Background/" + Lib.currentLevel.Attribute("background-image").Value);
         Lib.setSprite(island, "Sprites/Islands/" + Lib.currentLevel.Attribute("unlocked-sprite").Value);
         Lib.newFade();
         Lib.unfades();
 	}
-	void addMessage(String txt){
-		GameObject obj = new GameObject (txt);
+	void addMessage(XElement msg){
+		GameObject obj = new GameObject (msg.Value);
 		ShowAndHide sah=(ShowAndHide)obj.AddComponent("ShowAndHide");
 		sah.font = font;
-		sah.txt = txt;
-		sah.delay = 200;
-		sah.speed = .01f;
+		sah.txt = msg.Value;
+		sah.delay = Int16.Parse(currentMessage.Attribute("delay").Value);
+		sah.speed = .04f;
 		sah.material = material;
 		}
 	// Update is called once per frame
+	int msgTime=0;
 	void Update () {
-        if (!doAnimation)
-        {
+		if (btnnextwave.transform.position.z == 1) {
+			inWave=false;
+		}
+		btnnextwave.transform.position=new Vector3(Lib.width()/6f,Lib.height()/6f,0f);
             if (inWave)
             {
-                int currentTime = (int)(Time.time - timer);
+
+                int currentTime = (int)((Time.time - timer)*10);
+			Lib.setString(txtwave,currentTime-Int16.Parse(currentWave.Attribute("time").Value) +"");
                 if (currentTime > Int16.Parse(currentWave.Attribute("time").Value))
                 {
+					print ("next");
                     inWave = false;
                 }
                 else
                 {
-                    if (hasNextMessage && Int16.Parse(currentMessage.Attribute("time").Value) == currentTime)
+                    if (hasNextMessage && msgTime <= currentTime)
                     {
-						addMessage(currentMessage.Value);
+						addMessage(currentMessage);
+						msgTime+=Int16.Parse(currentMessage.Attribute("time").Value);
                         hasNextMessage = currentMessages.MoveNext();
                         currentMessage = currentMessages.Current;
                     }
-                    if (hasNextShip && Int16.Parse(currentShip.Attribute("time").Value) == currentTime)
+                    if (hasNextShip && Int16.Parse(currentShip.Attribute("time").Value) <= currentTime)
                     {
                         Int16 angle = Int16.Parse(currentShip.Attribute("angle").Value);
                         String id = currentShip.Attribute("id").Value;
@@ -116,6 +108,8 @@ public class LoadGenericLevel : MonoBehaviour {
                 currentWave = waves.Current;
                 if (hasNextWave)
                 {
+					inWave=true;
+				msgTime=0;
                     timer = Time.time;
                     setCurrentWave();
                 }
@@ -124,51 +118,28 @@ public class LoadGenericLevel : MonoBehaviour {
                     Debug.Log("Level cleared");
                 }
             }
-        }
 
         if (!Lib.isFading())
         {
             Lib.faderr();
         }
-        else if (doAnimation)
-            Animation();
 	}
-    void Animation()
-    {
-        if (timer == 0)
-        {
-            timer = Time.time;
-            Lib.setSprite(counter, "Sprites/Misc/" + countSprite + count);
-            SpriteRenderer sprRenderer = counter.GetComponent<SpriteRenderer>();
-            sprRenderer.sortingLayerName = "Others";
-        }
-        var stateTime = Time.time - timer;
-        int restSeconds = (int)(stateTime);
-        if (restSeconds == 1)
-        {
-            timer = Time.time;
-            count--;
-            Lib.setSprite(counter, "Sprites/Misc/" + countSprite + count);
-            if (count < 0)
-            {
-                doAnimation = false;
-                Lib.setSprite(counter, "");
-            }
-        }
-    }
     void setCurrentWave()
-    {
-        var ships = from ship in currentWave.Elements("ship")
-                    orderby Int16.Parse(ship.Attribute("time").Value) ascending
-                    select ship;
-        currentShips = ships.ToList<XElement>().GetEnumerator();
-        currentShips.MoveNext();
-        currentShip = currentShips.Current;
-        var msgs = from msg in currentWave.Elements("msg")
-                   orderby Int16.Parse(msg.Attribute("time").Value) ascending
-                   select msg;
-        currentMessages = msgs.ToList<XElement>().GetEnumerator();
-        currentMessages.MoveNext();
-        currentMessage = currentMessages.Current;
-    }
+	{
+		var ships = from ship in currentWave.Elements("ship")
+			orderby Int16.Parse(ship.Attribute("time").Value) ascending
+				select ship;
+		currentShips = ships.ToList<XElement>().GetEnumerator();
+		hasNextShip = currentShips.MoveNext();
+		currentShip = currentShips.Current;
+		var msgs = from msg in currentWave.Elements("msg") select msg;
+		currentMessages = msgs.ToList<XElement>().GetEnumerator();
+		hasNextMessage = currentMessages.MoveNext();
+		currentMessage = currentMessages.Current;
+		playMusic (currentWave.Attribute ("background-music").Value);
+	}
+	void playMusic(string txt){
+		GameObject music=new GameObject(txt);
+		music.AddComponent ("FadeMusic");
+	}
 }

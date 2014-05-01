@@ -13,7 +13,7 @@ namespace RoundedDefence.Components.Fishes.Passives
 		public static string image = "Alentadores/estrellas";
 		public static string name = "Starfish";
 		public static Int32 id = 13;
-		public static float scale = .2f;
+		public static float scale = .3f;
 		public StarFish()
             : base(requiredFood, requiredStars, timeToAction, damage, health, image, name, id, scale)
 		{
