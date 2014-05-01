@@ -2,6 +2,7 @@
 	<scores one-star="1000" two-star="2000" three-star="3000"/>
 	<towers>	
 		<tower id="1"/>
+		<tower id="4"/>
 	</towers>
 	<walls>	
 		<wall id="" radius="" angle=""/>

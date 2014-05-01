@@ -40,6 +40,7 @@ public class TowerSelect : MonoBehaviour {
 	int pointtxt=0;
 	int titletxt=10;
 	int subtitletxt=38;
+    bool IsAnyFishSelected;
 
 	int action=0;
 	// Use this for initialization
@@ -119,6 +120,8 @@ public class TowerSelect : MonoBehaviour {
 			rejectimg.transform.position = new Vector3(i*Lib.width()/7.6f - (Lib.width()/3.8f),Lib.height()*2,0);
 			rejectimg.transform.localScale = new Vector3(.4f,.4f,1f);
 			rejectimg.transform.rotation = transform.rotation;
+            if (PlayerPrefs.GetInt("TowerSelected" + i, 0) != 0)
+                IsAnyFishSelected = true;
 		}
 		Lib.newFade ();
 		Lib.unfades ();
@@ -132,8 +135,13 @@ public class TowerSelect : MonoBehaviour {
 
         if (btnplay.transform.position.z == 1)
         {
-            action = 1;
-            Lib.fades();
+            if (!IsAnyFishSelected)
+                Lib.setString(txttipotorre, "You must select at least one fish");
+            else
+            {
+                action = 1;
+                Lib.fades();
+            }
         }
 		if(Lib.isFadeReady()){
 			if(action==0)
@@ -145,6 +153,7 @@ public class TowerSelect : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		buttonsActions ();
+        IsAnyFishSelected = false;
 		//txt
 		txtstar.transform.position=new Vector3(-Lib.width()/2.2f + .35f,Lib.height()/2.2f -.15f,0f);
 		txtpoint.transform.position=new Vector3(Lib.width()/2.2f -.4f-(pointtxt*.114f),Lib.height()/2.2f -.15f,0f);
@@ -179,7 +188,7 @@ public class TowerSelect : MonoBehaviour {
 					}
 				}
 				for (int u=0; remove ==false && u< 5; u++) {
-					if(!avaliableTowersList.Exists(x => x == fish.Id) && PlayerPrefs.GetInt("TowerSelected"+u,0)==0 && !(fish.Id!=1 && fish.Id!=4&&PlayerPrefs.GetInt("TowerBuy"+((2-e)+(i*3)+1),0)==0)){
+					if(avaliableTowersList.Exists(x => x == fish.Id) && PlayerPrefs.GetInt("TowerSelected"+u,0)==0 && !(fish.Id!=1 && fish.Id!=4&&PlayerPrefs.GetInt("TowerBuy"+((2-e)+(i*3)+1),0)==0)){
 						PlayerPrefs.SetInt("TowerSelected"+u,(2-e)+(i*3)+1);
 						u=10;
 					}
@@ -194,6 +203,7 @@ public class TowerSelect : MonoBehaviour {
 			if(PlayerPrefs.GetInt("TowerSelected"+u,0)==0){
 				aceptimg.transform.position = new Vector3(Lib.width(),Lib.height(),0);
 			}else{
+                IsAnyFishSelected = true;
 				int i=(PlayerPrefs.GetInt("TowerSelected"+u,0)-1)/3;
 				int e=2-(PlayerPrefs.GetInt("TowerSelected"+u,0)-1)%3;
 				aceptimg.transform.position = new Vector3(i*Lib.width()/7.6f - (Lib.width()/3.8f),e*Lib.height()/6.4f-(Lib.height()/6),0);
