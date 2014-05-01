@@ -14,6 +14,8 @@ public class LoadLevelSelectGUI : MonoBehaviour {
     public String selector;
     private IslandSelected behaviorSelector1;
     private IslandSelected behaviorSelector2;
+    bool isCameraFocused;
+    string oldCentroid;
 
 	// Use this for initialization
 	void Start () {
@@ -78,7 +80,15 @@ public class LoadLevelSelectGUI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
         GameObject target = GameObject.Find(IslandSelected.centroid);
+        if (IslandSelected.centroid != oldCentroid || !isCameraFocused)
+            isCameraFocused = (!Lib.smoothCameraFollow(target)) ? false : true;
+        else
+            Lib.cameraFollow(target);
+        oldCentroid = IslandSelected.centroid;
+
+
         if(target != null)
             if (target.name.Substring(0, 6) == ("LevelS"))
             {

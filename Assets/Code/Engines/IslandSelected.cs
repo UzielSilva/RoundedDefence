@@ -34,6 +34,6 @@ public class IslandSelected : MonoBehaviour {
 			transform.position = new Vector3 (center.x + (radius * Mathf.Cos (angle)), center.y + (radius * Mathf.Sin (angle)), 0f);
 			transform.Rotate (Vector3.forward, speed * 180 / Mathf.PI);
 		}
-		//Lib.followCamera (this);
+		//Lib.followCamera (GameObject.Find(name));
 	}
 }

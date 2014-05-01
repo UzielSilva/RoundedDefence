@@ -121,6 +121,37 @@ namespace RoundedDefence{
 		public static void followCamera(GameObject obj){
 			obj.transform.Translate(Camera.main.transform.position);
 		}
+        static float time = 0;
+        static float initTime = 0;
+        static float duration = 0.5f;
+        static Vector3 originPosition;
+        public static void cameraFollow(GameObject obj)
+        {
+            Camera.main.transform.position = new Vector3(obj.transform.position.x, obj.transform.position.y, Camera.main.transform.position.z);
+        }
+        public static bool smoothCameraFollow(GameObject target)
+        {
+            if (initTime == 0)
+            {
+                initTime = Time.time;
+                originPosition = Camera.main.transform.position;
+            }
+            float currentTime = Time.time - initTime;
+            if (currentTime < duration)
+            {
+                Vector3 distance = target.transform.position - originPosition;
+                float factor = (1 - Mathf.Cos(currentTime * Mathf.PI / duration))/2;
+                distance = distance * factor;
+                Vector3 objective = originPosition + distance;
+                Camera.main.transform.position = new Vector3(objective.x, objective.y, Camera.main.transform.position.z);
+                return false;
+            }
+            else
+            {
+                initTime = 0;
+                return true;
+            }
+        }
 		public static void setSprite(GameObject obj,string str){
 			SpriteRenderer sprRenderer = (SpriteRenderer)obj.renderer;
 			sprRenderer.sprite=Resources.Load<Sprite>(str) ;

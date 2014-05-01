@@ -9,16 +9,20 @@ public class Star : MonoBehaviour {
 	float size;
 	float vel;
 	float angle;
+    Vector3 old;
 	// Use this for initialization
 	void Start () {
 		dir = -.01f;
 		alpha = .1f;
 		vel = 0;
 		origin = Input.mousePosition;
+        old = transform.position;
 	}	
 	
 	// Update is called once per frame
 	void Update () {
+        transform.position = old;
+        transform.position = new Vector3(transform.position.x + Camera.main.transform.position.x, transform.position.y + Camera.main.transform.position.y, transform.position.z);
 		Vector3 pos = Camera.main.ScreenToViewportPoint (Input.mousePosition - origin);
 		origin = Input.mousePosition;
 		transform.Translate( new Vector3 (pos.x * size * 30.0f,pos.y * size * 30.0f ,0));
@@ -58,5 +62,6 @@ public class Star : MonoBehaviour {
 		Color c = renderer.material.color;
 		c.a =alpha + Random.Range(-.1f, .1f);
 		renderer.material.color = c;
+        old = new Vector3(transform.position.x - Camera.main.transform.position.x, transform.position.y - Camera.main.transform.position.y, transform.position.z);
 	}
 }

@@ -77,7 +77,7 @@ public class LvlSelect : MonoBehaviour {
 	void OnMouseOver()
 	{
 		if (Input.GetMouseButtonDown (0)) {
-            		Lib.setCurrentLevel(classlevel, world, levelnum);
+            Lib.setCurrentLevel(classlevel, world, levelnum);
 			IslandSelected.centroid=gameObject.name;
 			GameObject gm=GameObject.Find("_GM");
 			gm.audio.clip=Lib.clickClip;
