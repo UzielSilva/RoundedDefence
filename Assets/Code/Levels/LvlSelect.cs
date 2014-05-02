@@ -12,6 +12,7 @@ public class LvlSelect : MonoBehaviour {
 	public Int16 levelnum;
 	public Int16 stars;
 	private bool enabledd=false;
+
 	public String Image1;
 	public String Image2;
 	public float radius;
@@ -22,6 +23,8 @@ public class LvlSelect : MonoBehaviour {
     GameObject[] starsArr;
 	GameObject sun;
 	Vector3 center;
+	bool mouseover;
+	bool selected;
 	public XElement level;
 	// Use this for initialization
 	void Start () {
@@ -73,10 +76,18 @@ public class LvlSelect : MonoBehaviour {
                 setStars();
 
 		}
+		Vector3 mouse = Camera.main.ScreenToViewportPoint (Input.mousePosition);
+		if (Input.GetMouseButtonDown (0)&& !mouseover && selected  && mouse.y>0.19f) {
+			selected=false;
+			IslandSelected.centroid="";
+		}
+		mouseover = false;
 	}
 	void OnMouseOver()
 	{
-		if (Input.GetMouseButtonDown (0)) {
+		mouseover = true;
+		if (Input.GetMouseButtonUp (0)) {
+			selected=true;
             Lib.setCurrentLevel(classlevel, world, levelnum);
 			IslandSelected.centroid=gameObject.name;
 			GameObject gm=GameObject.Find("_GM");
@@ -84,6 +95,7 @@ public class LvlSelect : MonoBehaviour {
 			if(Lib.sound)
 				gm.audio.Play ();
 		}
+
 	}
 	void setTexture(){
 		SpriteRenderer sprRenderer= (SpriteRenderer)renderer;

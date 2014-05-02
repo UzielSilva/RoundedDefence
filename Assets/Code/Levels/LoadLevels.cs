@@ -26,7 +26,7 @@ public class LoadLevels : MonoBehaviour {
 		string[] dir;
 		try{
 			dir = Directory.GetFiles (_FileLocation + "\\Code\\Levels\\Data\\");
-		}catch(Exception e){
+		}catch(Exception){
 			dir = Directory.GetFiles (_FileLocation + "/Code/Levels/Data/");
 		}
         foreach(string s in dir){

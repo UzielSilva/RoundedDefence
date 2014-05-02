@@ -98,6 +98,14 @@ namespace RoundedDefence{
 			fader=0f;
 			fading=.04f;
 		}
+		public static void dofade(){
+			
+			if (!Lib.isFading ()) {
+					Lib.faderr ();
+			} 
+			fade.transform.position=new Vector3(0,0,0);
+			followCamera(fade);
+		}
 		public static void faderr(){
 			fader += fading ;
 			if (fader > 0f && fader < 1f) {
@@ -131,6 +139,7 @@ namespace RoundedDefence{
         }
         public static bool smoothCameraFollow(GameObject target)
         {
+			if(target != null && originPosition!=null){
             if (initTime == 0)
             {
                 initTime = Time.time;
@@ -151,6 +160,8 @@ namespace RoundedDefence{
                 initTime = 0;
                 return true;
             }
+			}
+			return false;
         }
 		public static void setSprite(GameObject obj,string str){
 			SpriteRenderer sprRenderer = (SpriteRenderer)obj.renderer;

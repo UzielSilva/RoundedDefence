@@ -101,10 +101,7 @@ public class LevelSelect : MonoBehaviour {
 			Lib.followCamera(objstarStar);
 			Lib.followCamera(objhudbar);
 
-
-		if (!Lib.isFading()) {
-			Lib.faderr ();
-		}
+		Lib.dofade ();
 	}
 	void drawDescription(){
         Lib.setString(txtname, "");
