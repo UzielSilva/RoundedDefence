@@ -60,7 +60,8 @@ public class LevelSelect : MonoBehaviour {
 				Application.LoadLevel ("towerSelect");
 		}
 	}
-	void Update(){
+    void Update()
+    {
 			buttonsActions ();
 			buttonsFade ();
 			Vector3 move=new Vector3(0,0,0);
@@ -100,9 +101,7 @@ public class LevelSelect : MonoBehaviour {
 			Lib.followCamera(objstarStar);
 			Lib.followCamera(objhudbar);
 
-		if (!Lib.isFading()) {
-			Lib.faderr ();
-		}
+		Lib.dofade ();
 	}
 	void drawDescription(){
         Lib.setString(txtname, "");

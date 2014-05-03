@@ -25,7 +25,7 @@ public class TowerSelectButton : MonoBehaviour {
 	{
 		on = true;
 		if (click == true && Input.GetMouseButtonUp (0)) {
-			click=false;
+            click = false;
 			clickSound ();
 			transform.Translate(new Vector3(0,0,1f));
 			
