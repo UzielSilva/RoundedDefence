@@ -23,19 +23,11 @@ public class LoadLevels : MonoBehaviour {
 	
 	}
     void Read () {
-		string[] dir;
-		try{
-			dir = Directory.GetFiles (_FileLocation + "\\Code\\Levels\\Data\\");
-		}catch(Exception){
-			dir = Directory.GetFiles (_FileLocation + "/Code/Levels/Data/");
-		}
-        foreach(string s in dir){
-			if(s.Substring(s.Length - 4) == ".xml"){
-				StreamReader r = File.OpenText(s);
-	            string _info = r.ReadToEnd();
-	            r.Close();
-	            _data += _info;
-			}
+        TextAsset[] textAssets;
+        textAssets = Resources.LoadAll<TextAsset>("Data");
+        foreach (TextAsset text in textAssets)
+        {
+            _data += text.text;
         }
 		_data += "</levels>";
 		Lib.data = XDocument.Parse(_data);
