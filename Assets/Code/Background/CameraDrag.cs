@@ -5,9 +5,11 @@ public class CameraDrag : MonoBehaviour {
 
 	public float dragSpeed = 2;
 	public float radius=2;
+    Camera cam;
 	private Vector3 dragOrigin;
 	// Use this for initialization
 	void Start () {
+        cam = GameObject.Find("Camera2").camera;
 	}
 	
 	void Update(){    
@@ -18,7 +20,7 @@ public class CameraDrag : MonoBehaviour {
 
 		if (!Input.GetMouseButton (0))
 				return;
-		Vector3 pos = Camera.main.ScreenToViewportPoint (Input.mousePosition - dragOrigin);
+		Vector3 pos = cam.ScreenToViewportPoint (Input.mousePosition - dragOrigin);
 		if (Mathf.Pow(transform.position.x + (pos.x * dragSpeed * -1.0f),2)
 		    + Mathf.Pow(transform.position.y + (pos.y * dragSpeed * -1.0f),2) < radius*radius) {
 

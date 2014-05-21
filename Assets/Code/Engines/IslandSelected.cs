@@ -23,8 +23,8 @@ public class IslandSelected : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (oldcentroid != centroid) {
-			center = new Vector3 (0, -6, 0);
-			transform.localPosition = new Vector3 (center.x +(radius* Mathf.Cos (angle) ), center.y+(radius* Mathf.Sin (angle)) , 0f);
+            center = new Vector3(0, -6, 0);
+            transform.localPosition = new Vector3(center.x + (radius * Mathf.Cos(angle)), center.y + (radius * Mathf.Sin(angle)), 0f);
 
 			oldcentroid=centroid;
 			sun=GameObject.Find(centroid);

@@ -20,15 +20,34 @@ public class LevelSelect : MonoBehaviour {
 	GameObject objstarScore;
 	GameObject objhudbar;
 
+    GameObject leftbar;
+    GameObject rightbar;
+    GameObject fade;
+    Vector3 position;
+    GameObject fade2;
+    Vector3 position2;
+
+    public static Camera GUI;
+    public Camera gui;
+    Rect rCamera;
+
 	int action=0;
 	// Use this for initialization
 	void Start () {
-		Lib.mute ();
+        GUI = gui;
+        Lib.mute();
+        Lib.newFade("fade");
+        Lib.newFade("fade2");
+        Lib.unfades();
+
 		//text
 		txtstar =Lib.newText("txtstars");
         txtmsg = Lib.newText("txtmsg");
         txtname = Lib.newText("txtname");
 		txtscore = Lib.newText("txtscore");
+
+        Lib.setString(txtstar, PlayerPrefs.GetInt("TotalStars", 0) + "");
+
 		//buttons
 		btnmusica = GameObject.Find ("btnmusica");
 		btnsound = GameObject.Find ("btnsound");
@@ -38,9 +57,15 @@ public class LevelSelect : MonoBehaviour {
 		objhudbar = GameObject.Find ("hudbar");
 		objstarStar = GameObject.Find ("starStars");
 		objstarScore = GameObject.Find ("starScore");
-		Lib.newFade();
-		Lib.setString (txtstar, PlayerPrefs.GetInt ("TotalStars", 0) + "");
-		Lib.unfades ();
+        leftbar = GameObject.Find("leftbar");
+        rightbar = GameObject.Find("rightbar");
+        fade = GameObject.Find("fade");
+        BoxCollider2D col2d = fade.AddComponent<BoxCollider2D>();
+        col2d.size = fade.renderer.bounds.size;
+        MouseHandlerLevelSelect handler = fade.AddComponent<MouseHandlerLevelSelect>();
+        fade2 = GameObject.Find("fade2");
+        position = new Vector3(0, 0, 10);
+        position2 = new Vector3(0, 0, -10);
 	}
 	void buttonsActions(){
 		if (btnback.transform.position.z == 1) {
@@ -72,37 +97,52 @@ public class LevelSelect : MonoBehaviour {
 
             drawDescription();
 			//txt
-            txtstar.transform.position = new Vector3(-Lib.width() / 2f + .4f, Lib.height() / 2f - .04f, 10f);
-            txtname.transform.Translate(new Vector3((Lib.getStringLength(txtname) * -.048f) - 1.8f, -Lib.height() / 2f + .7f, 10f));
-            txtmsg.transform.position = new Vector3(Lib.getStringLength(txtmsg) * -.048f, -Lib.height() / 2f + .7f, 10f);
-            txtscore.transform.Translate(new Vector3((Lib.getStringLength(txtscore)*-.048f)+.2f,-Lib.height()/2f+.35f,0f));
+            txtstar.transform.position = new Vector3(Lib.width() / 2f - .4f, Lib.height() / 2f - .04f, -30f);
+            txtname.transform.Translate(new Vector3((Lib.getStringLength(txtname) * -.048f) - 1.8f, -Lib.height() / 2f + .7f, 20));
+            txtmsg.transform.position = new Vector3(-Lib.getStringLength(txtmsg) * -.048f, -Lib.height() / 2f + .7f, -30f);
+            txtscore.transform.Translate(new Vector3((Lib.getStringLength(txtscore) * -.048f) + .2f, -Lib.height() / 2f + .35f, 20));
 			//btn
-			btnmusica.transform.position=new Vector3(Lib.width()/2f ,Lib.height()/2f,10f);
-			btnsound.transform.position=new Vector3(Lib.width()/2f - .5f,Lib.height()/2f -.05f,10f);
-			btnplay.transform.Translate(new Vector3(Lib.width()/2f -.7f,-Lib.height()/2f+.35f,0f));
-			btnback.transform.position=new Vector3(-Lib.width()/2f +.7f,-Lib.height()/2f+.35f,10f);
+            btnmusica.transform.position = new Vector3(-Lib.width() / 2f, Lib.height() / 2f, -30f);
+            btnsound.transform.position = new Vector3(-Lib.width() / 2f + .5f, Lib.height() / 2f - .05f, -30f);
+            btnplay.transform.Translate(new Vector3(Lib.width() / 2f - .7f, -Lib.height() / 2f + .35f, 20f));
+            btnback.transform.position = new Vector3(Lib.width() / 2f - .7f, -Lib.height() / 2f + .35f, -30f);
 			//obj
-			objstarStar.transform.position=new Vector3(-Lib.width()/2f+.2f,Lib.height()/2f-.17f,10f);
-			objhudbar.transform.position=new Vector3(0,-Lib.height()/2f ,10f);
-			objstarScore.transform.Translate(new Vector3((Lib.getStringLength(txtscore)*-.048f),-Lib.height()/2f+.20f,0f));
+            objstarStar.transform.position = new Vector3(Lib.width() / 2f - .22f, Lib.height() / 2f - .17f, -30f);
+            objhudbar.transform.position = new Vector3(0, -Lib.height() / 2f, -10f);
+            leftbar.transform.position = new Vector3((Lib.width() - leftbar.renderer.bounds.size.x) / 2f, 0, -30f);
+            rightbar.transform.position = new Vector3(-(Lib.width() - rightbar.renderer.bounds.size.x) / 2f, 0, -30f);
+			objstarScore.transform.Translate(new Vector3(-(Lib.getStringLength(txtscore)*-.048f),-Lib.height()/2f+.20f,0));
 
-			//txt
-			Lib.followCamera(txtstar);
-			Lib.followCamera(txtscore);
+            rCamera = new Rect(0, 0, 10, 10);
+            rCamera.xMin = 70;
+            rCamera.xMax = Screen.width - 70;
+            rCamera.yMax = Screen.height;
+            rCamera.yMin = 65;
+            gui.pixelRect = rCamera;
+            gui.enabled = true;
+
+            //txt
+            Lib.followCamera(txtstar);
+            Lib.followCamera(txtscore);
             Lib.followCamera(txtmsg);
             Lib.followCamera(txtname);
-			//btn
-			Lib.followCamera(btnmusica);
-			Lib.followCamera(btnsound);
-			Lib.followCamera(btnback);
-			Lib.followCamera(btnplay);
-			//obj
-			Lib.followCamera(objstarScore);
-			Lib.followCamera(objstarStar);
-			Lib.followCamera(objhudbar);
+            //btn
+            Lib.followCamera(btnmusica);
+            Lib.followCamera(btnsound);
+            Lib.followCamera(btnback);
+            Lib.followCamera(btnplay);
+            //obj
+            Lib.followCamera(objstarScore);
+            Lib.followCamera(objstarStar);
+            Lib.followCamera(objhudbar);
+            Lib.followCamera(leftbar);
+            Lib.followCamera(rightbar);
 
-		Lib.dofade ();
+            Lib.dofade(fade,position,gui);
+            Lib.dofade(fade2, position2,Camera.main);
+
 	}
+    //void drawGUIElements
 	void drawDescription(){
         Lib.setString(txtname, "");
         int requiredStars = Int32.Parse(Lib.currentLevel.Attribute(XName.Get("required-stars")).Value);
@@ -157,7 +197,7 @@ public class LevelSelect : MonoBehaviour {
 			Lib.setString(txtscore,"at "+threeStar);
 		}else{
 		}
-		Vector3 move=new Vector3(0,0,10);
+		Vector3 move=new Vector3(0,0,-10);
         txtname.transform.position=move;
 		txtscore.transform.position=move;
 		btnplay.transform.position=move;

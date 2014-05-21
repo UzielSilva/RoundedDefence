@@ -83,9 +83,9 @@ public class LoadLevelSelectGUI : MonoBehaviour {
 
         GameObject target = GameObject.Find(IslandSelected.centroid);
         if (IslandSelected.centroid != oldCentroid || !isCameraFocused)
-            isCameraFocused = (!Lib.smoothCameraFollow(target)) ? false : true;
+            isCameraFocused = (!Lib.smoothCameraFollow(target, LevelSelect.GUI)) ? false : true;
         else
-            Lib.cameraFollow(target);
+            Lib.cameraFollow(target, LevelSelect.GUI);
         oldCentroid = IslandSelected.centroid;
 
 

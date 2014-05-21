@@ -77,8 +77,12 @@ namespace RoundedDefence{
 			pos.z = 10; // select distance = 10 units from the camera
 			return Camera.main.ScreenToWorldPoint (pos);
 		}
-		public static void newFade(){
-			fade = new GameObject("fade");
+        public static void newFade()
+        {
+            newFade("fade");
+        }
+		public static void newFade(string name){
+			fade = new GameObject(name);
 			fade.AddComponent<SpriteRenderer>();
 			setSprite (fade,"Sprites/Background/fade");
 			fade.renderer.sortingLayerName="Others";
@@ -98,15 +102,24 @@ namespace RoundedDefence{
 			fader=0f;
 			fading=.04f;
 		}
-		public static void dofade(){
-			
-			if (!Lib.isFading ()) {
-					Lib.faderr ();
-			} 
-			fade.transform.position=new Vector3(0,0,0);
-			followCamera(fade);
+        public static void dofade()
+        {
+            dofade(fade,new Vector3(0,0,-10),Camera.main);
+        }
+		public static void dofade(GameObject fade, Vector3 position, Camera cam){
+            if (!Lib.isFading())
+            {
+                Lib.faderr(fade);
+            }
+            fade.transform.position = position;
+            followCamera(fade, cam);
 		}
-		public static void faderr(){
+        public static void faderr()
+        {
+            faderr(fade);
+        }
+        public static void faderr(GameObject fade)
+        {
 			fader += fading ;
 			if (fader > 0f && fader < 1f) {
 				if(fade!=null){
@@ -126,24 +139,30 @@ namespace RoundedDefence{
 		public static float width(){
 			return 2f * Camera.main.orthographicSize * Camera.main.aspect;
 		}
-		public static void followCamera(GameObject obj){
-			obj.transform.Translate(Camera.main.transform.position);
-		}
+        public static void followCamera(GameObject obj)
+        {
+            followCamera(obj, Camera.main);
+        }
+        public static void followCamera(GameObject obj,Camera c)
+        {
+            obj.transform.Translate(c.transform.position);
+        }
         static float time = 0;
         static float initTime = 0;
         static float duration = 0.5f;
         static Vector3 originPosition;
-        public static void cameraFollow(GameObject obj)
+
+        public static void cameraFollow(GameObject obj, Camera cam)
         {
-            Camera.main.transform.position = new Vector3(obj.transform.position.x, obj.transform.position.y, Camera.main.transform.position.z);
+            cam.transform.position = new Vector3(obj.transform.position.x, obj.transform.position.y, Camera.main.transform.position.z);
         }
-        public static bool smoothCameraFollow(GameObject target)
+        public static bool smoothCameraFollow(GameObject target, Camera cam)
         {
 			if(target != null && originPosition!=null){
             if (initTime == 0)
             {
                 initTime = Time.time;
-                originPosition = Camera.main.transform.position;
+                originPosition = cam.transform.position;
             }
             float currentTime = Time.time - initTime;
             if (currentTime < duration)
@@ -152,7 +171,7 @@ namespace RoundedDefence{
                 float factor = (1 - Mathf.Cos(currentTime * Mathf.PI / duration))/2;
                 distance = distance * factor;
                 Vector3 objective = originPosition + distance;
-                Camera.main.transform.position = new Vector3(objective.x, objective.y, Camera.main.transform.position.z);
+                cam.transform.position = new Vector3(objective.x, objective.y, cam.transform.position.z);
                 return false;
             }
             else
