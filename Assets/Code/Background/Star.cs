@@ -23,7 +23,7 @@ public class Star : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         transform.position = old;
-        transform.position = new Vector3(transform.position.x + Camera.main.transform.position.x, transform.position.y + Camera.main.transform.position.y, transform.position.z);
+        transform.position = new Vector3(transform.position.x + cam.transform.position.x, transform.position.y + cam.transform.position.y, transform.position.z);
 
         Vector3 pos = Camera.main.ScreenToViewportPoint(Input.mousePosition - origin);
         origin = Input.mousePosition;
@@ -54,15 +54,15 @@ public class Star : MonoBehaviour {
 			cc.b=Random.Range(.7f, .8f);
 			renderer.material.color = cc;
 			transform.localScale=new Vector3(size,size,1f);
-			float height = 2f * Camera.main.orthographicSize;
-			float width = height * Camera.main.aspect;
+			float height = 2f * cam.orthographicSize;
+			float width = height * cam.aspect;
 			transform.position=
-				new Vector3(Random.Range(-width/2f, width/2f),Random.Range(-height/2f, height/2f),10f);
+				new Vector3(Random.Range(-width/2f, width/2f),Random.Range(-height/2f, height/2f),11f);
 			transform.Translate(Camera.main.transform.position);
 		}
 		Color c = renderer.material.color;
 		c.a =alpha + Random.Range(-.1f, .1f);
 		renderer.material.color = c;
-        old = new Vector3(transform.position.x - Camera.main.transform.position.x, transform.position.y - Camera.main.transform.position.y, transform.position.z);
+        old = new Vector3(transform.position.x - cam.transform.position.x, transform.position.y - cam.transform.position.y, transform.position.z);
 	}
 }

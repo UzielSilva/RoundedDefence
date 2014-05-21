@@ -58,8 +58,6 @@ public class LvlSelect : MonoBehaviour {
             SpriteRenderer sprRenderer = (SpriteRenderer)starsArr[i].renderer;
             sprRenderer.sprite = null;
         }
-        if(name == "LevelN.1.1")
-            Debug.Log(angle);
         if (sun != null) {
 			center = sun.transform.position;
 			angle += speed;
@@ -78,7 +76,6 @@ public class LvlSelect : MonoBehaviour {
 	}
 	void OnMouseOver()
 	{
-        Debug.Log("Click on: " + name);
         if (Input.GetMouseButtonDown(0))
         {
             

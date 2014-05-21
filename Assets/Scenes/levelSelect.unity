@@ -880,7 +880,7 @@ TextMesh:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1103928520}
   m_Text: 0
-  m_OffsetZ: -1
+  m_OffsetZ: 0
   m_CharacterSize: 1
   m_LineSpacing: 1
   m_Anchor: 0
@@ -1050,6 +1050,7 @@ GameObject:
   - 124: {fileID: 1406103469}
   - 114: {fileID: 1406103467}
   - 82: {fileID: 1406103466}
+  - 114: {fileID: 1406103468}
   m_Layer: 0
   m_Name: Camera2
   m_TagString: MainCamera
@@ -1128,6 +1129,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dragSpeed: 3
   radius: 2
+--- !u!114 &1406103468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1406103465}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2edfde61dea9f9d4ca6fb78afc228bc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!124 &1406103469
 Behaviour:
   m_ObjectHideFlags: 0

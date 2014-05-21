@@ -7,7 +7,11 @@ public class MouseHandlerLevelSelect : MonoBehaviour {
 	void Start () {
 	
 	}
-	
+
+    void OnMouseOver()
+    {
+    }
+
 	// Update is called once per frame
 	void Update () {
 	

@@ -29,6 +29,7 @@ public class LevelSelect : MonoBehaviour {
 
     public static Camera GUI;
     public Camera gui;
+    static GameObject collider;
     Rect rCamera;
 
 	int action=0;
@@ -39,6 +40,8 @@ public class LevelSelect : MonoBehaviour {
         Lib.newFade("fade");
         Lib.newFade("fade2");
         Lib.unfades();
+
+
 
 		//text
 		txtstar =Lib.newText("txtstars");
@@ -60,9 +63,12 @@ public class LevelSelect : MonoBehaviour {
         leftbar = GameObject.Find("leftbar");
         rightbar = GameObject.Find("rightbar");
         fade = GameObject.Find("fade");
-        BoxCollider2D col2d = fade.AddComponent<BoxCollider2D>();
+        collider = new GameObject("Collider");
+        collider.AddComponent<SpriteRenderer>();
+        collider.transform.position = fade.transform.position+(new Vector3(0,0,10));
+        BoxCollider2D col2d = collider.AddComponent<BoxCollider2D>();
         col2d.size = fade.renderer.bounds.size;
-        MouseHandlerLevelSelect handler = fade.AddComponent<MouseHandlerLevelSelect>();
+        MouseHandlerLevelSelect handler = collider.AddComponent<MouseHandlerLevelSelect>();
         fade2 = GameObject.Find("fade2");
         position = new Vector3(0, 0, 10);
         position2 = new Vector3(0, 0, -10);
