@@ -758,6 +758,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 4b4610b58fd17494c867660e5ba030fd, type: 3}
+  cam: {fileID: 1406103471}
 --- !u!114 &1018617533
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -68,11 +68,11 @@ public class LevelSelect : MonoBehaviour {
         position2 = new Vector3(0, 0, -10);
 	}
 	void buttonsActions(){
-		if (btnback.transform.position.z == 1) {
+		if (btnback.transform.position.z == -21) {
 			action=0;
 			Lib.fades();
 		}
-		if (btnplay.transform.position.z == 1) {
+		if (btnplay.transform.position.z == -21) {
 			action=1;
 			Lib.fades();
 		}

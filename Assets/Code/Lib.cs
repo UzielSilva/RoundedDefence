@@ -72,10 +72,10 @@ namespace RoundedDefence{
 					PlayerPrefs.SetInt("Music",music?1:0);
 			}
 		}
-		public static Vector3 mouseCord(){
+		public static Vector3 mouseCord(Camera cam){
 			Vector3 pos = Input.mousePosition ;
 			pos.z = 10; // select distance = 10 units from the camera
-			return Camera.main.ScreenToWorldPoint (pos);
+			return cam.ScreenToWorldPoint (pos);
 		}
         public static void newFade()
         {
@@ -154,7 +154,7 @@ namespace RoundedDefence{
 
         public static void cameraFollow(GameObject obj, Camera cam)
         {
-            cam.transform.position = new Vector3(obj.transform.position.x, obj.transform.position.y, Camera.main.transform.position.z);
+            cam.transform.position = new Vector3(obj.transform.position.x, obj.transform.position.y, cam.transform.position.z);
         }
         public static bool smoothCameraFollow(GameObject target, Camera cam)
         {
