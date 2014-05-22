@@ -28,6 +28,7 @@ public class LevelSelect : MonoBehaviour {
     Vector3 position;
     GameObject fade2;
     Vector3 position2;
+    GameObject zoomBar;
 
     public static Camera GUI;
     public Camera gui;
@@ -83,6 +84,8 @@ public class LevelSelect : MonoBehaviour {
                      select level;
         zoom.maxZoom = levels.ToArray().Length;
         zoom.minZoom = 1;
+
+        zoomBar = GameObject.Find("pseudozoom");
 
         previews = new GameObject[4];
         for (int i = 0; i < 4; i++)
@@ -146,6 +149,8 @@ public class LevelSelect : MonoBehaviour {
         rightbar.transform.position = new Vector3(-(Lib.width() - rightbar.renderer.bounds.size.x) / 2f, 0, -30f);
 		objstarScore.transform.Translate(new Vector3(-(Lib.getStringLength(txtscore)*-.048f),-Lib.height()/2f+.20f,0));
 
+        zoomBar.transform.position = new Vector3(Lib.width() / 2f - .4f, Lib.height() / 8f - 0.3f, -30f);
+
         rCamera = new Rect(0, 0, 10, 10);
         rCamera.xMin = Screen.height / 5f;
         rCamera.xMax = Screen.width - Screen.height / 5f;
@@ -180,6 +185,7 @@ public class LevelSelect : MonoBehaviour {
         Lib.followCamera(objhudbar);
         Lib.followCamera(leftbar);
         Lib.followCamera(rightbar);
+        Lib.followCamera(zoomBar);
 
         Lib.dofade(fade,position,gui);
         Lib.dofade(fade2, position2,Camera.main);
