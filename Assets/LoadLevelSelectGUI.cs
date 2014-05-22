@@ -24,7 +24,6 @@ public class LoadLevelSelectGUI : MonoBehaviour {
                      orderby Int16.Parse(level.Attribute(XName.Get("levelnum")).Value) ascending
                      orderby Int16.Parse(level.Attribute(XName.Get("world")).Value) ascending
                      select level;
-        
 		foreach(XElement level in levels)
 		{
             String classlevel = level.Attribute(XName.Get("class")).Value;

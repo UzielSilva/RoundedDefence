@@ -35,6 +35,7 @@ public class TowerSelect : MonoBehaviour {
 	GameObject star;
 	GameObject point;
     List<Int16> avaliableTowersList;
+    GameObject fade;
 
 	public Sprite sprite;
 	int pointtxt=0;
@@ -124,7 +125,8 @@ public class TowerSelect : MonoBehaviour {
                 IsAnyFishSelected = true;
 		}
 		Lib.newFade ();
-		Lib.unfades ();
+        fade = GameObject.Find("fade");
+        Lib.unfades();
 	}
 	
 	void buttonsActions(){
@@ -215,7 +217,8 @@ public class TowerSelect : MonoBehaviour {
 		backgroundbox();
 		star.transform.position=new Vector3(-Lib.width()/2.2f + .1f,Lib.height()/2.2f -.25f,0f);
 		point.transform.position=new Vector3(Lib.width()/2.2f -.1f ,Lib.height()/2.2f -.30f,0f);
-			
+
+        fade.transform.localScale = new Vector3(Camera.main.aspect, 1, 1);
 		
 		if (!Lib.isFading()) {
 			Lib.faderr ();

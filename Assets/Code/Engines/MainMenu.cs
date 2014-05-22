@@ -19,6 +19,8 @@ public class MainMenu : MonoBehaviour {
 	GameObject portadaTL;
 	GameObject portadaBR;
 	GameObject portadaTR;
+
+    GameObject fade;
 	
 	byte menu=0;
 	void Start () {
@@ -39,6 +41,7 @@ public class MainMenu : MonoBehaviour {
 		portadaTR = GameObject.Find ("portadaTR");
 		IslandSelected.centroid = "";
 		Lib.newFade ();
+        fade = GameObject.Find("fade");
 		Lib.unfades ();
 	}
 	void Update(){
@@ -62,7 +65,9 @@ public class MainMenu : MonoBehaviour {
 			
 		btnmusica.transform.position=new Vector3(Lib.width()/2f -.08f ,Lib.height()/2f,10f);
 		btnsound.transform.position=new Vector3(Lib.width()/2f - .6f,Lib.height()/2f -.05f,10f);
-		
+
+        fade.transform.localScale = new Vector3(Camera.main.aspect, 1, 1);
+
 		if (!Lib.isFading()) {
 			Lib.faderr ();
 		}

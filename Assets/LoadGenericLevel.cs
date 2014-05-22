@@ -32,6 +32,8 @@ public class LoadGenericLevel : MonoBehaviour {
     XElement currentMessage;
     bool hasNextMessage;
 
+    GameObject fade;
+
 	// Use this for initialization
     void Start()
     {
@@ -44,11 +46,16 @@ public class LoadGenericLevel : MonoBehaviour {
         currentWave = waves.Current;
 		setCurrentWave();
         //background = GameObject.Find("background");
+        background = new GameObject("background");
+        background.AddComponent<SpriteRenderer>();
+        background.transform.position = new Vector3(0,0,2);
+        background.transform.localScale *= 0.3f;
         island = GameObject.Find("island");
 
-        //Lib.setSprite(background, "Sprites/Background/" + Lib.currentLevel.Attribute("background-image").Value);
+        Lib.setSprite(background, "Sprites/Background/" + Lib.currentLevel.Attribute("background-image").Value);
         Lib.setSprite(island, "Sprites/Islands/" + Lib.currentLevel.Attribute("unlocked-sprite").Value);
         Lib.newFade();
+        fade = GameObject.Find("fade");
         Lib.unfades();
 	}
 	void addMessage(XElement msg){
@@ -66,7 +73,8 @@ public class LoadGenericLevel : MonoBehaviour {
 		if (btnnextwave.transform.position.z == 1) {
 			inWave=false;
 		}
-		btnnextwave.transform.position=new Vector3(Lib.width()/6f,Lib.height()/6f,0f);
+        btnnextwave.transform.position = new Vector3(Lib.width() / 6f, Lib.height() / 6f, 0f);
+        fade.transform.localScale = new Vector3(Camera.main.aspect, 1, 1);
             if (inWave)
             {
 

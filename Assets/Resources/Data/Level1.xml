@@ -22,8 +22,8 @@
 			<msg time="50" delay="200">Take care, humans near!</msg>
 			<ship id="pirate" time="20" angle="0"/>
 			<ship id="pirate" time="60" angle="0"/>
-			<ship id="pirate" time="80" angle="0"/>
-			<ship id="pirate" time="100" angle="0"/>
+			<ship id="submarine" time="80" angle="0"/>
+			<ship id="sailing" time="100" angle="0"/>
 			<ship id="pirate" time="110" angle="0"/>
 			<ship id="pirate" time="120" angle="0"/>
 			<ship id="pirate" time="130" angle="0"/>

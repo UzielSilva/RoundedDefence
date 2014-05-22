@@ -3,6 +3,8 @@ using System;
 using System.Collections;
 using RoundedDefence;
 using System.Xml.Linq;
+using System.Linq;
+using RoundedDefence.Components.Ships;
 
 public class LevelSelect : MonoBehaviour {
 	//text
@@ -32,6 +34,11 @@ public class LevelSelect : MonoBehaviour {
     static GameObject collider;
     Rect rCamera;
 
+    GameObject[] previews;
+
+    CameraZoom zoom;
+    LoadLevelSelectGUI GM;
+
 	int action=0;
 	// Use this for initialization
 	void Start () {
@@ -40,8 +47,6 @@ public class LevelSelect : MonoBehaviour {
         Lib.newFade("fade");
         Lib.newFade("fade2");
         Lib.unfades();
-
-
 
 		//text
 		txtstar =Lib.newText("txtstars");
@@ -72,6 +77,21 @@ public class LevelSelect : MonoBehaviour {
         fade2 = GameObject.Find("fade2");
         position = new Vector3(0, 0, 10);
         position2 = new Vector3(0, 0, -10);
+        zoom = GUI.gameObject.AddComponent<CameraZoom>();
+        GM = GameObject.Find("_GM").GetComponent<LoadLevelSelectGUI>();
+        var levels = from level in Lib.data.Element(XName.Get("levels")).Elements(XName.Get("level"))
+                     select level;
+        zoom.maxZoom = levels.ToArray().Length;
+        zoom.minZoom = 1;
+
+        previews = new GameObject[4];
+        for (int i = 0; i < 4; i++)
+        {
+            previews[i] = new GameObject("Preview" + i);
+            previews[i].AddComponent<SpriteRenderer>();
+            previews[i].transform.Rotate(Vector3.forward, -90);
+        }
+
 	}
 	void buttonsActions(){
 		if (btnback.transform.position.z == -21) {
@@ -93,62 +113,99 @@ public class LevelSelect : MonoBehaviour {
 	}
     void Update()
     {
-			buttonsActions ();
-			buttonsFade ();
-			Vector3 move=new Vector3(0,0,0);
-			btnplay.transform.position=move;
-			txtscore.transform.position=move;
-            txtname.transform.position = move;
-			objstarScore.transform.position=move;
+        for (int i = 0; i < 4; i++)
+        {
+            previews[i].transform.position = new Vector3(-Lib.width() / 2f + 0.4f, Lib.height() / 8f -0.3f, -30f);
+            SpriteRenderer sprRenderer = (SpriteRenderer)previews[i].renderer;
+            sprRenderer.sprite = null;
+            Lib.followCamera(previews[i]);
+        }
+		buttonsActions ();
+		buttonsFade ();
+		Vector3 move=new Vector3(0,0,0);
+		btnplay.transform.position=move;
+		txtscore.transform.position=move;
+        txtname.transform.position = move;
+		objstarScore.transform.position=move;
 
-            drawDescription();
-			//txt
-            txtstar.transform.position = new Vector3(Lib.width() / 2f - .4f, Lib.height() / 2f - .04f, -30f);
-            txtname.transform.Translate(new Vector3((Lib.getStringLength(txtname) * -.048f) - 1.8f, -Lib.height() / 2f + .7f, 20));
-            txtmsg.transform.position = new Vector3(-Lib.getStringLength(txtmsg) * -.048f, -Lib.height() / 2f + .7f, -30f);
-            txtscore.transform.Translate(new Vector3((Lib.getStringLength(txtscore) * -.048f) + .2f, -Lib.height() / 2f + .35f, 20));
-			//btn
-            btnmusica.transform.position = new Vector3(-Lib.width() / 2f, Lib.height() / 2f, -30f);
-            btnsound.transform.position = new Vector3(-Lib.width() / 2f + .5f, Lib.height() / 2f - .05f, -30f);
-            btnplay.transform.Translate(new Vector3(Lib.width() / 2f - .7f, -Lib.height() / 2f + .35f, 20f));
-            btnback.transform.position = new Vector3(Lib.width() / 2f - .7f, -Lib.height() / 2f + .35f, -30f);
-			//obj
-            objstarStar.transform.position = new Vector3(Lib.width() / 2f - .22f, Lib.height() / 2f - .17f, -30f);
-            objhudbar.transform.position = new Vector3(0, -Lib.height() / 2f, -10f);
-            leftbar.transform.position = new Vector3((Lib.width() - leftbar.renderer.bounds.size.x) / 2f, 0, -30f);
-            rightbar.transform.position = new Vector3(-(Lib.width() - rightbar.renderer.bounds.size.x) / 2f, 0, -30f);
-			objstarScore.transform.Translate(new Vector3(-(Lib.getStringLength(txtscore)*-.048f),-Lib.height()/2f+.20f,0));
+        drawDescription();
+		//txt
+        txtstar.transform.position = new Vector3(Lib.width() / 2f - .4f, Lib.height() / 2f - .04f, -30f);
+        txtname.transform.Translate(new Vector3((Lib.getStringLength(txtname) * -.048f) - 1.8f, -Lib.height() / 2f + .7f, 20));
+        txtmsg.transform.position = new Vector3(-Lib.getStringLength(txtmsg) * -.048f, -Lib.height() / 2f + .7f, -30f);
+        txtscore.transform.Translate(new Vector3((Lib.getStringLength(txtscore) * -.048f) + .2f, -Lib.height() / 2f + .35f, 20));
+		//btn
+        btnmusica.transform.position = new Vector3(-Lib.width() / 2f, Lib.height() / 2f, -30f);
+        btnsound.transform.position = new Vector3(-Lib.width() / 2f + .5f, Lib.height() / 2f - .05f, -30f);
+        btnplay.transform.Translate(new Vector3(Lib.width() / 2f - .7f, -Lib.height() / 2f + .35f, 20f));
+        btnback.transform.position = new Vector3(Lib.width() / 2f - .7f, -Lib.height() / 2f + .35f, -30f);
+		//obj
+        objstarStar.transform.position = new Vector3(Lib.width() / 2f - .22f, Lib.height() / 2f - .17f, -30f);
+        objhudbar.transform.position = new Vector3(0, -Lib.height() / 2f, -10f);
+        leftbar.transform.position = new Vector3((Lib.width() - leftbar.renderer.bounds.size.x) / 2f, 0, -30f);
+        rightbar.transform.position = new Vector3(-(Lib.width() - rightbar.renderer.bounds.size.x) / 2f, 0, -30f);
+		objstarScore.transform.Translate(new Vector3(-(Lib.getStringLength(txtscore)*-.048f),-Lib.height()/2f+.20f,0));
 
-            rCamera = new Rect(0, 0, 10, 10);
-            rCamera.xMin = 70;
-            rCamera.xMax = Screen.width - 70;
-            rCamera.yMax = Screen.height;
-            rCamera.yMin = 65;
-            gui.pixelRect = rCamera;
-            gui.enabled = true;
+        rCamera = new Rect(0, 0, 10, 10);
+        rCamera.xMin = Screen.height / 5f;
+        rCamera.xMax = Screen.width - Screen.height / 5f;
+        rCamera.yMax = Screen.height;
+        rCamera.yMin = Screen.height / 5;
+        gui.pixelRect = rCamera;
+        gui.enabled = true;
+        fade.transform.localScale = new Vector3(Camera.main.aspect * gui.orthographicSize, gui.orthographicSize, 1);
+        fade2.transform.localScale = new Vector3(Camera.main.aspect, 1, 1);
 
-            //txt
-            Lib.followCamera(txtstar);
-            Lib.followCamera(txtscore);
-            Lib.followCamera(txtmsg);
-            Lib.followCamera(txtname);
-            //btn
-            Lib.followCamera(btnmusica);
-            Lib.followCamera(btnsound);
-            Lib.followCamera(btnback);
-            Lib.followCamera(btnplay);
-            //obj
-            Lib.followCamera(objstarScore);
-            Lib.followCamera(objstarStar);
-            Lib.followCamera(objhudbar);
-            Lib.followCamera(leftbar);
-            Lib.followCamera(rightbar);
+        if (IslandSelected.centroid == "")
+            zoom.minZoom = 1;
+        else if (IslandSelected.centroid.Substring(0, 6) == "LevelS")
+            zoom.minZoom = GM.scaleLevelSpecial.magnitude * 1.5f;
+        else
+            zoom.minZoom = GM.scaleLevelNormal.magnitude * 1.5f;
+            
 
-            Lib.dofade(fade,position,gui);
-            Lib.dofade(fade2, position2,Camera.main);
+        //txt
+        Lib.followCamera(txtstar);
+        Lib.followCamera(txtscore);
+        Lib.followCamera(txtmsg);
+        Lib.followCamera(txtname);
+        //btn
+        Lib.followCamera(btnmusica);
+        Lib.followCamera(btnsound);
+        Lib.followCamera(btnback);
+        Lib.followCamera(btnplay);
+        //obj
+        Lib.followCamera(objstarScore);
+        Lib.followCamera(objstarStar);
+        Lib.followCamera(objhudbar);
+        Lib.followCamera(leftbar);
+        Lib.followCamera(rightbar);
+
+        Lib.dofade(fade,position,gui);
+        Lib.dofade(fade2, position2,Camera.main);
 
 	}
-    //void drawGUIElements
+    void drawShips()
+    {
+        if (IslandSelected.centroid != "")
+        {
+            var ships = (from wave in Lib.currentLevel.Element(XName.Get("waves")).Elements(XName.Get("wave"))
+                                from ship in wave.Elements(XName.Get("ship"))
+                                orderby ship.Attribute(XName.Get("id")).Value descending
+                                select ship.Attribute(XName.Get("id")).Value).Distinct<string>();
+            int i = 0;
+            foreach (string ship in ships)
+            {
+                GameObject preview = GameObject.Find("Preview" + i);
+                SpriteRenderer sprRenderer = preview.GetComponent<SpriteRenderer>();
+                IShip theShip = Lib.Ships[ship];
+                sprRenderer.sprite = Resources.Load<Sprite>(String.Format("Sprites/Ships/{0}", theShip.Image));
+                sprRenderer.sortingLayerName = "Shots";
+                preview.transform.Translate(new Vector3(0.55f * ((ships.Count() - 1) / 2f - i), 0, 0));
+                i++;
+            }
+        }
+    }
 	void drawDescription(){
         Lib.setString(txtname, "");
         int requiredStars = Int32.Parse(Lib.currentLevel.Attribute(XName.Get("required-stars")).Value);
@@ -165,6 +222,7 @@ public class LevelSelect : MonoBehaviour {
                     if (enabledd)
                     {
                         drawStats();
+                        drawShips();
                     }
                     else
                     {

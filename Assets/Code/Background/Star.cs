@@ -23,7 +23,7 @@ public class Star : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
         transform.position = old;
-        transform.position = new Vector3(transform.position.x + cam.transform.position.x, transform.position.y + cam.transform.position.y, transform.position.z);
+        transform.position = new Vector3(transform.position.x * cam.orthographicSize + cam.transform.position.x, transform.position.y * cam.orthographicSize + cam.transform.position.y, transform.position.z);
 
         Vector3 pos = Camera.main.ScreenToViewportPoint(Input.mousePosition - origin);
         origin = Input.mousePosition;
@@ -47,13 +47,13 @@ public class Star : MonoBehaviour {
 		if (alpha + dir < .1f) {
 				vel=0;
 			dir = Random.Range(.001f, .008f);
-			 size=Random.Range(.011f, .022f);
+			 size=Random.Range(.006f, .012f);
 			Color cc = renderer.material.color;
 			cc.r=Random.Range(.8f, 1f);
 			cc.g=Random.Range(.8f, 1f);
 			cc.b=Random.Range(.7f, .8f);
 			renderer.material.color = cc;
-			transform.localScale=new Vector3(size,size,1f);
+            transform.localScale = new Vector3(size, size, 1f);
 			float height = 2f * cam.orthographicSize;
 			float width = height * cam.aspect;
 			transform.position=
@@ -63,6 +63,7 @@ public class Star : MonoBehaviour {
 		Color c = renderer.material.color;
 		c.a =alpha + Random.Range(-.1f, .1f);
 		renderer.material.color = c;
-        old = new Vector3(transform.position.x - cam.transform.position.x, transform.position.y - cam.transform.position.y, transform.position.z);
+        transform.localScale = new Vector3(size*cam.orthographicSize, size*cam.orthographicSize, 1f);
+        old = new Vector3((transform.position.x - cam.transform.position.x) / cam.orthographicSize, (transform.position.y - cam.transform.position.y) / cam.orthographicSize, transform.position.z);
 	}
 }
