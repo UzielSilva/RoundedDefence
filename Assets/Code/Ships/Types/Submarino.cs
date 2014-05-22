@@ -4,7 +4,7 @@ namespace RoundedDefence.Components.Ships.Types
 {
 	public class Submarino:Ship
 	{
-        public static string image = "Submarino";
+        public static string image = "Submarino/Submarino";
         public static string id = "submarine";
         public Submarino()
             : base(id, image)

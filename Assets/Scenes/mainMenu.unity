@@ -857,6 +857,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0a73818f44524094bde4b51e02881a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  delay: 1
+  total: 33
+  resource: Sprites/Towers/Especiales/kraken_ss_
 --- !u!212 &1406278305
 SpriteRenderer:
   m_ObjectHideFlags: 0

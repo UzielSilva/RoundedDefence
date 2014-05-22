@@ -47,7 +47,7 @@ namespace RoundedDefence.Components.Levels
 			case 1: return new Mercante();
 			case 2: return new Pasajero();
 			case 3: return new Pesquero();
-			case 4: return new Petrolero();
+			case 4: return new Raya();
 			case 5: return new Pirata();
 			case 6: return new RompeHielo();
 			case 7: return new Submarino();

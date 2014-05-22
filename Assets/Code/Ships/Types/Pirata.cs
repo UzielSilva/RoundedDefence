@@ -4,7 +4,7 @@ namespace RoundedDefence.Components.Ships.Types
 {
 	public class Pirata:Ship
 	{
-        public static string image = "Pirata";
+        public static string image = "Pirata/Pirata";
         public static string id = "pirate";
         public Pirata()
             : base(id, image)

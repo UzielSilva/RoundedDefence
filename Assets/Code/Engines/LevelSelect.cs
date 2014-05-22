@@ -194,6 +194,13 @@ public class LevelSelect : MonoBehaviour {
                                 orderby ship.Attribute(XName.Get("id")).Value descending
                                 select ship.Attribute(XName.Get("id")).Value).Distinct<string>();
             int i = 0;
+            float totalLength = 0;
+            foreach (string ship in ships)
+            {
+                IShip theShip = Lib.Ships[ship];
+                totalLength += Resources.Load<Sprite>(String.Format("Sprites/Ships/{0}", theShip.Image)).rect.width;
+            }
+            float accumulateLength = 0;
             foreach (string ship in ships)
             {
                 GameObject preview = GameObject.Find("Preview" + i);
@@ -201,7 +208,8 @@ public class LevelSelect : MonoBehaviour {
                 IShip theShip = Lib.Ships[ship];
                 sprRenderer.sprite = Resources.Load<Sprite>(String.Format("Sprites/Ships/{0}", theShip.Image));
                 sprRenderer.sortingLayerName = "Shots";
-                preview.transform.Translate(new Vector3(0.55f * ((ships.Count() - 1) / 2f - i), 0, 0));
+                preview.transform.Translate(new Vector3((totalLength / 2f - accumulateLength - sprRenderer.sprite.rect.width/2f) / 340f, 0, 0));
+                accumulateLength += sprRenderer.sprite.rect.width;
                 i++;
             }
         }

@@ -86,7 +86,7 @@ public class TowerSelect : MonoBehaviour {
 			tower[i,e].AddComponent<SpriteRenderer>();
 			tower[i,e].AddComponent("TowerSelectButton");
 			BoxCollider2D box=tower[i,e].AddComponent<BoxCollider2D>();
-			box.size=new Vector3(1f,1f,0);
+			box.size=new Vector3(2f,2f,0);
 			Lib.setSprite(tower[i,e],"Sprites/Towers/"+fish.Image);
 
             if(fish.Id!=1 && fish.Id!=4&&PlayerPrefs.GetInt("TowerBuy"+fish.Id,0)==0){
@@ -103,7 +103,7 @@ public class TowerSelect : MonoBehaviour {
             {
 				GameObject rejectimg= new GameObject("reject"+i+"level"+e);
 				rejectimg.AddComponent<SpriteRenderer>();
-				Lib.setSprite(rejectimg,"Sprites/others/error");
+				Lib.setSprite(rejectimg,"Sprites/Misc/tacha");
 				rejectimg.renderer.sortingLayerName = "Others";
 				rejectimg.renderer.sortingOrder = 6;
 				rejectimg.transform.position = new Vector3(i*Lib.width()/7.6f - (Lib.width()/3.8f),e*Lib.height()/6.4f-(Lib.height()/6),0);
@@ -115,7 +115,7 @@ public class TowerSelect : MonoBehaviour {
 		for (int i=0; i< 5; i++) {
 			GameObject rejectimg= new GameObject("objselect"+i);
 			rejectimg.AddComponent<SpriteRenderer>();
-			Lib.setSprite(rejectimg,"Sprites/others/select");
+			Lib.setSprite(rejectimg,"Sprites/Misc/palomita");
 			rejectimg.renderer.sortingLayerName = "Others";
 			rejectimg.renderer.sortingOrder = 6;
 			rejectimg.transform.position = new Vector3(i*Lib.width()/7.6f - (Lib.width()/3.8f),Lib.height()*2,0);

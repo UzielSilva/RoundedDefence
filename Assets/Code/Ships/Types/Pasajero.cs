@@ -4,7 +4,7 @@ namespace RoundedDefence.Components.Ships.Types
 {
 	public class Pasajero:Ship
 	{
-        public static string image = "";
+        public static string image = "Transportador/Transportador";
         public static string id = "passenger";
         public Pasajero()
             : base(id, image)

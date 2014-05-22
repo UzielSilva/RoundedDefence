@@ -1,11 +1,11 @@
 ﻿using System;
 namespace RoundedDefence.Components.Ships.Types
 {
-	public class Petrolero:Ship
+	public class Raya:Ship
 	{
-        public static string image = "";
-        public static string id = "oiler";
-        public Petrolero()
+        public static string image = "Raya/Raya";
+        public static string id = "ray";
+        public Raya()
             : base(id, image)
         {
             Point start = Position;

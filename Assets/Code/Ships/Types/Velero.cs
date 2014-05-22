@@ -4,7 +4,7 @@ namespace RoundedDefence.Components.Ships.Types
 {
 	public class Velero:Ship
 	{
-        public static string image = "Velero";
+        public static string image = "Velero/Velero";
         public static string id = "sailing";
         public Velero()
             : base(id, image)
