@@ -135,8 +135,8 @@ public class LevelSelect : MonoBehaviour {
         txtmsg.transform.position = new Vector3(-Lib.getStringLength(txtmsg) * -.048f, -Lib.height() / 2f + .7f, -30f);
         txtscore.transform.Translate(new Vector3((Lib.getStringLength(txtscore) * -.048f) + .2f, -Lib.height() / 2f + .35f, 20));
 		//btn
-        btnmusica.transform.position = new Vector3(-Lib.width() / 2f, Lib.height() / 2f, -30f);
-        btnsound.transform.position = new Vector3(-Lib.width() / 2f + .5f, Lib.height() / 2f - .05f, -30f);
+        btnmusica.transform.position = new Vector3(-Lib.width() / 2f + .6f, Lib.height() / 2f - .2f, -30f);
+        btnsound.transform.position = new Vector3(-Lib.width() / 2f + .2f, Lib.height() / 2f - .2f, -30f);
         btnplay.transform.Translate(new Vector3(Lib.width() / 2f - .7f, -Lib.height() / 2f + .35f, 20f));
         btnback.transform.position = new Vector3(Lib.width() / 2f - .7f, -Lib.height() / 2f + .35f, -30f);
 		//obj
