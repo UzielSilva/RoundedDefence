@@ -154,10 +154,18 @@ namespace RoundedDefence{
 
         public static void cameraFollow(GameObject obj, Camera cam)
         {
-            cam.transform.position = new Vector3(obj.transform.position.x, obj.transform.position.y, cam.transform.position.z);
+            CameraZoom zoom = cam.GetComponent<CameraZoom>();
+            zoom.target = new Vector3(obj.transform.position.x, obj.transform.position.y, cam.transform.position.z);
+        }
+        public static void cameraFollow(Vector3 target, Camera cam)
+        {
+            CameraZoom zoom = cam.GetComponent<CameraZoom>();
+            if (cam.orthographicSize == zoom.maxZoom)
+                zoom.target = (new Vector3(target.x,target.y,cam.transform.position.z));
         }
         public static bool smoothCameraFollow(GameObject target, Camera cam)
         {
+            CameraZoom zoom = cam.GetComponent<CameraZoom>();
 			if(target != null && originPosition!=null){
             if (initTime == 0)
             {
@@ -167,11 +175,11 @@ namespace RoundedDefence{
             float currentTime = Time.time - initTime;
             if (currentTime < duration)
             {
-                Vector3 distance = target.transform.position - originPosition;
+                Vector2 distance = target.transform.position - originPosition;
                 float factor = (1 - Mathf.Cos(currentTime * Mathf.PI / duration))/2;
                 distance = distance * factor;
-                Vector3 objective = originPosition + distance;
-                cam.transform.position = new Vector3(objective.x, objective.y, cam.transform.position.z);
+                Vector2 objective = (Vector2)originPosition + distance;
+                zoom.target = new Vector3(objective.x, objective.y, cam.transform.position.z);
                 return false;
             }
             else

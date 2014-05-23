@@ -79,6 +79,7 @@ public class LevelSelect : MonoBehaviour {
         position = new Vector3(0, 0, 10);
         position2 = new Vector3(0, 0, -10);
         zoom = GUI.gameObject.AddComponent<CameraZoom>();
+        zoom.target = position2;
         GM = GameObject.Find("_GM").GetComponent<LoadLevelSelectGUI>();
         var levels = from level in Lib.data.Element(XName.Get("levels")).Elements(XName.Get("level"))
                      select level;
@@ -163,11 +164,6 @@ public class LevelSelect : MonoBehaviour {
 
         if (IslandSelected.centroid == "")
             zoom.minZoom = 1;
-        else if (IslandSelected.centroid.Substring(0, 6) == "LevelS")
-            zoom.minZoom = GM.scaleLevelSpecial.magnitude * 1.5f;
-        else
-            zoom.minZoom = GM.scaleLevelNormal.magnitude * 1.5f;
-            
 
         //txt
         Lib.followCamera(txtstar);

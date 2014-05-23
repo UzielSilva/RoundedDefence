@@ -22,8 +22,7 @@ public class Star : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        transform.position = old;
-        transform.position = new Vector3(transform.position.x * cam.orthographicSize + cam.transform.position.x, transform.position.y * cam.orthographicSize + cam.transform.position.y, transform.position.z);
+        transform.position = new Vector3((old.x) * cam.orthographicSize + cam.transform.position.x, (old.y) * cam.orthographicSize + cam.transform.position.y, old.z);
 
         Vector3 pos = Camera.main.ScreenToViewportPoint(Input.mousePosition - origin);
         origin = Input.mousePosition;
@@ -54,10 +53,10 @@ public class Star : MonoBehaviour {
 			cc.b=Random.Range(.7f, .8f);
 			renderer.material.color = cc;
             transform.localScale = new Vector3(size, size, 1f);
-			float height = 2f * cam.orthographicSize;
+			float height = cam.orthographicSize;
 			float width = height * cam.aspect;
 			transform.position=
-				new Vector3(Random.Range(-width/2f, width/2f),Random.Range(-height/2f, height/2f),11f);
+				new Vector3(Random.Range(-width, width),Random.Range(-height, height),10f);
 			transform.Translate(Camera.main.transform.position);
 		}
 		Color c = renderer.material.color;

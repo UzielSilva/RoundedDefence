@@ -23,6 +23,8 @@ public class LvlSelect : MonoBehaviour {
 	GameObject sun;
 	Vector3 center;
 	public XElement level;
+
+    LoadLevelSelectGUI GM;
 	// Use this for initialization
 	void Start () {
         starsArr = new GameObject[4];
@@ -37,6 +39,7 @@ public class LvlSelect : MonoBehaviour {
         enabledd = PlayerPrefs.GetInt("WorldUnlocked", 1) >= world
             && PlayerPrefs.GetInt("LvlUnlocked", 1) >= levelnum
             && PlayerPrefs.GetInt("TotalStars", 0) >= requiredStars;
+        GM = GameObject.Find("_GM").GetComponent<LoadLevelSelectGUI>();
 		setTexture ();
 	}
 	void star(Sprite sprite,int lvl){
@@ -78,7 +81,10 @@ public class LvlSelect : MonoBehaviour {
 	{
         if (Input.GetMouseButtonDown(0))
         {
-            
+            CameraZoom zoom = LevelSelect.GUI.GetComponent<CameraZoom>();
+            if (classlevel == "special") zoom.minZoom = GM.scaleLevelSpecial.magnitude*2f;
+            if (classlevel == "normal") zoom.minZoom = GM.scaleLevelNormal.magnitude*2f;
+            zoom.magnitude = zoom.minZoom;
             Lib.setCurrentLevel(classlevel, world, levelnum);
             IslandSelected.centroid = gameObject.name;
             GameObject gm = GameObject.Find("_GM");

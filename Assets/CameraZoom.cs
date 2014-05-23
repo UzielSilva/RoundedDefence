@@ -6,37 +6,67 @@ public class CameraZoom : MonoBehaviour {
 
     GameObject zoomBar;
     GameObject point;
+    public Vector3 target;
+    private Vector3 old;
     public float maxZoom;
     public float minZoom;
-    int smooth = 5;
+    public int direction;
+    public float magnitude;
+    public static bool pointClicked;
+    int smooth = 8;
     private bool isZoomed = false;
 
 	// Use this for initialization
 	void Start () {
         zoomBar = GameObject.Find("pseudozoom");
+        zoomBar.AddComponent<PointZoom>();
         point = new GameObject("point");
         SpriteRenderer sprRenderer = point.AddComponent<SpriteRenderer>();
         Lib.setSprite(point, "Sprites/Misc/point");
         sprRenderer.sortingLayerName = "Shots";
         point.transform.position = new Vector3(zoomBar.renderer.bounds.max.x, zoomBar.renderer.bounds.max.y, zoomBar.renderer.bounds.max.z);
-
+        direction = 1;
+        magnitude = camera.orthographicSize;
+        old = target;
 	}
 	
 	// Update is called once per frame
     void Update()
     {
+        camera.transform.position = old;
         point.transform.position = new Vector3(zoomBar.transform.position.x, zoomBar.renderer.bounds.max.y, zoomBar.renderer.bounds.max.z);
         float value = ((minZoom - camera.orthographicSize) / (maxZoom - minZoom));
         if (value < -1) value = -1;
         if (value > 0) value = 0;
         point.transform.Translate(new Vector3(0, -zoomBar.renderer.bounds.size.y * 0.05f + value * zoomBar.renderer.bounds.size.y * 0.9f, 0));
-        if (Input.GetKey("c"))
+        if (pointClicked)
         {
-            camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, minZoom, Time.deltaTime * smooth);
+            Debug.Log(Lib.mouseCord(Camera.main).y);
+            if (Lib.mouseCord(Camera.main).y <= zoomBar.renderer.bounds.max.y - zoomBar.renderer.bounds.size.y * 0.05f //1.2
+                && Lib.mouseCord(Camera.main).y >= zoomBar.renderer.bounds.max.y - zoomBar.renderer.bounds.size.y * 0.95f) //-0.8
+                camera.orthographicSize = -((Lib.mouseCord(Camera.main).y - zoomBar.renderer.bounds.max.y + zoomBar.renderer.bounds.size.y * 0.05f) / (zoomBar.renderer.bounds.size.y * 0.9f) * (maxZoom - minZoom) - minZoom);
+            if (Lib.mouseCord(Camera.main).y > zoomBar.renderer.bounds.max.y - zoomBar.renderer.bounds.size.y * 0.05f)
+                camera.orthographicSize = minZoom;
+
+            if (Lib.mouseCord(Camera.main).y < zoomBar.renderer.bounds.max.y - zoomBar.renderer.bounds.size.y * 0.95f)
+                camera.orthographicSize = maxZoom;
+            magnitude = camera.orthographicSize;
         }
-        if (Input.GetKey("v"))
+        else if (Input.GetKey("c"))
         {
-            camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, maxZoom, Time.deltaTime * smooth);
+            direction = 1;
         }
-	}
+        else if (Input.GetKey("v"))
+        {
+            direction = -1;
+        }
+        else direction = 0;
+        magnitude += 0.2f*direction;
+        if (magnitude > maxZoom +1f) magnitude = maxZoom+1f;
+        if (magnitude < minZoom) magnitude = minZoom;
+        camera.orthographicSize = Mathf.Lerp(camera.orthographicSize, magnitude, Time.deltaTime * smooth);
+        if (camera.orthographicSize > maxZoom) { camera.orthographicSize = maxZoom; magnitude = maxZoom; }
+        old = camera.transform.position;
+        camera.transform.position = new Vector3(0, 0, camera.transform.position.z) + (new Vector3(target.x, target.y, 0)) * (maxZoom - camera.orthographicSize) / (maxZoom - minZoom);
+    }
 }

@@ -1485,6 +1485,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1971658223}
   - 212: {fileID: 1971658222}
+  - 61: {fileID: 1971658224}
   m_Layer: 0
   m_Name: pseudozoom
   m_TagString: Untagged
@@ -1526,3 +1527,14 @@ Transform:
   m_LocalScale: {x: .0199999996, y: 1.42999995, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!61 &1971658224
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1971658221}
+  m_Enabled: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Size: {x: 10, y: 1.65999997}
+  m_Center: {x: 0, y: 0}

@@ -87,6 +87,7 @@ public class LoadLevelSelectGUI : MonoBehaviour {
             Lib.cameraFollow(target, LevelSelect.GUI);
         oldCentroid = IslandSelected.centroid;
 
+        if (IslandSelected.centroid == "") Lib.cameraFollow(Lib.mouseCord(LevelSelect.GUI), LevelSelect.GUI);
 
         if(target != null)
             if (target.name.Substring(0, 6) == ("LevelS"))
