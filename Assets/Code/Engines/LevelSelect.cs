@@ -161,6 +161,7 @@ public class LevelSelect : MonoBehaviour {
         gui.enabled = true;
         fade.transform.localScale = new Vector3(Camera.main.aspect * gui.orthographicSize, gui.orthographicSize, 1);
         fade2.transform.localScale = new Vector3(Camera.main.aspect, 1, 1);
+        collider.transform.localScale = new Vector3(Camera.main.aspect * gui.orthographicSize, gui.orthographicSize, 1);
 
         if (IslandSelected.centroid == "")
             zoom.minZoom = 1;
