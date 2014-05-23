@@ -16,7 +16,7 @@ public class LoadGenericLevel : MonoBehaviour {
 	GameObject btnnextwave;
     bool doAnimation = true;
     bool inWave = true;
-    float timer = 0;
+    float timer;
 
 	public Font font;
     public string countSprite;
@@ -32,12 +32,20 @@ public class LoadGenericLevel : MonoBehaviour {
     XElement currentMessage;
     bool hasNextMessage;
 
+    public Camera gui;
+    static GameObject collider;
+    Rect rCamera;
+
     GameObject fade;
+    Vector3 position;
+    GameObject fade2;
+    Vector3 position2;
 
 	// Use this for initialization
     void Start()
     {
         Lib.mute();
+        timer = Time.time;
 		txtwave =Lib.newText("txtwave");
 		btnnextwave = GameObject.Find ("btnnextwave");
         var waveList = Lib.currentLevel.Element(XName.Get("waves")).Elements(XName.Get("wave")).ToList();
@@ -54,11 +62,17 @@ public class LoadGenericLevel : MonoBehaviour {
 
         Lib.setSprite(background, "Sprites/Background/" + Lib.currentLevel.Attribute("background-image").Value);
         Lib.setSprite(island, "Sprites/Islands/" + Lib.currentLevel.Attribute("unlocked-sprite").Value);
-        Lib.newFade();
-        fade = GameObject.Find("fade");
+
+        Lib.newFade("fade");
+        Lib.newFade("fade2");
+        fade = GameObject.Find("fade"); 
+        fade2 = GameObject.Find("fade2");
+        position = new Vector3(0, 0, 10);
+        position2 = new Vector3(0, 0, -10);
         Lib.unfades();
 	}
 	void addMessage(XElement msg){
+        Debug.Log(msg.Value);
 		GameObject obj = new GameObject (msg.Value);
 		ShowAndHide sah=(ShowAndHide)obj.AddComponent("ShowAndHide");
 		sah.font = font;
@@ -127,10 +141,16 @@ public class LoadGenericLevel : MonoBehaviour {
                 }
             }
 
-        if (!Lib.isFading())
-        {
-            Lib.faderr();
-        }
+        rCamera = new Rect(0, 0, 10, 10);
+        rCamera.xMin = Screen.height / 5f;
+        rCamera.xMax = Screen.width - Screen.height / 5f;
+        rCamera.yMax = Screen.height;
+        rCamera.yMin = Screen.height / 5;
+        gui.pixelRect = rCamera;
+        gui.enabled = true;
+
+        Lib.dofade(fade, position, gui);
+        Lib.dofade(fade2, position2, Camera.main);
 	}
     void setCurrentWave()
 	{

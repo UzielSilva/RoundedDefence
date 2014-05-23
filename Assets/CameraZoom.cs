@@ -41,7 +41,6 @@ public class CameraZoom : MonoBehaviour {
         point.transform.Translate(new Vector3(0, -zoomBar.renderer.bounds.size.y * 0.05f + value * zoomBar.renderer.bounds.size.y * 0.9f, 0));
         if (pointClicked)
         {
-            Debug.Log(Lib.mouseCord(Camera.main).y);
             if (Lib.mouseCord(Camera.main).y <= zoomBar.renderer.bounds.max.y - zoomBar.renderer.bounds.size.y * 0.05f //1.2
                 && Lib.mouseCord(Camera.main).y >= zoomBar.renderer.bounds.max.y - zoomBar.renderer.bounds.size.y * 0.95f) //-0.8
                 camera.orthographicSize = -((Lib.mouseCord(Camera.main).y - zoomBar.renderer.bounds.max.y + zoomBar.renderer.bounds.size.y * 0.05f) / (zoomBar.renderer.bounds.size.y * 0.9f) * (maxZoom - minZoom) - minZoom);
