@@ -92,11 +92,8 @@ public class LoadGenericLevel : MonoBehaviour {
 		sah.material = material;
 		}
 	// Update is called once per frame
-<<<<<<< HEAD:Assets/LoadGenericLevel.cs
-	int msgTime=10;
-	int imessage=0;
-=======
 	int msgTime=0;
+	int imessage=0;
     void OnGUI()
     {
         rCamera = new Rect(0, 0, 10, 10);
@@ -108,7 +105,6 @@ public class LoadGenericLevel : MonoBehaviour {
         gui.pixelRect = rCamera;
         gui.enabled = true;
     }
->>>>>>> 44eb2694d13bd07781a2e16af03393b464ec6ac8:Assets/Code/Levels/LoadGenericLevel.cs
 	void Update () {
 		if (btnnextwave.transform.position.z == 1) {
 			inWave=false;
@@ -117,7 +113,6 @@ public class LoadGenericLevel : MonoBehaviour {
 		}
         btnnextwave.transform.position = new Vector3(Lib.width() / 6f, Lib.height() / 6f, 0f);
         fade.transform.localScale = new Vector3(Camera.main.aspect, 1, 1);
-<<<<<<< HEAD:Assets/LoadGenericLevel.cs
             if (inWave)
             {
 
@@ -144,37 +139,6 @@ public class LoadGenericLevel : MonoBehaviour {
                     {
                         Int16 angle = Int16.Parse(currentShip.Attribute("angle").Value);
                         String id = currentShip.Attribute("id").Value;
-=======
-        if (inWave)
-        {
->>>>>>> 44eb2694d13bd07781a2e16af03393b464ec6ac8:Assets/Code/Levels/LoadGenericLevel.cs
-
-            int currentTime = (int)((Time.time - timer) * 10);
-            Lib.setString(txtwave, currentTime - Int16.Parse(currentWave.Attribute("time").Value) + "");
-            if (currentTime > Int16.Parse(currentWave.Attribute("time").Value))
-            {
-                print("next");
-                inWave = false;
-            }
-            else
-            {
-                if (hasNextMessage && msgTime <= currentTime)
-                {
-<<<<<<< HEAD:Assets/LoadGenericLevel.cs
-					inWave=true;
-                    setCurrentWave();
-=======
-                    addMessage(currentMessage);
-                    msgTime += Int16.Parse(currentMessage.Attribute("time").Value);
-                    hasNextMessage = currentMessages.MoveNext();
-                    currentMessage = currentMessages.Current;
->>>>>>> 44eb2694d13bd07781a2e16af03393b464ec6ac8:Assets/Code/Levels/LoadGenericLevel.cs
-                }
-                if (hasNextShip && Int16.Parse(currentShip.Attribute("time").Value) <= currentTime)
-                {
-                    Int16 angle = Int16.Parse(currentShip.Attribute("angle").Value);
-                    String id = currentShip.Attribute("id").Value;
-
                     GameObject ship = new GameObject(String.Format("Ship.{0}.{1}.{2}", id, angle, currentTime));
                     ship.transform.localScale = ShipScale;
                     ship.AddComponent<SpriteRenderer>();
