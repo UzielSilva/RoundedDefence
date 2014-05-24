@@ -6,6 +6,7 @@ using System.Collections;
 using System.Collections.Generic;
 using RoundedDefence;
 using RoundedDefence.Components.Ships;
+using RoundedDefence.Components.Fishes;
 
 public class LoadGenericLevel : MonoBehaviour {
 
@@ -44,6 +45,9 @@ public class LoadGenericLevel : MonoBehaviour {
     Vector3 position;
     GameObject fade2;
     Vector3 position2;
+    GameObject zoomBar;
+
+    GameObject[] towers;
 
 	// Use this for initialization
     void Start()
@@ -79,6 +83,17 @@ public class LoadGenericLevel : MonoBehaviour {
         Lib.newFade("fade2");
         fade = GameObject.Find("fade"); 
         fade2 = GameObject.Find("fade2");
+        zoomBar = GameObject.Find("pseudozoom");
+
+        towers = new GameObject[5];
+        for (int i = 0; i < 5; i++)
+        {
+            towers[i] = new GameObject("Tower" + i);
+            towers[i].AddComponent<SpriteRenderer>();
+            BoxCollider2D box = towers[i].AddComponent<BoxCollider2D>();
+            box.size = new Vector2(3, 3);
+        }
+
         Lib.unfades();
 	}
 	void addMessage(XElement msg){
@@ -100,10 +115,22 @@ public class LoadGenericLevel : MonoBehaviour {
         rCamera.x = (Screen.width - rCamera.width) / 2;
         rCamera.y = (Screen.height - rCamera.height) / 2; ;
         GUI.DrawTexture(rCamera, fog, ScaleMode.StretchToFill, true, 0);
+        rCamera.width = Screen.height-0.1f;
         gui.pixelRect = rCamera;
         gui.enabled = true;
     }
 	void Update () {
+        for (int i = 0; i < 5; i++)
+        {
+            towers[i].transform.position = new Vector3(-Lib.width() / 2f + 0.4f, Lib.height() / 8f + 0.7f, -10f);
+            SpriteRenderer sprRenderer = (SpriteRenderer)towers[i].renderer;
+            sprRenderer.sprite = null;
+            Lib.followCamera(towers[i]);
+        }
+        drawTowersMenu();
+        zoomBar.transform.position = new Vector3(Lib.width() / 2f - .4f, Lib.height() / 8f - 0.3f, -30f);
+        Lib.followCamera(zoomBar);
+
 		if (btnnextwave.transform.position.z == 1) {
 			inWave=false;
 		}
@@ -164,6 +191,30 @@ public class LoadGenericLevel : MonoBehaviour {
         Lib.dofade(fade, position, gui);
         Lib.dofade(fade2, position2, Camera.main);
 	}
+    void drawTowersMenu()
+    {
+        int[] towersArray = new int[5];
+        for(int i = 0; i < 5; i++)
+            towersArray[i] = PlayerPrefs.GetInt("TowerSelected" + i, 0);
+
+        var towers = from t in towersArray
+                     where t != 0
+                     orderby t ascending
+                     select t;
+
+        int j = 0;
+            foreach (int towerNum in towers)
+            {
+                GameObject tower = GameObject.Find("Tower" + j);
+                SpriteRenderer sprRenderer = tower.GetComponent<SpriteRenderer>();
+                IFish theFish = Lib.Fishes[towerNum];
+                sprRenderer.sprite = Resources.Load<Sprite>(String.Format("Sprites/Towers/{0}", theFish.Image));
+                sprRenderer.transform.localScale = (new Vector3(1,1,1))*0.2f;
+                sprRenderer.sortingLayerName = "Shots";
+                tower.transform.Translate(new Vector3(0, -j*0.7f, 0));
+                j++;
+            }
+    }
     void setCurrentWave()
 	{
 		var ships = from ship in currentWave.Elements("ship")

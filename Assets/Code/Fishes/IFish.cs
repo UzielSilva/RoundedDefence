@@ -2,7 +2,7 @@
 
 namespace RoundedDefence.Components.Fishes
 {
-    interface IFish
+    public interface IFish
 	{
 		Int32 Id { get; }
 		String Name { get; }
