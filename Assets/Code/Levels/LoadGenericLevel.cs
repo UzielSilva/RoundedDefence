@@ -61,7 +61,6 @@ public class LoadGenericLevel : MonoBehaviour {
         hasNextWave = waves.MoveNext();
         currentWave = waves.Current;
 		setCurrentWave();
-        //background = GameObject.Find("background");
         background = new GameObject("background");
         background.AddComponent<SpriteRenderer>();
         background.transform.position = new Vector3(0,0,2);
@@ -91,7 +90,11 @@ public class LoadGenericLevel : MonoBehaviour {
             towers[i] = new GameObject("Tower" + i);
             towers[i].AddComponent<SpriteRenderer>();
             BoxCollider2D box = towers[i].AddComponent<BoxCollider2D>();
-            box.size = new Vector2(3, 3);
+            box.size = new Vector2(0, 0);
+            TowerOption option = towers[i].AddComponent<TowerOption>();
+            option.option = i;
+            option.id = 0;
+
         }
 
         Lib.unfades();
@@ -206,6 +209,10 @@ public class LoadGenericLevel : MonoBehaviour {
             foreach (int towerNum in towers)
             {
                 GameObject tower = GameObject.Find("Tower" + j);
+                BoxCollider2D box = tower.GetComponent<BoxCollider2D>();
+                box.size = new Vector2(3, 3);
+                TowerOption option = tower.GetComponent<TowerOption>();
+                option.id = towerNum;
                 SpriteRenderer sprRenderer = tower.GetComponent<SpriteRenderer>();
                 IFish theFish = Lib.Fishes[towerNum];
                 sprRenderer.sprite = Resources.Load<Sprite>(String.Format("Sprites/Towers/{0}", theFish.Image));
