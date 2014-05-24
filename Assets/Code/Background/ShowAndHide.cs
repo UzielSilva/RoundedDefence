@@ -17,7 +17,7 @@ public class ShowAndHide : MonoBehaviour {
 		t.fontSize = 34;
 		MeshRenderer m=GetComponent<MeshRenderer>();
 		m.material = material;
-		Lib.newText (gameObject.transform.name);
+		Lib.newText (name);
 		Lib.setString (gameObject, txt);
 		transform.position = new Vector3 (txt.Length*-.08f,.2f,0);
 		fade = 0f;

@@ -16,7 +16,7 @@ public class LoadGenericLevel : MonoBehaviour {
 	GameObject btnnextwave;
     bool doAnimation = true;
     bool inWave = true;
-    float timer = 0;
+    float timer;
 
 	public Font font;
     public string countSprite;
@@ -32,12 +32,24 @@ public class LoadGenericLevel : MonoBehaviour {
     XElement currentMessage;
     bool hasNextMessage;
 
+    public Camera gui;
+    public Camera main;
+    static GameObject collider;
+    Rect rCamera;
+    public Texture fog;
+
+    CameraZoom zoom;
+
     GameObject fade;
+    Vector3 position;
+    GameObject fade2;
+    Vector3 position2;
 
 	// Use this for initialization
     void Start()
     {
         Lib.mute();
+        timer = Time.time;
 		txtwave =Lib.newText("txtwave");
 		btnnextwave = GameObject.Find ("btnnextwave");
         var waveList = Lib.currentLevel.Element(XName.Get("waves")).Elements(XName.Get("wave")).ToList();
@@ -49,13 +61,24 @@ public class LoadGenericLevel : MonoBehaviour {
         background = new GameObject("background");
         background.AddComponent<SpriteRenderer>();
         background.transform.position = new Vector3(0,0,2);
-        background.transform.localScale *= 0.3f;
+        background.transform.localScale *= 0.28f;
         island = GameObject.Find("island");
+        position = new Vector3(0, 0, 10);
+        position2 = new Vector3(0, 0, -10);
 
         Lib.setSprite(background, "Sprites/Background/" + Lib.currentLevel.Attribute("background-image").Value);
         Lib.setSprite(island, "Sprites/Islands/" + Lib.currentLevel.Attribute("unlocked-sprite").Value);
-        Lib.newFade();
-        fade = GameObject.Find("fade");
+
+        zoom = gui.gameObject.AddComponent<CameraZoom>();
+        zoom.target = position2;
+        zoom.Cam = main;
+        zoom.maxZoom = 3;
+        zoom.minZoom = 1;
+
+        Lib.newFade("fade");
+        Lib.newFade("fade2");
+        fade = GameObject.Find("fade"); 
+        fade2 = GameObject.Find("fade2");
         Lib.unfades();
 	}
 	void addMessage(XElement msg){
@@ -69,8 +92,23 @@ public class LoadGenericLevel : MonoBehaviour {
 		sah.material = material;
 		}
 	// Update is called once per frame
+<<<<<<< HEAD:Assets/LoadGenericLevel.cs
 	int msgTime=10;
 	int imessage=0;
+=======
+	int msgTime=0;
+    void OnGUI()
+    {
+        rCamera = new Rect(0, 0, 10, 10);
+        rCamera.width = Screen.height;
+        rCamera.height = Screen.height;
+        rCamera.x = (Screen.width - rCamera.width) / 2;
+        rCamera.y = (Screen.height - rCamera.height) / 2; ;
+        GUI.DrawTexture(rCamera, fog, ScaleMode.StretchToFill, true, 0);
+        gui.pixelRect = rCamera;
+        gui.enabled = true;
+    }
+>>>>>>> 44eb2694d13bd07781a2e16af03393b464ec6ac8:Assets/Code/Levels/LoadGenericLevel.cs
 	void Update () {
 		if (btnnextwave.transform.position.z == 1) {
 			inWave=false;
@@ -79,6 +117,7 @@ public class LoadGenericLevel : MonoBehaviour {
 		}
         btnnextwave.transform.position = new Vector3(Lib.width() / 6f, Lib.height() / 6f, 0f);
         fade.transform.localScale = new Vector3(Camera.main.aspect, 1, 1);
+<<<<<<< HEAD:Assets/LoadGenericLevel.cs
             if (inWave)
             {
 
@@ -105,37 +144,67 @@ public class LoadGenericLevel : MonoBehaviour {
                     {
                         Int16 angle = Int16.Parse(currentShip.Attribute("angle").Value);
                         String id = currentShip.Attribute("id").Value;
+=======
+        if (inWave)
+        {
+>>>>>>> 44eb2694d13bd07781a2e16af03393b464ec6ac8:Assets/Code/Levels/LoadGenericLevel.cs
 
-                        GameObject ship = new GameObject(String.Format("Ship.{0}.{1}.{2}", id, angle,currentTime));
-                        ship.transform.localScale = ShipScale;
-                        ship.AddComponent<SpriteRenderer>();
-                        ShipElement s = ship.AddComponent<ShipElement>();
-                        s.id = id;
-                        s.angle = angle;
-                        hasNextShip = currentShips.MoveNext();
-                        currentShip = currentShips.Current;
-                    }
-                }
+            int currentTime = (int)((Time.time - timer) * 10);
+            Lib.setString(txtwave, currentTime - Int16.Parse(currentWave.Attribute("time").Value) + "");
+            if (currentTime > Int16.Parse(currentWave.Attribute("time").Value))
+            {
+                print("next");
+                inWave = false;
             }
             else
             {
-                hasNextWave = waves.MoveNext();
-                currentWave = waves.Current;
-                if (hasNextWave)
+                if (hasNextMessage && msgTime <= currentTime)
                 {
+<<<<<<< HEAD:Assets/LoadGenericLevel.cs
 					inWave=true;
                     setCurrentWave();
+=======
+                    addMessage(currentMessage);
+                    msgTime += Int16.Parse(currentMessage.Attribute("time").Value);
+                    hasNextMessage = currentMessages.MoveNext();
+                    currentMessage = currentMessages.Current;
+>>>>>>> 44eb2694d13bd07781a2e16af03393b464ec6ac8:Assets/Code/Levels/LoadGenericLevel.cs
                 }
-                else
+                if (hasNextShip && Int16.Parse(currentShip.Attribute("time").Value) <= currentTime)
                 {
-                    Debug.Log("Level cleared");
+                    Int16 angle = Int16.Parse(currentShip.Attribute("angle").Value);
+                    String id = currentShip.Attribute("id").Value;
+
+                    GameObject ship = new GameObject(String.Format("Ship.{0}.{1}.{2}", id, angle, currentTime));
+                    ship.transform.localScale = ShipScale;
+                    ship.AddComponent<SpriteRenderer>();
+                    ShipElement s = ship.AddComponent<ShipElement>();
+                    s.id = id;
+                    s.angle = angle;
+                    hasNextShip = currentShips.MoveNext();
+                    currentShip = currentShips.Current;
                 }
             }
-
-        if (!Lib.isFading())
-        {
-            Lib.faderr();
         }
+        else
+        {
+            hasNextWave = waves.MoveNext();
+            currentWave = waves.Current;
+            if (hasNextWave)
+            {
+                inWave = true;
+                msgTime = 0;
+                timer = Time.time;
+                setCurrentWave();
+            }
+            else
+            {
+                Debug.Log("Level cleared");
+            }
+        }
+
+        Lib.dofade(fade, position, gui);
+        Lib.dofade(fade2, position2, Camera.main);
 	}
     void setCurrentWave()
 	{

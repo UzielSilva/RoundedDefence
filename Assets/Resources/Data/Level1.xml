@@ -9,7 +9,6 @@
 	</walls>
 	<waves>
 		<wave time="600" background-music="Waves-8-bit">
-			<msg time="60" delay="200" > </msg>
 			<msg time="60" delay="50" >Humans will come from north!</msg>
 			<msg time="50" delay="150" >Don't let them reach....</msg>
 			<msg time="60" delay="200" >The island!</msg>
