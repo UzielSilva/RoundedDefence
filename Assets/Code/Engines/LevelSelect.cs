@@ -80,6 +80,7 @@ public class LevelSelect : MonoBehaviour {
         position2 = new Vector3(0, 0, -10);
         zoom = GUI.gameObject.AddComponent<CameraZoom>();
         zoom.target = position2;
+        zoom.Cam = Camera.main;
         GM = GameObject.Find("_GM").GetComponent<LoadLevelSelectGUI>();
         var levels = from level in Lib.data.Element(XName.Get("levels")).Elements(XName.Get("level"))
                      select level;

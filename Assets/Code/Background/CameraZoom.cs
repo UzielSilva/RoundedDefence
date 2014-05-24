@@ -6,6 +6,7 @@ public class CameraZoom : MonoBehaviour {
 
     GameObject zoomBar;
     GameObject point;
+    public Camera Cam;
     public Vector3 target;
     private Vector3 old;
     public float maxZoom;
@@ -41,14 +42,13 @@ public class CameraZoom : MonoBehaviour {
         point.transform.Translate(new Vector3(0, -zoomBar.renderer.bounds.size.y * 0.05f + value * zoomBar.renderer.bounds.size.y * 0.9f, 0));
         if (pointClicked)
         {
-            Debug.Log(Lib.mouseCord(Camera.main).y);
-            if (Lib.mouseCord(Camera.main).y <= zoomBar.renderer.bounds.max.y - zoomBar.renderer.bounds.size.y * 0.05f //1.2
-                && Lib.mouseCord(Camera.main).y >= zoomBar.renderer.bounds.max.y - zoomBar.renderer.bounds.size.y * 0.95f) //-0.8
-                camera.orthographicSize = -((Lib.mouseCord(Camera.main).y - zoomBar.renderer.bounds.max.y + zoomBar.renderer.bounds.size.y * 0.05f) / (zoomBar.renderer.bounds.size.y * 0.9f) * (maxZoom - minZoom) - minZoom);
-            if (Lib.mouseCord(Camera.main).y > zoomBar.renderer.bounds.max.y - zoomBar.renderer.bounds.size.y * 0.05f)
+            if (Lib.mouseCord(Cam).y <= zoomBar.renderer.bounds.max.y - zoomBar.renderer.bounds.size.y * 0.05f //1.2
+                && Lib.mouseCord(Cam).y >= zoomBar.renderer.bounds.max.y - zoomBar.renderer.bounds.size.y * 0.95f) //-0.8
+                camera.orthographicSize = -((Lib.mouseCord(Cam).y - zoomBar.renderer.bounds.max.y + zoomBar.renderer.bounds.size.y * 0.05f) / (zoomBar.renderer.bounds.size.y * 0.9f) * (maxZoom - minZoom) - minZoom);
+            if (Lib.mouseCord(Cam).y > zoomBar.renderer.bounds.max.y - zoomBar.renderer.bounds.size.y * 0.05f)
                 camera.orthographicSize = minZoom;
 
-            if (Lib.mouseCord(Camera.main).y < zoomBar.renderer.bounds.max.y - zoomBar.renderer.bounds.size.y * 0.95f)
+            if (Lib.mouseCord(Cam).y < zoomBar.renderer.bounds.max.y - zoomBar.renderer.bounds.size.y * 0.95f)
                 camera.orthographicSize = maxZoom;
             magnitude = camera.orthographicSize;
         }
