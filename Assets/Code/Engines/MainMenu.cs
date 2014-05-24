@@ -87,7 +87,7 @@ public class MainMenu : MonoBehaviour {
 		btncredits.transform.position = new Vector3 (0,-6f*Lib.height() /20f, 0);
 		title.transform.position = new Vector3 (0,4f*Lib.height() /20f, 0);
 
-		Vector3 move = new Vector3 (7,0, 0);
+		Vector3 move = new Vector3 (0,7, 0);
 		btnreset.transform.position = move;
 		btnback.transform.position = move;
 		creditos.transform.position = move;
@@ -101,7 +101,7 @@ public class MainMenu : MonoBehaviour {
 		btnreset.transform.position = new Vector3 (0,-3f *Lib.height()/20f, 0);
 		btnback.transform.position = new Vector3 (0,-6f *Lib.height()/20f, 0);
 
-		Vector3 move = new Vector3 (7,0, 0);
+		Vector3 move = new Vector3 (0,7, 0);
 		btncampaign.transform.position = move;
 		btncredits.transform.position = move;
 		btnoptions.transform.position = move;
@@ -114,7 +114,7 @@ public class MainMenu : MonoBehaviour {
 		btnback.transform.position = new Vector3 (0,-6f*Lib.height() /20f, 0);
 		creditos.transform.position = new Vector3 (0,.6f, 0);
 
-		Vector3 move = new Vector3 (7,0, 0);
+		Vector3 move = new Vector3 (0,7, 0);
 		btncampaign.transform.position = move;
 		btnoptions.transform.position = move;
 		btncredits.transform.position = move;

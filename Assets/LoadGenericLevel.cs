@@ -59,7 +59,8 @@ public class LoadGenericLevel : MonoBehaviour {
         Lib.unfades();
 	}
 	void addMessage(XElement msg){
-		GameObject obj = new GameObject (msg.Value);
+		imessage++;
+		GameObject obj = new GameObject ("message"+imessage);
 		ShowAndHide sah=(ShowAndHide)obj.AddComponent("ShowAndHide");
 		sah.font = font;
 		sah.txt = msg.Value;
@@ -68,10 +69,13 @@ public class LoadGenericLevel : MonoBehaviour {
 		sah.material = material;
 		}
 	// Update is called once per frame
-	int msgTime=0;
+	int msgTime=10;
+	int imessage=0;
 	void Update () {
 		if (btnnextwave.transform.position.z == 1) {
 			inWave=false;
+			
+			Destroy (GameObject.Find("message"+imessage));
 		}
         btnnextwave.transform.position = new Vector3(Lib.width() / 6f, Lib.height() / 6f, 0f);
         fade.transform.localScale = new Vector3(Camera.main.aspect, 1, 1);
@@ -89,8 +93,11 @@ public class LoadGenericLevel : MonoBehaviour {
                 {
                     if (hasNextMessage && msgTime <= currentTime)
                     {
-						addMessage(currentMessage);
+					addMessage(currentMessage);
+					//print (currentMessage.Attribute("time").Value);
 						msgTime+=Int16.Parse(currentMessage.Attribute("time").Value);
+					
+					print (msgTime+"  " + currentTime);
                         hasNextMessage = currentMessages.MoveNext();
                         currentMessage = currentMessages.Current;
                     }
@@ -117,8 +124,6 @@ public class LoadGenericLevel : MonoBehaviour {
                 if (hasNextWave)
                 {
 					inWave=true;
-				msgTime=0;
-                    timer = Time.time;
                     setCurrentWave();
                 }
                 else
@@ -134,6 +139,8 @@ public class LoadGenericLevel : MonoBehaviour {
 	}
     void setCurrentWave()
 	{
+		msgTime=0;
+		timer = Time.time;
 		var ships = from ship in currentWave.Elements("ship")
 			orderby Int16.Parse(ship.Attribute("time").Value) ascending
 				select ship;
