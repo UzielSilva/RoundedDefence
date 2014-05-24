@@ -92,7 +92,7 @@ namespace RoundedDefence{
 			return fading == 0;
 		}
 		public static bool isFadeReady(){
-			return fader+.04f>1 && fading==0;
+			return fader>1 && fading==0;
 		}
 		public static void unfades(){
 			fading = -.04f;
@@ -121,7 +121,7 @@ namespace RoundedDefence{
         public static void faderr(GameObject fade)
         {
 			fader += fading ;
-			if (fader > 0f && fader < 1f) {
+			if (fader > 0f && fader <= 1f) {
 				if(fade!=null){
 				Color c = fade.renderer.material.color;
 				c.a = fader;
