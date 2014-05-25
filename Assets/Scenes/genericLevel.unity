@@ -223,7 +223,7 @@ Camera:
   m_GameObject: {fileID: 258178411}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 1
+  m_ClearFlags: 3
   m_BackGroundColor: {r: .0196078438, g: .0666666701, b: .0862745121, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
@@ -231,12 +231,12 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 2
-  far clip plane: 10
+  near clip plane: 0
+  far clip plane: 2
   field of view: 22
   orthographic: 1
   orthographic size: 2
-  m_Depth: 0
+  m_Depth: 2
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -451,7 +451,7 @@ Camera:
   m_GameObject: {fileID: 686510500}
   m_Enabled: 1
   serializedVersion: 2
-  m_ClearFlags: 3
+  m_ClearFlags: 1
   m_BackGroundColor: {r: .0431372561, g: .0588235296, b: .0745098069, a: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
@@ -459,12 +459,12 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0
-  far clip plane: 2
+  near clip plane: 2
+  far clip plane: 10
   field of view: 22
   orthographic: 1
   orthographic size: 2
-  m_Depth: 2
+  m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
     m_Bits: 4294967295

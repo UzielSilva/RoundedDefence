@@ -42,11 +42,11 @@ namespace RoundedDefence{
         }
 
 		public static int getNcircles(int rad) {
-			byte frac = 4;
-			while (rad > 2) {
-					if (rad % 2 != 0)
+			byte frac = 3;
+			while (rad > 3) {
+					if (rad % 3 != 0)
 							rad--;
-					rad = rad / 2;
+					rad = rad / 3;
 					frac++;
 			}
 			//if (rad == 0)return 1;

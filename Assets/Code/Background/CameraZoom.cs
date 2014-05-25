@@ -35,7 +35,7 @@ public class CameraZoom : MonoBehaviour {
     void Update()
     {
         camera.transform.position = old;
-        point.transform.position = new Vector3(zoomBar.transform.position.x, zoomBar.renderer.bounds.max.y, zoomBar.renderer.bounds.max.z);
+        point.transform.position = new Vector3(zoomBar.transform.position.x, zoomBar.renderer.bounds.max.y, zoomBar.renderer.bounds.max.z-.2f);
         float value = ((minZoom - camera.orthographicSize) / (maxZoom - minZoom));
         if (value < -1) value = -1;
         if (value > 0) value = 0;
