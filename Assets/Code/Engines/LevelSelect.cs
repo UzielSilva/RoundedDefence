@@ -22,13 +22,13 @@ public class LevelSelect : MonoBehaviour {
 	GameObject objstarScore;
 	GameObject objhudbar;
 
-    GameObject leftbar;
-    GameObject rightbar;
     GameObject fade;
     Vector3 position;
-    GameObject fade2;
     Vector3 position2;
     GameObject zoomBar;
+	
+	private int cam1Deep=0;
+
 
     public static Camera GUI;
     public Camera gui;
@@ -45,8 +45,7 @@ public class LevelSelect : MonoBehaviour {
 	void Start () {
         GUI = gui;
         Lib.mute();
-        Lib.newFade("fade");
-        Lib.newFade("fade2");
+        Lib.newFade();
         Lib.unfades();
 
 		//text
@@ -66,16 +65,12 @@ public class LevelSelect : MonoBehaviour {
 		objhudbar = GameObject.Find ("hudbar");
 		objstarStar = GameObject.Find ("starStars");
 		objstarScore = GameObject.Find ("starScore");
-        leftbar = GameObject.Find("leftbar");
-        rightbar = GameObject.Find("rightbar");
         fade = GameObject.Find("fade");
         collider = new GameObject("Collider");
         collider.AddComponent<SpriteRenderer>();
-        collider.transform.position = fade.transform.position+(new Vector3(0,0,10));
         BoxCollider2D col2d = collider.AddComponent<BoxCollider2D>();
         col2d.size = fade.renderer.bounds.size;
         MouseHandlerLevelSelect handler = collider.AddComponent<MouseHandlerLevelSelect>();
-        fade2 = GameObject.Find("fade2");
         position = new Vector3(0, 0, 10);
         position2 = new Vector3(0, 0, -10);
         zoom = GUI.gameObject.AddComponent<CameraZoom>();
@@ -99,11 +94,11 @@ public class LevelSelect : MonoBehaviour {
 
 	}
 	void buttonsActions(){
-		if (btnback.transform.position.z == -21) {
+		if (btnback.transform.position.z == -8) {
 			action=0;
 			Lib.fades();
 		}
-		if (btnplay.transform.position.z == -21) {
+		if (btnplay.transform.position.z == -8) {
 			action=1;
 			Lib.fades();
 		}
@@ -120,7 +115,7 @@ public class LevelSelect : MonoBehaviour {
     {
         for (int i = 0; i < 4; i++)
         {
-            previews[i].transform.position = new Vector3(-Lib.width() / 2f + 0.4f, Lib.height() / 8f -0.3f, -30f);
+            previews[i].transform.position = new Vector3(Lib.width() / 2f - 0.4f, Lib.height() / 8f -0.3f, 1f);
             SpriteRenderer sprRenderer = (SpriteRenderer)previews[i].renderer;
             sprRenderer.sprite = null;
             Lib.followCamera(previews[i]);
@@ -135,58 +130,42 @@ public class LevelSelect : MonoBehaviour {
 
         drawDescription();
 		//txt
-        txtstar.transform.position = new Vector3(Lib.width() / 2f - .4f, Lib.height() / 2f - .04f, -30f);
-        txtname.transform.Translate(new Vector3((Lib.getStringLength(txtname) * -.048f) - 1.8f, -Lib.height() / 2f + .7f, 20));
-        txtmsg.transform.position = new Vector3(-Lib.getStringLength(txtmsg) * -.048f, -Lib.height() / 2f + .7f, -30f);
-        txtscore.transform.Translate(new Vector3((Lib.getStringLength(txtscore) * -.048f) + .2f, -Lib.height() / 2f + .35f, 20));
+        txtstar.transform.position = new Vector3(-Lib.width() / 2f + .4f, Lib.height() / 2f - .04f, -9f);
+        txtname.transform.Translate(new Vector3(- (Lib.width()/3.2f), -Lib.height() / 2f + .7f, -19f));
+        txtmsg.transform.position = new Vector3(Lib.getStringLength(txtmsg) * -.048f, -Lib.height() / 2f + .7f, -9f);
+        txtscore.transform.Translate(new Vector3((Lib.getStringLength(txtscore) * -.048f) + .2f, -Lib.height() / 2f + .35f, -19f));
 		//btn
-        btnmusica.transform.position = new Vector3(-Lib.width() / 2f + .6f, Lib.height() / 2f - .2f, -30f);
-        btnsound.transform.position = new Vector3(-Lib.width() / 2f + .2f, Lib.height() / 2f - .2f, -30f);
-        btnplay.transform.Translate(new Vector3(Lib.width() / 2f - .7f, -Lib.height() / 2f + .35f, 20f));
-        btnback.transform.position = new Vector3(Lib.width() / 2f - .7f, -Lib.height() / 2f + .35f, -30f);
+        btnmusica.transform.position = new Vector3(Lib.width() / 2f- .6f, Lib.height() / 2f - .2f, -9f);
+        btnsound.transform.position = new Vector3(Lib.width() / 2f - .2f, Lib.height() / 2f - .2f, -9f);
+        btnplay.transform.Translate(new Vector3(Lib.width() / 2f - .7f, -Lib.height() / 2f + .35f, -19f));
+        btnback.transform.position = new Vector3(-Lib.width() / 2f + .7f, -Lib.height() / 2f + .35f, -9f);
 		//obj
-        objstarStar.transform.position = new Vector3(Lib.width() / 2f - .22f, Lib.height() / 2f - .17f, -30f);
-        objhudbar.transform.position = new Vector3(0, -Lib.height() / 2f, -10f);
-        leftbar.transform.position = new Vector3((Lib.width() - leftbar.renderer.bounds.size.x) / 2f, 0, -30f);
-        rightbar.transform.position = new Vector3(-(Lib.width() - rightbar.renderer.bounds.size.x) / 2f, 0, -30f);
-		objstarScore.transform.Translate(new Vector3(-(Lib.getStringLength(txtscore)*-.048f),-Lib.height()/2f+.20f,0));
+        objstarStar.transform.position = new Vector3(-Lib.width() / 2f + .22f, Lib.height() / 2f - .17f, -9f);
+        objhudbar.transform.position = new Vector3(0, -Lib.height() / 2f, -9f);
+        objstarScore.transform.Translate(new Vector3((Lib.getStringLength(txtscore)*-.048f),-Lib.height()/2f+.20f,-19f));
 
-        zoomBar.transform.position = new Vector3(Lib.width() / 2f - .4f, Lib.height() / 8f - 0.3f, -30f);
+        zoomBar.transform.position = new Vector3(-Lib.width() / 2f + .25f, Lib.height() / 8f - 0.3f, -9f);
 
         rCamera = new Rect(0, 0, 10, 10);
-        rCamera.xMin = Screen.height / 5f;
-        rCamera.xMax = Screen.width - Screen.height / 5f;
+        rCamera.xMin = 0;
+        rCamera.xMax = Screen.width;
         rCamera.yMax = Screen.height;
-        rCamera.yMin = Screen.height / 5;
+        rCamera.yMin = Screen.height/5;
         gui.pixelRect = rCamera;
         gui.enabled = true;
-        fade.transform.localScale = new Vector3(Camera.main.aspect * gui.orthographicSize, gui.orthographicSize, 1);
-        fade2.transform.localScale = new Vector3(Camera.main.aspect, 1, 1);
         collider.transform.localScale = new Vector3(Camera.main.aspect * gui.orthographicSize, gui.orthographicSize, 1);
 
         if (IslandSelected.centroid == "")
             zoom.minZoom = 1;
 
         //txt
-        Lib.followCamera(txtstar);
-        Lib.followCamera(txtscore);
-        Lib.followCamera(txtmsg);
-        Lib.followCamera(txtname);
         //btn
-        Lib.followCamera(btnmusica);
-        Lib.followCamera(btnsound);
-        Lib.followCamera(btnback);
-        Lib.followCamera(btnplay);
         //obj
-        Lib.followCamera(objstarScore);
-        Lib.followCamera(objstarStar);
-        Lib.followCamera(objhudbar);
-        Lib.followCamera(leftbar);
-        Lib.followCamera(rightbar);
-        Lib.followCamera(zoomBar);
-
-        Lib.dofade(fade,position,gui);
-        Lib.dofade(fade2, position2,Camera.main);
+		
+		fade.transform.localScale = new Vector3(Camera.main.aspect, 1, 1);
+		if (!Lib.isFading()) {
+			Lib.faderr ();
+		}
 
 	}
     void drawShips()
@@ -261,7 +240,7 @@ public class LevelSelect : MonoBehaviour {
         int twoStar = Int32.Parse(Lib.currentLevel.Element(XName.Get("scores")).Attribute(XName.Get("two-star")).Value);
         int threeStar = Int32.Parse(Lib.currentLevel.Element(XName.Get("scores")).Attribute(XName.Get("three-star")).Value);
         Lib.setString(txtname, Lib.currentLevel.Attribute(XName.Get("name")).Value);
-        Lib.setString(txtmsg, "SCORE : " );
+        Lib.setString(txtmsg, "SCORE : 0" );
 		if(score<oneStar){
 			Lib.setSprite(objstarScore,"Sprites/Misc/star1");
 			Lib.setString(txtscore,"at "+oneStar);
@@ -273,7 +252,7 @@ public class LevelSelect : MonoBehaviour {
 			Lib.setString(txtscore,"at "+threeStar);
 		}else{
 		}
-		Vector3 move=new Vector3(0,0,-10);
+		Vector3 move=new Vector3(0,0,10);
         txtname.transform.position=move;
 		txtscore.transform.position=move;
 		btnplay.transform.position=move;

@@ -62,9 +62,9 @@ public class MainMenu : MonoBehaviour {
 		portadaTR.transform.position = new Vector3 (Lib.width() / 2f, Lib.height() / 2f, 0);
 		portadaBR.transform.position = new Vector3 (Lib.width() / 2f, -Lib.height() / 2f, 0);
 
-			
-		btnmusica.transform.position=new Vector3(Lib.width()/2f -.08f ,Lib.height()/2f,10f);
-		btnsound.transform.position=new Vector3(Lib.width()/2f - .6f,Lib.height()/2f -.05f,10f);
+		btnmusica.transform.position = new Vector3(Lib.width() / 2f- .6f, Lib.height() / 2f - .2f, 10f);
+		btnsound.transform.position = new Vector3(Lib.width() / 2f - .2f, Lib.height() / 2f - .2f, 10f);
+
 
         fade.transform.localScale = new Vector3(Camera.main.aspect, 1, 1);
 

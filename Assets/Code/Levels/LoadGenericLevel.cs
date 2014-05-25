@@ -43,7 +43,6 @@ public class LoadGenericLevel : MonoBehaviour {
 
     GameObject fade;
     Vector3 position;
-    GameObject fade2;
     Vector3 position2;
     GameObject zoomBar;
 
@@ -79,10 +78,8 @@ public class LoadGenericLevel : MonoBehaviour {
         zoom.maxZoom = 3;
         zoom.minZoom = 1;
 
-        Lib.newFade("fade");
-        Lib.newFade("fade2");
+        Lib.newFade();
         fade = GameObject.Find("fade"); 
-        fade2 = GameObject.Find("fade2");
         zoomBar = GameObject.Find("pseudozoom");
 
         towers = new GameObject[5];
@@ -194,8 +191,7 @@ public class LoadGenericLevel : MonoBehaviour {
             }
         }
 
-        Lib.dofade(fade, position, gui);
-        Lib.dofade(fade2, position2, Camera.main);
+        Lib.dofade();
 	}
     void drawTowersMenu()
     {

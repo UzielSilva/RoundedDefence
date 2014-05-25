@@ -79,15 +79,12 @@ namespace RoundedDefence{
 			pos.z = 10; // select distance = 10 units from the camera
 			return cam.ScreenToWorldPoint (pos);
 		}
-        public static void newFade()
-        {
-            newFade("fade");
-        }
-		public static void newFade(string name){
-			fade = new GameObject(name);
+		public static void newFade(){
+			fade = new GameObject("fade");
 			fade.AddComponent<SpriteRenderer>();
 			setSprite (fade,"Sprites/Background/fade");
 			fade.renderer.sortingLayerName="Others";
+			fade.transform.position = new Vector3 (0, 0, -9.5f);
 			fade.renderer.sortingOrder = 200;
 		}
 		public static bool isFading(){
@@ -104,23 +101,13 @@ namespace RoundedDefence{
 			fader=0f;
 			fading=.04f;
 		}
-        public static void dofade()
-        {
-            dofade(fade,new Vector3(0,0,-10),Camera.main);
-        }
-		public static void dofade(GameObject fade, Vector3 position, Camera cam){
+		public static void dofade(){
             if (!Lib.isFading())
             {
-                Lib.faderr(fade);
+                Lib.faderr();
             }
-            fade.transform.position = position;
-            followCamera(fade, cam);
 		}
         public static void faderr()
-        {
-            faderr(fade);
-        }
-        public static void faderr(GameObject fade)
         {
 			fader += fading ;
 			if (fader > 0f && fader <= 1f) {
