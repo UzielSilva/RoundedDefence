@@ -17,7 +17,7 @@ namespace RoundedDefence
 				int id = 0;
 
 				if (lvl < 1) {
-					for(int i=0;i<4;i++)
+					for(int i=0;i<Lib.getNcircles(1);i++)
 						if (lowest >= value (1, i)) {
 							p = i;
 							lowest = value ( 1, i);

@@ -257,12 +257,21 @@ public class LoadGenericLevel : MonoBehaviour {
             for (int j = 0; j < Lib.getNcircles(i); j++)
             {
                 GameObject point = new GameObject("Point" + i + "," + j);
+                GameObject pointCollider = new GameObject("PointCollider" + i + "," + j);
+                CircleCollider2D collider = pointCollider.AddComponent<CircleCollider2D>();
+                SpriteRenderer sprRenderer = pointCollider.AddComponent<SpriteRenderer>();
+                pointCollider.AddComponent<PointMapListener>();
+                sprRenderer.color = new Color(1f, 1f, 1f, .5f);
+                Lib.setSprite(pointCollider, "Sprites/Misc/circlegreen");
+                pointCollider.renderer.enabled = false;
+                collider.radius = factorSpaceMap/2;
                 point.AddComponent<SpriteRenderer>();
                 Lib.setSprite(point,"Sprites/Misc/backstar");
                 point.transform.localScale = (new Vector3(1, 1, 1)) * 0.02f;
                 float radius = initMapRadius + factorSpaceMap*i;
                 float angle = j*2*Mathf.PI/Lib.getNcircles(i);
-                point.transform.position =  new Vector3(radius*Mathf.Cos(angle),radius*Mathf.Sin(angle),0);
+                point.transform.position = new Vector3(radius * Mathf.Cos(angle), radius * Mathf.Sin(angle), 0);
+                pointCollider.transform.position = point.transform.position;
             }
         }
         isDrawedMap = true;

@@ -21,8 +21,7 @@ public class ShipElement : MonoBehaviour {
         thisShip = (IShip)Activator.CreateInstance(Lib.Ships[id].GetType());
         float initAngle = Lib.toTiles(new Point(level, angle)).Y;
         ShortPath p = new ShortPath(level, (int)initAngle, 0, 0);
-        thisShip.Path = p.getPath();
-        Debug.Log(name + thisShip.Path.camino.Count);
+        thisShip.Path = p.getPath(); 
         initAngle = initAngle * (360f / Lib.getNcircles(level));
         transform.position = new Vector3(radius * Mathf.Cos(initAngle * Mathf.PI / 180), radius * Mathf.Sin(initAngle * Mathf.PI / 180), 0);
         transform.Rotate(Vector3.forward, 90 + initAngle);
@@ -38,7 +37,7 @@ public class ShipElement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (step <= thisShip.Path.camino.Count)
+        if (step < thisShip.Path.camino.Count)
             goToNextStep();
         
 	

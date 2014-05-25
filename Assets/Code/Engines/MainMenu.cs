@@ -43,10 +43,6 @@ public class MainMenu : MonoBehaviour {
 		Lib.newFade ();
         fade = GameObject.Find("fade");
 		Lib.unfades ();
-        ShortPath p = new ShortPath(24, 20, 0, 0);
-        Camino[]  pat= p.getPath().camino.ToArray();
-		for (int i=0; i<pat.Length; i++)
-			print (pat[i].lvl+"  "+pat[i].p);
 	}
 	void Update(){
 			switch (menu) {
