@@ -19,7 +19,7 @@ public class ShowAndHide : MonoBehaviour {
 		m.material = material;
 		Lib.newText (name);
 		Lib.setString (gameObject, txt);
-		transform.position = new Vector3 (txt.Length*-.08f,.2f,-9s);
+		transform.position = new Vector3 (txt.Length*-.08f,.2f,-9f);
 		fade = 0f;
 		Color c = renderer.material.color;
 		c.a = fade;
@@ -28,7 +28,7 @@ public class ShowAndHide : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		transform.position = new Vector3 (txt.Length*-.08f,-.2f,0);
+		transform.position = new Vector3 (txt.Length*-.08f,-.2f,-9f);
 		if((speed>0&&delay>0)||(speed<0&&delay==0))
 		fade += speed;
 		if (fade > 1f) {
