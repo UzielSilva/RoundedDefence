@@ -160,10 +160,8 @@ public class LoadGenericLevel : MonoBehaviour {
                     if (hasNextMessage && msgTime <= currentTime)
                     {
 					addMessage(currentMessage);
-					//print (currentMessage.Attribute("time").Value);
 						msgTime+=Int16.Parse(currentMessage.Attribute("time").Value);
 					
-					print (msgTime+"  " + currentTime);
                         hasNextMessage = currentMessages.MoveNext();
                         currentMessage = currentMessages.Current;
                     }
@@ -254,7 +252,7 @@ public class LoadGenericLevel : MonoBehaviour {
 	}
     void drawMap()
     {
-        for (int i = 1; i <= 25; i++)
+        for (int i = 1; i <= 24; i++)
         {
             for (int j = 0; j < Lib.getNcircles(i); j++)
             {

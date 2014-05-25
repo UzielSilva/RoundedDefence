@@ -8,7 +8,7 @@ namespace RoundedDefence
 		private int inicioP;
 		private int finalLvl;
 		private int finalP;
-		private int[,] valueMap= new int[25,64];
+		private int[,] valueMap= new int[25,256];
 		List<Camino> wall= new List<Camino>();
 
 		public ShortPath (int beginLvl,int beginP,int endLvl,int endP ){
@@ -20,13 +20,13 @@ namespace RoundedDefence
 			finalLvl = endLvl;
 			finalP = endP;
 			for (int i = 0; i < 25; i++) {
-				for (int e = 0; e < 64; e++) {
+				for (int e = 0; e < 256; e++) {
 					valueMap[i,e] = 999999;
 				}
 			}
 		}
 		private void newer(int lvl, int p, int stime, int time) {
-			int x = (p + Lib.getNcircles(lvl)) % Lib.getNcircles(lvl);
+			int x = (p + getNcircles(lvl)) % getNcircles(lvl);
 			int y = (lvl + 25) % 25;
 			if (valueMap[y,x] > stime) {
 				valueMap[y,x] = stime;
@@ -39,7 +39,8 @@ namespace RoundedDefence
 			int minDiference = 1;
 			for (int time=0; wall.Count!=0; time +=minDiference) {
 				int minTime = wall[0].t;
-				foreach (Camino ca in wall) {
+                List<Camino> enumerator = new List<Camino>(wall);
+				foreach (Camino ca in enumerator) {
                     int tim = 4;
                     if (minTime > ca.t)
                     {
@@ -53,11 +54,11 @@ namespace RoundedDefence
                     {
                         if (ca.lvl > 1)
                         {
-                            int chlvl = Lib.getNcircles(ca.lvl) / Lib.getNcircles(ca.lvl - 1);
+                            int chlvl = getNcircles(ca.lvl) / getNcircles(ca.lvl - 1);
                             newer(ca.lvl - 1, ca.p / chlvl, time, tim);
                             if (ca.lvl < 24)
                             {
-                                if (Lib.getNcircles((ca.lvl + 1) % 25) > Lib.getNcircles(ca.lvl))
+                                if (getNcircles((ca.lvl + 1) % 25) > getNcircles(ca.lvl))
                                 {
                                     newer(ca.lvl + 1, ca.p * 2, time, tim);
                                     newer(ca.lvl + 1, ca.p * 2 + 1, time, tim);
@@ -68,10 +69,10 @@ namespace RoundedDefence
                                 }
                             }
                         }
-                        tim *= 64 / Lib.getNcircles(ca.lvl);
+                        tim *= 256 / getNcircles(ca.lvl);
                         newer(ca.lvl, ca.p + 1, time, tim);
                         newer(ca.lvl, ca.p - 1, time, tim);
-                        //wall.Remove(ca);
+                        wall.Remove(ca);
                     }
 				}
 				minDiference = minTime - time;
@@ -80,5 +81,9 @@ namespace RoundedDefence
 			next: 
 			return new Path(finalLvl,finalP,valueMap);
 			}
+        public static int getNcircles(int rad)
+        {
+            return Lib.getNcircles(rad);
+        }
 		}
 	}
