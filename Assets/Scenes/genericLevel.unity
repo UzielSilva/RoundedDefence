@@ -647,7 +647,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f4c6e01876db48445940de49559559db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ShipScale: {x: .400000006, y: .400000006, z: 1}
+  ShipScale: {x: .200000003, y: .200000003, z: 1}
   font: {fileID: 12800000, guid: b0df7ecaa0315463cafcc1ed0ee420d0, type: 3}
   countSprite: glass_numbers
   material: {fileID: 2100000, guid: b0df7ecaa0315463cafcc1ed0ee420d0, type: 3}

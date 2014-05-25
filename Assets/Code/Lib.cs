@@ -41,19 +41,18 @@ namespace RoundedDefence{
             return q.ToArray()[0];
         }
 
-		public static byte getNcircles(int rad) {
-			byte frac = 2;
+		public static int getNcircles(int rad) {
+			byte frac = 4;
 			while (rad > 2) {
 					if (rad % 2 != 0)
 							rad--;
 					rad = rad / 2;
 					frac++;
 			}
-			return (byte)Math.Pow (2.0, frac);
+			return (int)Math.Pow (2.0, frac);
 		}
 		public static Point toTiles(Point p){
-				//return new Point (p.X / tileHeight, p.Y * getNcircles (p.X / tileHeight) / 360);
-            return null;
+		    return new Point (p.X, (int)(p.Y * getNcircles (p.X) / 360));
 		}
 		public static void mute(){
 			if (music)
