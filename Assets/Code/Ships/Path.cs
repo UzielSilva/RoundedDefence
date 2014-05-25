@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using RoundedDefence;
 
 namespace RoundedDefence
 {
@@ -11,12 +12,12 @@ namespace RoundedDefence
 		{
 			valueMap = map;
 			while (value (lvl,p)!=0) {
-				camino.Add (new Camino((byte)lvl,(byte)p,0));
+				camino.Add (new Camino(lvl,p,0));
 				int lowest = value (lvl, p);
 				int id = 0;
 
 				if (lvl < 1) {
-					for(int i=0;i<4;i++)
+					for(int i=0;i<Lib.getNcircles(1);i++)
 						if (lowest >= value (1, i)) {
 							p = i;
 							lowest = value ( 1, i);
@@ -33,14 +34,15 @@ namespace RoundedDefence
 					}
 			
 					if (lvl > 1) {
-						int chlvl = Lib.getNcircles (lvl) / Lib.getNcircles (lvl - 1);
+                        int chlvl = ShortPath.getNcircles(lvl) / ShortPath.getNcircles(lvl - 1);
 						if (lowest >= value (lvl - 1, p / chlvl)) {
 							lowest = value (lvl - 1, p / chlvl);
 							id = 3;
 						}
 					}
 					if (lvl < 24) {
-						if (Lib.getNcircles ((lvl + 1) % 25) > Lib.getNcircles (lvl)) {
+                        if (ShortPath.getNcircles((lvl + 1) % 25) > ShortPath.getNcircles(lvl))
+                        {
 							if (lowest >= value (lvl + 1, p * 2)) {
 								lowest = value (lvl + 1, p * 2);
 								id = 4;
@@ -61,23 +63,23 @@ namespace RoundedDefence
 				case 0:
 					goto error;
 				case 1:
-					p=(p+1 + Lib.getNcircles(lvl)) % Lib.getNcircles(lvl);
+                    p = (p + 1 + ShortPath.getNcircles(lvl)) % ShortPath.getNcircles(lvl);
 					break;
 				case 2:
-					p = (p - 1 + Lib.getNcircles (lvl)) % Lib.getNcircles (lvl);
+                    p = (p - 1 + ShortPath.getNcircles(lvl)) % ShortPath.getNcircles(lvl);
 					break;
 				case 3:
-					int chlvl = Lib.getNcircles (lvl) / Lib.getNcircles (lvl - 1);
+                    int chlvl = ShortPath.getNcircles(lvl) / ShortPath.getNcircles(lvl - 1);
 					p = p / chlvl;
 					lvl = (lvl - 1 + 25) % 25;
 					break;
 				case 4:
 					lvl = (lvl+1 + 25) % 25;
-					p=(p*2+ Lib.getNcircles(lvl)) % Lib.getNcircles(lvl);
+                    p = (p * 2 + ShortPath.getNcircles(lvl)) % ShortPath.getNcircles(lvl);
 					break;
 				case 5:
 					lvl = (lvl+1 + 25) % 25;
-					p=(p*2+1 + Lib.getNcircles(lvl)) % Lib.getNcircles(lvl);
+                    p = (p * 2 + 1 + ShortPath.getNcircles(lvl)) % ShortPath.getNcircles(lvl);
 					break;
 				case 6:
 					lvl = (lvl+1 + 25) % 25;
@@ -92,7 +94,7 @@ namespace RoundedDefence
 		}
 		
 		private int value(int lvl, int p) {
-			int x = (p + Lib.getNcircles(lvl)) % Lib.getNcircles(lvl);
+            int x = (p + ShortPath.getNcircles(lvl)) % ShortPath.getNcircles(lvl);
 			int y = (lvl + 25) % 25;
 			return valueMap [y, x];
 

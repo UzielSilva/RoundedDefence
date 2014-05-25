@@ -50,6 +50,11 @@ public class LoadGenericLevel : MonoBehaviour {
 
     GameObject[] towers;
 
+    public static float initMapRadius = 0.25f;
+    public static float factorSpaceMap = 0.1f;
+
+    bool isDrawedMap;
+
 	// Use this for initialization
     void Start()
     {
@@ -80,7 +85,7 @@ public class LoadGenericLevel : MonoBehaviour {
         zoom.target = position2;
         zoom.Cam = main;
         zoom.maxZoom = 3;
-        zoom.minZoom = 1;
+        zoom.minZoom = 0.1f;
 
         Lib.newFade();
         fade = GameObject.Find("fade"); 
@@ -98,7 +103,7 @@ public class LoadGenericLevel : MonoBehaviour {
             option.id = 0;
 
         }
-
+        drawMap();
         Lib.unfades();
 	}
 	void addMessage(XElement msg){
@@ -150,10 +155,8 @@ public class LoadGenericLevel : MonoBehaviour {
                     if (hasNextMessage && msgTime <= currentTime)
                     {
 					addMessage(currentMessage);
-					//print (currentMessage.Attribute("time").Value);
 						msgTime+=Int16.Parse(currentMessage.Attribute("time").Value);
 					
-					print (msgTime+"  " + currentTime);
                         hasNextMessage = currentMessages.MoveNext();
                         currentMessage = currentMessages.Current;
                     }
@@ -167,6 +170,7 @@ public class LoadGenericLevel : MonoBehaviour {
                     ShipElement s = ship.AddComponent<ShipElement>();
                     s.id = id;
                     s.angle = angle;
+                    
                     hasNextShip = currentShips.MoveNext();
                     currentShip = currentShips.Current;
                 }
@@ -188,6 +192,8 @@ public class LoadGenericLevel : MonoBehaviour {
                 Debug.Log("Level cleared");
             }
         }
+
+        Lib.cameraFollow(Lib.mouseCord(gui), gui);
 
         Lib.dofade();
 	}
@@ -239,4 +245,30 @@ public class LoadGenericLevel : MonoBehaviour {
 		GameObject music=new GameObject(txt);
 		music.AddComponent ("FadeMusic");
 	}
+    void drawMap()
+    {
+        for (int i = 1; i <= 24; i++)
+        {
+            for (int j = 0; j < Lib.getNcircles(i); j++)
+            {
+                GameObject point = new GameObject("Point" + i + "," + j);
+                GameObject pointCollider = new GameObject("PointCollider" + i + "," + j);
+                CircleCollider2D collider = pointCollider.AddComponent<CircleCollider2D>();
+                SpriteRenderer sprRenderer = pointCollider.AddComponent<SpriteRenderer>();
+                pointCollider.AddComponent<PointMapListener>();
+                sprRenderer.color = new Color(1f, 1f, 1f, .5f);
+                Lib.setSprite(pointCollider, "Sprites/Misc/circlegreen");
+                pointCollider.renderer.enabled = false;
+                collider.radius = factorSpaceMap/2;
+                point.AddComponent<SpriteRenderer>();
+                Lib.setSprite(point,"Sprites/Misc/backstar");
+                point.transform.localScale = (new Vector3(1, 1, 1)) * 0.02f;
+                float radius = initMapRadius + factorSpaceMap*i;
+                float angle = j*2*Mathf.PI/Lib.getNcircles(i);
+                point.transform.position = new Vector3(radius * Mathf.Cos(angle), radius * Mathf.Sin(angle), 0);
+                pointCollider.transform.position = point.transform.position;
+            }
+        }
+        isDrawedMap = true;
+    }
 }
