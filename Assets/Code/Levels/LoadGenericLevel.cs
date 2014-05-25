@@ -120,23 +120,25 @@ public class LoadGenericLevel : MonoBehaviour {
 	int msgTime=0;
 	int imessage=0;
 	void Update () {
-		btnmusica.transform.position = new Vector3(Lib.width() / 2f- .6f, Lib.height() / 2f - .2f, -9f);
-		btnsound.transform.position = new Vector3(Lib.width() / 2f - .2f, Lib.height() / 2f - .2f, -9f);
-        for (int i = 0; i < 5; i++)
+		btnmusica.transform.position = new Vector3(-Lib.width() / 2f+ .6f, Lib.height() / 2f - .2f, -9f);
+		btnsound.transform.position = new Vector3(-Lib.width() / 2f + .2f, Lib.height() / 2f - .2f, -9f);
+		btnnextwave.transform.position = new Vector3(Lib.width()/2f -.65f, Lib.height() /2f -.2f, -9f);
+		txtwave.transform.position = new Vector3(Lib.width()/2f -.6f, Lib.height() /2f -.5f, -9f);
+
+		for (int i = 0; i < 5; i++)
         {
-            towers[i].transform.position = new Vector3(-Lib.width() / 2f - 0.4f, Lib.height() / 8f + 0.7f, -9f);
+            towers[i].transform.position = new Vector3(Lib.width() / 2f - 0.4f, Lib.height() / 8f + 0.7f, -9f);
             SpriteRenderer sprRenderer = (SpriteRenderer)towers[i].renderer;
             sprRenderer.sprite = null;
              }
         drawTowersMenu();
-        zoomBar.transform.position = new Vector3(Lib.width() / 2f - .4f, Lib.height() / 8f - 0.3f, -9f);
+        zoomBar.transform.position = new Vector3(-Lib.width() / 2f + .4f, Lib.height() / 8f - 0.3f, -9f);
         
 		if (btnnextwave.transform.position.z == 1) {
 			inWave=false;
 			
 			Destroy (GameObject.Find("message"+imessage));
 		}
-        btnnextwave.transform.position = new Vector3(Lib.width() / 6f, Lib.height() / 6f, 0f);
         fade.transform.localScale = new Vector3(Camera.main.aspect, 1, 1);
             if (inWave)
             {

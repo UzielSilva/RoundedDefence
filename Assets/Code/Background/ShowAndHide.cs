@@ -19,7 +19,7 @@ public class ShowAndHide : MonoBehaviour {
 		m.material = material;
 		Lib.newText (name);
 		Lib.setString (gameObject, txt);
-		transform.position = new Vector3 (txt.Length*-.08f,.2f,0);
+		transform.position = new Vector3 (txt.Length*-.08f,.2f,-9s);
 		fade = 0f;
 		Color c = renderer.material.color;
 		c.a = fade;
