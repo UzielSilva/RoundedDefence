@@ -18,10 +18,11 @@ public class ShipElement : MonoBehaviour {
     // Use this for initialization
 	void Start () {
         level = 24;
-        thisShip = Lib.Ships[id];
+        thisShip = (IShip)Activator.CreateInstance(Lib.Ships[id].GetType());
         float initAngle = Lib.toTiles(new Point(level, angle)).Y;
         ShortPath p = new ShortPath(level, (int)initAngle, 1, 0);
         thisShip.Path = p.getPath();
+        Debug.Log(name + thisShip.Path.camino.Count);
         initAngle = initAngle * (360f / Lib.getNcircles(level));
         transform.position = new Vector3(radius * Mathf.Cos(initAngle * Mathf.PI / 180), radius * Mathf.Sin(initAngle * Mathf.PI / 180), 0);
         transform.Rotate(Vector3.forward, 90 + initAngle);
@@ -51,7 +52,8 @@ public class ShipElement : MonoBehaviour {
         Vector3 old = transform.position;
         Vector3 direction = (point.transform.position - transform.position).normalized * velocity;
         transform.position += direction;
-        if ((old - transform.position).magnitude >= (old - point.transform.position).magnitude)
+        if ((old - transform.position).magnitude >= (old - point.transform.position).magnitude
+            || point.transform.position == transform.position)
         {
             level = c.lvl;
             step++;
