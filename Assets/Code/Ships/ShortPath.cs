@@ -52,7 +52,7 @@ namespace RoundedDefence
                     }
                     if (time >= ca.t)
                     {
-                        if (ca.lvl > 1)
+                        if (ca.lvl > 0)
                         {
                             int chlvl = getNcircles(ca.lvl) / getNcircles(ca.lvl - 1);
                             newer(ca.lvl - 1, ca.p / chlvl, time, tim);

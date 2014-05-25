@@ -49,6 +49,7 @@ namespace RoundedDefence{
 					rad = rad / 2;
 					frac++;
 			}
+			//if (rad == 0)return 1;
 			return (int)Math.Pow (2.0, frac);
 		}
 		public static Point toTiles(Point p){

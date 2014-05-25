@@ -20,7 +20,7 @@ public class ShipElement : MonoBehaviour {
         level = 24;
         thisShip = (IShip)Activator.CreateInstance(Lib.Ships[id].GetType());
         float initAngle = Lib.toTiles(new Point(level, angle)).Y;
-        ShortPath p = new ShortPath(level, (int)initAngle, 1, 0);
+        ShortPath p = new ShortPath(level, (int)initAngle, 0, 0);
         thisShip.Path = p.getPath();
         Debug.Log(name + thisShip.Path.camino.Count);
         initAngle = initAngle * (360f / Lib.getNcircles(level));
