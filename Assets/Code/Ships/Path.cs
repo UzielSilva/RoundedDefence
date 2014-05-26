@@ -40,8 +40,8 @@ namespace RoundedDefence
 							id = 3;
 						}
 					}
-					if (lvl < 24) {
-                        if (ShortPath.getNcircles((lvl + 1) % 25) > ShortPath.getNcircles(lvl))
+					if (lvl < 17) {
+                        if (ShortPath.getNcircles((lvl + 1) % 18) > ShortPath.getNcircles(lvl))
                         {
 							if (lowest >= value (lvl + 1, p * 2)) {
 								lowest = value (lvl + 1, p * 2);
@@ -71,18 +71,18 @@ namespace RoundedDefence
 				case 3:
                     int chlvl = ShortPath.getNcircles(lvl) / ShortPath.getNcircles(lvl - 1);
 					p = p / chlvl;
-					lvl = (lvl - 1 + 25) % 25;
+					lvl = (lvl - 1 + 18) % 18;
 					break;
 				case 4:
-					lvl = (lvl+1 + 25) % 25;
+					lvl = (lvl+1 + 18) % 18;
                     p = (p * 2 + ShortPath.getNcircles(lvl)) % ShortPath.getNcircles(lvl);
 					break;
 				case 5:
-					lvl = (lvl+1 + 25) % 25;
+					lvl = (lvl+1 + 18) % 18;
                     p = (p * 2 + 1 + ShortPath.getNcircles(lvl)) % ShortPath.getNcircles(lvl);
 					break;
 				case 6:
-					lvl = (lvl+1 + 25) % 25;
+					lvl = (lvl+1 + 18) % 18;
 					break;
 
 				}
@@ -95,7 +95,7 @@ namespace RoundedDefence
 		
 		private int value(int lvl, int p) {
             int x = (p + ShortPath.getNcircles(lvl)) % ShortPath.getNcircles(lvl);
-			int y = (lvl + 25) % 25;
+			int y = (lvl + 18) % 18;
 			return valueMap [y, x];
 
 		}

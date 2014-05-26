@@ -51,7 +51,7 @@ public class LoadGenericLevel : MonoBehaviour {
     GameObject[] towers;
 
     public static float initMapRadius = 0.25f;
-    public static float factorSpaceMap = 0.1f;
+    public static float factorSpaceMap = 0.2f;
 
     bool isDrawedMap;
 
@@ -84,7 +84,7 @@ public class LoadGenericLevel : MonoBehaviour {
         zoom = gui.gameObject.AddComponent<CameraZoom>();
         zoom.target = position2;
         zoom.Cam = main;
-        zoom.maxZoom = 3;
+        zoom.maxZoom = 4;
         zoom.minZoom = 0.1f;
 
         Lib.newFade();
@@ -120,10 +120,6 @@ public class LoadGenericLevel : MonoBehaviour {
 	int msgTime=0;
 	int imessage=0;
 	void Update () {
-		btnmusica.transform.position = new Vector3(-Lib.width() / 2f+ .6f, Lib.height() / 2f - .2f, -9f);
-		btnsound.transform.position = new Vector3(-Lib.width() / 2f + .2f, Lib.height() / 2f - .2f, -9f);
-		btnnextwave.transform.position = new Vector3(Lib.width()/2f -.65f, Lib.height() /2f -.2f, -9f);
-		txtwave.transform.position = new Vector3(Lib.width()/2f -.6f, Lib.height() /2f -.5f, -9f);
 
 		for (int i = 0; i < 5; i++)
         {
@@ -133,12 +129,17 @@ public class LoadGenericLevel : MonoBehaviour {
              }
         drawTowersMenu();
         zoomBar.transform.position = new Vector3(-Lib.width() / 2f + .4f, Lib.height() / 8f - 0.3f, -9f);
-        
-		if (btnnextwave.transform.position.z == 1) {
+		if (btnnextwave.transform.position.z == -8) {
 			inWave=false;
 			
 			Destroy (GameObject.Find("message"+imessage));
 		}
+
+        btnmusica.transform.position = new Vector3(-Lib.width() / 2f + .6f, Lib.height() / 2f - .2f, -9f);
+        btnsound.transform.position = new Vector3(-Lib.width() / 2f + .2f, Lib.height() / 2f - .2f, -9f);
+        btnnextwave.transform.position = new Vector3(Lib.width() / 2f - .65f, Lib.height() / 2f - .2f, -9f);
+        txtwave.transform.position = new Vector3(Lib.width() / 2f - .6f, Lib.height() / 2f - .5f, -9f);
+
         fade.transform.localScale = new Vector3(Camera.main.aspect, 1, 1);
             if (inWave)
             {
@@ -247,7 +248,7 @@ public class LoadGenericLevel : MonoBehaviour {
 	}
     void drawMap()
     {
-        for (int i = 1; i <= 24; i++)
+        for (int i = 1; i <= 17; i++)
         {
             for (int j = 0; j < Lib.getNcircles(i); j++)
             {
@@ -259,7 +260,7 @@ public class LoadGenericLevel : MonoBehaviour {
                 sprRenderer.color = new Color(1f, 1f, 1f, .5f);
                 Lib.setSprite(pointCollider, "Sprites/Misc/circlegreen");
                 pointCollider.renderer.enabled = false;
-                collider.radius = factorSpaceMap/2;
+                pointCollider.transform.localScale = (new Vector3(1,1,1))*factorSpaceMap;
                 point.AddComponent<SpriteRenderer>();
                 Lib.setSprite(point,"Sprites/Misc/backstar");
                 point.transform.localScale = (new Vector3(1, 1, 1)) * 0.02f;

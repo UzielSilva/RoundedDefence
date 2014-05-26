@@ -9,7 +9,7 @@ public class ShipElement : MonoBehaviour {
     public Int16 angle;
     int level;
     int step;
-    float radius = 2.8f;
+    float radius = 4.1f;
     IShip thisShip;
     Vector3 normal;
     Vector3 init;
@@ -17,7 +17,7 @@ public class ShipElement : MonoBehaviour {
 	
     // Use this for initialization
 	void Start () {
-        level = 24;
+        level = 17;
         thisShip = (IShip)Activator.CreateInstance(Lib.Ships[id].GetType());
         float initAngle = Lib.toTiles(new Point(level, angle)).Y;
         ShortPath p = new ShortPath(level, (int)initAngle, 0, 0);
@@ -44,7 +44,7 @@ public class ShipElement : MonoBehaviour {
 	}
     void goToNextStep()
     {
-        float velocity = 0.01f;
+        float velocity = 0.005f;
         float currentTime = Time.time - timer;
         Camino c = thisShip.Path.camino[thisShip.Path.camino.Count - step];
         GameObject point = GameObject.Find(String.Format("Point{0},{1}", c.lvl, c.p));

@@ -42,7 +42,7 @@ namespace RoundedDefence{
         }
 
 		public static int getNcircles(int rad) {
-			byte frac = 3;
+			byte frac = 4;
 			while (rad > 3) {
 					if (rad % 3 != 0)
 							rad--;

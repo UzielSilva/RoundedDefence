@@ -8,7 +8,7 @@ namespace RoundedDefence
 		private int inicioP;
 		private int finalLvl;
 		private int finalP;
-		private int[,] valueMap= new int[25,256];
+		private int[,] valueMap= new int[18,256];
 		List<Camino> wall= new List<Camino>();
 
 		public ShortPath (int beginLvl,int beginP,int endLvl,int endP ){
@@ -19,7 +19,7 @@ namespace RoundedDefence
 			inicioP = beginP;
 			finalLvl = endLvl;
 			finalP = endP;
-			for (int i = 0; i < 25; i++) {
+			for (int i = 0; i < 18; i++) {
 				for (int e = 0; e < 256; e++) {
 					valueMap[i,e] = 999999;
 				}
@@ -27,7 +27,7 @@ namespace RoundedDefence
 		}
 		private void newer(int lvl, int p, int stime, int time) {
 			int x = (p + getNcircles(lvl)) % getNcircles(lvl);
-			int y = (lvl + 25) % 25;
+			int y = (lvl + 18) % 18;
 			if (valueMap[y,x] > stime) {
 				valueMap[y,x] = stime;
 				wall.Add(new Camino(y, x,stime+time));
@@ -56,9 +56,9 @@ namespace RoundedDefence
                         {
                             int chlvl = getNcircles(ca.lvl) / getNcircles(ca.lvl - 1);
                             newer(ca.lvl - 1, ca.p / chlvl, time, tim);
-                            if (ca.lvl < 24)
+                            if (ca.lvl < 17)
                             {
-                                if (getNcircles((ca.lvl + 1) % 25) > getNcircles(ca.lvl))
+                                if (getNcircles((ca.lvl + 1) % 18) > getNcircles(ca.lvl))
                                 {
                                     newer(ca.lvl + 1, ca.p * 2, time, tim);
                                     newer(ca.lvl + 1, ca.p * 2 + 1, time, tim);
