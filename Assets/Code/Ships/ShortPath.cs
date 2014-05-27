@@ -9,6 +9,7 @@ namespace RoundedDefence
 		private int finalLvl;
 		private int finalP;
 		private int[,] valueMap= new int[18,256];
+        public int[,] costMap = new int[18, 256];
 		List<Camino> wall= new List<Camino>();
 
 		public ShortPath (int beginLvl,int beginP,int endLvl,int endP ){
@@ -18,12 +19,21 @@ namespace RoundedDefence
 			inicioLvl = beginLvl;
 			inicioP = beginP;
 			finalLvl = endLvl;
-			finalP = endP;
-			for (int i = 0; i < 18; i++) {
-				for (int e = 0; e < 256; e++) {
-					valueMap[i,e] = 999999;
-				}
-			}
+            finalP = endP;
+            for (int i = 0; i < 18; i++)
+            {
+                for (int e = 0; e < 256; e++)
+                {
+                    valueMap[i, e] = 999999;
+                }
+            }
+            for (int i = 0; i < 18; i++)
+            {
+                for (int e = 0; e < 256; e++)
+                {
+                    costMap[i, e] = i;
+                }
+            }
 		}
 		private void newer(int lvl, int p, int stime, int time) {
 			int x = (p + getNcircles(lvl)) % getNcircles(lvl);
@@ -41,7 +51,7 @@ namespace RoundedDefence
 				int minTime = wall[0].t;
                 List<Camino> enumerator = new List<Camino>(wall);
 				foreach (Camino ca in enumerator) {
-                    int tim = 4;
+                    int tim = costMap[ca.lvl,ca.p];
                     if (minTime > ca.t)
                     {
                         minTime = ca.t;
