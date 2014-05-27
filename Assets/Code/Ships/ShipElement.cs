@@ -45,7 +45,7 @@ public class ShipElement : MonoBehaviour {
     void goToNextStep()
     {
         float velocity = 0.01f;
-        float currentTime = Time.time - timer;
+//        float currentTime = Time.time - timer;
         Camino c = thisShip.Path.camino[thisShip.Path.camino.Count - step];
         GameObject point = GameObject.Find(String.Format("Point{0},{1}", c.lvl, c.p));
         Vector3 old = transform.position;
