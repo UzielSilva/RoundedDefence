@@ -8,15 +8,15 @@ public class Phi : MonoBehaviour {
 	float phi=1.6180339887f;
 	float radius=.5f;
 	float angle=0;
-	int n=220;
+	int n=231;
 	public Path camino;
 
 	public Font font;
 	public Material material;
 	// Use this for initialization
 	void Start () {
-		int[] map=new int[220];
-		for (int e = 0; e < 220; e++) {
+		int[] map=new int[231];
+		for (int e = 0; e < 231; e++) {
 			map[e] = 10;
 		}
 		map[200-21] = 1000;

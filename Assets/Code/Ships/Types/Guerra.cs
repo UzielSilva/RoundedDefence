@@ -11,7 +11,7 @@ namespace RoundedDefence.Components.Ships.Types
         {
 			life = getTotalLife();
             Point start = Position;
-			start = Lib.toTiles (start);
+			//start = Lib.toTiles (start);
 			//setPath(new ShortPath((byte)start.X,(byte)start.Y,0,0).getPath());
 		}
 	}

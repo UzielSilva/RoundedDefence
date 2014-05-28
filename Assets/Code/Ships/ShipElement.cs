@@ -7,7 +7,6 @@ using RoundedDefence;
 public class ShipElement : MonoBehaviour {
     public String id;
     public Int16 angle;
-    int level;
     int step;
     float radius = 2.8f;
     IShip thisShip;
@@ -17,14 +16,11 @@ public class ShipElement : MonoBehaviour {
 	
     // Use this for initialization
 	void Start () {
-        level = 24;
         thisShip = (IShip)Activator.CreateInstance(Lib.Ships[id].GetType());
-        float initAngle = Lib.toTiles(new Point(level, angle)).Y;
-//        ShortPath p = new ShortPath(level, (int)initAngle, 0, 0);
-//        thisShip.Path = p.getPath(); 
-        initAngle = initAngle * (360f / Lib.getNcircles(level));
-        transform.position = new Vector3(radius * Mathf.Cos(initAngle * Mathf.PI / 180), radius * Mathf.Sin(initAngle * Mathf.PI / 180), 0);
-        transform.Rotate(Vector3.forward, 90 + initAngle);
+        ShortPath p = new ShortPath(angle, 21, Lib.map);
+        thisShip.Path = p.getPath(); 
+        transform.position =  Lib.toCords(angle);
+       	transform.Rotate(Vector3.forward, 90 + Lib.toAngle(angle));
         SpriteRenderer sprRenderer = GetComponent<SpriteRenderer>();
         sprRenderer.sprite = Resources.Load<Sprite>("Sprites/Ships/" + thisShip.Image);
         renderer.sortingLayerName = "Ships";
@@ -37,15 +33,16 @@ public class ShipElement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-//        if (step < thisShip.Path.camino.Count)
-     //       goToNextStep();
+       if (step < thisShip.Path.camino.Count)
+            goToNextStep();
         
 	
 	}
     void goToNextStep()
     {
+		/*
         float velocity = 0.01f;
-/*        float currentTime = Time.time - timer;
+        float currentTime = Time.time - timer;
         Camino c = thisShip.Path.camino[thisShip.Path.camino.Count - step];
         GameObject point = GameObject.Find(String.Format("Point{0},{1}", c.lvl, c.p));
         Vector3 old = transform.position;

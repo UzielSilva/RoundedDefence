@@ -7,7 +7,7 @@ namespace RoundedDefence
 		private int inicio;
 		private int final;
 		public int[] world;
-		public int[] valueMap= new int[220];
+		public int[] valueMap= new int[231];
 		List<Camino> wall= new List<Camino>();
 
 		public ShortPath (int beginLvl,int endLvl,int[] world ){
@@ -17,7 +17,7 @@ namespace RoundedDefence
 		public void reset(int beginLvl,int endLvl){
 			inicio = beginLvl;
 			final = endLvl;
-			for (int e = 0; e < 220; e++) {
+			for (int e = 0; e < 231; e++) {
 				valueMap[e] = 999999;
 			}
 		}
@@ -48,13 +48,13 @@ namespace RoundedDefence
 					{
 						if(ca.lvl-21>13)
 							newer(ca.lvl-21, time, tim);
-						if(ca.lvl+21<220)
+						if(ca.lvl+21<231)
 							newer(ca.lvl+21, time, tim);
 						if(ca.lvl-13>13)
 							newer(ca.lvl-13, time, tim);
-						if(ca.lvl+13<220)
+						if(ca.lvl+13<231)
 							newer(ca.lvl+13, time, tim);
-						if(ca.lvl+34<220)
+						if(ca.lvl+34<231)
 							newer(ca.lvl+34, time, tim);
 						if(ca.lvl-34>13)
 							newer(ca.lvl-34, time, tim);

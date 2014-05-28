@@ -39,8 +39,6 @@ namespace RoundedDefence
 					id=6;
 					lowest=valueMap [lvl-13];
 				}
-					next:
-					;
 				switch(id){
 				case 1:lvl+=21; break;
 				case 2:lvl-=21; break;
