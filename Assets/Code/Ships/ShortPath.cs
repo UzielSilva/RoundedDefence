@@ -44,13 +44,17 @@ namespace RoundedDefence
                     }
                     if (time >= ca.t)
 					{
-						if(ca.lvl-21>0)
+						if(ca.lvl-21>13)
 							newer(ca.lvl-21, time, tim);
 						if(ca.lvl+21<220)
 							newer(ca.lvl+21, time, tim);
+						if(ca.lvl-13>13)
+							newer(ca.lvl-13, time, tim);
+						if(ca.lvl+13<220)
+							newer(ca.lvl+13, time, tim);
 						if(ca.lvl+34<220)
 							newer(ca.lvl+34, time, tim);
-						if(ca.lvl-34>0)
+						if(ca.lvl-34>13)
 							newer(ca.lvl-34, time, tim);
                         wall.Remove(ca);
                     }
