@@ -15,7 +15,6 @@ namespace RoundedDefence
 				camino.Add (new Camino(lvl,0));
 				int lowest = valueMap [lvl];
 				int id = 0;
-				
 				if(lvl+21<220&&valueMap [lvl+21]<lowest){
 					id=1;
 					lowest=valueMap [lvl+21];

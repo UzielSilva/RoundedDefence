@@ -15,7 +15,13 @@ public class Phi : MonoBehaviour {
 	public Material material;
 	// Use this for initialization
 	void Start () {
-		ShortPath p = new ShortPath (200, 50);
+		int[] map=new int[220];
+		for (int e = 0; e < 220; e++) {
+			map[e] = 10;
+		}
+		map[200-21] = 1000;
+		map[200-34] = 1000;
+		ShortPath p = new ShortPath (200, 50,map);
 		camino = p.getPath ();
 		for (int i=21; i<n; i++) {
 			radius=Mathf.Pow(i, phi-1)/5;

@@ -6,10 +6,12 @@ namespace RoundedDefence
 	{
 		private int inicio;
 		private int final;
+		public int[] world;
 		public int[] valueMap= new int[220];
 		List<Camino> wall= new List<Camino>();
 
-		public ShortPath (int beginLvl,int endLvl ){
+		public ShortPath (int beginLvl,int endLvl,int[] world ){
+			this.world = world;
 			reset(beginLvl, endLvl);
 		}
 		public void reset(int beginLvl,int endLvl){
@@ -20,7 +22,7 @@ namespace RoundedDefence
 			}
 		}
 		private void newer(int lvl, int stime, int time) {
-			if (valueMap[lvl] > stime) {
+			if (valueMap[lvl] > stime&& world[lvl]!=1000) {
 				valueMap[lvl] = stime;
 				wall.Add(new Camino(lvl,stime+time));
 			}
@@ -33,7 +35,7 @@ namespace RoundedDefence
 				int minTime = wall[0].t;
                 List<Camino> enumerator = new List<Camino>(wall);
 				foreach (Camino ca in enumerator) {
-                    int tim = 4;
+                    int tim = world[ca.lvl];
                     if (minTime > ca.t)
                     {
                         minTime = ca.t;
