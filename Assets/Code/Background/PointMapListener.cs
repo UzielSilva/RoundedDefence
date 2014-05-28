@@ -32,7 +32,7 @@ public class PointMapListener : MonoBehaviour {
                 PointMapListener.costMap[(Int16.Parse(point[0])), (Int16.Parse(point[1]))] = 10000;
                 GameObject fish = new GameObject(name + "fish");
                 fish.transform.position = transform.position;
-                SpriteRenderer sprRenderer = fish.AddComponent<SpriteRenderer>();
+                fish.AddComponent<SpriteRenderer>();
                 Lib.setSprite(fish, "Sprites/Towers/" + Lib.Fishes[TowerSelector.idselected].Image);
                 fish.transform.localScale = (new Vector3(1,1,1))*0.05f;
                 if(OnClicked != null)

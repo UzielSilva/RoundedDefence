@@ -23,11 +23,11 @@ public class LevelSelect : MonoBehaviour {
 	GameObject objhudbar;
 
     GameObject fade;
-    Vector3 position;
+//    Vector3 position;
     Vector3 position2;
     GameObject zoomBar;
 	
-	private int cam1Deep=0;
+//	private int cam1Deep=0;
 
 
     public static Camera GUI;
@@ -38,7 +38,7 @@ public class LevelSelect : MonoBehaviour {
     GameObject[] previews;
 
     CameraZoom zoom;
-    LoadLevelSelectGUI GM;
+//    LoadLevelSelectGUI GM;
 
 	int action=0;
 	// Use this for initialization
@@ -70,13 +70,13 @@ public class LevelSelect : MonoBehaviour {
         collider.AddComponent<SpriteRenderer>();
         BoxCollider2D col2d = collider.AddComponent<BoxCollider2D>();
         col2d.size = fade.renderer.bounds.size;
-        MouseHandlerLevelSelect handler = collider.AddComponent<MouseHandlerLevelSelect>();
-        position = new Vector3(0, 0, 10);
+        collider.AddComponent<MouseHandlerLevelSelect>();
+//        position = new Vector3(0, 0, 10);
         position2 = new Vector3(0, 0, -10);
         zoom = GUI.gameObject.AddComponent<CameraZoom>();
         zoom.target = position2;
         zoom.Cam = Camera.main;
-        GM = GameObject.Find("_GM").GetComponent<LoadLevelSelectGUI>();
+      //  GM = GameObject.Find("_GM").GetComponent<LoadLevelSelectGUI>();
         var levels = from level in Lib.data.Element(XName.Get("levels")).Elements(XName.Get("level"))
                      select level;
         zoom.maxZoom = levels.ToArray().Length;

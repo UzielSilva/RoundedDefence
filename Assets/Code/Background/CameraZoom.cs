@@ -15,7 +15,7 @@ public class CameraZoom : MonoBehaviour {
     public float magnitude;
     public static bool pointClicked;
     int smooth = 8;
-    private bool isZoomed = false;
+//    private bool isZoomed = false;
 
 	// Use this for initialization
 	void Start () {

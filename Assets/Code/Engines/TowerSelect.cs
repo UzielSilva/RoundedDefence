@@ -37,7 +37,6 @@ public class TowerSelect : MonoBehaviour {
     List<Int16> avaliableTowersList;
     GameObject fade;
 
-	public Sprite sprite;
 	int pointtxt=0;
 	int titletxt=10;
 	int subtitletxt=38;

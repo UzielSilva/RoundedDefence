@@ -10,6 +10,6 @@ namespace RoundedDefence.Components.Ships
         String Id { get; }
         String Image { get; }
         Point Position { get; set; }
-        Path Path { get; set; }
+//        Path Path { get; set; }
     }
 }

@@ -4,17 +4,24 @@ namespace RoundedDefence
 {
 	public class ShortPath
 	{
+<<<<<<< HEAD
 		private int inicioLvl;
 		private int inicioP;
 		private int finalLvl;
 		private int finalP;
 		private int[,] valueMap= new int[18,256];
         public int[,] costMap = new int[18, 256];
+=======
+		private int inicio;
+		private int final;
+		public int[] valueMap= new int[220];
+>>>>>>> origin/master
 		List<Camino> wall= new List<Camino>();
 
-		public ShortPath (int beginLvl,int beginP,int endLvl,int endP ){
-			reset(beginLvl,beginP, endLvl, endP);
+		public ShortPath (int beginLvl,int endLvl ){
+			reset(beginLvl, endLvl);
 		}
+<<<<<<< HEAD
 		public void reset(int beginLvl,int beginP,int endLvl,int endP){
 			inicioLvl = beginLvl;
 			inicioP = beginP;
@@ -41,11 +48,24 @@ namespace RoundedDefence
 			if (valueMap[y,x] > stime) {
 				valueMap[y,x] = stime;
 				wall.Add(new Camino(y, x,stime+time));
+=======
+		public void reset(int beginLvl,int endLvl){
+			inicio = beginLvl;
+			final = endLvl;
+			for (int e = 0; e < 220; e++) {
+				valueMap[e] = 999999;
+			}
+		}
+		private void newer(int lvl, int stime, int time) {
+			if (valueMap[lvl] > stime) {
+				valueMap[lvl] = stime;
+				wall.Add(new Camino(lvl,stime+time));
+>>>>>>> origin/master
 			}
 
 		}
 		public Path getPath(){
-			newer (inicioLvl, inicioP, 0, 1);
+			newer (inicio, 0, 1);
 			int minDiference = 1;
 			for (int time=0; wall.Count!=0; time +=minDiference) {
 				int minTime = wall[0].t;
@@ -56,11 +76,12 @@ namespace RoundedDefence
                     {
                         minTime = ca.t;
                     }
-                    if (ca.lvl == finalLvl && ca.p == finalP)
+                    if (ca.lvl == final)
                     {
                         goto next;
                     }
                     if (time >= ca.t)
+<<<<<<< HEAD
                     {
                         if (ca.lvl > 0)
                         {
@@ -82,18 +103,29 @@ namespace RoundedDefence
                         tim *= 256 / getNcircles(ca.lvl);
                         newer(ca.lvl, ca.p + 1, time, tim);
                         newer(ca.lvl, ca.p - 1, time, tim);
+=======
+					{
+						if(ca.lvl-21>13)
+							newer(ca.lvl-21, time, tim);
+						if(ca.lvl+21<220)
+							newer(ca.lvl+21, time, tim);
+						if(ca.lvl-13>13)
+							newer(ca.lvl-13, time, tim);
+						if(ca.lvl+13<220)
+							newer(ca.lvl+13, time, tim);
+						if(ca.lvl+34<220)
+							newer(ca.lvl+34, time, tim);
+						if(ca.lvl-34>13)
+							newer(ca.lvl-34, time, tim);
+>>>>>>> origin/master
                         wall.Remove(ca);
                     }
 				}
 				minDiference = minTime - time;
 			}
-			return null;
+			//return null;
 			next: 
-			return new Path(finalLvl,finalP,valueMap);
+			return new Path(final,valueMap);
 			}
-        public static int getNcircles(int rad)
-        {
-            return Lib.getNcircles(rad);
-        }
 		}
 	}

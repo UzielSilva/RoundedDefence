@@ -127,6 +127,10 @@ public class LoadGenericLevel : MonoBehaviour {
 	int msgTime=0;
 	int imessage=0;
 	void Update () {
+		btnmusica.transform.position = new Vector3(-Lib.width() / 2f+ .6f, Lib.height() / 2f - .2f, -9f);
+		btnsound.transform.position = new Vector3(-Lib.width() / 2f + .2f, Lib.height() / 2f - .2f, -9f);
+		btnnextwave.transform.position = new Vector3(Lib.width()/2f -.65f, Lib.height() /2f -.2f, -9f);
+		txtwave.transform.position = new Vector3(Lib.width()/2f -.6f, Lib.height() /2f -.5f, -9f);
 
 		for (int i = 0; i < 5; i++)
         {
@@ -136,7 +140,9 @@ public class LoadGenericLevel : MonoBehaviour {
              }
         drawTowersMenu();
         zoomBar.transform.position = new Vector3(-Lib.width() / 2f + .4f, Lib.height() / 8f - 0.3f, -9f);
+
 		if (btnnextwave.transform.position.z == -8) {
+
 			inWave=false;
 			
 			Destroy (GameObject.Find("message"+imessage));

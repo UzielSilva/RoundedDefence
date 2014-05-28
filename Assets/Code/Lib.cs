@@ -13,6 +13,7 @@ namespace RoundedDefence{
         public static XDocument data;
         public static Dictionary<String, IShip> Ships;
         public static Dictionary<int, IFish> Fishes;
+		public static int currentlvl, currentworld;
 		public static XElement currentLevel;
 		public static int tileHeight = 10;
 		static GameObject fade;
@@ -28,6 +29,8 @@ namespace RoundedDefence{
                     && t.Attribute(XName.Get("world")).Value == world.ToString()
                     && t.Attribute(XName.Get("levelnum")).Value == levelnum.ToString()
 					select t;
+			currentlvl = levelnum;
+			currentworld = world;
 			currentLevel = q.ToArray()[0];
 		}
 
