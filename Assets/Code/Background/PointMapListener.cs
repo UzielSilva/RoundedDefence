@@ -5,7 +5,7 @@ using RoundedDefence;
 
 public class PointMapListener : MonoBehaviour {
     GameObject shadow;
-    public static int[,] costMap = new int[18,256];
+    public static int[] costMap = new int[220];
     bool over;
 
     public delegate void ClickAction();
@@ -23,13 +23,14 @@ public class PointMapListener : MonoBehaviour {
         if (TowerSelector.idselected != 0)
         {
             string[] point = name.Substring(13).Split(',');
+            /////////////////
             if (!over)
                 if(OnHover != null)
                     OnHover(point);
             renderer.enabled = true;
             if (Input.GetMouseButtonDown(0))
             {
-                PointMapListener.costMap[(Int16.Parse(point[0])), (Int16.Parse(point[1]))] = 10000;
+                PointMapListener.costMap[(Int16.Parse(point[0]))] = 10000;
                 GameObject fish = new GameObject(name + "fish");
                 fish.transform.position = transform.position;
                 fish.AddComponent<SpriteRenderer>();

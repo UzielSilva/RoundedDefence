@@ -58,14 +58,10 @@ public class LoadGenericLevel : MonoBehaviour {
 	// Use this for initialization
     void Start()
     {
-        for (int i = 0; i < 18; i++)
+        for (int e = 0; e < 220; e++)
         {
-            for (int e = 0; e < 256; e++)
-            {
-                PointMapListener.costMap[i, e] = i;
-            }
+            PointMapListener.costMap[e] = 4;
         }
-        PointMapListener.OnHover += PreviewNewPath;
 		btnmusica = GameObject.Find ("btnmusica");
 		btnsound = GameObject.Find ("btnsound");
         Lib.mute();
@@ -285,33 +281,5 @@ public class LoadGenericLevel : MonoBehaviour {
             }
         }
         isDrawedMap = true;
-    }
-    void PreviewNewPath(string[] point)
-    {
-        int temp = PointMapListener.costMap[(Int16.Parse(point[0])), (Int16.Parse(point[1]))];
-        PointMapListener.costMap[(Int16.Parse(point[0])), (Int16.Parse(point[1]))] = 10000;
-        
-        var waveList = Lib.currentLevel.Element(XName.Get("waves")).Elements(XName.Get("wave")).ToList();
-
-        var nextWaves = waveList.GetEnumerator();
-
-        while(nextWaves.Current != currentWave)
-            nextWaves.MoveNext();
-        nextWaves.MoveNext();
-
-        foreach (XElement ship in nextWaves.Current.Elements("ship"))
-        {
-            ShortPath p = new ShortPath(17, Lib.toTiles(new Point(17, Int16.Parse(ship.Attribute("angle").Value))).Y, 0, 0);
-            p.costMap = PointMapListener.costMap;
-            foreach (Camino c in p.getPath().camino)
-            {
-                if (c.lvl != 0)
-                {
-                    GameObject point2 = GameObject.Find(String.Format("Point{0},{1}", c.lvl, c.p));
-                    point2.renderer.enabled = true;
-                }
-            }
-        }
-        PointMapListener.costMap[(Int16.Parse(point[0])), (Int16.Parse(point[1]))] = temp;
     }
 }

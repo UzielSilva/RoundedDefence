@@ -8,14 +8,14 @@ namespace RoundedDefence.Components.Ships
 		public double radio, angle;
 		//public Bitmap image;
 		public Bonus bonus;
-//		private Path path;
+		private Path path;
         private string id;
         private string image;
 
         public Point Position { get; set; }
         public string Id { get { return id; } }
         public string Image { get { return image; } }
-    //    public Path Path { get { return path; } set { path = value; } }
+        public Path Path { get { return path; } set { path = value; } }
         public Ship (string Id, string Image){
             id = Id;
             image = Image;

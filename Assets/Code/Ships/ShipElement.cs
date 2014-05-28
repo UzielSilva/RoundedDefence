@@ -24,7 +24,7 @@ public class ShipElement : MonoBehaviour {
         PointMapListener.OnClicked += SetNewPath;
         thisShip = (IShip)Activator.CreateInstance(Lib.Ships[id].GetType());
         blockAngle = Lib.toTiles(new Point(level, angle)).Y;
-        p = new ShortPath(level, blockAngle, 0, 0);
+        p = new ShortPath(level, 0);
         p.costMap = PointMapListener.costMap;
         thisShip.Path = p.getPath();
         
@@ -51,7 +51,7 @@ public class ShipElement : MonoBehaviour {
         if (blockAngle != null)
         {
             blockAngle = Lib.toTiles(new Point(level, angle)).Y;
-            p = new ShortPath(level, blockAngle, 0, 0);
+            p = new ShortPath(level, 0);
             p.costMap = PointMapListener.costMap;
             thisShip.Path = p.getPath();
             step = 1;
@@ -62,7 +62,7 @@ public class ShipElement : MonoBehaviour {
         float velocity = 0.005f;
         float currentTime = Time.time - timer;
         Camino c = thisShip.Path.camino[thisShip.Path.camino.Count - step];
-        GameObject point = GameObject.Find(String.Format("Point{0},{1}", c.lvl, c.p));
+        GameObject point = GameObject.Find(String.Format("Point{0}", c.lvl));
         Vector3 old = transform.position;
         Vector3 direction = (point.transform.position - transform.position).normalized;
         if (point.transform.position != transform.position)
@@ -80,7 +80,6 @@ public class ShipElement : MonoBehaviour {
         {
             step++;
             level = c.lvl;
-            blockAngle = c.p;
         }
     }
 }
