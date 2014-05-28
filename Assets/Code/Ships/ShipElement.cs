@@ -20,8 +20,8 @@ public class ShipElement : MonoBehaviour {
         level = 24;
         thisShip = (IShip)Activator.CreateInstance(Lib.Ships[id].GetType());
         float initAngle = Lib.toTiles(new Point(level, angle)).Y;
-        ShortPath p = new ShortPath(level, (int)initAngle, 0, 0);
-        thisShip.Path = p.getPath(); 
+//        ShortPath p = new ShortPath(level, (int)initAngle, 0, 0);
+//        thisShip.Path = p.getPath(); 
         initAngle = initAngle * (360f / Lib.getNcircles(level));
         transform.position = new Vector3(radius * Mathf.Cos(initAngle * Mathf.PI / 180), radius * Mathf.Sin(initAngle * Mathf.PI / 180), 0);
         transform.Rotate(Vector3.forward, 90 + initAngle);
@@ -37,15 +37,15 @@ public class ShipElement : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-        if (step < thisShip.Path.camino.Count)
-            goToNextStep();
+//        if (step < thisShip.Path.camino.Count)
+     //       goToNextStep();
         
 	
 	}
     void goToNextStep()
     {
         float velocity = 0.01f;
-//        float currentTime = Time.time - timer;
+/*        float currentTime = Time.time - timer;
         Camino c = thisShip.Path.camino[thisShip.Path.camino.Count - step];
         GameObject point = GameObject.Find(String.Format("Point{0},{1}", c.lvl, c.p));
         Vector3 old = transform.position;
@@ -57,5 +57,6 @@ public class ShipElement : MonoBehaviour {
             level = c.lvl;
             step++;
         }
+        */
     }
 }

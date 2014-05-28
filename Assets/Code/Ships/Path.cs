@@ -7,96 +7,40 @@ namespace RoundedDefence
 	public class Path
 	{
 		public List<Camino> camino= new List<Camino>();
-		int[,] valueMap;
-		public Path (int lvl,int p,int[,] map)
+		int[] valueMap;
+		public Path (int lvl,int[] map)
 		{
 			valueMap = map;
-			while (value (lvl,p)!=0) {
-				camino.Add (new Camino(lvl,p,0));
-				int lowest = value (lvl, p);
+			while (valueMap [lvl]!=0) {
+				camino.Add (new Camino(lvl,0));
+				int lowest = valueMap [lvl];
 				int id = 0;
-
-				if (lvl < 1) {
-					for(int i=0;i<Lib.getNcircles(1);i++)
-						if (lowest >= value (1, i)) {
-							p = i;
-							lowest = value ( 1, i);
-					}
-					id = 6;
-				} else {
-					if (lowest >= value (lvl, p + 1)) {
-						lowest = value (lvl, p + 1);
-						id = 1;
-					}
-					if (lowest >= value (lvl, p - 1)) {
-						lowest = value (lvl, p - 1);
-						id = 2;
-					}
-			
-					if (lvl > 1) {
-                        int chlvl = ShortPath.getNcircles(lvl) / ShortPath.getNcircles(lvl - 1);
-						if (lowest >= value (lvl - 1, p / chlvl)) {
-							lowest = value (lvl - 1, p / chlvl);
-							id = 3;
-						}
-					}
-					if (lvl < 24) {
-                        if (ShortPath.getNcircles((lvl + 1) % 25) > ShortPath.getNcircles(lvl))
-                        {
-							if (lowest >= value (lvl + 1, p * 2)) {
-								lowest = value (lvl + 1, p * 2);
-								id = 4;
-							}
-							if (lowest >= value (lvl + 1, p * 2 + 1)) {
-								//lowest = value (lvl + 1, p*2+1); // not necesary
-								id = 5;
-							}
-						} else {
-							if (lowest >= value (lvl + 1, p)) {
-								//lowest = value (lvl + 1, p); //not necesary
-								id = 6;
-							}
-						}
-					}
+				
+				if(lvl+21<220&&valueMap [lvl+21]<lowest){
+					id=1;
+					lowest=valueMap [lvl+21];
 				}
+				if(lvl+34<220&&valueMap [lvl+34]<lowest){
+					id=3;
+					lowest=valueMap [lvl+34];
+				}
+				if(lvl-21>21&&valueMap [lvl-21]<=lowest){
+					id=2;
+					lowest=valueMap [lvl-21];
+				}
+				if(lvl-34>21&&valueMap [lvl-34]<=lowest){
+					id=4;
+					lowest=valueMap [lvl-34];
+				}
+					next:
+					;
 				switch(id){
-				case 0:
-					goto error;
-				case 1:
-                    p = (p + 1 + ShortPath.getNcircles(lvl)) % ShortPath.getNcircles(lvl);
-					break;
-				case 2:
-                    p = (p - 1 + ShortPath.getNcircles(lvl)) % ShortPath.getNcircles(lvl);
-					break;
-				case 3:
-                    int chlvl = ShortPath.getNcircles(lvl) / ShortPath.getNcircles(lvl - 1);
-					p = p / chlvl;
-					lvl = (lvl - 1 + 25) % 25;
-					break;
-				case 4:
-					lvl = (lvl+1 + 25) % 25;
-                    p = (p * 2 + ShortPath.getNcircles(lvl)) % ShortPath.getNcircles(lvl);
-					break;
-				case 5:
-					lvl = (lvl+1 + 25) % 25;
-                    p = (p * 2 + 1 + ShortPath.getNcircles(lvl)) % ShortPath.getNcircles(lvl);
-					break;
-				case 6:
-					lvl = (lvl+1 + 25) % 25;
-					break;
-
+				case 1:lvl+=21; break;
+				case 2:lvl-=21; break;
+				case 3:lvl+=34; break;
+				case 4:lvl-=34; break;
 				}
-
 				}
-		error:
-			;
-
-		}
-		
-		private int value(int lvl, int p) {
-            int x = (p + ShortPath.getNcircles(lvl)) % ShortPath.getNcircles(lvl);
-			int y = (lvl + 25) % 25;
-			return valueMap [y, x];
 
 		}
 	}
