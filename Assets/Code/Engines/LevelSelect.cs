@@ -21,6 +21,9 @@ public class LevelSelect : MonoBehaviour {
 	GameObject objstarStar;
 	GameObject objstarScore;
 	GameObject objhudbar;
+	GameObject objhudbarl;
+	GameObject objhudbarr;
+	GameObject objhudbar2;
 
     GameObject fade;
 //    Vector3 position;
@@ -63,6 +66,9 @@ public class LevelSelect : MonoBehaviour {
 		btnback = GameObject.Find ("btnback");
 		//others
 		objhudbar = GameObject.Find ("hudbar");
+		objhudbarl = GameObject.Find ("hudbarl");
+		objhudbarr = GameObject.Find ("hudbarr");
+		objhudbar2 = GameObject.Find ("hudbar2");
 		objstarStar = GameObject.Find ("starStars");
 		objstarScore = GameObject.Find ("starScore");
         fade = GameObject.Find("fade");
@@ -137,20 +143,22 @@ public class LevelSelect : MonoBehaviour {
 		//btn
         btnmusica.transform.position = new Vector3(Lib.width() / 2f- .6f, Lib.height() / 2f - .2f, -9f);
         btnsound.transform.position = new Vector3(Lib.width() / 2f - .2f, Lib.height() / 2f - .2f, -9f);
-        btnplay.transform.Translate(new Vector3(Lib.width() / 2f - .7f, -Lib.height() / 2f + .35f, -19f));
-        btnback.transform.position = new Vector3(-Lib.width() / 2f + .7f, -Lib.height() / 2f + .35f, -9f);
+        btnplay.transform.Translate(new Vector3(Lib.width() / 2f , -Lib.height() / 2f , -19f));
+        btnback.transform.position = new Vector3(-Lib.width() / 2f , -Lib.height() / 2f , -9f);
 		//obj
         objstarStar.transform.position = new Vector3(-Lib.width() / 2f + .22f, Lib.height() / 2f - .17f, -9f);
-        objhudbar.transform.position = new Vector3(0, -Lib.height() / 2f, -9f);
-        objstarScore.transform.Translate(new Vector3((Lib.getStringLength(txtscore)*-.048f),-Lib.height()/2f+.20f,-19f));
+		objhudbar.transform.position = new Vector3(0, -Lib.height() / 2f, -9f);   
+		objhudbar.transform.position = new Vector3(0, -Lib.height() / 2f, -9f);
+		objhudbar.transform.localScale = new Vector3 (Lib.width(), 8f, 1f);
+		objstarScore.transform.Translate(new Vector3((Lib.getStringLength(txtscore)*-.048f),-Lib.height()/2f+.20f,-19f));
 
-        zoomBar.transform.position = new Vector3(-Lib.width() / 2f + .25f, Lib.height() / 8f - 0.3f, -9f);
+        zoomBar.transform.position = new Vector3(-Lib.width() / 2f + .4f, Lib.height() / 8f - 0.3f, -9f);
 
         rCamera = new Rect(0, 0, 10, 10);
         rCamera.xMin = 0;
         rCamera.xMax = Screen.width;
         rCamera.yMax = Screen.height;
-        rCamera.yMin = Screen.height/5;
+        rCamera.yMin = 0;
         gui.pixelRect = rCamera;
         gui.enabled = true;
         collider.transform.localScale = new Vector3(Camera.main.aspect * gui.orthographicSize, gui.orthographicSize, 1);
