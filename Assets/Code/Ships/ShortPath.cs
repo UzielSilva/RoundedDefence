@@ -19,6 +19,7 @@ namespace RoundedDefence
 			final = endLvl;
 			for (int e = 0; e < 231; e++) {
 				valueMap[e] = 999999;
+                //costMap[e] = 0;
 			}
 		}
 		private void newer(int lvl, int stime, int time) {
@@ -34,7 +35,7 @@ namespace RoundedDefence
 			for (int time=0; wall.Count!=0; time +=minDiference) {
 				int minTime = wall[0].t;
                 List<Camino> enumerator = new List<Camino>(wall);
-				foreach (Camino ca in enumerator) {
+		foreach (Camino ca in enumerator) {
                     int tim = world[ca.lvl];
                     if (minTime > ca.t)
                     {

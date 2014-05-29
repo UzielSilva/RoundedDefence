@@ -166,8 +166,13 @@ public class TowerSelect : MonoBehaviour {
 		txttipotorre.transform.position=new Vector3( (Lib.getStringLength(txttipotorre)*-.04f),-Lib.height()/2.2f +.5f,0f);
 
 		//btn
+<<<<<<< HEAD
 		btnback.transform.position=new Vector3(-Lib.width()/2f,-Lib.height()/2f,0f);
 		btnplay.transform.position=new Vector3(Lib.width()/2f,-Lib.height()/2f ,0f);
+=======
+        btnback.transform.position = new Vector3(-Lib.width() / 2f, -Lib.height() / 2f, 0);
+        btnplay.transform.position = new Vector3(Lib.width() / 2f, -Lib.height() / 2f, 0);
+>>>>>>> 31d595f995a80a0d970fbf09ed20292398b5e287
 		for (int i=0; i<6; i++)
 		for (int e=0; e<3; e++) {
 			if(tower[i,e].transform.position.z==1){
@@ -226,6 +231,7 @@ public class TowerSelect : MonoBehaviour {
 	void backgroundbox(){
 		bleft.transform.position = new Vector3 (-Lib.width()/2.2f,0, 0);
 		bright.transform.position = new Vector3 (Lib.width()/2.2f,0, 0);
+<<<<<<< HEAD
 		bbottom.transform.position = new Vector3 (0,-Lib.height()/2.4f, 0);
 		bupper.transform.position = new Vector3 (0,Lib.height()/2.4f, 0);
 		bcenter.transform.position = new Vector3 (0,0, 0);
@@ -233,8 +239,17 @@ public class TowerSelect : MonoBehaviour {
 		blr.transform.position = new Vector3 (Lib.width()/2.2f,-Lib.height()/2.4f, 0);
 		bul.transform.position = new Vector3 (-Lib.width()/2.2f,Lib.height()/2.4f, 0);
 		bur.transform.position = new Vector3 (Lib.width()/2.2f,Lib.height()/2.4f, 0);
+=======
+		bbottom.transform.position = new Vector3 (0,-Lib.height()/2.3f, 0);
+		bupper.transform.position = new Vector3 (0,Lib.height()/2.3f, 0);
+		bcenter.transform.position = new Vector3 (0,0, 0);
+		bll.transform.position = new Vector3 (-Lib.width()/2.2f,-Lib.height()/2.3f, 0);
+		blr.transform.position = new Vector3 (Lib.width()/2.2f,-Lib.height()/2.3f, 0);
+		bul.transform.position = new Vector3 (-Lib.width()/2.2f,Lib.height()/2.3f, 0);
+		bur.transform.position = new Vector3 (Lib.width()/2.2f,Lib.height()/2.3f, 0);
+>>>>>>> 31d595f995a80a0d970fbf09ed20292398b5e287
 		
-		bcenter.transform.localScale= new Vector3 (Lib.width()*4.55f,Lib.height()*4f, 0);
+		bcenter.transform.localScale= new Vector3 (Lib.width()*4.55f,Lib.height()*4.1f, 0);
 		bbottom.transform.localScale= new Vector3 (Lib.width()*4.55f,-1f, 0);
 		bupper.transform.localScale= new Vector3 (Lib.width()*4.55f,1f, 0);
 		bleft.transform.localScale= new Vector3 (Lib.height()*4.1f,1f, 0);
