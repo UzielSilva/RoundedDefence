@@ -17,8 +17,10 @@ public class ShipElement : MonoBehaviour {
     // Use this for initialization
 	void Start () {
         thisShip = (IShip)Activator.CreateInstance(Lib.Ships[id].GetType());
-        ShortPath p = new ShortPath(angle, 21, Lib.map);
+        ShortPath p = new ShortPath(angle, 13, Lib.map);
         thisShip.Path = p.getPath(); 
+		foreach (Camino cam in thisShip.Path.camino.ToArray())
+						print (cam.lvl);
         transform.position =  Lib.toCords(angle);
        	transform.Rotate(Vector3.forward, 90 + Lib.toAngle(angle));
         SpriteRenderer sprRenderer = GetComponent<SpriteRenderer>();
@@ -34,26 +36,27 @@ public class ShipElement : MonoBehaviour {
 	void Update () {
 
        if (step < thisShip.Path.camino.Count)
-            goToNextStep();
+          goToNextStep();
         
 	
 	}
     void goToNextStep()
     {
-		/*
+
         float velocity = 0.01f;
         float currentTime = Time.time - timer;
         Camino c = thisShip.Path.camino[thisShip.Path.camino.Count - step];
-        GameObject point = GameObject.Find(String.Format("Point{0},{1}", c.lvl, c.p));
+		GameObject point =GameObject.Find(String.Format("Point{0}", c.lvl));
         Vector3 old = transform.position;
         Vector3 direction = (point.transform.position - transform.position).normalized * velocity;
         transform.position += direction;
         if ((old - transform.position).magnitude >= (old - point.transform.position).magnitude
             || point.transform.position == transform.position)
         {
-            level = c.lvl;
+			transform.rotation=new Quaternion(0,0,0,0);
+			transform.Rotate(Vector3.forward, 90 + Lib.toAngle(c.lvl));
             step++;
         }
-        */
+        
     }
 }

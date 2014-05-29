@@ -21,7 +21,7 @@ public class PointMapListener : MonoBehaviour {
                 fish.transform.position = transform.position;
                 fish.AddComponent<SpriteRenderer>();
                 Lib.setSprite(fish, "Sprites/Towers/" + Lib.Fishes[TowerSelector.idselected].Image);
-                fish.transform.localScale = (new Vector3(1,1,1))*0.05f;
+                fish.transform.localScale = (new Vector3(1,1,1))*0.1f;
             }
         }
     }

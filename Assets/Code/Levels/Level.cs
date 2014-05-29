@@ -49,8 +49,8 @@ namespace RoundedDefence.Components.Levels
 					score += (int)(ship.getScore()*(scoreMultiplier/100 +1));
 					activeShip.Remove (ship);
 				}else {
-					ship.addBonus (valueMap [ship.getTilesPosition().X, ship.getTilesPosition().Y]);
-					ship.move();
+//					ship.addBonus (valueMap [ship.getTilesPosition().X, ship.getTilesPosition().Y]);
+			//		ship.move();
 
 				}
 			}

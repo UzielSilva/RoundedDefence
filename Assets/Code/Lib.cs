@@ -46,7 +46,7 @@ namespace RoundedDefence{
             return q.ToArray()[0];
         }
 		public static Vector3 toCords(int p){
-			float radius=Mathf.Pow(p, phi-1)/7;
+			float radius=Mathf.Pow(p, phi-1)/9;
 			float angle=2 * Mathf.PI * phi * p;
 			return new Vector3 (Mathf.Cos(angle)*radius,Mathf.Sin(angle)*radius,0f);
 		}
