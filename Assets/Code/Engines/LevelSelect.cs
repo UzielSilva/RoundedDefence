@@ -136,20 +136,23 @@ public class LevelSelect : MonoBehaviour {
 
         drawDescription();
 		//txt
-        txtstar.transform.position = new Vector3(-Lib.width() / 2f + .4f, Lib.height() / 2f - .04f, -9f);
+		txtstar.transform.position = new Vector3(-Lib.width() / 2f +.4f-((PlayerPrefs.GetInt("TotalStars", 0)+"").Length*.055f), Lib.height() / 2f - .34f, -9f);
         txtname.transform.Translate(new Vector3(- (Lib.width()/3.2f), -Lib.height() / 2f + .7f, -19f));
         txtmsg.transform.position = new Vector3(Lib.getStringLength(txtmsg) * -.048f, -Lib.height() / 2f + .7f, -9f);
         txtscore.transform.Translate(new Vector3((Lib.getStringLength(txtscore) * -.048f) + .2f, -Lib.height() / 2f + .35f, -19f));
 		//btn
         btnmusica.transform.position = new Vector3(Lib.width() / 2f- .6f, Lib.height() / 2f - .2f, -9f);
         btnsound.transform.position = new Vector3(Lib.width() / 2f - .2f, Lib.height() / 2f - .2f, -9f);
-        btnplay.transform.Translate(new Vector3(Lib.width() / 2f , -Lib.height() / 2f , -19f));
-        btnback.transform.position = new Vector3(-Lib.width() / 2f , -Lib.height() / 2f , -9f);
+        btnplay.transform.Translate(new Vector3(Lib.width() / 2f , -Lib.height() / 2f  , -19f));
+        btnback.transform.position = new Vector3(-Lib.width() / 2f , -Lib.height() / 2f  , -9f);
 		//obj
-        objstarStar.transform.position = new Vector3(-Lib.width() / 2f + .22f, Lib.height() / 2f - .17f, -9f);
+		objstarStar.transform.position = new Vector3(-Lib.width() / 2f + .4f, Lib.height() / 2f - .17f, -9f);
 		objhudbar.transform.position = new Vector3(0, -Lib.height() / 2f, -9f);   
-		objhudbar.transform.position = new Vector3(0, -Lib.height() / 2f, -9f);
-		objhudbar.transform.localScale = new Vector3 (Lib.width(), 8f, 1f);
+		objhudbar2.transform.position = new Vector3(0, -Lib.height() / 2f, -9f);
+		objhudbarl.transform.position = new Vector3(-43.6f*Lib.width()/100, -1.3f, -9f);
+		objhudbarr.transform.position = new Vector3(43.6f*Lib.width()/100, -1.3f, -9f);
+		objhudbar.transform.localScale = new Vector3 (Lib.width()*4.3f, 8f, 1f);
+		objhudbar2.transform.localScale = new Vector3 (Lib.width()*4.5f, 6.5f, 1f);
 		objstarScore.transform.Translate(new Vector3((Lib.getStringLength(txtscore)*-.048f),-Lib.height()/2f+.20f,-19f));
 
         zoomBar.transform.position = new Vector3(-Lib.width() / 2f + .4f, Lib.height() / 8f - 0.3f, -9f);

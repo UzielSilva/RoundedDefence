@@ -33,7 +33,7 @@ public class Phi : MonoBehaviour {
 			MeshRenderer m=g.GetComponent<MeshRenderer>();
 			m.material = material;
 			if(p.valueMap[i]!=999999)
-				Lib.setString (g, (p.valueMap[i])+"_"+(i));
+				Lib.setString (g, (p.valueMap[i])+"_"+(i%13));
 			
 			g.transform.position=new Vector3(Mathf.Cos(angle)*radius,Mathf.Sin(angle)*radius,0f);
 			g.transform.localScale=new Vector3(.1f,.1f,.1f);
