@@ -88,7 +88,7 @@ public class LoadLevelSelectGUI : MonoBehaviour {
         oldCentroid = IslandSelected.centroid;
 
         if (IslandSelected.centroid == "") Lib.cameraFollow(Lib.mouseCord(LevelSelect.GUI), LevelSelect.GUI);
-
+		try{
         if(target != null)
             if (target.name.Substring(0, 6) == ("LevelS"))
             {
@@ -108,5 +108,7 @@ public class LoadLevelSelectGUI : MonoBehaviour {
                 behaviorSelector1.radius = radiusCollider * scaleLevelNormal.magnitude;
                 behaviorSelector2.radius = (radiusCollider - 0.5f) * scaleLevelNormal.magnitude;
             }
+		}catch(Exception){
+				}
 	}
 }
