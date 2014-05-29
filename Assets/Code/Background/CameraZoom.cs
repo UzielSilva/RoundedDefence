@@ -27,8 +27,9 @@ public class CameraZoom : MonoBehaviour {
         SpriteRenderer sprRenderer = point.AddComponent<SpriteRenderer>();
         Lib.setSprite(point, "Sprites/Misc/pointzoom");
         sprRenderer.sortingLayerName = "Shots";
-        point.transform.position = new Vector3(zoomBar.renderer.bounds.max.x, zoomBar.renderer.bounds.max.y, zoomBar.renderer.bounds.max.z);
-        direction = 1;
+		point.transform.position = new Vector3(zoomBar.renderer.bounds.max.x, zoomBar.renderer.bounds.max.y, zoomBar.renderer.bounds.max.z);
+		point.transform.localScale *= .5f;
+		direction = 1;
         magnitude = camera.orthographicSize;
         old = target;
 	}
