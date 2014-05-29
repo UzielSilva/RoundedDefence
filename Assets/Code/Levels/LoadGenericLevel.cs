@@ -194,7 +194,7 @@ public class LoadGenericLevel : MonoBehaviour {
 		
 		btnmusica.transform.position = new Vector3(-Lib.width() / 2f+ .6f, Lib.height() / 2f - .2f, -9f);
 		btnsound.transform.position = new Vector3(-Lib.width() / 2f + .2f, Lib.height() / 2f - .2f, -9f);
-		btnnextwave.transform.position = new Vector3(Lib.width()/2f -.65f, Lib.height() /2f -.2f, -9f);
+		btnnextwave.transform.position = new Vector3 (Lib.width() / 2f, Lib.height() / 2f, -9f);
 		txtwave.transform.position = new Vector3(Lib.width()/2f -.6f, Lib.height() /2f -.3f, -9f);
         Lib.cameraFollow(Lib.mouseCord(gui), gui);
 
