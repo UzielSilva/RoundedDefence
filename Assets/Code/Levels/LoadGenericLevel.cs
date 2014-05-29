@@ -64,6 +64,9 @@ public class LoadGenericLevel : MonoBehaviour {
         }
 		btnmusica = GameObject.Find ("btnmusica");
 		btnsound = GameObject.Find ("btnsound");
+		for(int m =0;m<Lib.map.Length;m++){
+			Lib.map[m]=10;
+		}
         Lib.mute();
         timer = Time.time;
 		txtwave =Lib.newText("txtwave");
@@ -123,10 +126,6 @@ public class LoadGenericLevel : MonoBehaviour {
 	int msgTime=0;
 	int imessage=0;
 	void Update () {
-		btnmusica.transform.position = new Vector3(-Lib.width() / 2f+ .6f, Lib.height() / 2f - .2f, -9f);
-		btnsound.transform.position = new Vector3(-Lib.width() / 2f + .2f, Lib.height() / 2f - .2f, -9f);
-		btnnextwave.transform.position = new Vector3(Lib.width()/2f -.65f, Lib.height() /2f -.2f, -9f);
-		txtwave.transform.position = new Vector3(Lib.width()/2f -.6f, Lib.height() /2f -.5f, -9f);
 
 		for (int i = 0; i < 5; i++)
         {
@@ -202,7 +201,11 @@ public class LoadGenericLevel : MonoBehaviour {
                 Debug.Log("Level cleared");
             }
         }
-
+		
+		btnmusica.transform.position = new Vector3(-Lib.width() / 2f+ .6f, Lib.height() / 2f - .2f, -9f);
+		btnsound.transform.position = new Vector3(-Lib.width() / 2f + .2f, Lib.height() / 2f - .2f, -9f);
+		btnnextwave.transform.position = new Vector3 (Lib.width() / 2f, Lib.height() / 2f, -9f);
+		txtwave.transform.position = new Vector3(Lib.width()/2f -.6f, Lib.height() /2f -.3f, -9f);
         Lib.cameraFollow(Lib.mouseCord(gui), gui);
 
         Lib.dofade();
@@ -257,12 +260,11 @@ public class LoadGenericLevel : MonoBehaviour {
 	}
     void drawMap()
     {
-        for (int i = 1; i <= 17; i++)
+        for (int i = 0; i <= 220; i++)
         {
-            for (int j = 0; j < Lib.getNcircles(i); j++)
-            {
-                GameObject point = new GameObject("Point" + i + "," + j);
-                GameObject pointCollider = new GameObject("PointCollider" + i + "," + j);
+			if(i==1)i=13;
+                GameObject point = new GameObject("Point" + i );
+                GameObject pointCollider = new GameObject("PointCollider" + i );
                 CircleCollider2D collider = pointCollider.AddComponent<CircleCollider2D>();
                 SpriteRenderer sprRenderer = pointCollider.AddComponent<SpriteRenderer>();
                 pointCollider.AddComponent<PointMapListener>();
@@ -272,13 +274,9 @@ public class LoadGenericLevel : MonoBehaviour {
                 pointCollider.transform.localScale = (new Vector3(1,1,1))*factorSpaceMap;
                 point.AddComponent<SpriteRenderer>();
                 Lib.setSprite(point,"Sprites/Misc/backstar");
-                point.renderer.enabled = false;
-                point.transform.localScale = (new Vector3(1, 1, 1)) * 0.02f;
-                float radius = initMapRadius + factorSpaceMap*i;
-                float angle = j*2*Mathf.PI/Lib.getNcircles(i);
-                point.transform.position = new Vector3(radius * Mathf.Cos(angle), radius * Mathf.Sin(angle), 0);
+                point.transform.localScale = (new Vector3(1, 1, 1)) * 0.05f;
+                point.transform.position = Lib.toCords(i);
                 pointCollider.transform.position = point.transform.position;
-            }
         }
         isDrawedMap = true;
     }

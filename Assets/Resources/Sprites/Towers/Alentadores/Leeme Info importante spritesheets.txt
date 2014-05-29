@@ -1,0 +1,39 @@
+Los spritesheets se leen de arriba a abajo 
+ejemplo:
+
+1   2  3  4  5
+10  9  8  7  6
+11 12 13 14 15 
+20 19 18 17 16
+
+Tamaño de cuadros
+
+Alentadores
+
+arrecife : NA
+estrellas : 200 px x 200 px /60 frames/
+sirena : 150 px x 327 px /34 frames/
+
+Ataque
+
+mantarraya : 270 px x 270 px /23 frames/
+tiburón : 200 px x 350 px   /24 frames/
+cangrejo : 360 px x 360 px  /23 frames/
+
+Barrera
+
+Agujero negro : NA /movimiento giratorio/
+iceberg : 550 px x 550px /47 frames/
+roca : NA /movimiento giratorio/
+
+Múltiple
+
+peces voladores : 350 px x 350 px /35 frames/
+piranha : 
+pulpo : 350 px x 331 px /47 frames/
+
+Venenoso
+
+erizo : 150 px x 150 px /23 frames/
+medusas : NA /movimiento giratorio/
+Pez leon : 300 px x 300 px /23 frames/

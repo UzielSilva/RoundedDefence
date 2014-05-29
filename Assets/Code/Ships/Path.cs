@@ -11,20 +11,28 @@ namespace RoundedDefence
 		public Path (int lvl,int[] map)
 		{
 			valueMap = map;
+			int lowest = valueMap [lvl];
+			if (lvl == 13) {
+				if(lowest>valueMap[14]){lvl=14;lowest=valueMap[14];}
+				if(lowest>valueMap[15]){lvl=15;lowest=valueMap[15];}
+				if(lowest>valueMap[16]){lvl=16;lowest=valueMap[16];}
+				if(lowest>valueMap[17]){lvl=17;lowest=valueMap[17];}
+				camino.Add (new Camino(0,0));
+				camino.Add (new Camino(0,0));
+			}
 			while (valueMap [lvl]!=0) {
 				camino.Add (new Camino(lvl,0));
-				int lowest = valueMap [lvl];
+				lowest = valueMap [lvl];
 				int id = 0;
-				
-				if(lvl+21<220&&valueMap [lvl+21]<lowest){
+				if(lvl+21<231&&valueMap [lvl+21]<lowest){
 					id=1;
 					lowest=valueMap [lvl+21];
 				}
-				if(lvl+34<220&&valueMap [lvl+34]<lowest){
+				if(lvl+34<231&&valueMap [lvl+34]<lowest){
 					id=3;
 					lowest=valueMap [lvl+34];
 				}
-				if(lvl+13<220&&valueMap [lvl+13]<lowest){
+				if(lvl+13<231&&valueMap [lvl+13]<lowest){
 					id=5;
 					lowest=valueMap [lvl+13];
 				}
@@ -40,8 +48,6 @@ namespace RoundedDefence
 					id=6;
 					lowest=valueMap [lvl-13];
 				}
-					next:
-					;
 				switch(id){
 				case 1:lvl+=21; break;
 				case 2:lvl-=21; break;

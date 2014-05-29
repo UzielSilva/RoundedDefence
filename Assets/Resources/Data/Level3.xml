@@ -1,0 +1,12 @@
+<level class="normal" world="1" levelnum="3" name="Artantic Island" required-stars="0" locked-sprite="isla3" unlocked-sprite="isla2"  background-image="bg resized" background-music="Fish-MatchTwo" >
+	<scores one-star="10000" two-star="20000" three-star="30000"/>
+	<towers>	
+		<tower id=""/>
+	</towers>
+	<walls>	
+		<wall id="" radius="" angle=""/>
+	</walls>
+	<wave time="">		
+		<ship id="" time="" angle=""/>
+	</wave>
+</level>

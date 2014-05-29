@@ -19,6 +19,8 @@ namespace RoundedDefence{
 		static GameObject fade;
 		static float fader=0;
 		static float fading=0;
+		public static float phi=1.6180339887f;
+		public static int[] map=new int[231];
 		public static bool music=PlayerPrefs.GetInt("Music",1)==1;
 		public static bool sound = PlayerPrefs.GetInt("Sound",1)==1;
 		public static AudioClip clickClip = Resources.Load("Music/Sounds/Clicks/click25") as AudioClip;
@@ -43,21 +45,15 @@ namespace RoundedDefence{
                     select t;
             return q.ToArray()[0];
         }
+		public static Vector3 toCords(int p){
+			float radius=Mathf.Pow(p, phi-1)/9;
+			float angle=2 * Mathf.PI * phi * p;
+			return new Vector3 (Mathf.Cos(angle)*radius,Mathf.Sin(angle)*radius,0f);
+		}
+		public static float toAngle(int p){
+			return 2 * Mathf.PI * phi * p;
+		}
 
-		public static int getNcircles(int rad) {
-			byte frac = 4;
-			while (rad > 3) {
-					if (rad % 3 != 0)
-							rad--;
-					rad = rad / 3;
-					frac++;
-			}
-			//if (rad == 0)return 1;
-			return (int)Math.Pow (2.0, frac);
-		}
-		public static Point toTiles(Point p){
-		    return new Point (p.X, (int)(p.Y * getNcircles (p.X) / 360));
-		}
 		public static void mute(){
 			if (music)
 				muteMusic (false);

@@ -8,16 +8,22 @@ public class Phi : MonoBehaviour {
 	float phi=1.6180339887f;
 	float radius=.5f;
 	float angle=0;
-	int n=220;
+	int n=231;
 	public Path camino;
 
 	public Font font;
 	public Material material;
 	// Use this for initialization
 	void Start () {
-		ShortPath p = new ShortPath (200, 50);
+		int[] map=new int[231];
+		for (int e = 0; e < 231; e++) {
+			map[e] = 10;
+		}
+		map[200-21] = 1000;
+		map[200-34] = 1000;
+		ShortPath p = new ShortPath (221, 13,map);
 		camino = p.getPath ();
-		for (int i=21; i<n; i++) {
+		for (int i=0; i<n; i++) {
 			radius=Mathf.Pow(i, phi-1)/5;
 			angle=2 * Mathf.PI * phi * i;
 			GameObject g=new GameObject("pto"+i);
@@ -27,7 +33,7 @@ public class Phi : MonoBehaviour {
 			MeshRenderer m=g.GetComponent<MeshRenderer>();
 			m.material = material;
 			if(p.valueMap[i]!=999999)
-				Lib.setString (g, (p.valueMap[i])+"_"+(i%8));
+				Lib.setString (g, (p.valueMap[i])+"_"+(i));
 			
 			g.transform.position=new Vector3(Mathf.Cos(angle)*radius,Mathf.Sin(angle)*radius,0f);
 			g.transform.localScale=new Vector3(.1f,.1f,.1f);

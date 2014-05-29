@@ -687,8 +687,8 @@ BoxCollider2D:
   m_Enabled: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Size: {x: 2.94000006, y: .790000021}
-  m_Center: {x: 0, y: 0}
+  m_Size: {x: 2.74000001, y: 1.15999997}
+  m_Center: {x: -1.37, y: -.579999983}
 --- !u!114 &813416449
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -700,9 +700,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 76828610acf464b7bb5f4c5c78dae5f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  unpress: {fileID: 21300000, guid: 54582070d814044df96b724915aee428, type: 3}
-  press: {fileID: 21300000, guid: d34d5aa7bb5f64db6aa8ae5213dec441, type: 3}
-  pressed: {fileID: 21300000, guid: 5e414585d072f465abf52f7d88f47fad, type: 3}
+  unpress: {fileID: 21300000, guid: 94b511a2538234043afab992b2f08566, type: 3}
+  press: {fileID: 21300000, guid: b6b8cefdb28ecf747830f78f6afa2b11, type: 3}
+  pressed: {fileID: 21300000, guid: b6b8cefdb28ecf747830f78f6afa2b11, type: 3}
 --- !u!212 &813416450
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -724,7 +724,7 @@ SpriteRenderer:
   m_SortingLayer: 5
   m_SortingOrder: 10
   m_SortingLayerID: 1738934777
-  m_Sprite: {fileID: 21300000, guid: 54582070d814044df96b724915aee428, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 94b511a2538234043afab992b2f08566, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
 --- !u!4 &813416451
 Transform:

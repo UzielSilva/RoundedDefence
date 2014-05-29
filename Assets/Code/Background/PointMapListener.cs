@@ -23,21 +23,7 @@ public class PointMapListener : MonoBehaviour {
         if (TowerSelector.idselected != 0)
         {
             string[] point = name.Substring(13).Split(',');
-            /////////////////
-            if (!over)
-                if(OnHover != null)
-                    OnHover(point);
-            renderer.enabled = true;
-            if (Input.GetMouseButtonDown(0))
-            {
-                PointMapListener.costMap[(Int16.Parse(point[0]))] = 10000;
-                GameObject fish = new GameObject(name + "fish");
-                fish.transform.position = transform.position;
-                fish.AddComponent<SpriteRenderer>();
-                Lib.setSprite(fish, "Sprites/Towers/" + Lib.Fishes[TowerSelector.idselected].Image);
-                fish.transform.localScale = (new Vector3(1,1,1))*0.05f;
-                if(OnClicked != null)
-                    OnClicked();
+                fish.transform.localScale = (new Vector3(1,1,1))*0.1f;
             }
         }
         over = true;

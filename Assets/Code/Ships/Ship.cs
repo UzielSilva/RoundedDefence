@@ -5,8 +5,6 @@ namespace RoundedDefence.Components.Ships
 	public abstract class Ship : IShip
 	{
 		public int shipAngle,life;
-		public double radio, angle;
-		//public Bitmap image;
 		public Bonus bonus;
 		private Path path;
         private string id;
@@ -68,14 +66,6 @@ namespace RoundedDefence.Components.Ships
 		public void move(){
 			double spd = getSpeed()+bonus.speed;
 			spd /= getBoost()+bonus.boost;
-/*			if (radio != path.camino [0].lvl * Lib.tileHeight) {
-				if (radio > path.camino [0].lvl * Lib.tileHeight) {
-					radio -= spd;
-				} else {
-					radio += spd;
-				}
-			}*/
-
 		}
 		public void hit(double dmg){
 			dmg-= getShield()+bonus.shield;
@@ -88,10 +78,7 @@ namespace RoundedDefence.Components.Ships
 		private void kill(){
 		}
 		public Point getPosition(){
-			return new Point((int)radio,(int)angle);
-		}
-		public Point getTilesPosition(){
-			return Lib.toTiles(getPosition());
+			return null;
 		}
 
 	}
