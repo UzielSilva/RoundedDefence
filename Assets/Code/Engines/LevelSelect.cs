@@ -77,6 +77,7 @@ public class LevelSelect : MonoBehaviour {
         BoxCollider2D col2d = collider.AddComponent<BoxCollider2D>();
         col2d.size = fade.renderer.bounds.size;
         collider.AddComponent<MouseHandlerLevelSelect>();
+        collider.transform.position = new Vector3(0, 0,1);
 //        position = new Vector3(0, 0, 10);
         position2 = new Vector3(0, 0, -10);
         zoom = GUI.gameObject.AddComponent<CameraZoom>();
