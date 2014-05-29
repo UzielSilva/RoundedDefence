@@ -45,6 +45,8 @@ public class CameraZoom : MonoBehaviour {
         point.transform.Translate(new Vector3(0, -zoomBar.renderer.bounds.size.y * minZoomBar + value * zoomBar.renderer.bounds.size.y * (maxZoomBar - minZoomBar), 0));
         if (pointClicked)
         {
+            if (IslandSelected.centroid == "")
+                IslandSelected.centroid = "sun";
             if (Lib.mouseCord(Cam).y <= zoomBar.renderer.bounds.max.y - zoomBar.renderer.bounds.size.y * minZoomBar //1.2
                 && Lib.mouseCord(Cam).y >= zoomBar.renderer.bounds.max.y - zoomBar.renderer.bounds.size.y * maxZoomBar) //-0.8
                 camera.orthographicSize = -((Lib.mouseCord(Cam).y - zoomBar.renderer.bounds.max.y + zoomBar.renderer.bounds.size.y * minZoomBar) / (zoomBar.renderer.bounds.size.y * (maxZoomBar - minZoomBar)) * (maxZoom - minZoom) - minZoom);
