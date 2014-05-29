@@ -23,8 +23,7 @@ public class PointMapListener : MonoBehaviour {
         if (TowerSelector.idselected != 0)
         {
             string[] point = name.Substring(13).Split(',');
-                fish.transform.localScale = (new Vector3(1,1,1))*0.1f;
-            }
+            //fish.transform.localScale = (new Vector3(1,1,1))*0.1f;
         }
         over = true;
     }
@@ -33,15 +32,15 @@ public class PointMapListener : MonoBehaviour {
 	void Update () {
         if (!over && renderer.enabled == true)
         {
-            for (int i = 1; i < 18; i++)
-            {
-                for (int e = 0; e < Lib.getNcircles(i); e++)
-                {
-                    GameObject point2 = GameObject.Find(String.Format("Point{0},{1}", i, e));
-                    point2.renderer.enabled = false;
-                }
-            }
-            renderer.enabled = false;
+            //for (int i = 1; i < 18; i++)
+            //{
+            //    for (int e = 0; e < Lib.getNcircles(i); e++)
+            //    {
+            //        GameObject point2 = GameObject.Find(String.Format("Point{0},{1}", i, e));
+            //        point2.renderer.enabled = false;
+            //    }
+            //}
+            //renderer.enabled = false;
         }
         over = false;
 	}

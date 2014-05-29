@@ -64,7 +64,7 @@ public class ShipElement : MonoBehaviour {
 			transform.rotation=new Quaternion(0,0,0,0);
 			transform.Rotate(Vector3.forward, 90 + Lib.toAngle(c.lvl));
             step++;
-            level = c.lvl;
+            //level = c.lvl;
         }
     }
 }

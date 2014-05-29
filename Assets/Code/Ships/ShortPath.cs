@@ -19,7 +19,7 @@ namespace RoundedDefence
 			final = endLvl;
 			for (int e = 0; e < 231; e++) {
 				valueMap[e] = 999999;
-                costMap[e] = 0;
+                //costMap[e] = 0;
 			}
 		}
 		private void newer(int lvl, int stime, int time) {
