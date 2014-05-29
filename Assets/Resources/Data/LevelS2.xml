@@ -1,8 +1,6 @@
-<<<<<<< HEAD
+
 <level class="special" world="1" levelnum="3"  name="Moonlight Oasis" required-stars="3" locked-sprite="isla6" unlocked-sprite="isla6" background-image="Space" background-music="Fish-MatchTwo" >
-=======
-<level class="special" world="1" levelnum="1"  name="Moonlight Oasis" required-stars="3" locked-sprite="isla6" unlocked-sprite="island" background-image="Space" background-music="Fish-MatchTwo" >
->>>>>>> 31d595f995a80a0d970fbf09ed20292398b5e287
+
 	<scores one-star="10000" two-star="20000" three-star="30000"/>
 	<towers>	
 		<tower id=""/>

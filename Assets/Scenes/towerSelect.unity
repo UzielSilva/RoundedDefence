@@ -882,7 +882,6 @@ Transform:
   m_LocalScale: {x: .0799999982, y: .0799999982, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-<<<<<<< HEAD
 --- !u!1 &919090239
 GameObject:
   m_ObjectHideFlags: 0
@@ -960,8 +959,6 @@ Transform:
   m_LocalScale: {x: .400000006, y: .400000006, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-=======
->>>>>>> 31d595f995a80a0d970fbf09ed20292398b5e287
 --- !u!1 &1003064222
 GameObject:
   m_ObjectHideFlags: 0
@@ -1062,7 +1059,6 @@ Transform:
   m_LocalScale: {x: 3, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-<<<<<<< HEAD
 --- !u!1 &1148607310
 GameObject:
   m_ObjectHideFlags: 0
@@ -1140,8 +1136,6 @@ Transform:
   m_LocalScale: {x: .400000006, y: .400000006, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-=======
->>>>>>> 31d595f995a80a0d970fbf09ed20292398b5e287
 --- !u!1 &1207536188
 GameObject:
   m_ObjectHideFlags: 0
