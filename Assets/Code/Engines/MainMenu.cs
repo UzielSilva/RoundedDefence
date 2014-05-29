@@ -87,7 +87,7 @@ public class MainMenu : MonoBehaviour {
 		btncampaign.transform.position = new Vector3 (0,-0f*Lib.height()/20f, 0);
 		btnoptions.transform.position = new Vector3 (0,-2.5f*Lib.height() /20f, 0);
 		btncredits.transform.position = new Vector3 (0,-5f*Lib.height() /20f, 0);
-		title.transform.position = new Vector3 (0,-3f*Lib.height() /20f, 0);
+		title.transform.position = new Vector3 (0,-3f*Lib.height() /20f +.25f, 0);
 		circle.transform.position = new Vector3 (0, -.5f, 0);
 
 		Vector3 move = new Vector3 (0,7, 0);

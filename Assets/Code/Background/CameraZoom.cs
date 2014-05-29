@@ -6,6 +6,8 @@ public class CameraZoom : MonoBehaviour {
 
     GameObject zoomBar;
     GameObject point;
+    float minZoomBar = 0.1f;
+    float maxZoomBar = 0.95f;
     public Camera Cam;
     public Vector3 target;
     private Vector3 old;
@@ -39,16 +41,16 @@ public class CameraZoom : MonoBehaviour {
         float value = ((minZoom - camera.orthographicSize) / (maxZoom - minZoom));
         if (value < -1) value = -1;
         if (value > 0) value = 0;
-        point.transform.Translate(new Vector3(0, -zoomBar.renderer.bounds.size.y * 0.05f + value * zoomBar.renderer.bounds.size.y * 0.9f, 0));
+        point.transform.Translate(new Vector3(0, -zoomBar.renderer.bounds.size.y * minZoomBar + value * zoomBar.renderer.bounds.size.y * (maxZoomBar - minZoomBar), 0));
         if (pointClicked)
         {
-            if (Lib.mouseCord(Cam).y <= zoomBar.renderer.bounds.max.y - zoomBar.renderer.bounds.size.y * 0.05f //1.2
-                && Lib.mouseCord(Cam).y >= zoomBar.renderer.bounds.max.y - zoomBar.renderer.bounds.size.y * 0.95f) //-0.8
-                camera.orthographicSize = -((Lib.mouseCord(Cam).y - zoomBar.renderer.bounds.max.y + zoomBar.renderer.bounds.size.y * 0.05f) / (zoomBar.renderer.bounds.size.y * 0.9f) * (maxZoom - minZoom) - minZoom);
-            if (Lib.mouseCord(Cam).y > zoomBar.renderer.bounds.max.y - zoomBar.renderer.bounds.size.y * 0.05f)
+            if (Lib.mouseCord(Cam).y <= zoomBar.renderer.bounds.max.y - zoomBar.renderer.bounds.size.y * minZoomBar //1.2
+                && Lib.mouseCord(Cam).y >= zoomBar.renderer.bounds.max.y - zoomBar.renderer.bounds.size.y * maxZoomBar) //-0.8
+                camera.orthographicSize = -((Lib.mouseCord(Cam).y - zoomBar.renderer.bounds.max.y + zoomBar.renderer.bounds.size.y * minZoomBar) / (zoomBar.renderer.bounds.size.y * (maxZoomBar - minZoomBar)) * (maxZoom - minZoom) - minZoom);
+            if (Lib.mouseCord(Cam).y > zoomBar.renderer.bounds.max.y - zoomBar.renderer.bounds.size.y * minZoomBar)
                 camera.orthographicSize = minZoom;
 
-            if (Lib.mouseCord(Cam).y < zoomBar.renderer.bounds.max.y - zoomBar.renderer.bounds.size.y * 0.95f)
+            if (Lib.mouseCord(Cam).y < zoomBar.renderer.bounds.max.y - zoomBar.renderer.bounds.size.y * maxZoomBar)
                 camera.orthographicSize = maxZoom;
             magnitude = camera.orthographicSize;
         }
