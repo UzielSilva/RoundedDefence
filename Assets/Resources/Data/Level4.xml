@@ -1,4 +1,4 @@
-<level class="normal" world="1" levelnum="2" name="Artantic Island" required-stars="0" locked-sprite="isla2" unlocked-sprite="isla2"  background-image="bg resized" background-music="Fish-MatchTwo" >
+<level class="normal" world="1" levelnum="4" name="Artantic Island" required-stars="0" locked-sprite="isla4" unlocked-sprite="isla4"  background-image="bg resized" background-music="Fish-MatchTwo" >
 	<scores one-star="10000" two-star="20000" three-star="30000"/>
 	<towers>	
 		<tower id=""/>

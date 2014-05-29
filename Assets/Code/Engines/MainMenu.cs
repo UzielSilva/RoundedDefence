@@ -13,6 +13,7 @@ public class MainMenu : MonoBehaviour {
 	GameObject btnmusica;
 	GameObject btnsound;
 	//obj
+	GameObject circle;
 	GameObject creditos;
 	GameObject title;
 	GameObject portadaBL;
@@ -32,6 +33,7 @@ public class MainMenu : MonoBehaviour {
 		btnback = GameObject.Find ("btnback");
 		btnmusica = GameObject.Find ("btnmusica");
 		btnsound = GameObject.Find ("btnsound");
+		circle = GameObject.Find ("circle");
 		
 		creditos = GameObject.Find ("creditos");
 		title = GameObject.Find ("title");
@@ -83,9 +85,10 @@ public class MainMenu : MonoBehaviour {
 		if(btncredits.transform.position.z==1)
 			menu=2;
 		btncampaign.transform.position = new Vector3 (0,-0f*Lib.height()/20f, 0);
-		btnoptions.transform.position = new Vector3 (0,-3f*Lib.height() /20f, 0);
-		btncredits.transform.position = new Vector3 (0,-6f*Lib.height() /20f, 0);
-		title.transform.position = new Vector3 (0,4f*Lib.height() /20f, 0);
+		btnoptions.transform.position = new Vector3 (0,-2.5f*Lib.height() /20f, 0);
+		btncredits.transform.position = new Vector3 (0,-5f*Lib.height() /20f, 0);
+		title.transform.position = new Vector3 (0,-3f*Lib.height() /20f, 0);
+		circle.transform.position = new Vector3 (0, -.5f, 0);
 
 		Vector3 move = new Vector3 (0,7, 0);
 		btnreset.transform.position = move;
@@ -97,28 +100,30 @@ public class MainMenu : MonoBehaviour {
 			PlayerPrefs.DeleteAll ();
 		if(btnback.transform.position.z==1)
 			menu=0;
-
-		btnreset.transform.position = new Vector3 (0,-3f *Lib.height()/20f, 0);
-		btnback.transform.position = new Vector3 (0,-6f *Lib.height()/20f, 0);
+		
+		btnback.transform.position = new Vector3 (-Lib.width() / 2f, -Lib.height() / 2f, 0);
+		btnreset.transform.position = new Vector3 (Lib.width() / 2f, -Lib.height() / 2f, 0);
 
 		Vector3 move = new Vector3 (0,7, 0);
 		btncampaign.transform.position = move;
 		btncredits.transform.position = move;
 		btnoptions.transform.position = move;
 		title.transform.position = move;
+		circle.transform.position = move;
 	}
 	void creditsMenu(){
 		if(btnback.transform.position.z==1)
 			menu=0;
 		
-		btnback.transform.position = new Vector3 (0,-6f*Lib.height() /20f, 0);
-		creditos.transform.position = new Vector3 (0,.6f, 0);
+		btnback.transform.position = new Vector3 (-Lib.width() / 2f, -Lib.height() / 2f, 0);
+		creditos.transform.position = new Vector3 (0,-0.1f, 0);
 
 		Vector3 move = new Vector3 (0,7, 0);
 		btncampaign.transform.position = move;
 		btnoptions.transform.position = move;
 		btncredits.transform.position = move;
 		btnreset.transform.position = move;
+		circle.transform.position = move;
 		title.transform.position = move;
 	}
 }

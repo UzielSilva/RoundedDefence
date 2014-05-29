@@ -1,4 +1,4 @@
-<level class="normal" world="1" levelnum="1" name="Paradise Island" required-stars="0" unlocked-sprite="isla resized" locked-sprite="isla resized" background-image="bg resized" >
+<level class="normal" world="1" levelnum="1" name="Paradise Island" required-stars="0" unlocked-sprite="isla1" locked-sprite="isla1" background-image="bg resized" >
 	<scores one-star="1000" two-star="2000" three-star="3000"/>
 	<towers>	
 		<tower id="1"/>

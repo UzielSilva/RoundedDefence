@@ -19,8 +19,6 @@ public class ShipElement : MonoBehaviour {
         thisShip = (IShip)Activator.CreateInstance(Lib.Ships[id].GetType());
         ShortPath p = new ShortPath(angle, 13, Lib.map);
         thisShip.Path = p.getPath(); 
-		foreach (Camino cam in thisShip.Path.camino.ToArray())
-						print (cam.lvl);
         transform.position =  Lib.toCords(angle);
        	transform.Rotate(Vector3.forward, 90 + Lib.toAngle(angle));
         SpriteRenderer sprRenderer = GetComponent<SpriteRenderer>();
