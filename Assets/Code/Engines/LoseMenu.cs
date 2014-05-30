@@ -7,20 +7,14 @@ using System.Collections.Generic;
 using RoundedDefence.Components.Fishes;
 using RoundedDefence;
 
-public class WonMenu : MonoBehaviour {
+public class LoseMenu : MonoBehaviour {
 	//txt
-	GameObject txtbosses;
-	GameObject txtmoney;
-	GameObject txtsafe;
-	GameObject txtships;
-	GameObject txtscore;
-	GameObject txttime;
 	//btn
 	GameObject btnback;
 	GameObject btnnext;
 	GameObject btnretry;
 	//obj
-
+	
 	GameObject fade;
 	
 	int titletxt=7;
@@ -30,20 +24,13 @@ public class WonMenu : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		Lib.mute ();
-		//txt
-		txtbosses =Lib.newText("txtbosses");
-		txtmoney =Lib.newText("txtmoney");
-		txtsafe =Lib.newText("txtsafe");
-		txtscore =Lib.newText("txtscore");
-		txtships =Lib.newText("txtships");
-		txttime =Lib.newText("txttime");
 		//btn
 		btnretry = GameObject.Find ("btnretry");
 		btnback = GameObject.Find ("btnback");
 		btnnext = GameObject.Find ("btnnext");
 		//obj
-
-
+		
+		
 		Lib.newFade ();
 		fade = GameObject.Find("fade");
 		Lib.unfades();
@@ -79,19 +66,13 @@ public class WonMenu : MonoBehaviour {
 	void Update () {
 		buttonsActions ();
 		//txt
-		txtscore.transform.position=new Vector3(-(scoretxt*.088f),0.1f*-9 +.3f,0f);
-		txtships.transform.position=new Vector3(-Lib.width()/4f +.1f,0.1f*6 + .3f,0f);
-		txtbosses.transform.position=new Vector3(-Lib.width()/4f +.1f,0.1f*3+ .3f,0f);
-		txttime.transform.position=new Vector3(-Lib.width()/4f +.1f,0.1f*0+ .3f,0f);
-		txtsafe.transform.position=new Vector3(-Lib.width()/4f +.1f,0.1f*-3 + .3f,0f);
-		txtmoney.transform.position=new Vector3(-Lib.width()/4f +.1f,0.1f*-6 +.3f,0f);
 		//btn
 		btnback.transform.position=new Vector3(-Lib.width()/2f,-Lib.height()/2f,0f);
 		btnretry.transform.position=new Vector3(0 ,-Lib.height()/2f,0f);
 		btnnext.transform.position=new Vector3(Lib.width()/2f,-Lib.height()/2f ,0f);
-
+		
 		//obj
-
+		
 		fade.transform.localScale = new Vector3(Camera.main.aspect, 1, 1);
 		
 		if (!Lib.isFading()) {

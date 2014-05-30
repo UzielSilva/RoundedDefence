@@ -25,6 +25,7 @@ public class PointMapListener : MonoBehaviour {
         {
             if (Input.GetMouseButtonDown(0))
             {
+
                 GameObject theFish = new GameObject(TowerSelector.idselected + name);
                 theFish.AddComponent<SpriteRenderer>();
                 FishElement theSettings = theFish.AddComponent<FishElement>();
