@@ -19,7 +19,7 @@ namespace RoundedDefence{
 		static GameObject fade;
 		static float fader=0;
 		static float fading=0;
-		public static int lives=0;
+		public static int lives=3;
 		public static float phi=1.6180339887f;
 		public static int[] map=new int[231];
 		public static bool music=PlayerPrefs.GetInt("Music",1)==1;

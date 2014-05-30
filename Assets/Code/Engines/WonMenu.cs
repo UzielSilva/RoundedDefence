@@ -15,7 +15,6 @@ public class WonMenu : MonoBehaviour {
 	GameObject txtships;
 	GameObject txtscore;
 	GameObject txttime;
-	GameObject txttitle;
 	//btn
 	GameObject btnback;
 	GameObject btnnext;
@@ -47,7 +46,6 @@ public class WonMenu : MonoBehaviour {
 		txtscore =Lib.newText("txtscore");
 		txtships =Lib.newText("txtships");
 		txttime =Lib.newText("txttime");
-		txttitle =Lib.newText("txttitle");
 		//btn
 		btnretry = GameObject.Find ("btnretry");
 		btnback = GameObject.Find ("btnback");
@@ -100,7 +98,6 @@ public class WonMenu : MonoBehaviour {
 	void Update () {
 		buttonsActions ();
 		//txt
-		txttitle.transform.position=new Vector3(-(titletxt*.088f),Lib.height()/2.2f -.15f,0f);
 		txtscore.transform.position=new Vector3(-(scoretxt*.088f),0.1f*-6 +.3f,0f);
 		txtships.transform.position=new Vector3(-Lib.width()/4f +.1f,0.1f*9 + .3f,0f);
 		txtbosses.transform.position=new Vector3(-Lib.width()/4f +.1f,0.1f*6+ .3f,0f);
@@ -108,9 +105,9 @@ public class WonMenu : MonoBehaviour {
 		txtsafe.transform.position=new Vector3(-Lib.width()/4f +.1f,0.1f*0 + .3f,0f);
 		txtmoney.transform.position=new Vector3(-Lib.width()/4f +.1f,0.1f*-3 +.3f,0f);
 		//btn
-		btnback.transform.position=new Vector3(-Lib.width()/3.5f +.8f,-Lib.height()/2.2f+.4f,0f);
-		btnretry.transform.position=new Vector3(0 ,-Lib.height()/2.2f +.4f,0f);
-		btnnext.transform.position=new Vector3(Lib.width()/3.5f -.8f ,-Lib.height()/2.2f +.4f,0f);
+		btnback.transform.position=new Vector3(-Lib.width()/2f,-Lib.height()/2f,0f);
+		btnretry.transform.position=new Vector3(0 ,-Lib.height()/2f,0f);
+		btnnext.transform.position=new Vector3(Lib.width()/2f,-Lib.height()/2f ,0f);
 
 		//obj
 		backgroundbox();
