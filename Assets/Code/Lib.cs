@@ -177,10 +177,14 @@ namespace RoundedDefence{
             }
 			}
 			return false;
-        }
+		}
 		public static void setSprite(GameObject obj,string str){
 			SpriteRenderer sprRenderer = (SpriteRenderer)obj.renderer;
 			sprRenderer.sprite=Resources.Load<Sprite>(str) ;
+		}
+		public static void setSprite(GameObject obj,Sprite str){
+			SpriteRenderer sprRenderer = (SpriteRenderer)obj.renderer;
+			sprRenderer.sprite=str ;
 		}
 		public static int getStringLength(GameObject obj){
 			TextMesh t = (TextMesh)obj.GetComponent(typeof(TextMesh));

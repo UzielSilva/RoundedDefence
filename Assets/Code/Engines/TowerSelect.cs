@@ -22,10 +22,7 @@ public class TowerSelect : MonoBehaviour {
 	GameObject btnplay;
 	GameObject[,] tower;
 	//obj
-	GameObject bbottom;
-	GameObject bleft;
-	GameObject bright;
-	GameObject bupper;
+	GameObject bcenter2;
 	GameObject bcenter;
 	GameObject bll;
 	GameObject blr;
@@ -59,10 +56,7 @@ public class TowerSelect : MonoBehaviour {
 		btnplay = GameObject.Find ("btnplay");
 		btnback = GameObject.Find ("btnback");
 		//obj
-		bbottom = GameObject.Find ("bbottom");
-		bleft = GameObject.Find ("bleft");
-		bright = GameObject.Find ("bright");
-		bupper = GameObject.Find ("bupper");
+		bcenter2 = GameObject.Find ("bcenter2");
 		bcenter = GameObject.Find ("bcenter");
 		bll = GameObject.Find ("bll");
 		blr = GameObject.Find ("blr");
@@ -224,21 +218,16 @@ public class TowerSelect : MonoBehaviour {
 		}
 	}
 	void backgroundbox(){
-		bleft.transform.position = new Vector3 (-Lib.width()/2.2f,0, 0);
-		bright.transform.position = new Vector3 (Lib.width()/2.2f,0, 0);
-		bbottom.transform.position = new Vector3 (0,-Lib.height()/2.4f, 0);
-		bupper.transform.position = new Vector3 (0,Lib.height()/2.4f, 0);
+		bcenter2.transform.position = new Vector3 (0f,0, 0);
 		bcenter.transform.position = new Vector3 (0,0, 0);
 		bll.transform.position = new Vector3 (-Lib.width()/2.2f,-Lib.height()/2.4f, 0);
 		blr.transform.position = new Vector3 (Lib.width()/2.2f,-Lib.height()/2.4f, 0);
-		bul.transform.position = new Vector3 (-Lib.width()/2.2f,Lib.height()/2.4f, 0);
-		bur.transform.position = new Vector3 (Lib.width()/2.2f,Lib.height()/2.4f, 0);
 		
-		bcenter.transform.localScale= new Vector3 (Lib.width()*4.55f,Lib.height()*4.1f, 0);
-		bbottom.transform.localScale= new Vector3 (Lib.width()*4.55f,-1f, 0);
-		bupper.transform.localScale= new Vector3 (Lib.width()*4.55f,1f, 0);
-		bleft.transform.localScale= new Vector3 (Lib.height()*4.1f,1f, 0);
-		bright.transform.localScale= new Vector3 (Lib.height()*4.1f ,-1f, 0);
+		bul.transform.position = new Vector3(-42.6f*Lib.width()/100f *1.05f, Lib.height()/2.55f, 0f);
+		bur.transform.position = new Vector3(42.6f*Lib.width()/100f*1.05f, Lib.height()/2.55f, 0f);
+
+		bcenter.transform.localScale= new Vector3 (Lib.width()*4.3f*1.05f,17.7f, 0);
+		bcenter2.transform.localScale= new Vector3 (Lib.width()*4.3f*1.05f+1.74f,16f, 0);
 	}
 	IFish getFish(int id){
 		string passives = "RoundedDefence.Components.Fishes.Passives";

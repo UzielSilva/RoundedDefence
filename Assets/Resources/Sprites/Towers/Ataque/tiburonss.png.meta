@@ -24,13 +24,13 @@ TextureImporter:
   maxTextureSize: 1024
   textureSettings:
     filterMode: -1
-    aniso: -1
+    aniso: 1
     mipBias: -1
-    wrapMode: -1
+    wrapMode: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -44,6 +44,222 @@ TextureImporter:
     textureFormat: -2
     compressionQuality: 50
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: tiburonss_0
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 1049
+        width: 152
+        height: 335
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: tiburonss_1
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 1049
+        width: 154
+        height: 335
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: tiburonss_2
+      rect:
+        serializedVersion: 2
+        x: 425
+        y: 1049
+        width: 151
+        height: 335
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: tiburonss_3
+      rect:
+        serializedVersion: 2
+        x: 623
+        y: 1049
+        width: 153
+        height: 333
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: tiburonss_4
+      rect:
+        serializedVersion: 2
+        x: 824
+        y: 1049
+        width: 151
+        height: 335
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: tiburonss_5
+      rect:
+        serializedVersion: 2
+        x: 1023
+        y: 1049
+        width: 153
+        height: 335
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: tiburonss_6
+      rect:
+        serializedVersion: 2
+        x: 1224
+        y: 1049
+        width: 152
+        height: 335
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: tiburonss_7
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 699
+        width: 152
+        height: 335
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: tiburonss_8
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 700
+        width: 154
+        height: 334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: tiburonss_9
+      rect:
+        serializedVersion: 2
+        x: 425
+        y: 699
+        width: 151
+        height: 335
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: tiburonss_10
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 699
+        width: 152
+        height: 333
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: tiburonss_11
+      rect:
+        serializedVersion: 2
+        x: 824
+        y: 700
+        width: 151
+        height: 334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: tiburonss_12
+      rect:
+        serializedVersion: 2
+        x: 1023
+        y: 701
+        width: 153
+        height: 333
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: tiburonss_13
+      rect:
+        serializedVersion: 2
+        x: 1224
+        y: 699
+        width: 152
+        height: 335
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: tiburonss_14
+      rect:
+        serializedVersion: 2
+        x: 24
+        y: 350
+        width: 152
+        height: 334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: tiburonss_15
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 350
+        width: 154
+        height: 334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: tiburonss_16
+      rect:
+        serializedVersion: 2
+        x: 425
+        y: 351
+        width: 151
+        height: 333
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: tiburonss_17
+      rect:
+        serializedVersion: 2
+        x: 624
+        y: 349
+        width: 152
+        height: 333
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: tiburonss_18
+      rect:
+        serializedVersion: 2
+        x: 824
+        y: 349
+        width: 151
+        height: 335
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: tiburonss_19
+      rect:
+        serializedVersion: 2
+        x: 1023
+        y: 350
+        width: 153
+        height: 334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: tiburonss_20
+      rect:
+        serializedVersion: 2
+        x: 1224
+        y: 349
+        width: 152
+        height: 335
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: tiburonss_21
+      rect:
+        serializedVersion: 2
+        x: 22
+        y: 0
+        width: 154
+        height: 334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: tiburonss_22
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 0
+        width: 153
+        height: 334
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: tiburonss_23
+      rect:
+        serializedVersion: 2
+        x: 425
+        y: 0
+        width: 151
+        height: 334
+      alignment: 0
+      pivot: {x: 0, y: 0}
   spritePackingTag: 
   userData: 
