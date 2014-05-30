@@ -228,7 +228,10 @@ public class LoadGenericLevel : MonoBehaviour {
 
         for (int i = 0; i < 3; i++)
         {
-            algae[i].transform.position = new Vector3(-Lib.width() / 2f + i*0.3f, -Lib.height() / 2f, -9f);
+			if(IslandCollider.lives >i)
+				algae[i].transform.position = new Vector3(-Lib.width() / 2f + i*0.3f, -Lib.height() / 2f, -9f);
+			else
+			algae[i].transform.position = new Vector3(-Lib.width() / 2f + i*0.3f, -Lib.height() *10f, -9f);
         }
 
             Lib.cameraFollow(Lib.mouseCord(gui), gui);

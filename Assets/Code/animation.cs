@@ -16,8 +16,10 @@ public class animation : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (del-- < 0) {
+			if(animate<img.Length)
 			Lib.setSprite (this.gameObject, img[animate]);
 			del=delay;
+			if(img.Length!=0)
 			animate=(animate+1) %img.Length; 
 		}
 	}
