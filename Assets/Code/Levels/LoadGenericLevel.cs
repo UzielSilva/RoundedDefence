@@ -80,7 +80,8 @@ public class LoadGenericLevel : MonoBehaviour {
         background.AddComponent<SpriteRenderer>();
         background.transform.position = new Vector3(0,0,2);
         background.transform.localScale *= 0.28f;
-        island = GameObject.Find("island");
+		island = GameObject.Find("island");
+		island.AddComponent<CircleCollider2D>();
         position = new Vector3(0, 0, 10);
         position2 = new Vector3(0, 0, -10);
 
@@ -175,7 +176,8 @@ public class LoadGenericLevel : MonoBehaviour {
                         String id = currentShip.Attribute("id").Value;
                     GameObject ship = new GameObject(String.Format("Ship.{0}.{1}.{2}", id, angle, currentTime));
                     ship.transform.localScale = ShipScale;
-                    ship.AddComponent<SpriteRenderer>();
+					ship.AddComponent<SpriteRenderer>();
+					ship.AddComponent<CircleCollider2D>();
                     ShipElement s = ship.AddComponent<ShipElement>();
                     s.id = id;
                     s.angle = angle;

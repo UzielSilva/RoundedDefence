@@ -35,8 +35,9 @@ public class ShipElement : MonoBehaviour {
 	void Update () {
 
        if (step < thisShip.Path.camino.Count)
-          goToNextStep();
-        
+						goToNextStep ();
+				else
+						Lib.kill ();
 	
 	}
     void goToNextStep()

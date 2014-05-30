@@ -24,13 +24,13 @@ TextureImporter:
   maxTextureSize: 1024
   textureSettings:
     filterMode: -1
-    aniso: -1
+    aniso: 1
     mipBias: -1
-    wrapMode: -1
+    wrapMode: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -44,6 +44,411 @@ TextureImporter:
     textureFormat: -2
     compressionQuality: 50
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: pulposs_0
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 2121
+        width: 328
+        height: 329
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: pulposs_1
+      rect:
+        serializedVersion: 2
+        x: 358
+        y: 2121
+        width: 327
+        height: 329
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: pulposs_2
+      rect:
+        serializedVersion: 2
+        x: 709
+        y: 2121
+        width: 328
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: pulposs_3
+      rect:
+        serializedVersion: 2
+        x: 1059
+        y: 2122
+        width: 330
+        height: 327
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: pulposs_4
+      rect:
+        serializedVersion: 2
+        x: 1410
+        y: 2123
+        width: 330
+        height: 325
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: pulposs_5
+      rect:
+        serializedVersion: 2
+        x: 1760
+        y: 2124
+        width: 330
+        height: 322
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: pulposs_6
+      rect:
+        serializedVersion: 2
+        x: 2105
+        y: 2123
+        width: 334
+        height: 323
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: pulposs_7
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 1791
+        width: 328
+        height: 330
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: pulposs_8
+      rect:
+        serializedVersion: 2
+        x: 358
+        y: 1791
+        width: 331
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: pulposs_9
+      rect:
+        serializedVersion: 2
+        x: 709
+        y: 1791
+        width: 330
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: pulposs_10
+      rect:
+        serializedVersion: 2
+        x: 1059
+        y: 1791
+        width: 330
+        height: 327
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: pulposs_11
+      rect:
+        serializedVersion: 2
+        x: 1410
+        y: 1793
+        width: 331
+        height: 323
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: pulposs_12
+      rect:
+        serializedVersion: 2
+        x: 1760
+        y: 1793
+        width: 332
+        height: 322
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: pulposs_13
+      rect:
+        serializedVersion: 2
+        x: 2109
+        y: 1790
+        width: 332
+        height: 326
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: pulposs_14
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 1459
+        width: 328
+        height: 329
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: pulposs_15
+      rect:
+        serializedVersion: 2
+        x: 358
+        y: 1461
+        width: 330
+        height: 327
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: pulposs_16
+      rect:
+        serializedVersion: 2
+        x: 708
+        y: 1461
+        width: 331
+        height: 329
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: pulposs_17
+      rect:
+        serializedVersion: 2
+        x: 1059
+        y: 1461
+        width: 332
+        height: 329
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: pulposs_18
+      rect:
+        serializedVersion: 2
+        x: 1410
+        y: 1461
+        width: 331
+        height: 323
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: pulposs_19
+      rect:
+        serializedVersion: 2
+        x: 1760
+        y: 1461
+        width: 330
+        height: 329
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: pulposs_20
+      rect:
+        serializedVersion: 2
+        x: 2105
+        y: 1461
+        width: 335
+        height: 325
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: pulposs_21
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 1131
+        width: 331
+        height: 324
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: pulposs_22
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 1129
+        width: 330
+        height: 326
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: pulposs_23
+      rect:
+        serializedVersion: 2
+        x: 709
+        y: 1129
+        width: 333
+        height: 322
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: pulposs_24
+      rect:
+        serializedVersion: 2
+        x: 1061
+        y: 1129
+        width: 330
+        height: 326
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: pulposs_25
+      rect:
+        serializedVersion: 2
+        x: 1410
+        y: 1129
+        width: 331
+        height: 322
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: pulposs_26
+      rect:
+        serializedVersion: 2
+        x: 1760
+        y: 1131
+        width: 330
+        height: 322
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: pulposs_27
+      rect:
+        serializedVersion: 2
+        x: 2109
+        y: 1131
+        width: 330
+        height: 325
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: pulposs_28
+      rect:
+        serializedVersion: 2
+        x: 10
+        y: 800
+        width: 331
+        height: 323
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: pulposs_29
+      rect:
+        serializedVersion: 2
+        x: 360
+        y: 800
+        width: 330
+        height: 321
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: pulposs_30
+      rect:
+        serializedVersion: 2
+        x: 710
+        y: 800
+        width: 332
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: pulposs_31
+      rect:
+        serializedVersion: 2
+        x: 1061
+        y: 800
+        width: 330
+        height: 320
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: pulposs_32
+      rect:
+        serializedVersion: 2
+        x: 1410
+        y: 800
+        width: 331
+        height: 321
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: pulposs_33
+      rect:
+        serializedVersion: 2
+        x: 1760
+        y: 798
+        width: 330
+        height: 327
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: pulposs_34
+      rect:
+        serializedVersion: 2
+        x: 2109
+        y: 798
+        width: 331
+        height: 328
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: pulposs_35
+      rect:
+        serializedVersion: 2
+        x: 11
+        y: 468
+        width: 330
+        height: 326
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: pulposs_36
+      rect:
+        serializedVersion: 2
+        x: 358
+        y: 135
+        width: 334
+        height: 653
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: pulposs_37
+      rect:
+        serializedVersion: 2
+        x: 710
+        y: 470
+        width: 333
+        height: 318
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: pulposs_38
+      rect:
+        serializedVersion: 2
+        x: 1059
+        y: 469
+        width: 332
+        height: 319
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: pulposs_39
+      rect:
+        serializedVersion: 2
+        x: 1410
+        y: 468
+        width: 331
+        height: 326
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: pulposs_40
+      rect:
+        serializedVersion: 2
+        x: 1759
+        y: 468
+        width: 331
+        height: 325
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: pulposs_41
+      rect:
+        serializedVersion: 2
+        x: 2109
+        y: 468
+        width: 330
+        height: 326
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: pulposs_42
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 136
+        width: 330
+        height: 327
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: pulposs_43
+      rect:
+        serializedVersion: 2
+        x: 709
+        y: 135
+        width: 328
+        height: 330
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: pulposs_44
+      rect:
+        serializedVersion: 2
+        x: 1059
+        y: 135
+        width: 327
+        height: 330
+      alignment: 0
+      pivot: {x: 0, y: 0}
   spritePackingTag: 
   userData: 

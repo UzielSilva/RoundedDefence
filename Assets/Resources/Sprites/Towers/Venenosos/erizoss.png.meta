@@ -24,13 +24,13 @@ TextureImporter:
   maxTextureSize: 1024
   textureSettings:
     filterMode: -1
-    aniso: -1
+    aniso: 1
     mipBias: -1
-    wrapMode: -1
+    wrapMode: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -44,6 +44,213 @@ TextureImporter:
     textureFormat: -2
     compressionQuality: 50
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: erizoss_0
+      rect:
+        serializedVersion: 2
+        x: 12
+        y: 652
+        width: 142
+        height: 141
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: erizoss_1
+      rect:
+        serializedVersion: 2
+        x: 170
+        y: 651
+        width: 144
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: erizoss_2
+      rect:
+        serializedVersion: 2
+        x: 329
+        y: 650
+        width: 144
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: erizoss_3
+      rect:
+        serializedVersion: 2
+        x: 489
+        y: 650
+        width: 144
+        height: 143
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: erizoss_4
+      rect:
+        serializedVersion: 2
+        x: 645
+        y: 645
+        width: 147
+        height: 149
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: erizoss_5
+      rect:
+        serializedVersion: 2
+        x: 8
+        y: 488
+        width: 144
+        height: 146
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: erizoss_6
+      rect:
+        serializedVersion: 2
+        x: 168
+        y: 488
+        width: 143
+        height: 145
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: erizoss_7
+      rect:
+        serializedVersion: 2
+        x: 327
+        y: 487
+        width: 145
+        height: 146
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: erizoss_8
+      rect:
+        serializedVersion: 2
+        x: 487
+        y: 486
+        width: 143
+        height: 147
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: erizoss_9
+      rect:
+        serializedVersion: 2
+        x: 645
+        y: 485
+        width: 147
+        height: 149
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: erizoss_10
+      rect:
+        serializedVersion: 2
+        x: 7
+        y: 325
+        width: 143
+        height: 148
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: erizoss_11
+      rect:
+        serializedVersion: 2
+        x: 166
+        y: 325
+        width: 143
+        height: 148
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: erizoss_12
+      rect:
+        serializedVersion: 2
+        x: 326
+        y: 325
+        width: 144
+        height: 147
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: erizoss_13
+      rect:
+        serializedVersion: 2
+        x: 485
+        y: 324
+        width: 147
+        height: 148
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: erizoss_14
+      rect:
+        serializedVersion: 2
+        x: 644
+        y: 326
+        width: 148
+        height: 148
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: erizoss_15
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 164
+        width: 146
+        height: 148
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: erizoss_16
+      rect:
+        serializedVersion: 2
+        x: 165
+        y: 165
+        width: 147
+        height: 148
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: erizoss_17
+      rect:
+        serializedVersion: 2
+        x: 325
+        y: 165
+        width: 146
+        height: 148
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: erizoss_18
+      rect:
+        serializedVersion: 2
+        x: 484
+        y: 164
+        width: 148
+        height: 150
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: erizoss_19
+      rect:
+        serializedVersion: 2
+        x: 646
+        y: 167
+        width: 146
+        height: 149
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: erizoss_20
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 8
+        width: 147
+        height: 147
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: erizoss_21
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 9
+        width: 149
+        height: 147
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: erizoss_22
+      rect:
+        serializedVersion: 2
+        x: 328
+        y: 10
+        width: 146
+        height: 145
+      alignment: 0
+      pivot: {x: 0, y: 0}
   spritePackingTag: 
   userData: 

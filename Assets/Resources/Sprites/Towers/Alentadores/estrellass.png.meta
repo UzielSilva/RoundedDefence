@@ -24,13 +24,13 @@ TextureImporter:
   maxTextureSize: 1024
   textureSettings:
     filterMode: -1
-    aniso: -1
+    aniso: 1
     mipBias: -1
-    wrapMode: -1
+    wrapMode: 1
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -44,6 +44,546 @@ TextureImporter:
     textureFormat: -2
     compressionQuality: 50
   spriteSheet:
-    sprites: []
+    sprites:
+    - name: estrellass_0
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 1492
+        width: 152
+        height: 168
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellass_1
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 1492
+        width: 155
+        height: 169
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellass_2
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 1492
+        width: 154
+        height: 166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellass_3
+      rect:
+        serializedVersion: 2
+        x: 659
+        y: 1489
+        width: 154
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellass_4
+      rect:
+        serializedVersion: 2
+        x: 869
+        y: 1492
+        width: 154
+        height: 168
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellass_5
+      rect:
+        serializedVersion: 2
+        x: 1076
+        y: 1494
+        width: 157
+        height: 164
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellass_6
+      rect:
+        serializedVersion: 2
+        x: 1289
+        y: 1494
+        width: 155
+        height: 167
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellass_7
+      rect:
+        serializedVersion: 2
+        x: 1499
+        y: 1492
+        width: 152
+        height: 168
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellass_8
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 1284
+        width: 157
+        height: 164
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellass_9
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 1284
+        width: 155
+        height: 166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellass_10
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 1284
+        width: 155
+        height: 167
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellass_11
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 1284
+        width: 157
+        height: 167
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellass_12
+      rect:
+        serializedVersion: 2
+        x: 870
+        y: 1284
+        width: 154
+        height: 166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellass_13
+      rect:
+        serializedVersion: 2
+        x: 1080
+        y: 1284
+        width: 155
+        height: 164
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellass_14
+      rect:
+        serializedVersion: 2
+        x: 1286
+        y: 1284
+        width: 157
+        height: 167
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellass_15
+      rect:
+        serializedVersion: 2
+        x: 1499
+        y: 1282
+        width: 152
+        height: 168
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellass_16
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 1074
+        width: 157
+        height: 164
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellass_17
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 1074
+        width: 154
+        height: 167
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellass_18
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 1072
+        width: 155
+        height: 166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellass_19
+      rect:
+        serializedVersion: 2
+        x: 659
+        y: 1070
+        width: 155
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellass_20
+      rect:
+        serializedVersion: 2
+        x: 866
+        y: 1069
+        width: 155
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellass_21
+      rect:
+        serializedVersion: 2
+        x: 1076
+        y: 1070
+        width: 155
+        height: 168
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellass_22
+      rect:
+        serializedVersion: 2
+        x: 1287
+        y: 1070
+        width: 157
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellass_23
+      rect:
+        serializedVersion: 2
+        x: 1499
+        y: 1072
+        width: 152
+        height: 168
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellass_24
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 861
+        width: 158
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellass_25
+      rect:
+        serializedVersion: 2
+        x: 237
+        y: 860
+        width: 153
+        height: 168
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellass_26
+      rect:
+        serializedVersion: 2
+        x: 446
+        y: 861
+        width: 154
+        height: 169
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellass_27
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 861
+        width: 154
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellass_28
+      rect:
+        serializedVersion: 2
+        x: 867
+        y: 859
+        width: 153
+        height: 169
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellass_29
+      rect:
+        serializedVersion: 2
+        x: 1076
+        y: 861
+        width: 154
+        height: 170
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellass_30
+      rect:
+        serializedVersion: 2
+        x: 1286
+        y: 859
+        width: 154
+        height: 169
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellass_31
+      rect:
+        serializedVersion: 2
+        x: 1499
+        y: 862
+        width: 152
+        height: 168
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellass_32
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 651
+        width: 158
+        height: 167
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellass_33
+      rect:
+        serializedVersion: 2
+        x: 236
+        y: 651
+        width: 154
+        height: 167
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellass_34
+      rect:
+        serializedVersion: 2
+        x: 447
+        y: 651
+        width: 153
+        height: 169
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellass_35
+      rect:
+        serializedVersion: 2
+        x: 656
+        y: 652
+        width: 155
+        height: 166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellass_36
+      rect:
+        serializedVersion: 2
+        x: 866
+        y: 650
+        width: 158
+        height: 171
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellass_37
+      rect:
+        serializedVersion: 2
+        x: 1076
+        y: 650
+        width: 155
+        height: 168
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellass_38
+      rect:
+        serializedVersion: 2
+        x: 1289
+        y: 650
+        width: 155
+        height: 168
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellass_39
+      rect:
+        serializedVersion: 2
+        x: 1499
+        y: 652
+        width: 152
+        height: 168
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellass_40
+      rect:
+        serializedVersion: 2
+        x: 26
+        y: 442
+        width: 155
+        height: 169
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellass_41
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 442
+        width: 152
+        height: 168
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellass_42
+      rect:
+        serializedVersion: 2
+        x: 445
+        y: 436
+        width: 164
+        height: 162
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellass_43
+      rect:
+        serializedVersion: 2
+        x: 642
+        y: 445
+        width: 166
+        height: 155
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellass_44
+      rect:
+        serializedVersion: 2
+        x: 862
+        y: 449
+        width: 168
+        height: 152
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellass_45
+      rect:
+        serializedVersion: 2
+        x: 1063
+        y: 441
+        width: 165
+        height: 164
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellass_46
+      rect:
+        serializedVersion: 2
+        x: 1285
+        y: 452
+        width: 155
+        height: 166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellass_47
+      rect:
+        serializedVersion: 2
+        x: 1499
+        y: 442
+        width: 152
+        height: 168
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellass_48
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 230
+        width: 152
+        height: 168
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellass_49
+      rect:
+        serializedVersion: 2
+        x: 231
+        y: 242
+        width: 164
+        height: 162
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellass_50
+      rect:
+        serializedVersion: 2
+        x: 452
+        y: 240
+        width: 166
+        height: 155
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellass_51
+      rect:
+        serializedVersion: 2
+        x: 650
+        y: 239
+        width: 168
+        height: 152
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellass_52
+      rect:
+        serializedVersion: 2
+        x: 872
+        y: 235
+        width: 165
+        height: 164
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellass_53
+      rect:
+        serializedVersion: 2
+        x: 1080
+        y: 222
+        width: 155
+        height: 166
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellass_54
+      rect:
+        serializedVersion: 2
+        x: 1289
+        y: 232
+        width: 152
+        height: 168
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellass_55
+      rect:
+        serializedVersion: 2
+        x: 1499
+        y: 232
+        width: 152
+        height: 168
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellass_56
+      rect:
+        serializedVersion: 2
+        x: 29
+        y: 22
+        width: 152
+        height: 168
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellass_57
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 22
+        width: 152
+        height: 168
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellass_58
+      rect:
+        serializedVersion: 2
+        x: 449
+        y: 22
+        width: 152
+        height: 168
+      alignment: 0
+      pivot: {x: 0, y: 0}
+    - name: estrellass_59
+      rect:
+        serializedVersion: 2
+        x: 659
+        y: 22
+        width: 152
+        height: 168
+      alignment: 0
+      pivot: {x: 0, y: 0}
   spritePackingTag: 
   userData: 
