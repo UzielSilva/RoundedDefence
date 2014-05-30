@@ -6,6 +6,7 @@ namespace RoundedDefence
 {
 	public class Path
 	{
+		int tryes=0;
 		public List<Camino> camino= new List<Camino>();
 		int[] valueMap;
 		public Path (int lvl,int[] map)
@@ -20,7 +21,8 @@ namespace RoundedDefence
 				camino.Add (new Camino(0,0));
 				camino.Add (new Camino(0,0));
 			}
-			while (valueMap [lvl]!=0) {
+			while (valueMap [lvl]!=0 && tryes++ <100) {
+
 				camino.Add (new Camino(lvl,0));
 				lowest = valueMap [lvl];
 				int id = 0;
