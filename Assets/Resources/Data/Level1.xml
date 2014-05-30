@@ -2,7 +2,23 @@
 	<scores one-star="1000" two-star="2000" three-star="3000"/>
 	<towers>	
 		<tower id="1"/>
+		<tower id="2"/>
+		<tower id="3"/>
 		<tower id="4"/>
+		<tower id="5"/>
+		<tower id="6"/>
+		<tower id="7"/>
+		<tower id="8"/>
+		<tower id="9"/>
+		<tower id="10"/>
+		<tower id="11"/>
+		<tower id="12"/>
+		<tower id="13"/>
+		<tower id="14"/>
+		<tower id="15"/>
+		<tower id="16"/>
+		<tower id="17"/>
+		<tower id="18"/>
 	</towers>
 	<walls>	
 		<wall id="" radius="" angle=""/>

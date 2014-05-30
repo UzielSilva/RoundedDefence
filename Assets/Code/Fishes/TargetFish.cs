@@ -12,6 +12,7 @@ namespace RoundedDefence.Components.Fishes
         private Int32 level;
         private Int32 stamina;
         private Int32[] health;
+        private bool rotate;
         public Int32 Level { get { return level; } }
         public Int32 Health { get { return health[Level-1]; } }
         public Int32 RequiredStars { get { return requiredStars; } }
@@ -24,14 +25,16 @@ namespace RoundedDefence.Components.Fishes
         
         public Point Position { get; set; }
         public Int32 RequiredFood { get { return requiredFood[Level-1]; } }
-        public Double Velocity { get { return velocity[Level-1]; } }
-		public Int32 Damage { get { return damage[Level-1]; } }
-		public Int32 Id { get { return id; } }
+        public Double Velocity { get { return velocity[Level - 1]; } }
+        public Int32 Damage { get { return damage[Level - 1]; } }
+        public bool Rotate { get { return rotate; } }
+        public Int32 Id { get { return id; } }
+        public Int32 Radius { get { return radius[Level - 1]; } }
 		public String Image { get { return image; } }
 		public String Name { get { return name; } }
 		public float Scale { get { return scale; } }
 		public TargetFish(Int32[] requiredFood, Int32 requiredStars, Double[] velocity, Int32[] damage, Int32[] health , 
-		                   string image,string name,Int32 id, Int32[] radius,float scale)
+		                   string image,string name,Int32 id, Int32[] radius,bool rotate,float scale)
         {
             if (requiredFood.Length != 4
                 || velocity.Length != 4
@@ -48,6 +51,7 @@ namespace RoundedDefence.Components.Fishes
 			this.image = image;
 			this.name = name;
 			this.id = id;
+            this.rotate = rotate;
 			this.scale = scale;
         }
         public void Upgrade()
