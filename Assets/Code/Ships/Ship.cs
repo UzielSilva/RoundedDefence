@@ -4,7 +4,7 @@ namespace RoundedDefence.Components.Ships
 {
 	public abstract class Ship : IShip
 	{
-		public int shipAngle,life;
+		public float shipAngle,life;
 		public Bonus bonus;
 		private Path path;
         private string id;
@@ -34,9 +34,9 @@ namespace RoundedDefence.Components.Ships
 		public int getShield(){return 0;}
 		public double getDefence(){return 1;}
 		public int getTotalLife(){return 0;}
-		public int getLife(){return life;}
+        public float Life { get { return life; } }
 		//public Bitmap getImage(){return image;}
-
+        public float FullLife { get { return 100; } }
 
 		public void addBonus(int b){
 			switch(b){
@@ -67,13 +67,8 @@ namespace RoundedDefence.Components.Ships
 			double spd = getSpeed()+bonus.speed;
 			spd /= getBoost()+bonus.boost;
 		}
-		public void hit(double dmg){
-			dmg-= getShield()+bonus.shield;
-			dmg /= getDefence()+bonus.defence;
-			if (dmg > 0)
-				life -= (int)dmg;
-			if (life < 0)
-				kill ();
+		public void Hit(double dmg){
+				life -= (float)dmg;
 		}
 		private void kill(){
 		}

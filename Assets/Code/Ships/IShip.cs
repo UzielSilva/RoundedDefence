@@ -11,5 +11,8 @@ namespace RoundedDefence.Components.Ships
         String Image { get; }
         Point Position { get; set; }
         Path Path { get; set; }
+        void Hit(double damage);
+        float Life { get; }
+        float FullLife { get; }
     }
 }

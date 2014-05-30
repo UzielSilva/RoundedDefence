@@ -10,6 +10,7 @@ using RoundedDefence.Components.Fishes.Radials;
 using RoundedDefence.Components.Fishes.Roundeds;
 using RoundedDefence.Components.Fishes.Statics;
 using RoundedDefence.Components.Fishes.Targets;
+using RoundedDefence.Components.Ships;
 using RoundedDefence;
 
 public class FishElement : MonoBehaviour {
@@ -29,6 +30,7 @@ public class FishElement : MonoBehaviour {
     float angle;
     float speed;
     float direction;
+    float damage;
 
     // Use this for initialization
 	void Start () {
@@ -68,6 +70,8 @@ public class FishElement : MonoBehaviour {
         transform.localScale = (Vector3.one * 0.1f);
         renderer.sortingLayerName = "Towers";
         animation theAnimation = gameObject.AddComponent<animation>();
+        CircleCollider2D theCollider = gameObject.AddComponent<CircleCollider2D>();
+        theCollider.isTrigger = true;
         theAnimation.delay = 3;
         theAnimation.resource = "Sprites/Towers/" + thisFish.Image + "ss";
         normal = transform.position.normalized;
@@ -80,10 +84,17 @@ public class FishElement : MonoBehaviour {
 	void Update () {
 
         ExecuteBehaviour();
-	
-	}
+
+    }
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        collision.gameObject.GetComponent<ShipElement>().hit(damage);
+
+    }
     void activesActions()
-    { }
+    {
+        damage = (float)((ActiveFish)thisFish).Damage * 0.01f;
+    }
     void linearsActions()
     {
         speed = (float)((LinearFish)thisFish).Velocity * 0.01f;
@@ -92,9 +103,12 @@ public class FishElement : MonoBehaviour {
             direction *= -1;
     }
     void radialsActions()
-    { }
+    {
+        damage = (float)((RadialFish)thisFish).Damage * 0.01f;
+    }
     void roundedsActions()
     {
+        damage = (float)((RoundedFish)thisFish).Damage * 0.01f;
         speed = (float)((RoundedFish)thisFish).Velocity*0.01f;
         angle += speed;
         angle = ((2 * Mathf.PI) + angle) % (Mathf.PI * 2);
@@ -103,9 +117,12 @@ public class FishElement : MonoBehaviour {
     
     }
     void staticsActions()
-    { }
+    {
+        damage = (float)((StaticFish)thisFish).Damage * 0.01f;
+    }
     void targetsActions()
     {
+        damage = (float)((TargetFish)thisFish).Damage * 0.01f;
         speed = (float)((TargetFish)thisFish).Velocity * 0.02f;
         radius = (float)((TargetFish)thisFish).Radius * 0.1f;
         angle += speed;
