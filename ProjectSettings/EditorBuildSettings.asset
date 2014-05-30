@@ -13,3 +13,7 @@ EditorBuildSettings:
     path: Assets/Scenes/towerSelect.unity
   - enabled: 1
     path: Assets/Scenes/genericLevel.unity
+  - enabled: 1
+    path: Assets/Scenes/levelLose.unity
+  - enabled: 1
+    path: Assets/Scenes/levelWon.unity
