@@ -16,17 +16,6 @@ namespace RoundedDefence.Components.Fishes.Actives
 
         public Kraken()
 			: base(requiredFood,requiredStars, timeToAction, damage,image,name,id,scale)
-        {
-        }
-        public override Boolean IsInArea(Point p)
-        {
-			double x = p.X*Math.Cos((Math.PI / 180) * p.Y);
-			double y = p.X*Math.Sin((Math.PI / 180) * p.Y);
-			double px = this.Position.X*Math.Cos((Math.PI / 180) * this.Position.Y);
-			double py = this.Position.X*Math.Sin((Math.PI / 180) * this.Position.Y);
-            if (Math.Pow(x - px, 2) + Math.Pow(y - py, 2) <= Math.Pow(radius,2))
-                return true;
-            return false;
-        }
+        {}
     }
 }

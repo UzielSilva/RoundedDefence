@@ -14,8 +14,9 @@ namespace RoundedDefence.Components.Fishes.Targets
 		public static string name = "Flappy fish";
 		public static Int32 id = 4;
 		public static float scale = .2f;
-		public FlyFish()
-            : base(requiredFood, requiredStars, velocity, damage, health, image, name, id, radius, scale)
+        public static bool rotate = false;
+        public FlyFish()
+            : base(requiredFood, requiredStars, velocity, damage, health, image, name, id, radius, rotate, scale)
 		{}
 	}
 }

@@ -15,10 +15,18 @@ public class LoadTowers : MonoBehaviour {
     {
 
         Fishes = new Dictionary<int, IFish>();
-        string @namespace = "RoundedDefence.Components.Fishes.Passives";
+        string[] @namespace = {
+                                "RoundedDefence.Components.Fishes.Linears",
+                                "RoundedDefence.Components.Fishes.Radials",
+                                "RoundedDefence.Components.Fishes.Roundeds",
+                                "RoundedDefence.Components.Fishes.Statics",
+                                "RoundedDefence.Components.Fishes.Targets",
+		                        "RoundedDefence.Components.Fishes.Actives"
+
+                            };
 
         var q = from t in Assembly.GetExecutingAssembly().GetTypes()
-                where t.IsClass && t.Namespace == @namespace
+                where t.IsClass && (@namespace.Contains(t.Namespace))
                 select t;
 
         foreach (Type t in q)
