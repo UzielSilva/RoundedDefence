@@ -13,5 +13,6 @@ namespace RoundedDefence.Components.Fishes
 		Double TimeToAction { get; }
 		Int32 Damage { get; }
 		float Scale { get; }
+        String Type { get; }
     }
 }

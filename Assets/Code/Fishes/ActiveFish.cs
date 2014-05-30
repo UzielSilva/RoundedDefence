@@ -12,7 +12,7 @@ namespace RoundedDefence.Components.Fishes
 		private String image;
 		private String name;
 		private float scale;
-        
+
         public Point Position { get; set; }
         public Int32 RequiredFood { get { return requiredFood; } }
         public Int32 RequiredStars { get { return requiredStars; } }
