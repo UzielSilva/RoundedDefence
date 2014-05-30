@@ -16,6 +16,7 @@ public class LoadGenericLevel : MonoBehaviour {
 	GameObject txtwave;
 	GameObject btnnextwave;
     bool doAnimation = true;
+    bool firstWave = true;
     bool inWave = true;
     float timer;
 
@@ -49,9 +50,11 @@ public class LoadGenericLevel : MonoBehaviour {
 	GameObject btnsound;
 
     GameObject[] towers;
+    GameObject[] algae;
 
     public static float initMapRadius = 0.25f;
     public static float factorSpaceMap = 0.2f;
+
 
     bool isDrawedMap;
 
@@ -60,8 +63,9 @@ public class LoadGenericLevel : MonoBehaviour {
     {
         for (int e = 0; e < 220; e++)
         {
-            PointMapListener.costMap[e] = 4;
+            Lib.map[e] = 4;
         }
+        PointMapListener.OnHover += PreviewNewPath;
 		btnmusica = GameObject.Find ("btnmusica");
 		btnsound = GameObject.Find ("btnsound");
 		for(int m =0;m<Lib.map.Length;m++){
@@ -81,12 +85,16 @@ public class LoadGenericLevel : MonoBehaviour {
         background.transform.position = new Vector3(0,0,2);
         background.transform.localScale *= 0.28f;
 		island = GameObject.Find("island");
-		island.AddComponent<CircleCollider2D>();
         position = new Vector3(0, 0, 10);
         position2 = new Vector3(0, 0, -10);
 
         Lib.setSprite(background, "Sprites/Background/" + Lib.currentLevel.Attribute("background-image").Value);
         Lib.setSprite(island, "Sprites/Islands/" + Lib.currentLevel.Attribute("unlocked-sprite").Value);
+
+
+        CircleCollider2D theCollider = island.AddComponent<CircleCollider2D>();
+        island.AddComponent<IslandCollider>();
+        theCollider.isTrigger = true;
 
         zoom = gui.gameObject.AddComponent<CameraZoom>();
         zoom.target = position2;
@@ -111,7 +119,17 @@ public class LoadGenericLevel : MonoBehaviour {
 
         }
         drawMap();
-        Lib.unfades();
+
+        algae = new GameObject[3];
+
+        for (int i = 0; i < 3; i++)
+        {
+            algae[i] = new GameObject("life" + i);
+            algae[i].AddComponent<SpriteRenderer>();
+            Lib.setSprite(algae[i], "Sprites/Towers/Especiales/algaeblue");
+        }
+
+            Lib.unfades();
 	}
 	void addMessage(XElement msg){
 		imessage++;
@@ -155,9 +173,8 @@ public class LoadGenericLevel : MonoBehaviour {
 
                 int currentTime = (int)((Time.time - timer)*10);
 			Lib.setString(txtwave,currentTime-Int16.Parse(currentWave.Attribute("time").Value) +"");
-                if (currentTime > Int16.Parse(currentWave.Attribute("time").Value))
+                if (currentTime > Int16.Parse(currentWave.Attribute("time").Value) && !firstWave)
                 {
-					print ("next");
                     inWave = false;
                 }
                 else
@@ -177,7 +194,6 @@ public class LoadGenericLevel : MonoBehaviour {
                     GameObject ship = new GameObject(String.Format("Ship.{0}.{1}.{2}", id, angle, currentTime));
                     ship.transform.localScale = ShipScale;
 					ship.AddComponent<SpriteRenderer>();
-					ship.AddComponent<CircleCollider2D>();
                     ShipElement s = ship.AddComponent<ShipElement>();
                     s.id = id;
                     s.angle = angle;
@@ -189,6 +205,7 @@ public class LoadGenericLevel : MonoBehaviour {
         }
         else
         {
+            firstWave = false;
             hasNextWave = waves.MoveNext();
             currentWave = waves.Current;
             if (hasNextWave)
@@ -208,7 +225,13 @@ public class LoadGenericLevel : MonoBehaviour {
 		btnsound.transform.position = new Vector3(-Lib.width() / 2f + .2f, Lib.height() / 2f - .2f, -9f);
 		btnnextwave.transform.position = new Vector3 (Lib.width() / 2f, Lib.height() / 2f, -9f);
 		txtwave.transform.position = new Vector3(Lib.width()/2f -.6f, Lib.height() /2f -.3f, -9f);
-        Lib.cameraFollow(Lib.mouseCord(gui), gui);
+
+        for (int i = 0; i < 3; i++)
+        {
+            algae[i].transform.position = new Vector3(-Lib.width() / 2f + i*0.3f, -Lib.height() / 2f, -9f);
+        }
+
+            Lib.cameraFollow(Lib.mouseCord(gui), gui);
 
         Lib.dofade();
 	}
@@ -260,6 +283,33 @@ public class LoadGenericLevel : MonoBehaviour {
 		GameObject music=new GameObject(txt);
 		music.AddComponent ("FadeMusic");
 	}
+    void PreviewNewPath(int point)
+     {
+         int temp = Lib.map[point];
+         Lib.map[point] = 1000;
+         
+         var waveList = Lib.currentLevel.Element(XName.Get("waves")).Elements(XName.Get("wave")).ToList();
+ 
+         var nextWaves = waveList.GetEnumerator();
+ 
+         while(nextWaves.Current != currentWave)
+             nextWaves.MoveNext();
+         nextWaves.MoveNext();
+ 
+         foreach (XElement ship in nextWaves.Current.Elements("ship"))
+         {
+             ShortPath p = new ShortPath((Int16.Parse(ship.Attribute("angle").Value)), 13,Lib.map);
+             foreach (Camino c in p.getPath().camino)
+             {
+                 if (c.lvl >= 13 && c.lvl < 220)
+                 {
+                     SpriteRenderer sprRenderer = GameObject.Find(String.Format("Point{0}", c.lvl)).GetComponent<SpriteRenderer>();
+                     sprRenderer.color = Color.white;
+                 }
+             }
+         }
+         Lib.map[point] = temp;
+     }
     void drawMap()
     {
         for (int i = 0; i <= 220; i++)
@@ -268,14 +318,16 @@ public class LoadGenericLevel : MonoBehaviour {
                 GameObject point = new GameObject("Point" + i );
                 GameObject pointCollider = new GameObject("PointCollider" + i );
                 CircleCollider2D collider = pointCollider.AddComponent<CircleCollider2D>();
+                collider.isTrigger = true;
                 SpriteRenderer sprRenderer = pointCollider.AddComponent<SpriteRenderer>();
                 pointCollider.AddComponent<PointMapListener>();
                 sprRenderer.color = new Color(1f, 1f, 1f, .5f);
                 Lib.setSprite(pointCollider, "Sprites/Misc/circlegreen");
                 pointCollider.renderer.enabled = false;
                 pointCollider.transform.localScale = (new Vector3(1,1,1))*factorSpaceMap;
-                point.AddComponent<SpriteRenderer>();
-                Lib.setSprite(point,"Sprites/Misc/backstar");
+                SpriteRenderer sprRenderer2 = point.AddComponent<SpriteRenderer>();
+                Lib.setSprite(point, "Sprites/Misc/backstar");
+                sprRenderer2.color = Color.gray;
                 point.transform.localScale = (new Vector3(1, 1, 1)) * 0.05f;
                 point.transform.position = Lib.toCords(i);
                 pointCollider.transform.position = point.transform.position;

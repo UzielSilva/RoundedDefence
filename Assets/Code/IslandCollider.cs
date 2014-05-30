@@ -12,10 +12,7 @@ public class IslandCollider : MonoBehaviour {
 	void Update () {
 	
 	}
-	void OnCollisionEnter2D(Collision2D collision){
-		print ("collided");
-	}
-	void OnCollision2D(Collision2D collision){
-		print ("collided2");
+	void OnTriggerEnter2D(Collider2D collision){
+		print ("perdiste");
 	}
 }

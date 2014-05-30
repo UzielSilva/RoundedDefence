@@ -43,25 +43,6 @@ namespace RoundedDefence.Components.Levels
 				}
 			}
 		}
-		private void moveShips(){
-			foreach (Ship ship in activeShip) {
-				if (ship.getLife () <= 0){	
-					score += (int)(ship.getScore()*(scoreMultiplier/100 +1));
-					activeShip.Remove (ship);
-				}else {
-//					ship.addBonus (valueMap [ship.getTilesPosition().X, ship.getTilesPosition().Y]);
-			//		ship.move();
-
-				}
-			}
-		}
-		public void move(){
-			getWaves (0);
-			getShips ();
-			moveShips ();
-			if (waves.Count == 0 && activeWaves.Count == 0 && activeShip.Count == 0)
-				clear = true;
-		}
 		public Boolean isClear(){
 			return clear;
 		}
