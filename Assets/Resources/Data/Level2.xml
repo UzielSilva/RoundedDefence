@@ -1,12 +1,56 @@
-<level class="normal" world="1" levelnum="2" name="Artantic Island" required-stars="0" locked-sprite="isla2" unlocked-sprite="isla2"  background-image="bg resized" background-music="Fish-MatchTwo" >
-	<scores one-star="10000" two-star="20000" three-star="30000"/>
+<level class="normal" world="1" levelnum="2" name="Artantic Island" required-stars="0" unlocked-sprite="isla2" locked-sprite="isla2" background-image="bg resized" >
+	<scores one-star="1000" two-star="2000" three-star="3000"/>
 	<towers>	
-		<tower id=""/>
+		<tower id="1"/>
+		<tower id="2"/>
+		<tower id="3"/>
+		<tower id="4"/>
+		<tower id="5"/>
+		<tower id="6"/>
+		<tower id="7"/>
+		<tower id="8"/>
+		<tower id="9"/>
+		<tower id="10"/>
+		<tower id="11"/>
+		<tower id="12"/>
+		<tower id="13"/>
+		<tower id="14"/>
+		<tower id="15"/>
+		<tower id="16"/>
+		<tower id="17"/>
+		<tower id="18"/>
 	</towers>
 	<walls>	
 		<wall id="" radius="" angle=""/>
 	</walls>
-	<wave time="">		
-		<ship id="" time="" angle=""/>
-	</wave>
+	<waves>
+		<wave time="800" background-music="Waves-8-bit">
+			<msg time="60" delay="50" >Welcome again!</msg>
+			<msg time="60" delay="50" >Take your time and place some towers</msg>
+		</wave>
+		<wave time="400" background-music="Step-Three" >	
+			<msg time="190" delay="20"> Now something more dificult</msg>
+			<ship id="passenger" time="100" angle="224"/>
+			<ship id="passenger" time="110" angle="224"/>
+			<ship id="passenger" time="120" angle="224"/>
+			<ship id="passenger" time="130" angle="224"/>
+			<ship id="passenger" time="140" angle="224"/>
+			<ship id="passenger" time="150" angle="224"/>
+			<ship id="passenger" time="160" angle="224"/>
+			<ship id="passenger" time="170" angle="224"/>
+			<msg time="50" delay="20"> That was easy isn't it?</msg>
+			<msg time="190" delay="20"> Now try this</msg>
+			<ship id="passenger" time="240" angle="221"/>
+			<ship id="passenger" time="245" angle="222"/>
+			<ship id="passenger" time="250" angle="223"/>
+			<ship id="passenger" time="255" angle="224"/>
+			<ship id="passenger" time="260" angle="225"/>
+			<ship id="passenger" time="265" angle="226"/>
+			<ship id="passenger" time="270" angle="227"/>
+			<ship id="passenger" time="275" angle="228"/>
+			<ship id="ray" time="280" angle="229"/>
+			<ship id="ray" time="285" angle="230"/>
+			
+		</wave>
+	</waves>
 </level>

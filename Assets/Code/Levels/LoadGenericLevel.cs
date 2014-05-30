@@ -218,6 +218,8 @@ public class LoadGenericLevel : MonoBehaviour {
             else
             {
 				Debug.Log("Level cleared");
+				if(PlayerPrefs.GetInt("LvlUnlocked", 1)<Lib.currentlvl+1)
+				PlayerPrefs.SetInt("LvlUnlocked", Lib.currentlvl+1);
 				Application.LoadLevel ("levelWon");
             }
         }
