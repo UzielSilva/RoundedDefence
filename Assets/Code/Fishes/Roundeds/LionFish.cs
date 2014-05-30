@@ -9,7 +9,7 @@ namespace RoundedDefence.Components.Fishes.Roundeds
         public static Int32 requiredStars = 20;
         public static Int32[] damage = { 3, 5, 7, 10 };
 		public static Int32[] health = { 100, 150, 200, 220 };
-		public static string image = "Venenosos/pez leon";
+		public static string image = "Venenosos/leon";
 		public static string name = "Lion fish";
 		public static Int32 id = 12;
 		public static float scale = .2f;

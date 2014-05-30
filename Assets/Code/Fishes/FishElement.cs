@@ -67,7 +67,9 @@ public class FishElement : MonoBehaviour {
         sprRenderer.sprite = Resources.Load<Sprite>("Sprites/Towers/" + thisFish.Image);
         transform.localScale = (Vector3.one * 0.1f);
         renderer.sortingLayerName = "Towers";
-
+        animation theAnimation = gameObject.AddComponent<animation>();
+        theAnimation.delay = 3;
+        theAnimation.resource = "Sprites/Towers/" + thisFish.Image + "ss";
         normal = transform.position.normalized;
         init = transform.position;
         timer = Time.time;
