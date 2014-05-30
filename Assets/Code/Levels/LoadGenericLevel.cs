@@ -217,7 +217,8 @@ public class LoadGenericLevel : MonoBehaviour {
             }
             else
             {
-                Debug.Log("Level cleared");
+				Debug.Log("Level cleared");
+				Application.LoadLevel ("levelWon");
             }
         }
 		
