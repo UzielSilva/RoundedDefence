@@ -34,7 +34,6 @@ namespace RoundedDefence.Components.Fishes
 		                   string image,string name,Int32 id,float scale)
         {
             if (requiredFood.Length != 4
-                || timeToAction.Length != 4
                 || damage.Length != 4)
 				throw new Exception("Bad arguments, array's length must be 4.");
 			this.level = 1;
@@ -49,7 +48,6 @@ namespace RoundedDefence.Components.Fishes
 			this.id = id;
 			this.scale = scale;
         }
-        public abstract Boolean IsInArea(Point p);
         public void Upgrade()
         {
             if (level != maxLevel)

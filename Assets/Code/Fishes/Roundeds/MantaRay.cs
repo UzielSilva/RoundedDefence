@@ -17,12 +17,5 @@ namespace RoundedDefence.Components.Fishes.Roundeds
             : base(requiredFood, requiredStars, timeToAction, damage, health, image, name, id, scale)
 		{
 		}
-		public override Boolean IsInArea(Point p)
-		{
-			Int32 Width = width[Level];
-			if ((p.Y % 180) - (this.Position.Y % 180) < Width)
-				return true;
-			return false;
-		}
 	}
 }
