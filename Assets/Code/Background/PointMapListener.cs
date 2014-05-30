@@ -23,11 +23,14 @@ public class PointMapListener : MonoBehaviour {
     {
         if (TowerSelector.idselected != 0)
         {
-            GameObject theFish = new GameObject(TowerSelector.idselected + name);
-            theFish.AddComponent<SpriteRenderer>();
-            FishElement theSettings = theFish.AddComponent<FishElement>();
-            theSettings.id = TowerSelector.idselected;
-            theSettings.position = transform.position;
+            if (Input.GetMouseButtonDown(0))
+            {
+                GameObject theFish = new GameObject(TowerSelector.idselected + name);
+                theFish.AddComponent<SpriteRenderer>();
+                FishElement theSettings = theFish.AddComponent<FishElement>();
+                theSettings.id = TowerSelector.idselected;
+                theSettings.position = transform.position;
+            }
         }
         over = true;
     }

@@ -28,6 +28,7 @@ public class FishElement : MonoBehaviour {
     float radius;
     float angle;
     float speed;
+    float direction;
 
     // Use this for initialization
 	void Start () {
@@ -37,6 +38,8 @@ public class FishElement : MonoBehaviour {
         if (typeof(LinearFish).IsAssignableFrom(Lib.Fishes[id].GetType()))
         {
             ExecuteBehaviour = linearsActions;
+            radius = Lib.toCords(220).magnitude;
+            direction = 1;
         }
         if (typeof(RadialFish).IsAssignableFrom(Lib.Fishes[id].GetType()))
             ExecuteBehaviour = radialsActions;
@@ -45,16 +48,24 @@ public class FishElement : MonoBehaviour {
             ExecuteBehaviour = roundedsActions;
             center = Vector3.zero;
             radius = Vector3.Distance(position, Vector3.zero);
-            angle = 30;
+            float localAngle = Mathf.Acos(Vector3.Dot(position.normalized, new Vector3(1, 0, 0)));
+            if(position.normalized.y < 0 )
+                localAngle = 2*Mathf.PI - Mathf.Acos(Vector3.Dot(position.normalized, new Vector3(1, 0, 0)));
+            transform.Rotate(Vector3.forward, localAngle * 180 / Mathf.PI);
+            angle = localAngle;
         }
         if (typeof(StaticFish).IsAssignableFrom(Lib.Fishes[id].GetType()))
             ExecuteBehaviour = staticsActions;
         if (typeof(TargetFish).IsAssignableFrom(Lib.Fishes[id].GetType()))
+        {
             ExecuteBehaviour = targetsActions;
+            center = position;
+            angle = 0;
+        }
         transform.position =  position;
         SpriteRenderer sprRenderer = GetComponent<SpriteRenderer>();
         sprRenderer.sprite = Resources.Load<Sprite>("Sprites/Towers/" + thisFish.Image);
-        transform.localScale = (Vector3.one*0.1f);
+        transform.localScale = (Vector3.one * 0.1f);
         renderer.sortingLayerName = "Towers";
 
         normal = transform.position.normalized;
@@ -73,7 +84,10 @@ public class FishElement : MonoBehaviour {
     { }
     void linearsActions()
     {
-        
+        speed = (float)((LinearFish)thisFish).Velocity * 0.01f;
+        transform.Translate(position.normalized*speed*direction);
+        if (transform.position.magnitude > radius || transform.position.magnitude < Lib.toCords(10).magnitude)
+            direction *= -1;
     }
     void radialsActions()
     { }
@@ -89,5 +103,13 @@ public class FishElement : MonoBehaviour {
     void staticsActions()
     { }
     void targetsActions()
-    { }
+    {
+        speed = (float)((TargetFish)thisFish).Velocity * 0.02f;
+        radius = (float)((TargetFish)thisFish).Radius * 0.1f;
+        angle += speed;
+        angle = ((2 * Mathf.PI) + angle) % (Mathf.PI * 2);
+        transform.position = new Vector3(center.x + (radius * Mathf.Cos(angle)), center.y + (radius * Mathf.Sin(angle)), 0f);
+        if (((TargetFish)thisFish).Rotate)
+            transform.Rotate(Vector3.forward, speed * 180 / Mathf.PI);
+    }
 }

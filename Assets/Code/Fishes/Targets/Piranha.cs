@@ -14,8 +14,9 @@ namespace RoundedDefence.Components.Fishes.Targets
 		public static string name = "Piranha";
 		public static Int32 id = 6;
 		public static float scale = .3f;
-		public Piranha()
-            : base(requiredFood, requiredStars, velocity, damage, health, image, name, id, radius, scale)
+        public static bool rotate = true;
+        public Piranha()
+            : base(requiredFood, requiredStars, velocity, damage, health, image, name, id, radius, rotate, scale)
 		{}
 	}
 }
