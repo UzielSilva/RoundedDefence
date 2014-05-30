@@ -2,6 +2,7 @@
 using System;
 using System.Collections;
 using RoundedDefence;
+using RoundedDefence.Components.Fishes;
 
 public class PointMapListener : MonoBehaviour {
     GameObject shadow;
@@ -22,8 +23,11 @@ public class PointMapListener : MonoBehaviour {
     {
         if (TowerSelector.idselected != 0)
         {
-            string[] point = name.Substring(13).Split(',');
-            //fish.transform.localScale = (new Vector3(1,1,1))*0.1f;
+            GameObject theFish = new GameObject(TowerSelector.idselected + name);
+            theFish.AddComponent<SpriteRenderer>();
+            FishElement theSettings = theFish.AddComponent<FishElement>();
+            theSettings.id = TowerSelector.idselected;
+            theSettings.position = transform.position;
         }
         over = true;
     }

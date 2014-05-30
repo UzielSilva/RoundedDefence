@@ -37,14 +37,16 @@ public class FishElement : MonoBehaviour {
         if (typeof(LinearFish).IsAssignableFrom(Lib.Fishes[id].GetType()))
         {
             ExecuteBehaviour = linearsActions;
-            center = Vector3.zero;
-            radius = 1;//Vector3.Distance(transform.position, Vector3.zero);
-            angle = 0;
         }
         if (typeof(RadialFish).IsAssignableFrom(Lib.Fishes[id].GetType()))
             ExecuteBehaviour = radialsActions;
         if (typeof(RoundedFish).IsAssignableFrom(Lib.Fishes[id].GetType()))
+        {
             ExecuteBehaviour = roundedsActions;
+            center = Vector3.zero;
+            radius = Vector3.Distance(position, Vector3.zero);
+            angle = 30;
+        }
         if (typeof(StaticFish).IsAssignableFrom(Lib.Fishes[id].GetType()))
             ExecuteBehaviour = staticsActions;
         if (typeof(TargetFish).IsAssignableFrom(Lib.Fishes[id].GetType()))
@@ -77,7 +79,7 @@ public class FishElement : MonoBehaviour {
     { }
     void roundedsActions()
     {
-        speed = (float)((RoundedFish)thisFish).Velocity;
+        speed = (float)((RoundedFish)thisFish).Velocity*0.01f;
         angle += speed;
         angle = ((2 * Mathf.PI) + angle) % (Mathf.PI * 2);
         transform.position = new Vector3(center.x + (radius * Mathf.Cos(angle)), center.y + (radius * Mathf.Sin(angle)), 0f);

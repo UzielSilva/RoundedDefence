@@ -88,9 +88,9 @@ public class TowerSelect : MonoBehaviour {
 			box.size=new Vector3(2f,2f,0);
 			Lib.setSprite(tower[i,e],"Sprites/Towers/"+fish.Image);
 
-            if(fish.Id!=1 && fish.Id!=4&&PlayerPrefs.GetInt("TowerBuy"+fish.Id,0)==0){
-				tower[i,e].renderer.material.color = new Color(.15f,.15f,.15f);
-			}
+            //if(fish.Id!=1 && fish.Id!=4&&PlayerPrefs.GetInt("TowerBuy"+fish.Id,0)==0){
+            //    tower[i,e].renderer.material.color = new Color(.15f,.15f,.15f);
+            //}
 
 			tower[i,e].renderer.sortingLayerName = "Others";
 			tower[i,e].renderer.sortingOrder = 5;
@@ -98,18 +98,18 @@ public class TowerSelect : MonoBehaviour {
 			tower[i,e].transform.localScale = new Vector3(fish.Scale,fish.Scale,1f);
 			tower[i,e].transform.rotation = transform.rotation;
 
-            if ((fish.RequiredStars > PlayerPrefs.GetInt("TotalStars", 0)) || !(avaliableTowersList.Exists(x => x == fish.Id)))
-            {
-				GameObject rejectimg= new GameObject("reject"+i+"level"+e);
-				rejectimg.AddComponent<SpriteRenderer>();
-				Lib.setSprite(rejectimg,"Sprites/Misc/tacha");
-				rejectimg.renderer.sortingLayerName = "Others";
-				rejectimg.renderer.sortingOrder = 6;
-				rejectimg.transform.position = new Vector3(i*Lib.width()/7.6f - (Lib.width()/3.8f),e*Lib.height()/6.4f-(Lib.height()/6),0);
-				rejectimg.transform.localScale = new Vector3(.4f,.4f,1f);
-				rejectimg.transform.rotation = transform.rotation;
+            //if ((fish.RequiredStars > PlayerPrefs.GetInt("TotalStars", 0)) || !(avaliableTowersList.Exists(x => x == fish.Id)))
+            //{
+            //    GameObject rejectimg= new GameObject("reject"+i+"level"+e);
+            //    rejectimg.AddComponent<SpriteRenderer>();
+            //    Lib.setSprite(rejectimg,"Sprites/Misc/tacha");
+            //    rejectimg.renderer.sortingLayerName = "Others";
+            //    rejectimg.renderer.sortingOrder = 6;
+            //    rejectimg.transform.position = new Vector3(i*Lib.width()/7.6f - (Lib.width()/3.8f),e*Lib.height()/6.4f-(Lib.height()/6),0);
+            //    rejectimg.transform.localScale = new Vector3(.4f,.4f,1f);
+            //    rejectimg.transform.rotation = transform.rotation;
 
-			}
+            //}
 		}
 		for (int i=0; i< 5; i++) {
 			GameObject rejectimg= new GameObject("objselect"+i);
@@ -173,9 +173,9 @@ public class TowerSelect : MonoBehaviour {
 			if(tower[i,e].transform.position.z==1){
 				IFish fish=getFish((2-e)+(i*3)+1);
 
-                if (fish.RequiredStars > PlayerPrefs.GetInt("TotalStars", 0))
+                /*if (fish.RequiredStars > PlayerPrefs.GetInt("TotalStars", 0))
                     Lib.setString(txttipotorre, String.Format("You need {0} stars to unlock",fish.RequiredStars));
-                else if(avaliableTowersList.Exists(x => x == fish.Id))
+                else*/ if(avaliableTowersList.Exists(x => x == fish.Id))
                     Lib.setString(txttipotorre, fish.Name);
                 else
                     Lib.setString(txttipotorre, "Not avaliable for this level");
@@ -189,10 +189,10 @@ public class TowerSelect : MonoBehaviour {
 					}
 				}
 				for (int u=0; remove ==false && u< 5; u++) {
-					if(avaliableTowersList.Exists(x => x == fish.Id) && PlayerPrefs.GetInt("TowerSelected"+u,0)==0 && !(fish.Id!=1 && fish.Id!=4&&PlayerPrefs.GetInt("TowerBuy"+((2-e)+(i*3)+1),0)==0)){
+                    if(avaliableTowersList.Exists(x => x == fish.Id) && PlayerPrefs.GetInt("TowerSelected"+u,0)==0 /* && !(fish.Id!=1 && fish.Id!=4&&PlayerPrefs.GetInt("TowerBuy"+((2-e)+(i*3)+1),0)==0)*/){
 						PlayerPrefs.SetInt("TowerSelected"+u,(2-e)+(i*3)+1);
 						u=10;
-					}
+                    }
 					
 				}
 
@@ -241,10 +241,14 @@ public class TowerSelect : MonoBehaviour {
 		bright.transform.localScale= new Vector3 (Lib.height()*4.1f ,-1f, 0);
 	}
 	IFish getFish(int id){
-		string passives = "RoundedDefence.Components.Fishes.Passives";
+        string linears = "RoundedDefence.Components.Fishes.Linears";
+        string radials = "RoundedDefence.Components.Fishes.Radials";
+        string roundeds = "RoundedDefence.Components.Fishes.Roundeds";
+        string statics = "RoundedDefence.Components.Fishes.Statics";
+        string targets = "RoundedDefence.Components.Fishes.Targets";
 		string actives = "RoundedDefence.Components.Fishes.Actives";
 		var q = from t in Assembly.GetExecutingAssembly().GetTypes()
-			where t.IsClass && (t.Namespace == passives || t.Namespace == actives)
+                where t.IsClass && (t.Namespace == linears || t.Namespace == actives || t.Namespace == radials || t.Namespace == roundeds || t.Namespace == statics || t.Namespace == targets)
 				select t;
 			foreach (Type t in q) {
 				IFish fish = (IFish)Activator.CreateInstance (t);
