@@ -28,7 +28,7 @@
 			<msg time="60" delay="50" >Welcome again!</msg>
 			<msg time="60" delay="50" >Take your time and place some towers</msg>
 		</wave>
-		<wave time="400" background-music="Step-Three" >	
+		<wave time="300" background-music="Step-Three" >	
 			<msg time="190" delay="20"> Now something more dificult</msg>
 			<ship id="passenger" time="100" angle="224"/>
 			<ship id="passenger" time="110" angle="224"/>
@@ -48,9 +48,25 @@
 			<ship id="passenger" time="265" angle="226"/>
 			<ship id="passenger" time="270" angle="227"/>
 			<ship id="passenger" time="275" angle="228"/>
-			<ship id="ray" time="280" angle="229"/>
-			<ship id="ray" time="285" angle="230"/>
 			
+		</wave>
+		<wave time="400" background-music="Waves-8-bit">
+			<msg time="260" delay="50" >READY TO DIE</msg>
+			<ship id="passenger" time="240" angle="221"/>
+			<ship id="passenger" time="240" angle="222"/>
+			<ship id="passenger" time="240" angle="223"/>
+			<ship id="passenger" time="240" angle="224"/>
+			<ship id="passenger" time="240" angle="225"/>
+			<ship id="passenger" time="240" angle="226"/>
+			<ship id="passenger" time="240" angle="227"/>
+			<ship id="ray" time="250" angle="221"/>
+			<ship id="ray" time="250" angle="222"/>
+			<ship id="ray" time="250" angle="223"/>
+			<ship id="ray" time="250" angle="224"/>
+			<ship id="ray" time="250" angle="225"/>
+			<ship id="ray" time="250" angle="226"/>
+			<ship id="ray" time="250" angle="227"/>
+			<msg time="60" delay="50" >The end lucky one</msg>
 		</wave>
 	</waves>
 </level>
