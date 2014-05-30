@@ -1,6 +1,6 @@
 using System;
 
-namespace RoundedDefence.Components.Fishes.Static
+namespace RoundedDefence.Components.Fishes.Statics
 {
 	class Rock: StaticFish
 	{

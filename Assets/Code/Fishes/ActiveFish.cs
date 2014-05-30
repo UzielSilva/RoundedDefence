@@ -34,6 +34,5 @@ namespace RoundedDefence.Components.Fishes
 			this.scale = scale;
 			this.name = name;
         }
-        public abstract Boolean IsInArea(Point p);
     }
 }

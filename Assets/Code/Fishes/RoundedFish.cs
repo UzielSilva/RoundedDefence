@@ -49,7 +49,6 @@ namespace RoundedDefence.Components.Fishes
 			this.id = id;
             this.scale = scale;
         }
-        public abstract Boolean IsInArea(Point p);
         public void Upgrade()
         {
             if (level != maxLevel)

@@ -18,16 +18,5 @@ namespace RoundedDefence.Components.Fishes.Statics
             : base(requiredFood, requiredStars, effect, damage, health, image, name, id, scale)
 		{
 		}
-		public override Boolean IsInArea(Point p)
-		{
-			double x = p.X*Math.Cos((Math.PI / 180) * p.Y);
-			double y = p.X*Math.Sin((Math.PI / 180) * p.Y);
-			double px = this.Position.X*Math.Cos((Math.PI / 180) * this.Position.Y);
-			double py = this.Position.X*Math.Sin((Math.PI / 180) * this.Position.Y);
-			Int32 Radius = radius[Level];
-			if (Math.Pow(x - px, 2) + Math.Pow(y - py, 2) <= Math.Pow(Radius,2))
-				return true;
-			return false;
-		}
 	}
 }
