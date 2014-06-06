@@ -24,15 +24,15 @@ public class LoadGenericLevel : MonoBehaviour {
     public string countSprite;
 	public Material material;
     GameObject counter;
-    List<XElement>.Enumerator waves;
-    XElement currentWave;
-    bool hasNextWave;
-    List<XElement>.Enumerator currentShips;
-    XElement currentShip;
-    bool hasNextShip;
-    List<XElement>.Enumerator currentMessages;
-    XElement currentMessage;
-    bool hasNextMessage;
+    static List<XElement>.Enumerator waves;
+    static XElement currentWave;
+    static bool hasNextWave;
+    static List<XElement>.Enumerator currentShips;
+    static XElement currentShip;
+    static bool hasNextShip;
+    static List<XElement>.Enumerator currentMessages;
+    static XElement currentMessage;
+    static bool hasNextMessage;
 
     public Camera gui;
     public Camera main;
@@ -51,6 +51,8 @@ public class LoadGenericLevel : MonoBehaviour {
 
     GameObject[] towers;
     GameObject[] algae;
+
+    IOrderedEnumerable<int> towerNumbers;
 
     public static float initMapRadius = 0.25f;
     public static float factorSpaceMap = 0.2f;
@@ -120,6 +122,15 @@ public class LoadGenericLevel : MonoBehaviour {
         }
         drawMap();
 
+        int[] towersArray = new int[5];
+        for (int i = 0; i < 5; i++)
+            towersArray[i] = PlayerPrefs.GetInt("TowerSelected" + i, 0);
+
+        towerNumbers =  from t in towersArray
+                        where t != 0
+                        orderby t ascending
+                        select t;
+
         algae = new GameObject[3];
 
         for (int i = 0; i < 3; i++)
@@ -128,6 +139,7 @@ public class LoadGenericLevel : MonoBehaviour {
             algae[i].AddComponent<SpriteRenderer>();
             Lib.setSprite(algae[i], "Sprites/Towers/Especiales/algaeblue");
         }
+        initTowersMenu();
 
             Lib.unfades();
 	}
@@ -145,13 +157,6 @@ public class LoadGenericLevel : MonoBehaviour {
 	int msgTime=0;
 	int imessage=0;
 	void Update () {
-
-		for (int i = 0; i < 5; i++)
-        {
-            towers[i].transform.position = new Vector3(Lib.width() / 2f - 0.4f, Lib.height() / 8f + 0.7f, -9f);
-            SpriteRenderer sprRenderer = (SpriteRenderer)towers[i].renderer;
-            sprRenderer.sprite = null;
-             }
         drawTowersMenu();
         zoomBar.transform.position = new Vector3(-Lib.width() / 2f + .4f, Lib.height() / 8f - 0.3f, -9f);
 
@@ -207,9 +212,9 @@ public class LoadGenericLevel : MonoBehaviour {
         {
             firstWave = false;
             hasNextWave = waves.MoveNext();
-            currentWave = waves.Current;
             if (hasNextWave)
             {
+                currentWave = waves.Current;
                 inWave = true;
                 msgTime = 0;
                 timer = Time.time;
@@ -241,10 +246,10 @@ public class LoadGenericLevel : MonoBehaviour {
 
         Lib.dofade();
 	}
-    void drawTowersMenu()
+    void initTowersMenu()
     {
         int[] towersArray = new int[5];
-        for(int i = 0; i < 5; i++)
+        for (int i = 0; i < 5; i++)
             towersArray[i] = PlayerPrefs.GetInt("TowerSelected" + i, 0);
 
         var towers = from t in towersArray
@@ -253,18 +258,29 @@ public class LoadGenericLevel : MonoBehaviour {
                      select t;
 
         int j = 0;
-            foreach (int towerNum in towers)
+        foreach (int towerNum in towers)
+        {
+            GameObject tower = GameObject.Find("Tower" + j);
+            BoxCollider2D box = tower.GetComponent<BoxCollider2D>();
+            box.size = new Vector2(3, 3);
+            TowerOption option = tower.GetComponent<TowerOption>();
+            option.id = towerNum;
+            SpriteRenderer sprRenderer = tower.GetComponent<SpriteRenderer>();
+            IFish theFish = Lib.Fishes[towerNum];
+            sprRenderer.sprite = Resources.Load<Sprite>(String.Format("Sprites/Towers/{0}", theFish.Image));
+            sprRenderer.transform.localScale = (new Vector3(1, 1, 1)) * 0.2f;
+            sprRenderer.sortingLayerName = "Shots";
+            j++;
+        }
+    }
+    void drawTowersMenu()
+    {
+        
+        int j = 0;
+            foreach (int towerNum in towerNumbers)
             {
                 GameObject tower = GameObject.Find("Tower" + j);
-                BoxCollider2D box = tower.GetComponent<BoxCollider2D>();
-                box.size = new Vector2(3, 3);
-                TowerOption option = tower.GetComponent<TowerOption>();
-                option.id = towerNum;
-                SpriteRenderer sprRenderer = tower.GetComponent<SpriteRenderer>();
-                IFish theFish = Lib.Fishes[towerNum];
-                sprRenderer.sprite = Resources.Load<Sprite>(String.Format("Sprites/Towers/{0}", theFish.Image));
-                sprRenderer.transform.localScale = (new Vector3(1,1,1))*0.2f;
-                sprRenderer.sortingLayerName = "Shots";
+                tower.transform.position = new Vector3(Lib.width() / 2f - 0.4f, Lib.height() / 8f + 0.7f, -9f);
                 tower.transform.Translate(new Vector3(0, -j*0.7f, 0));
                 j++;
             }
@@ -293,18 +309,19 @@ public class LoadGenericLevel : MonoBehaviour {
      {
          int temp = Lib.map[point];
          Lib.map[point] = 1000;
-         
+
          var waveList = Lib.currentLevel.Element(XName.Get("waves")).Elements(XName.Get("wave")).ToList();
- 
+
          var nextWaves = waveList.GetEnumerator();
- 
-         while(nextWaves.Current != currentWave)
+         nextWaves.MoveNext();
+
+         while (nextWaves.Current != currentWave)
              nextWaves.MoveNext();
          nextWaves.MoveNext();
- 
+
          foreach (XElement ship in nextWaves.Current.Elements("ship"))
          {
-             ShortPath p = new ShortPath((Int16.Parse(ship.Attribute("angle").Value)), 13,Lib.map);
+             ShortPath p = new ShortPath((Int16.Parse(ship.Attribute("angle").Value)), 13, Lib.map);
              foreach (Camino c in p.getPath().camino)
              {
                  if (c.lvl >= 13 && c.lvl < 220)
