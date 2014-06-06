@@ -12,22 +12,24 @@ public class LoadShips : MonoBehaviour {
     Dictionary<String, IShip> Ships;
 	// Use this for initialization
 	void Start () {
-
-        Ships = new Dictionary<string, IShip>();
-        string @namespace = "RoundedDefence.Components.Ships.Types";
-
-        var q = from t in Assembly.GetExecutingAssembly().GetTypes()
-                where t.IsClass && t.Namespace == @namespace
-                select t;
-
-        foreach (Type t in q)
+        if (Lib.Ships == null)
         {
-            IShip ship = (IShip)Activator.CreateInstance(t);
-            String id = ship.Id;
+            Ships = new Dictionary<string, IShip>();
+            string @namespace = "RoundedDefence.Components.Ships.Types";
 
-            Ships.Add(id, ship);
+            var q = from t in Assembly.GetExecutingAssembly().GetTypes()
+                    where t.IsClass && t.Namespace == @namespace
+                    select t;
+
+            foreach (Type t in q)
+            {
+                IShip ship = (IShip)Activator.CreateInstance(t);
+                String id = ship.Id;
+
+                Ships.Add(id, ship);
+            }
+            Lib.Ships = Ships;
         }
-        Lib.Ships = Ships;
 	}
 	
 	// Update is called once per frame

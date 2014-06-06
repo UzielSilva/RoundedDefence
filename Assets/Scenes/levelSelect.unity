@@ -712,6 +712,9 @@ GameObject:
   - 114: {fileID: 1018617532}
   - 114: {fileID: 1018617536}
   - 114: {fileID: 1018617533}
+  - 114: {fileID: 1018617539}
+  - 114: {fileID: 1018617538}
+  - 114: {fileID: 1018617537}
   m_Layer: 12
   m_Name: _GM
   m_TagString: Untagged
@@ -829,6 +832,39 @@ MonoBehaviour:
   scaleLevelNormal: {x: .230000004, y: .230000004, z: .230000004}
   scaleLevelSpecial: {x: .100000001, y: .100000001, z: .100000001}
   selector: Sprites/others/shark resized
+--- !u!114 &1018617537
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1018617531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92fb18ef8731ace4eb98b64c14728364, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1018617538
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1018617531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2bc145c566b7e74d9dfa766a1b439f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1018617539
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1018617531}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08536af905ac1024d8d9cd77fde9c236, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1103928520
 GameObject:
   m_ObjectHideFlags: 0

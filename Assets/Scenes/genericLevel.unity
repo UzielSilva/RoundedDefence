@@ -487,6 +487,9 @@ GameObject:
   - 114: {fileID: 796699946}
   - 82: {fileID: 796699948}
   - 114: {fileID: 796699950}
+  - 114: {fileID: 796699952}
+  - 114: {fileID: 796699951}
+  - 114: {fileID: 796699949}
   m_Layer: 0
   m_Name: _GM
   m_TagString: Untagged
@@ -581,6 +584,17 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!114 &796699949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 796699945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2bc145c566b7e74d9dfa766a1b439f6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &796699950
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -595,6 +609,28 @@ MonoBehaviour:
   sprite: {fileID: 21300000, guid: 4b4610b58fd17494c867660e5ba030fd, type: 3}
   cam1: {fileID: 686510504}
   cam2: {fileID: 258178416}
+--- !u!114 &796699951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 796699945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 08536af905ac1024d8d9cd77fde9c236, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &796699952
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 796699945}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92fb18ef8731ace4eb98b64c14728364, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &813416447
 GameObject:
   m_ObjectHideFlags: 0

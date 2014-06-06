@@ -13,30 +13,31 @@ public class LoadTowers : MonoBehaviour {
     // Use this for initialization
     void Start()
     {
+        if (Lib.Fishes == null) { 
+            Fishes = new Dictionary<int, IFish>();
+            string[] @namespace = {
+                                    "RoundedDefence.Components.Fishes.Linears",
+                                    "RoundedDefence.Components.Fishes.Radials",
+                                    "RoundedDefence.Components.Fishes.Roundeds",
+                                    "RoundedDefence.Components.Fishes.Statics",
+                                    "RoundedDefence.Components.Fishes.Targets",
+		                            "RoundedDefence.Components.Fishes.Actives"
 
-        Fishes = new Dictionary<int, IFish>();
-        string[] @namespace = {
-                                "RoundedDefence.Components.Fishes.Linears",
-                                "RoundedDefence.Components.Fishes.Radials",
-                                "RoundedDefence.Components.Fishes.Roundeds",
-                                "RoundedDefence.Components.Fishes.Statics",
-                                "RoundedDefence.Components.Fishes.Targets",
-		                        "RoundedDefence.Components.Fishes.Actives"
+                                };
 
-                            };
+            var q = from t in Assembly.GetExecutingAssembly().GetTypes()
+                    where t.IsClass && (@namespace.Contains(t.Namespace))
+                    select t;
 
-        var q = from t in Assembly.GetExecutingAssembly().GetTypes()
-                where t.IsClass && (@namespace.Contains(t.Namespace))
-                select t;
+            foreach (Type t in q)
+            {
+                IFish fish = (IFish)Activator.CreateInstance(t);
+                int id = fish.Id;
 
-        foreach (Type t in q)
-        {
-            IFish fish = (IFish)Activator.CreateInstance(t);
-            int id = fish.Id;
-
-            Fishes.Add(id, fish);
+                Fishes.Add(id, fish);
+            }
+            Lib.Fishes = Fishes;
         }
-        Lib.Fishes = Fishes;
     }
 
     // Update is called once per frame

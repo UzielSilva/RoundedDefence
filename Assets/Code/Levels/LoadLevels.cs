@@ -13,9 +13,12 @@ public class LoadLevels : MonoBehaviour {
     private string _FileLocation;
     // Use this for initialization
 	void Start () {
-        _FileLocation = Application.dataPath;
-        Read();
-		Lib.setCurrentLevel("normal",1,1);
+        if (Lib.data == null)
+        {
+            _FileLocation = Application.dataPath;
+            Read();
+            Lib.setCurrentLevel("normal", 1, 1);
+        }
 	}
 	
 	// Update is called once per frame
